@@ -88,9 +88,10 @@ function App() {
       </header>
       {mode === "sample" && (
         <div className="banner" role="status">
-          <strong>Sample mode</strong> — These are simple quote arrangements,
-          not AI-written scripts. Brand voice is not applied. Revisions shorten,
-          expand, or reorder quotes.
+          <strong>Sample mode</strong> — These are hand-written examples for the
+          sample call, or quote drafts for your own call—not AI analysis. Add
+          OPENAI_API_KEY for pain, emotion and brand-voice recommendations.
+          Sample revisions only shorten, expand or reorder.
         </div>
       )}
       {error && (
@@ -264,6 +265,41 @@ function App() {
                         Copy script
                       </button>
                     </div>
+                    {reel.insight ? (
+                      <div className="story-insight">
+                        <h4>
+                          {
+                            {
+                              pain: "The pain point",
+                              emotion: "The emotional moment",
+                              takeaway: "The customer takeaway",
+                            }[reel.insight.angle]
+                          }
+                        </h4>
+                        <p>{reel.insight.story}</p>
+                        <p className="hint">
+                          <strong>Customer’s pain:</strong>{" "}
+                          {reel.insight.painPoint}
+                        </p>
+                        <p className="hint">
+                          <strong>
+                            Emotion{" "}
+                            {reel.insight.emotionBasis === "inferred"
+                              ? "(interpretation, not stated)"
+                              : reel.insight.emotionBasis === "not_present"
+                                ? "(not explicitly stated)"
+                                : "(stated by customer)"}
+                            :
+                          </strong>{" "}
+                          {reel.insight.emotion}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="hint">
+                        Quote draft only. Add the AI key to identify the pain
+                        and emotional story in this call.
+                      </p>
+                    )}
                     <h4>Spoken script</h4>
                     <p className="script">
                       {reel.script.map((s, j) => (

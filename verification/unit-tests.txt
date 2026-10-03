@@ -2,14 +2,16 @@
 > build-sprint-app@1.0.0 test
 > tsx --test tests/*.test.ts
 
-✔ scripts use customer words and reject invented claims (1.326084ms)
-✔ feedback revises one script while retaining customer sources (0.798375ms)
-✔ a writer cannot remove a customer’s negation (0.137041ms)
-ℹ tests 3
+✔ scripts require customer evidence and reject ungrounded claims (1.587792ms)
+✔ feedback revises one script while retaining customer sources (1.012ms)
+✔ a writer cannot remove a customer’s negation (0.16975ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.244791ms)
+✔ factual review must cover every line and reject changed meaning (0.250375ms)
+ℹ tests 5
 ℹ suites 0
-ℹ pass 3
+ℹ pass 5
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 196.970167
+ℹ duration_ms 221.999917

@@ -19,6 +19,11 @@ const generated = await client.action(api.writer.generate, {
 });
 assert.equal(generated.mode, "sample");
 assert.equal(generated.reels.length, 3);
+assert.deepEqual(
+  generated.reels.map((r) => r.insight?.angle),
+  ["pain", "emotion", "takeaway"],
+);
+assert.equal(generated.reels[1].insight?.emotionBasis, "inferred");
 validateReels(generated.reels, customerQuotes(sampleTranscript));
 console.log(
   "\nGenerated output (sample mode):\n" +
@@ -65,5 +70,5 @@ await assert.rejects(
 );
 console.log("PASS: A transcript without customer statements is rejected.");
 console.log(
-  "PASS: Every script line, on-screen line and caption is backed by customer words.",
+  "PASS: Every script line, on-screen line and caption has supporting customer quotes.",
 );

@@ -9,7 +9,9 @@
  */
 
 import type * as content from "../content.js";
+import type * as demoStories from "../demoStories.js";
 import type * as runs from "../runs.js";
+import type * as story from "../story.js";
 import type * as validators from "../validators.js";
 import type * as writer from "../writer.js";
 
@@ -21,7 +23,9 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   content: typeof content;
+  demoStories: typeof demoStories;
   runs: typeof runs;
+  story: typeof story;
   validators: typeof validators;
   writer: typeof writer;
 }>;

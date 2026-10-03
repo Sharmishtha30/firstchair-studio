@@ -384,3 +384,18 @@ footer {
     scroll-behavior: auto;
   }
 }
+.story-insight {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: #edf2fd;
+  border-left: 3px solid #1645c1;
+  border-radius: 4px;
+}
+.story-insight h4 {
+  margin: 0 0 6px;
+  color: #1645c1;
+}
+.story-insight .hint {
+  font-size: 13px;
+  margin: 12px 0 0;
+}
