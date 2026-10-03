@@ -1,0 +1,6 @@
+import { internalMutation, internalQuery } from './_generated/server';
+import { v } from 'convex/values';
+import { reelV, modeV } from './validators';
+export const save = internalMutation({args:{token:v.string(),transcript:v.string(),brand:v.string(),reels:v.array(reelV),mode:modeV},returns:v.null(),handler:async(ctx,args)=>{await ctx.db.insert('runs',args);return null;}});
+export const get = internalQuery({args:{token:v.string()},returns:v.union(v.null(),v.object({_id:v.id('runs'),_creationTime:v.number(),token:v.string(),transcript:v.string(),brand:v.string(),reels:v.array(reelV),mode:modeV})),handler:async(ctx,{token})=>ctx.db.query('runs').withIndex('by_token',q=>q.eq('token',token)).unique()});
+export const replace = internalMutation({args:{token:v.string(),index:v.number(),reel:reelV,previous:reelV},returns:v.null(),handler:async(ctx,args)=>{const run=await ctx.db.query('runs').withIndex('by_token',q=>q.eq('token',args.token)).unique();if(!run)throw new Error('This session is unavailable. Generate again.');if(JSON.stringify(run.reels[args.index])!==JSON.stringify(args.previous))throw new Error('This script changed while you were editing. Try again.');const reels=[...run.reels];reels[args.index]=args.reel;await ctx.db.patch(run._id,{reels});return null;}});

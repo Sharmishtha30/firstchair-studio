@@ -8,13 +8,23 @@
  * @module
  */
 
+import type * as content from "../content.js";
+import type * as runs from "../runs.js";
+import type * as validators from "../validators.js";
+import type * as writer from "../writer.js";
+
 import type {
   ApiFromModules,
   FilterApi,
   FunctionReference,
 } from "convex/server";
 
-declare const fullApi: ApiFromModules<{}>;
+declare const fullApi: ApiFromModules<{
+  content: typeof content;
+  runs: typeof runs;
+  validators: typeof validators;
+  writer: typeof writer;
+}>;
 
 /**
  * A utility for referencing Convex functions in your app's public API.
@@ -42,4 +52,6 @@ export declare const internal: FilterApi<
   FunctionReference<any, "internal">
 >;
 
-export declare const components: {};
+export declare const components: {
+  agent: import("@convex-dev/agent/_generated/component.js").ComponentApi<"agent">;
+};
