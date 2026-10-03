@@ -1,0 +1,91 @@
+
+> build-sprint-app@1.0.0 test:flow
+> tsx tests/sample-flow.ts
+
+Sample transcript:
+Founder: What was frustrating before you tried us?
+Customer: I used to spend every Friday chasing updates across five different spreadsheets.
+Customer: By the time I found the right numbers, the meeting was already over.
+Founder: What changed?
+Customer: Now I open one page and know exactly what needs my attention.
+Customer: I got my Friday afternoons back.
+Customer: My team spends less time reporting and more time helping customers.
+Founder: Anything else?
+Customer: I wish we had made the switch sooner.
+
+Brand note:
+Calm, direct, practical. Short sentences. No hype.
+
+Generated output (sample mode):
+{
+  "mode": "sample",
+  "reels": [
+    {
+      "caption": "I got my Friday afternoons back.",
+      "onScreen": [
+        "I used to spend every Friday chasing updates across five different spreadsheets."
+      ],
+      "script": [
+        "I used to spend every Friday chasing updates across five different spreadsheets.",
+        "I got my Friday afternoons back."
+      ],
+      "sources": [
+        "I used to spend every Friday chasing updates across five different spreadsheets.",
+        "I got my Friday afternoons back."
+      ],
+      "title": "The everyday friction"
+    },
+    {
+      "caption": "My team spends less time reporting and more time helping customers.",
+      "onScreen": [
+        "By the time I found the right numbers, the meeting was already over."
+      ],
+      "script": [
+        "By the time I found the right numbers, the meeting was already over.",
+        "My team spends less time reporting and more time helping customers."
+      ],
+      "sources": [
+        "By the time I found the right numbers, the meeting was already over.",
+        "My team spends less time reporting and more time helping customers."
+      ],
+      "title": "The turning point"
+    },
+    {
+      "caption": "I wish we had made the switch sooner.",
+      "onScreen": [
+        "Now I open one page and know exactly what needs my attention."
+      ],
+      "script": [
+        "Now I open one page and know exactly what needs my attention.",
+        "I wish we had made the switch sooner."
+      ],
+      "sources": [
+        "Now I open one page and know exactly what needs my attention.",
+        "I wish we had made the switch sooner."
+      ],
+      "title": "The customer’s takeaway"
+    }
+  ]
+}
+
+Feedback on script 1: Make it shorter
+Revised output:
+{
+  "caption": "I got my Friday afternoons back.",
+  "onScreen": [
+    "I got my Friday afternoons back."
+  ],
+  "script": [
+    "I got my Friday afternoons back."
+  ],
+  "sources": [
+    "I got my Friday afternoons back."
+  ],
+  "title": "The everyday friction"
+}
+
+PASS: Three scripts generated through local Convex.
+PASS: Script 1 revised and saved; scripts 2 and 3 are unchanged in the database.
+PASS: An unknown session cannot revise another run.
+PASS: A transcript without customer statements is rejected.
+PASS: Every script line, on-screen line and caption is backed by customer words.

@@ -7,7 +7,9 @@
     "dev": "convex dev --start vite",
     "build": "tsc --noEmit && vite build",
     "test": "tsx --test tests/*.test.ts",
-    "check": "tsc --noEmit && tsc --noEmit -p convex"
+    "check": "tsc --noEmit && tsc --noEmit -p convex",
+    "deploy": "npx @convex-dev/static-hosting deploy",
+    "test:flow": "tsx tests/sample-flow.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +18,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^4.0.83",
     "@convex-dev/agent": "^0.7.3",
+    "@convex-dev/static-hosting": "^0.2.1",
     "ai": "^7.0.127",
     "convex": "^1.46.0",
     "react": "^19.3.0",
