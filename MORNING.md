@@ -28,11 +28,11 @@ The latest saved Founders Find pack is linked in `verification/latest-pack-url.t
 
 **Images for other brands:** a Seedream 4.5 adapter now builds two image briefs from the actual offer, audience, pain points and brand colours. Once `ARK_API_KEY` and Seedream access are enabled, new connected packs automatically request a scene and a fictional presenter using BytePlus image credits. Failed requests can be retried explicitly; already saved images are retained. The form explains these requests when the key is configured. Missing access leaves prominently labelled shared sample artwork, not purported fresh imagery.
 
-The request contract and PNG parsing passed mock checks using real PNG bytes. A browser test uploaded a temporary fixture to actual Convex storage, loaded its storage URL into the artwork renderer, exported a changed 1080 × 1350 PNG and removed the fixture. This proves storage and export, not live Seedream generation or the artistic quality of its results. Provider access is still missing, so full Relay-style output remains incomplete. Seedream uses the same `ARK_API_KEY` as Seedance; enable the image model separately in ModelArk. Official API reference: https://docs.byteplus.com/en/docs/modelark/image-generation-api .
+The request contract and JPEG/PNG parsing passed mock checks using real image bytes. The official API reference restricts `output_format` to newer models, so Seedream 4.5 requests omit it and retain the original returned JPEG or PNG. A browser test uploaded a temporary fixture to actual Convex storage, loaded its storage URL into the artwork renderer, exported a changed 1080 × 1350 PNG and removed the fixture. This proves storage and export, not live Seedream generation or the artistic quality of its results. Provider access is still missing, so full Relay-style output remains incomplete. Seedream uses the same `ARK_API_KEY` as Seedance; enable the image model separately in ModelArk. Official API reference: https://docs.byteplus.com/en/docs/modelark/image-generation-api .
 
 ## Checks and evidence
 
-- Type checks and production build pass; 30 automated checks pass.
+- Type checks and production build pass; 31 automated checks pass.
 - `verification/website-flow.txt`: full connected Founders Find browser generation, one-post revision, preservation of the other two, ZIP and MP4 downloads, refresh and honest provider status.
 - `verification/second-website-flow.txt`: connected Basecamp website generation and downloads.
 - `verification/website-deadline.txt`: three checks prove old deadlines cannot kill newer work, stalled jobs become errors, and late results cannot overwrite a failed job.
@@ -412,3 +412,17 @@ PASS missing image access is labelled and cannot start a paid request
 PASS real Convex storage image URLs change the real exported PNG {"width":1080,"height":1350,"bytes":548207}
 PASS unreadable image URLs fail explicitly
 ```
+
+## Full-scope completion audit
+
+1. **Website analysis and three content formats — verified.** Founders Find and Basecamp passed connected generation in a real browser. The saved pieces have short hooks, audience pain and inferred emotion, useful advice and a CTA. Exact source excerpts and claim/copy review gate saving. Evidence: `website-flow.txt`, `second-website-flow.txt`, `live-website-pack.json`.
+2. **Feedback on one piece — verified.** Typed static-post feedback changed that post while the carousel and reel remained byte-for-byte unchanged. Evidence: `website-flow.txt`.
+3. **Original imagery — partly verified.** The first pack includes original AI-generated fictional photography, with provenance. Website-specific Seedream requests, genuine JPEG/PNG validation, real Convex storage and PNG export are verified independently. Live image generation and visual approval remain unverified because provider access is missing. Shared artwork is labelled.
+4. **Downloadable images and video — verified for the existing pack.** Six 1080 × 1350 PNGs, captions and a 1080 × 1920 H.264/AAC MP4 download in Chromium. Desktop/mobile and reload checks pass. The inspected copy is complete and readable. This does not prove that every future website or generated video is ready to share without review.
+5. **Speaking AI avatar — incomplete.** Seedance requests, task polling, storage and branded export are implemented. Fixture export preserves the source audio exactly with zero measured shift. No genuine speaking-avatar output has been generated or inspected, so full ready-to-share avatar output is not claimed.
+6. **Real ad inspiration when accessible — access unavailable.** Public Meta access returned 403; the approved API credentials are absent. The adapter never invents ads and retains safe public source links. Zero ads were imported.
+7. **Brand voice and presentation — verified with limits.** Voice and emotions are explicitly inferred from public offer material. Founders Find uses observed website colours and Inter font, not a claimed formal brand guide. Other websites use observed colours when readable and a labelled neutral template otherwise.
+8. **Convex stack and no deployment — met.** Backend, database, workflow and media storage use Convex. The running app and backend are local. No deployment or push was performed. Working steps are committed locally; no CRM, social-account connections or extra posting channels were added.
+9. **Morning handoff and full transcript test output — met.** This file includes opening steps, provider keys, limitations and the entire retained transcript test output. Website and media proof files are linked separately.
+
+The goal is **not complete**. The recurring provider-access blocker is now the limit on meaningful further verification: add `ARK_API_KEY` in Convex with Seedream 4.5 and Seedance 2.5 access/credits, then generate and visually review real images and a speaking avatar before claiming the full result is share-ready. Meta approval/access is separately required for real ad imports. No credits were bypassed and no provider output was fabricated.

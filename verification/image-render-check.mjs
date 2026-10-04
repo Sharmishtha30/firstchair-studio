@@ -9,7 +9,7 @@ await page.getByRole('button',{name:'Generate original images',exact:true}).wait
 if(!await page.getByRole('button',{name:'Generate original images',exact:true}).isDisabled())throw Error('Missing image access should disable generation');
 await page.getByText('Sample artwork',{exact:true}).waitFor();console.log('PASS missing image access is labelled and cannot start a paid request');
 const uploadUrl=admin('studioVerification:imageUploadFixture',{});
-const stored=await page.evaluate(async uploadUrl=>{const blob=await(await fetch('/images/fictional-presenter.webp')).blob();const response=await fetch(uploadUrl,{method:'POST',headers:{'Content-Type':'image/webp'},body:blob});if(!response.ok)throw Error('Convex fixture upload failed');return response.json();},uploadUrl);
+const stored=await page.evaluate(async uploadUrl=>{const blob=await(await fetch('/tests/fixtures/seedream-image.jpg')).blob();const response=await fetch(uploadUrl,{method:'POST',headers:{'Content-Type':'image/jpeg'},body:blob});if(!response.ok)throw Error('Convex fixture upload failed');return response.json();},uploadUrl);
 const sceneUrl=admin('studioVerification:imageUrlFixture',{file:stored.storageId});
 try{
 const result=await page.evaluate(async ({pack,sceneUrl})=>{
