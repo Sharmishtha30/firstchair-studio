@@ -2,19 +2,20 @@
 > build-sprint-app@1.0.0 test
 > tsx --test tests/*.test.ts
 
-✔ scripts require customer evidence and reject ungrounded claims (2.026375ms)
-✔ feedback revises one script while retaining customer sources (1.023167ms)
-✔ a writer cannot remove a customer’s negation (0.167ms)
-✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.273458ms)
-✔ factual review must cover every line and reject changed meaning (0.2755ms)
-✔ greetings and acknowledgements are never recommended as content (0.132ms)
-✔ customer statements on continuation lines are retained (0.116792ms)
-✔ an insight cannot use a greeting or an invented evidence quote (0.175083ms)
-ℹ tests 8
+✔ scripts require customer evidence and reject ungrounded claims (4.787709ms)
+✔ feedback revises one script while retaining customer sources (1.900834ms)
+✔ a writer cannot remove a customer’s negation (0.310042ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.481709ms)
+✔ factual review must cover every line and reject changed meaning (0.458083ms)
+✔ greetings and acknowledgements are never recommended as content (0.221292ms)
+✔ customer statements on continuation lines are retained (0.158ms)
+✔ an insight cannot use a greeting or an invented evidence quote (0.514167ms)
+✔ missing API credits are reported as billing, not a disconnected key (1.494833ms)
+ℹ tests 9
 ℹ suites 0
-ℹ pass 8
+ℹ pass 9
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 120.52925
+ℹ duration_ms 455.190791

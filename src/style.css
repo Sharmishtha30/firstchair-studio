@@ -364,7 +364,12 @@ footer {
     display: block;
   }
   .header-note {
-    display: none;
+    display: block;
+    font-size: 12px;
+  }
+  header {
+    flex-wrap: wrap;
+    gap: 10px;
   }
   .studio-heading h1 {
     font-size: 38px;

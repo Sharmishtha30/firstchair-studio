@@ -14,6 +14,7 @@ import type * as runs from "../runs.js";
 import type * as story from "../story.js";
 import type * as validators from "../validators.js";
 import type * as writer from "../writer.js";
+import type * as writerErrors from "../writerErrors.js";
 
 import type {
   ApiFromModules,
@@ -28,6 +29,7 @@ declare const fullApi: ApiFromModules<{
   story: typeof story;
   validators: typeof validators;
   writer: typeof writer;
+  writerErrors: typeof writerErrors;
 }>;
 
 /**

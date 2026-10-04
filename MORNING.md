@@ -1,18 +1,14 @@
 # Morning handoff — Call to Reel v1
 
-## Latest fix: greetings were being recommended
+## Current status: key connected, OpenAI credit required
 
-The active local backend still reported sample mode: no usable OPENAI_API_KEY was found in its environment, the preserved settings files, or the original Convex deployment. The previous custom-transcript sample fallback selected early lines, so greetings became scripts. That fallback is removed. The parser also dropped customer lines without a repeated label; it now retains them until the next speaker.
+The active local backend now returns `ai`: OPENAI_API_KEY is present. The connection label refreshes automatically every 15 seconds and when returning to the browser tab, and remains visible on smaller screens.
 
-With a key connected, the writer now first runs a separate insight analysis, selecting substantive pain, emotion and takeaway evidence from the whole customer conversation. Only then does it write and review the content. Greetings cannot be insight evidence. Live model output is still unverified until the active backend has a usable key.
+A live API test found and fixed another bug: Convex Agent requires a conversation thread, but the app passed neither a user nor a thread. Analysis, writing and review now each create their own thread. After that fix, the live request reached OpenAI and returned: **“You have no credits remaining. Add credits to continue using the API.”**
 
-To connect the key to this running local backend, copy your OpenAI API key, then run from the project folder:
+The app now distinguishes this billing problem from an invalid key. Successful real AI generation and feedback remain blocked by API credit. No website was deployed.
 
-```sh
-pbpaste | npx convex env set OPENAI_API_KEY
-```
-
-Refresh the page. The header should say **AI writer connected**. Generate a new run; old sample runs remain samples.
+Next: add API credit at https://platform.openai.com/settings/organization/billing/, refresh http://localhost:5173/, and generate new scripts. `npm run test:ai` reruns the live generation and revision check after credit is available. Its latest failed output is saved in `verification/ai-flow.txt`.
 
 ## What works
 
@@ -20,9 +16,9 @@ Refresh the page. The header should say **AI writer connected**. Generate a new 
 - One pasted customer transcript and a short brand note produce three Instagram reel scripts, each with spoken lines, on-screen text, a caption, and visible supporting customer quotes.
 - Feedback revises one selected script. The other two stay unchanged. The revised version is saved in Convex.
 - Copy buttons, waiting states, input limits, and readable failure messages are included.
-- No AI key is configured on the local backend. The visible **Sample mode** banner distinguishes hand-written examples for the bundled call from AI analysis; custom transcripts require the key.
+- An AI key is now configured on the local backend. The visible **Sample mode** banner distinguishes hand-written examples for the bundled call from AI analysis; custom transcripts require the key.
 - Recommendations now develop three distinct stories: the practical pain, the emotional moment, and a supported change or takeaway. The screen shows the selected pain, emotion, whether that emotion is stated or inferred, and the central content idea.
-- The AI path uses the Convex agent component and OpenAI `gpt-4.1-mini`. It writes hooks, short spoken narratives, screen beats and captions using faithful paraphrases in the brand's voice. Each output line carries exact supporting customer statements. A separate model review checks whether the draft's meaning is supported before saving. This review is an extra check, not a guarantee of factual accuracy; real model output still needs testing once a key is available.
+- The AI path uses the Convex agent component and OpenAI `gpt-4.1-mini`. It writes hooks, short spoken narratives, screen beats and captions using faithful paraphrases in the brand's voice. Each output line carries exact supporting customer statements. A separate model review checks whether the draft's meaning is supported before saving. This review is an extra check, not a guarantee of factual accuracy; successful real model output still needs testing once API credit is available.
 - The bundled sample call has hand-written pain, emotion and takeaway examples with actual story structure. Custom transcripts now require an AI key: sample mode refuses to pretend it analyzed them. Sample feedback still only shortens, expands or reorders quotes. The sample banner says this explicitly.
 - Convex handles the backend and database. Convex static hosting is configured for later, but no website or backend code was sent to a cloud deployment.
 - No login, video generation, CRM, Instagram connection, or other channels were added.
@@ -54,7 +50,7 @@ The command asks for the value. Paste your key there. Refresh the page and gener
 
 ## What I could not finish, and why
 
-- **Real AI output and brand voice have not been tested.** No OpenAI API key was available on the local backend. The integration compiles, but a successful live model response and arbitrary AI feedback need checking after the key is added. Errors do not silently fall back to sample output.
+- **Successful real AI generation and brand voice are unverified.** The key is connected, and a live attempt reached OpenAI, but OpenAI rejected it because no API credit remains. Add credit, then rerun `npm run test:ai`. Errors do not silently fall back to sample output.
 - **Browser click-through and visual review could not be completed.** The browser connector reported “No browser is available,” and native Safari controls failed with “Sky Computer Use native pipe startup failed.” I verified the page is served, the frontend builds, and the real local Convex generation/revision/database path passes. I cannot claim I saw the rendered page working in a browser.
 - **Deployment was deliberately not run**, as requested. Hosting configuration is present, but live hosting has not been tested. Local `npm run dev` and `npm run build` do not publish. `npm run deploy` is the future publishing command; do not run it yet.
 - Labelled transcripts must identify customer lines with `Customer:`, `Client:`, `Buyer:`, `User:`, or `Participant:`. Other speaker lines are excluded. Unlabelled text is treated as customer statements. At least three customer statements are required.
@@ -64,7 +60,7 @@ The command asks for the value. Paste your key there. Refresh the page and gener
 - `npm run check`: passed frontend and Convex type checks.
 - `npm run build`: passed and created `dist/`.
 - Local Convex confirmed the agent and static hosting components and accepted the backend functions.
-- `npm test`: eight checks passed, including greeting exclusion, retention of customer continuation lines, refusal of invented insight evidence, distinct story angles, and factual-review gating. These tests do not prove the model can judge meaning correctly.
+- `npm test`: nine checks passed, including greeting exclusion, retention of customer continuation lines, refusal of invented insight evidence, distinct story angles, and factual-review gating. These tests do not prove the model can judge meaning correctly.
 - `npm run test:flow`: passed using actual local Convex actions and database reads, with the sample transcript below. It verifies persistence, unchanged scripts 2 and 3, and rejection of unknown sessions and calls without customer speech.
 - HTTP request to `http://localhost:5173/`: returned the app entry page.
 
@@ -418,4 +414,4 @@ PASS: Greeting-only calls are rejected rather than converted into content.
 PASS: Without an AI key, a custom call does not return pretend insight recommendations.
 ```
 
-Next: connect OPENAI_API_KEY to the active local backend, confirm the header says AI writer connected, then generate new recommendations.
+Next: add OpenAI API credit, then generate new recommendations. The key is connected.

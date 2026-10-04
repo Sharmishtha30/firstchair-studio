@@ -30,15 +30,34 @@ function App() {
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
   useEffect(() => {
-    status({})
-      .then(setMode)
-      .catch(() =>
-        setError("Could not reach Convex. Start the app with npm run dev."),
-      );
+    let active = true,
+      pending = false;
+    async function checkConnection() {
+      if (pending) return;
+      pending = true;
+      try {
+        const current = await status({});
+        if (active) setMode(current);
+      } catch {
+        if (active)
+          setError("Could not reach Convex. Start the app with npm run dev.");
+      } finally {
+        pending = false;
+      }
+    }
+    void checkConnection();
+    const interval = window.setInterval(() => void checkConnection(), 15000);
+    const focus = () => void checkConnection();
     const listener = () => setOpen(location.hash === "#studio");
+    window.addEventListener("focus", focus);
     window.addEventListener("hashchange", listener);
-    return () => window.removeEventListener("hashchange", listener);
-  }, []);
+    return () => {
+      active = false;
+      window.clearInterval(interval);
+      window.removeEventListener("focus", focus);
+      window.removeEventListener("hashchange", listener);
+    };
+  }, [status]);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
@@ -47,7 +66,7 @@ function App() {
     try {
       const r = await generate({ transcript, brand });
       setResult(r);
-      setMode(r.mode);
+      // Connection status is checked independently from this run’s output mode.
       setFeedback(["", "", ""]);
     } catch (e) {
       setError(errorMessage(e));

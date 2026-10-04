@@ -1,0 +1,18 @@
+[CONVEX A(writer:generate)] [ERROR] 'Writer failure' '{"name":"AI_RetryError","message":"Failed after 2 attempts. Last error: AI_APICallError: You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/."}'
+/Users/sam/build-sprint-app/node_modules/convex/src/browser/http_client.ts:527
+            new ConvexError(respJSON.errorMessage),
+            ^
+
+ConvexError: [Request ID: 6c34da748ef0a9b1] Server Error
+Uncaught ConvexError: The AI writer could not complete this request. Check the server’s OPENAI_API_KEY and try again. Your existing scripts are unchanged.
+    at fail (../convex/writer.ts:186:4)
+    at handler (../convex/writer.ts:221:4)
+
+    at ConvexHttpClient.action (/Users/sam/build-sprint-app/node_modules/convex/src/browser/http_client.ts:527:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (/Users/sam/build-sprint-app/tests/ai-flow.ts:15:16) {
+  data: 'The AI writer could not complete this request. Check the server’s OPENAI_API_KEY and try again. Your existing scripts are unchanged.',
+  Symbol(ConvexError): true
+}
+
+Node.js v24.16.0

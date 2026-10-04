@@ -151,3 +151,21 @@ test("an insight cannot use a greeting or an invented evidence quote", () => {
     ),
   );
 });
+
+import { writerErrorMessage } from "../convex/writerErrors";
+test("missing API credits are reported as billing, not a disconnected key", () => {
+  assert.match(
+    writerErrorMessage(
+      "Failed after 2 attempts. You have no credits remaining.",
+    ),
+    /API credit or quota/,
+  );
+  assert.doesNotMatch(
+    writerErrorMessage("You have no credits remaining."),
+    /Replace OPENAI_API_KEY/,
+  );
+  assert.match(
+    writerErrorMessage("Incorrect API key provided."),
+    /did not accept/,
+  );
+});

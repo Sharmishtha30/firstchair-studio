@@ -13,6 +13,7 @@ import {
   type Reel,
 } from "./content";
 import { reelV, modeV } from "./validators";
+import { writerErrorMessage } from "./writerErrors";
 import {
   storyInstructions,
   analysisInstructions,
@@ -56,9 +57,10 @@ async function write(
     languageModel: openai("gpt-4.1-mini"),
     instructions: analysisInstructions,
   });
+  const { threadId: analysisThreadId } = await analyst.createThread(ctx);
   const analysis = await analyst.generateObject(
     ctx,
-    {},
+    { threadId: analysisThreadId },
     {
       schema: z.object({
         hasSubstantiveInsight: z.boolean(),
@@ -84,9 +86,10 @@ async function write(
     languageModel: openai("gpt-4.1-mini"),
     instructions: storyInstructions,
   });
+  const { threadId: writingThreadId } = await agent.createThread(ctx);
   const result = await agent.generateObject(
     ctx,
-    {},
+    { threadId: writingThreadId },
     {
       schema,
       prompt: JSON.stringify({
@@ -139,9 +142,10 @@ async function write(
     languageModel: openai("gpt-4.1-mini"),
     instructions: reviewInstructions,
   });
+  const { threadId: reviewThreadId } = await reviewer.createThread(ctx);
   const review = await reviewer.generateObject(
     ctx,
-    {},
+    { threadId: reviewThreadId },
     {
       schema: z.object({
         checks: z.array(
@@ -165,15 +169,22 @@ function length(value: string, min: number, max: number, label: string) {
 }
 function fail(error: unknown): never {
   const message = error instanceof Error ? error.message : "";
+  console.error(
+    "Writer failure",
+    JSON.stringify({
+      name: error instanceof Error ? error.name : "Unknown",
+      message: message
+        .replace(/sk-[A-Za-z0-9_-]+/g, "[redacted]")
+        .slice(0, 700),
+    }),
+  );
   if (
     /Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index/.test(
       message,
     )
   )
     throw new ConvexError(message);
-  throw new ConvexError(
-    "The AI writer could not complete this request. Check the server’s OPENAI_API_KEY and try again. Your existing scripts are unchanged.",
-  );
+  throw new ConvexError(writerErrorMessage(message));
 }
 export const status = action({
   args: {},
