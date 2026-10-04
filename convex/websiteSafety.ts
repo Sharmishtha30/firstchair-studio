@@ -7,6 +7,7 @@ export function publicAddress(ip:string) {
   return !(a[0]===0||a[0]===10||a[0]===127||a[0]>=224||a[0]===169&&a[1]===254||a[0]===172&&a[1]>=16&&a[1]<=31||a[0]===192&&a[1]===168||a[0]===100&&a[1]>=64&&a[1]<=127||a[0]===198&&(a[1]===18||a[1]===19));
 }
 export function websiteUrl(input:string) {
+  if(input.length>2048)throw new Error('Website address is too long.');
   const url=new URL(input.includes('://')?input:'https://'+input);
   if(!['https:','http:'].includes(url.protocol)||url.username||url.password||url.port&& !['80','443'].includes(url.port)) throw new Error('Enter a public website address.');
   if(url.hostname==='localhost'||url.hostname.endsWith('.local')) throw new Error('Local and private websites are not supported.');

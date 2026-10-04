@@ -1,7 +1,7 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 import { reelV, modeV } from "./validators";
-import { brandV, postV } from "./studioTypes";
+import { packFields } from "./studioTypes";
 import { authTables } from "@convex-dev/auth/server";
 export default defineSchema({
   ...authTables,
@@ -33,13 +33,7 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_identity", ["clientId", "subject"]),
-  packs: defineTable({
-    token: v.string(), userId: v.optional(v.id("users")), url: v.string(),
-    stage: v.string(), createdAt: v.number(), updatedAt: v.number(),
-    brand: v.optional(brandV), posts: v.optional(v.array(postV)),
-    mode: v.optional(v.string()), error: v.optional(v.string()),
-    sourceText: v.optional(v.string()),
-  }).index("by_token", ["token"]),
+  packs: defineTable(packFields).index("by_token", ["token"]),
   runs: defineTable({
     token: v.string(),
     userId: v.optional(v.id("users")),

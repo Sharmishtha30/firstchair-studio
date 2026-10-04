@@ -1,5 +1,6 @@
+import {foundersPalette} from './brandPalette';
 import type { Brand, Post } from './studioTypes';
-export const foundersBrand:Brand={name:'Founders Find',audience:'Ambitious professionals moving from execution into founder-office, product, operations and strategy roles',offer:'Founder simulations, mentors and a curated job board',voice:'Direct, practical, ambitious. Inferred from the public website.',sourceUrl:'https://foundersfind.club/',facts:[
+export const foundersBrand:Brand={name:'Founders Find',audience:'Ambitious professionals moving from execution into founder-office, product, operations and strategy roles',offer:'Founder simulations, mentors and a curated job board',voice:'Direct, practical, ambitious. Inferred from the public website.',sourceUrl:'https://foundersfind.club/',palette:foundersPalette,facts:[
  'Proving Ground offers founder simulations to practise judgement.',
  'Founders Find combines a job board, Proving Ground and yearly membership.',
  'The job board supports founder-office, product, operations, growth and strategy roles.',

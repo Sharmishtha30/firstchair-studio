@@ -14,3 +14,31 @@ test('three formats have short hooks, complete frames and exact source facts',()
  const bad=structuredClone(foundersPosts);bad[0].hook='This hook has far too many words to fit into a catchy opening';assert.throws(()=>checkPosts(bad,foundersBrand.facts),/too long/);
  const invented=structuredClone(foundersPosts);invented[0].sourceFacts=['Guaranteed job in 30 days'];assert.throws(()=>checkPosts(invented,foundersBrand.facts),/unsupported/);
 });
+import {seedanceRequest} from '../convex/seedanceRequest';
+import {createTask,taskState,downloadVideo} from '../convex/seedanceClient';
+test('Seedance requests a vertical 25-second fictional presenter with the exact approved script',()=>{
+ const reel=foundersPosts.find(p=>p.format==='reel')!;const request=seedanceRequest(reel,foundersBrand);
+ assert.equal(request.model,'dreamina-seedance-2-5-260628');assert.equal(request.ratio,'9:16');assert.equal(request.duration,25);assert.equal(request.generate_audio,true);
+ assert.match(request.content[0].text,/fictional adult presenter/);assert.ok(request.content[0].text.endsWith(reel.frames.map(f=>f.heading+'. '+f.body).join(' ')));
+});
+test('Seedance pending, completed and failed responses are distinct; invalid hosts never download',async()=>{
+ const response=(data:unknown)=>async()=>Response.json(data);
+ assert.equal(await createTask('test-key',{},response({id:'task-1'})),'task-1');
+ assert.deepEqual(await taskState('test-key','task-1',response({status:'running'})),{done:false});
+ assert.deepEqual(await taskState('test-key','task-1',response({status:'succeeded',content:{video_url:'https://test.tos-ap-southeast-1.volces.com/video.mp4'}})),{done:true,url:'https://test.tos-ap-southeast-1.volces.com/video.mp4'});
+ await assert.rejects(taskState('test-key','task-1',response({status:'failed'})),/did not produce/);
+ await assert.rejects(taskState('test-key','task-1',response({status:'succeeded',content:{video_url:'https://127.0.0.1/file'}})),/unexpected video host/);
+ await assert.rejects(downloadVideo('https://test.volces.com/file',async()=>new Response(new Uint8Array(10))),/incomplete/);
+ await assert.rejects(createTask('sensitive-key',{},async()=>new Response('sensitive-key',{status:401})),e=>e instanceof Error&&!e.message.includes('sensitive-key'));
+});
+
+test('unfinished bodies and greeting hooks cannot be saved as finished artwork',()=>{
+ const draft=structuredClone(foundersPosts);draft[1].frames[0].body='Proving Ground puts';assert.throws(()=>checkPosts(draft,foundersBrand.facts),/unfinished/);
+ const greeting=structuredClone(foundersPosts);greeting[0].hook='Hello everyone';assert.throws(()=>checkPosts(greeting,foundersBrand.facts),/greeting/);
+});
+import {extractPalette} from '../convex/brandPalette';
+test('brand palette resolves only safe default CSS colors and handles cycles',()=>{
+ assert.deepEqual(extractPalette(':root{--paper:#fff;--ink:#0f0f12;--c-pink:#ff307e;--primary:var(--c-pink);--c-yellow:#f5c518;}'),{paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Default colors read from the public website CSS; tone and styling are inferred, not formal brand guidelines.'});
+ assert.equal(extractPalette(':root{--primary:var(--other);--other:var(--primary)}'),undefined);
+ assert.equal(extractPalette(':root{--primary:url(https://bad.example)}'),undefined);
+});

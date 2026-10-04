@@ -8,7 +8,10 @@
  * @module
  */
 
+import type * as adInspiration from "../adInspiration.js";
+import type * as adStore from "../adStore.js";
 import type * as auth from "../auth.js";
+import type * as brandPalette from "../brandPalette.js";
 import type * as chatgpt from "../chatgpt.js";
 import type * as chatgptModel from "../chatgptModel.js";
 import type * as chatgptSecurity from "../chatgptSecurity.js";
@@ -17,7 +20,12 @@ import type * as content from "../content.js";
 import type * as demoStories from "../demoStories.js";
 import type * as foundersPack from "../foundersPack.js";
 import type * as http from "../http.js";
+import type * as media from "../media.js";
+import type * as publicWebsite from "../publicWebsite.js";
 import type * as runs from "../runs.js";
+import type * as seedance from "../seedance.js";
+import type * as seedanceClient from "../seedanceClient.js";
+import type * as seedanceRequest from "../seedanceRequest.js";
 import type * as story from "../story.js";
 import type * as streamResult from "../streamResult.js";
 import type * as studio from "../studio.js";
@@ -37,7 +45,10 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  adInspiration: typeof adInspiration;
+  adStore: typeof adStore;
   auth: typeof auth;
+  brandPalette: typeof brandPalette;
   chatgpt: typeof chatgpt;
   chatgptModel: typeof chatgptModel;
   chatgptSecurity: typeof chatgptSecurity;
@@ -46,7 +57,12 @@ declare const fullApi: ApiFromModules<{
   demoStories: typeof demoStories;
   foundersPack: typeof foundersPack;
   http: typeof http;
+  media: typeof media;
+  publicWebsite: typeof publicWebsite;
   runs: typeof runs;
+  seedance: typeof seedance;
+  seedanceClient: typeof seedanceClient;
+  seedanceRequest: typeof seedanceRequest;
   story: typeof story;
   streamResult: typeof streamResult;
   studio: typeof studio;

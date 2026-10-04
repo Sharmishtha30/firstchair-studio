@@ -1,0 +1,5 @@
+import type {Post,Brand} from './studioTypes';
+export const seedanceBase='https://ark.ap-southeast.bytepluses.com/api/v3/contents/generations/tasks';
+export function seedanceRequest(post:Post,brand:Brand){
+ return {model:'dreamina-seedance-2-5-260628',content:[{type:'text',text:`Create a 25-second vertical Instagram presenter video for ${brand.name}. A fictional adult presenter, not a real person or testimonial, speaks directly to camera in natural English. Warm editorial workplace photography, soft window light, restrained neutral background with the brand accent ${brand.palette?.primary??'#192820'}, realistic gestures, steady framing, clear synced speech. Keep the face inside the central area, leaving room above and below for separately rendered subtitles. No logos, no written text, no invented product visuals. The brand sells: ${brand.offer}. Read ONLY this exact script, without adding claims: ${post.frames.map(f=>f.heading+'. '+f.body).join(' ')}`}],ratio:'9:16',duration:25,resolution:'720p',generate_audio:true,watermark:false};
+}
