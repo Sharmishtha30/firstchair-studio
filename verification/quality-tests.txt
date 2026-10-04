@@ -1,0 +1,60 @@
+
+> build-sprint-app@1.0.0 test
+> tsx --test tests/*.test.ts
+
+✔ the auth provider and page hooks share one React runtime (34.1ms)
+✔ ChatGPT registration requests plan permission, loopback callback and PKCE (15.136334ms)
+✔ sign-in rejects expired state and a different browser (0.61025ms)
+✔ credentials are encrypted and tampered ciphertext is rejected (9.143625ms)
+✔ partial, failed and interrupted AI output cannot be accepted (18.945834ms)
+✔ the writer's SDK sends supported streaming plan requests with no API key (24.926083ms)
+✔ visual planning receives website bytes paired with asset keys, not inaccessible local URLs (2.967416ms)
+✔ missing stored images do not become a claimed visual inspection (0.368625ms)
+✔ planning cannot send SVG code or oversized image files (3.238ms)
+✔ visual planning retains the existing six-image resource ceiling (0.36175ms)
+✔ scripts require customer evidence and reject ungrounded claims (13.873083ms)
+✔ feedback revises one script while retaining customer sources (10.335084ms)
+✔ a writer cannot remove a customer’s negation (0.471541ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.875208ms)
+✔ factual review must cover every line and reject changed meaning (2.090208ms)
+✔ greetings and acknowledgements are never recommended as content (0.805833ms)
+✔ customer statements on continuation lines are retained (0.258ms)
+✔ an insight cannot use a greeting or an invented evidence quote (0.432417ms)
+✔ missing API credits are reported as billing, not a disconnected key (0.489583ms)
+✔ a customer paragraph contains separate substantive statements (0.4705ms)
+✔ timestamped named speakers require a choice and exclude the founder (0.351917ms)
+✔ timestamps on customer labels and continuation lines preserve evidence (0.213375ms)
+✔ the writer drains the lazy stream before awaiting its object (3.839125ms)
+✔ an invalid streamed object is rejected instead of leaving the writer waiting (2.43075ms)
+✔ a real SDK structured stream completes through the writer's reader (125.16475ms)
+✔ the page stops waiting when a writer request never settles (16.5475ms)
+✔ website fetch rejects private IPv4 and IPv6, credentials and unexpected ports (2.444917ms)
+✔ three formats have short hooks, complete frames and exact source facts (2.024583ms)
+✔ Seedance requests a vertical 25-second fictional presenter with the exact approved script (0.513541ms)
+✔ Seedance pending, completed and failed responses are distinct; invalid hosts never download (8.179334ms)
+✔ unfinished bodies and greeting hooks cannot be saved as finished artwork (0.491ms)
+✔ brand palette resolves only safe default CSS colors and handles cycles (2.113375ms)
+✔ image briefs adapt to the actual offer and never request fake testimonials or written logos (0.469375ms)
+✔ image client retains real PNG bytes, rejects empty output and keeps provider errors free of secrets (249.921875ms)
+✔ Seedream 4.5 JPEG output is accepted with its real dimensions and truncated files are rejected (9.159ms)
+✔ Founder’s Find uses a face-free brand profile; other websites keep their own media support (0.338125ms)
+✔ new website packs require only carousel and static, never a reel (0.200625ms)
+✔ brand extraction is semantic, not tied to a domain (1.213084ms)
+✔ modern CSS colour tokens and aliases are converted without a brand lookup (0.504416ms)
+✔ default colour tokens are preserved over later optional theme declarations (0.14125ms)
+✔ four-platform creatives reject a sixth slide and images from another brand (0.908083ms)
+✔ brand typography skips reset inheritance and preserves the actual later body font (0.194042ms)
+✔ image dimensions match real PNG, JPEG, lossy and lossless WebP bytes (38.832375ms)
+✔ a complete sentence may end with a preposition (0.26575ms)
+✔ partner logos cannot become the business logo (6.778375ms)
+✔ actual hero heading classes take priority over generic heading resets (0.181208ms)
+✔ creative freedom allows a coherent single-layout carousel and a headline-only poster (0.179083ms)
+✔ semantic process text can use an essay without being forced into a list (0.227708ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1684.397625

@@ -1,0 +1,14 @@
+
+> build-sprint-app@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 269 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.44 kB │ gzip:   0.28 kB
+dist/assets/index-IkSj-efE.css   12.63 kB │ gzip:   3.24 kB
+dist/assets/index-C1UHjSMn.js   770.17 kB │ gzip: 284.26 kB
+
+✓ built in 301ms

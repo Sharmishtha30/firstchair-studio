@@ -1,0 +1,6 @@
+PASS browser text edit changes only selected static
+PASS browser restore returns all original posts
+PASS brand correction updates shared design and restore preserves fonts and logo
+PASS single static download contains one PNG
+PASS original website photograph appears on the selected cover
+PASS source-image edit is restored; benchmark copy and design are unchanged.

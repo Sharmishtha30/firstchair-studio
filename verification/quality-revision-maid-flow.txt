@@ -1,0 +1,80 @@
+POST instagram carousel Choose the priorities before the cleaning hours editorial → editorial → comparison → process → closing
+POST instagram static Met your proposed cleaner—but unsure about saying yes? checklist
+POST linkedin carousel Choose the priorities before the cleaning hours editorial → editorial → comparison → editorial → closing
+POST linkedin static Meet your cleaner before you decide editorial
+PASS https://www.maid2clean.co.uk/ → 4 live platform previews; source pages 2 website images 5
+BRAND {"palette":{"accent":"#ff8d67","ink":"#101010","note":"Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.","paper":"#ffffff","primary":"#ff8d67"},"style":{"bodyFont":"cr,sans-serif","headline":"sans","logoUrl":"http://127.0.0.1:3210/api/storage/820f887e-d6f1-4929-b43b-6107bdf9bf95","note":"Heading font declared: cm,sans-serif. Body font declared: cr,sans-serif. Bundled Inter or Georgia is used where the original font cannot be imported. CSS declarations are not a rendered-style guarantee.","sourceFont":"cm,sans-serif","weight":600}}
+Browser state: Website to Social
+STUDIO
+ChatGPT connected
+Disconnect
+Your brand.
+Something worth sharing.
+
+A useful idea, designed to be read.
+Carousels and statics for Instagram and LinkedIn.
+
+Your website
+↗
+Create posts
+Create for
+Instagram
+LinkedIn
+
+Uses your connected ChatGPT allowance. Website images and original diagrams; no image-generation costs.
+
+Maid2Clean
+
+Written with your connected ChatGPT plan · Needs editing
+
+Download full pack
+Shorten this slide for readable type: “Met your proposed cleaner—but unsure about saying yes?”. Use feedback or Edit text to repair the draft.
+
+People arranging cleaning for their own home who want to clarify their priorities and feel comfortable with the cleaner they choose.
+Domestic cleaning through an agency that sources vetted, reference-checked cleaners, with hours and tasks discussed around the customer's needs.
+
+5 website images
+Adjust brand details — applies to all posts
+Instagram
+Carousel
+Shorten this slide for readable type: “Met your proposed cleaner—but unsure about saying yes?”.
+Instagram
+Static
+LinkedIn
+Carousel
+LinkedIn
+Static
+Instagram
+LinkedIn
+01 / Carousel
+5 slides
+02 / Static
+1 image
+←
+Slide 1 of 5
+→
+Download this post
+Choose the priorities before the cleaning hours
+
+Being asked how many cleaning hours you need before you have worked out what you most want done.
+
+Instagram caption
+Copy caption
+
+An approximate number of hours is a starting point, not a test you need to get right first time.
+
+A room count describes your home. A priority list helps describe the clean you want—especially when some jobs matter more to you than others.
+
+For a free Maid2Clean quote, enquire with your approximate hours and postcode.
+
+Next action
+https://www.maid2clean.co.uk/faqs/
+
+Upload the images in order. Set your profile link to this destination before using a link-in-bio CTA.
+
+Make this carousel better
+Revise this carousel
+Edit text or change image
+Restore previous version
+Brand evidence & sources
+Download, then post manually. Your brand stays yours.

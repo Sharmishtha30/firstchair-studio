@@ -1,0 +1,6 @@
+PASS safe readable browser render: essay
+PASS safe readable browser render: poster
+PASS safe readable browser render: split
+PASS safe readable browser render: photo
+PASS safe readable browser render: list
+PASS excessive text fails explicitly rather than clipping

@@ -1,0 +1,24 @@
+{
+  "title": "Domestic & Home Cleaning Services | Maid2Clean UK",
+  "headings": [
+    {
+      "text": "Looking for a reliablehouse cleaning service?",
+      "family": "cb, sans-serif",
+      "weight": "700",
+      "color": "rgb(255, 255, 255)",
+      "size": "65px"
+    }
+  ],
+  "body": {
+    "background": "rgb(255, 255, 255)",
+    "font": "cr, sans-serif"
+  },
+  "actions": [
+    {
+      "text": "Find my local office",
+      "background": "rgb(255, 141, 103)",
+      "color": "rgb(255, 255, 255)"
+    }
+  ],
+  "images": []
+}

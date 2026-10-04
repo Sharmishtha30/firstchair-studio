@@ -1,48 +1,41 @@
-# Morning handoff — website to finished social creatives
+# Morning handoff — improved website-to-social creatives
 
 ## What works
 
-Enter a readable English business website, choose Instagram, LinkedIn or both, and receive a five-slide carousel plus a distinct static for each selected platform. Both platforms give four rendered previews and twelve 1080 × 1350 PNGs; LinkedIn also gets a five-page PDF. Each post includes a caption, destination, suggested alt text and manual posting instructions.
+The existing connected ChatGPT model now plans around a specific customer situation, chooses a coherent story and designs separate carousel and static ideas for Instagram and LinkedIn. Website font declarations, colours, logos and actual raster imagery guide the layouts. The model now inspects website photos before choosing how to use them, instead of relying on generic background-image labels.
 
-The app reads the homepage and up to four relevant same-site pages. It saves the actual page evidence, plans three content angles with short alternative hooks, selects two ideas, then checks copy against the sources. The connected ChatGPT writer uses your existing allowance. This scope makes no paid image or video requests.
+Finished local packs are saved for Founder’s Find, Death Wish Coffee and Maid2Clean. Each has twelve 1080 × 1350 PNGs, a five-page LinkedIn PDF, captions, alt text, source evidence and posting destinations. All final images and PDF pages were visually inspected. Founder’s Find was completed first; the other businesses were tested through the shared generation process, without domain-specific production rules.
 
-Creatives use website colours, declared heading/body font character, the primary logo when readable, and relevant real website photographs. There are seven purposeful layout families: editorial, comparison, checklist, process, insight spotlight, source image and closing. Cover graphics reuse meaningful comparison labels from the story. No generated faces, invented testimonials or fake charts. Partner logos are excluded from brand-logo selection.
+[See the finished statics](verification/quality-finished-statics.png). Full packs: [Founder’s Find](verification/quality-after-founders.zip), [Coffee](verification/quality-after-coffee.zip), [Cleaning](verification/quality-after-maid.zip). Full before/after copy and design comparisons are in [the creative review](design/creative-quality-review.md) and verification/quality.
 
-Source fonts that can be imported from the supported open-source list are loaded from Convex storage. Proprietary or unreadable fonts use explicitly named Inter/Georgia substitutes; this is not exact proprietary font reproduction. CSS declarations are labelled as evidence, not proof of the live site's full rendered design.
-
-You can edit one post's words or image, type feedback for one platform/format, correct brand details across every preview, upload a logo/photo and restore the previous version. Saved source and completed drafts survive a failed model review; retries reuse that work. Website-reading errors offer pasted business-text recovery, labelled as provided input. Long copy blocks downloads instead of being cut off or silently shrunk below the reading-size floor.
-
-Nothing was deployed or pushed. Work is saved in small local commits. The source inspiration board remains at `design/inspiration-library/assets/static-ads-board.png`; only broad compositions are used because its small copy is unreadable. No live Meta ads were imported.
+Text edits, website-image changes, shared brand corrections, undo, full-pack and single-post downloads remain working. A selected AI revision preserved the other three posts and could be restored. The final cleaning pack was tested again for editing and downloads. No additional provider, local model or video generation was used. Nothing was deployed or pushed. Code, supplied reference-library guidance and representative before/after examples are saved in small local commits.
 
 ## Open it on your laptop
 
-1. Open Terminal and enter `cd /Users/sam/build-sprint-app`.
+1. In Terminal enter `cd /Users/sam/build-sprint-app`.
 2. Enter `npm run dev` and leave that window running. If it is already running, keep it open.
 3. Open http://localhost:5173 in Chrome.
-4. Use the existing connected ChatGPT writer, enter a website and click Create posts.
+4. Use your existing ChatGPT connection, enter a website and click Create posts.
 
-No additional API key is needed for the current connected-plan carousel/static flow. The labelled guest Founder’s Find sample is a curated sample, not a new live generation. Other sites require a connected writer.
+No extra API key is needed for this connected-plan flow. Saved connected-account packs require that same account; the labelled guest sample is not fresh AI analysis.
 
 ## What was actually checked
 
-- Forty-two rule tests pass; both frontend and Convex type checks pass; production build passes. The build emits bundle-size and existing auth-library directive warnings, but finishes successfully.
-- Real Chromium generation/export checks passed on Founder’s Find, Death Wish Coffee and Maid2Clean. Each full pack has twelve correctly sized PNGs, a five-page LinkedIn PDF, captions, alt text and destinations. Reload, 390px phone layout and absence of browser errors passed. Signed-out access to owned packs is blocked.
-- Founder’s Find feedback revised only its Instagram static, preserving the other three posts exactly.
-- Browser edit checks passed: one-static text edit, unchanged other posts, undo, brand-wide colour correction and undo including saved fonts/logo, single-static ZIP download, and selecting a verified source photograph for the Maid2Clean carousel cover. That benchmark retains this explicit manual image edit; it is not presented as an automatic generation result.
-- Every final PNG and rendered PDF page was inspected in contact sheets. The actual source sites and measured browser fonts/colours are stored alongside the exports. Three tested brands demonstrate the flow, not universal brand fidelity or conversion performance.
+48 unit tests, frontend and Convex type checks, and the production build pass. Five browser-rendered layout fixtures pass, and excessive text is explicitly rejected. Existing build warnings about bundle size and an auth-library directive remain.
 
-The final Founder’s Find re-export is `verification/creative-founders-final.txt`; its feedback proof remains in `creative-founders-flow.txt`. The visual review is `design/brand-quality-review.md`. Full website-test outputs, including complete generated content, are in `verification/creative-founders-flow.txt`, `verification/creative-coffee-flow.txt` and `verification/creative-maid-flow.txt`. Edit-check output is `verification/creative-edits.txt`; unit output is `verification/creative-tests.txt`. Review images are `verification/creative-founders-contact.png`, `verification/creative-coffee-contact.png` and `verification/creative-maid-contact.png`.
+Actual Chromium runs verified all-slide previews, twelve correctly sized PNGs per pack, five-page PDFs, captions/destinations, saved reload, a 390px phone layout and no app browser errors. Signed-out readers cannot read owned packs. Final source-image planning was tested with fresh coffee and cleaning generations. Editing, restore, brand correction, one-static download and a source-image edit passed on the final cleaning pack.
+
+Full final model output and browser results: verification/quality-after-founders-flow.txt, verification/quality-after-coffee-flow.txt and verification/quality-after-maid-flow.txt. Unit output: verification/quality-tests.txt. Editing output: verification/quality-edits.txt. Revision result: verification/quality-revision-result.txt. Actual PDF review images: verification/quality-after-{founders,coffee,maid}-pdf-contact.png. Fresh website screenshots and measured styles are verification/quality-source-{founders,coffee,maid}.{png,json}.
 
 ## What could not be finished and why
 
-- Exact proprietary typography remains unavailable without permitted font files. Death Wish Coffee's Revans/Fenomen and Maid2Clean's custom font aliases receive named substitutions; Founder’s Find's Georgia/Inter can be represented more closely. There is no arbitrary website-font copying.
-- The PDF preserves the PNG artwork exactly; its text is not selectable. This is disclosed in the exported sources and PDF metadata.
-- Extraction cannot guarantee access to every website. Only readable public English business websites are supported; conflicting multi-offer websites need human review. Pasted-text recovery, fresh public-account consent, a different signed-in owner's access, expired connection, and every possible interrupted-run case have not all been browser-tested in this round. Do not treat these as completed launch checks.
-- Source assets are best effort, limited in number and size. Some valid brands still fall back to a text wordmark or diagrams. Uploaded fonts and fully editable vector documents are outside this version.
-- The model checks structured words and source grounding, not rendered pixels. Browser file checks catch fit problems; human review is still needed before calling a new brand's pack ready without editing. No founder acceptance or measured marketing results have been recorded yet.
-- Reels, avatars, generated photography, direct social publishing, ad buying and external integrations are outside the current scope. They require no keys for this build.
+Exact proprietary fonts still need permitted font files. Palette inference misses some secondary colours, notably cleaning’s purple. Some copy remains academic or instructional, and English spelling can drift from the source brand. The renderer has five flexible families, not the full collage/illustration vocabulary of a design tool. The automatic reviewer checks structured copy and evidence, not finished exported pixels.
 
-Next: review the three benchmark sheets, then try one new business website and judge the actual downloaded creatives.
+A verbose AI revision was too crowded to render at readable sizes; it was blocked, restored, and then revised successfully with concise feedback. Earlier model timeouts, a reviewer missing colour context and an overly restrictive process/list check were fixed; saved drafts now survive structure/review failures. Latency and plan limits remain. The final fresh image-led coffee and cleaning runs completed without draft recovery.
+
+The tested packs are improved and inspectable, but universal zero-edit creative quality, exact brand fidelity and marketing performance are not established. Readable public English sites are the tested boundary; blocked pages and missing assets need recovery. PDFs embed the artwork and do not have selectable text. ZIPs and extracted full assets remain locally available generated files; representative PNGs, copy and proof sheets are committed.
+
+Next: review the finished sheets and their originals, then try one unrelated website.
 
 ## Full sample transcript test output
 

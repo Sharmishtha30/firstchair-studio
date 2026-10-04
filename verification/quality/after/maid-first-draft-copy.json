@@ -1,0 +1,640 @@
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "artwork": {
+      "note": "This creative flow uses website images and original diagrams; no generated photos."
+    },
+    "assets": [
+      {
+        "alt": "Source background image for Domestic & Home Cleaning Services | Maid2Clean UK",
+        "height": 736,
+        "key": "image-1",
+        "originalUrl": "https://www.maid2clean.co.uk/domestic-cleaning/core/i/home-hero-bg.jpg",
+        "pageUrl": "https://www.maid2clean.co.uk/",
+        "role": "website background",
+        "url": "http://127.0.0.1:3210/api/storage/ac6fdf29-d2eb-4b12-affb-84e27c6990b3",
+        "width": 1600
+      },
+      {
+        "alt": "Source background image for Domestic & Home Cleaning Services | Maid2Clean UK",
+        "height": 450,
+        "key": "image-2",
+        "originalUrl": "https://www.maid2clean.co.uk/domestic-cleaning/core/i/home-hero-bg-mobile.jpg",
+        "pageUrl": "https://www.maid2clean.co.uk/",
+        "role": "website background",
+        "url": "http://127.0.0.1:3210/api/storage/bfcfdcd4-0ced-4c2e-9b48-d3f61ea528ca",
+        "width": 600
+      },
+      {
+        "alt": "Source background image for Domestic & Home Cleaning Services | Maid2Clean UK",
+        "height": 760,
+        "key": "image-3",
+        "originalUrl": "https://www.maid2clean.co.uk/domestic-cleaning/core/i/trustpilot-bg.jpg",
+        "pageUrl": "https://www.maid2clean.co.uk/",
+        "role": "website background",
+        "url": "http://127.0.0.1:3210/api/storage/395218f7-732e-4e05-8ba3-21cf76eb8a07",
+        "width": 1900
+      },
+      {
+        "alt": "Source background image for Domestic & Home Cleaning Services | Maid2Clean UK",
+        "height": 922,
+        "key": "image-4",
+        "originalUrl": "https://www.maid2clean.co.uk/domestic-cleaning/core/i/recruit-bg.jpg",
+        "pageUrl": "https://www.maid2clean.co.uk/",
+        "role": "website background",
+        "url": "http://127.0.0.1:3210/api/storage/e19efb1a-d4d6-47b2-83e9-67484bfe9065",
+        "width": 1900
+      },
+      {
+        "alt": "Source background image for Domestic & Home Cleaning Services | Maid2Clean UK",
+        "height": 752,
+        "key": "image-6",
+        "originalUrl": "https://www.maid2clean.co.uk/domestic-cleaning/core/i/contact-hero-bg.jpg",
+        "pageUrl": "https://www.maid2clean.co.uk/",
+        "role": "website background",
+        "url": "http://127.0.0.1:3210/api/storage/51ce4866-b8ca-42b8-898e-7f4793e617d3",
+        "width": 1900
+      }
+    ],
+    "audience": "People arranging cleaning for their own home who want to clarify their priorities and feel comfortable with the cleaner they choose.",
+    "facts": [
+      "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+      "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+      "All we require from you is the approximate number of hours you need and your postcode.",
+      "If you'd like a free quote, then contact us!",
+      "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+      "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you."
+    ],
+    "name": "Maid2Clean",
+    "offer": "Domestic cleaning through an agency that sources vetted, reference-checked cleaners, with hours and tasks discussed around the customer's needs.",
+    "palette": {
+      "accent": "#ff8d67",
+      "ink": "#101010",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#ffffff",
+      "primary": "#ff8d67"
+    },
+    "sourceUrl": "https://www.maid2clean.co.uk/",
+    "strategy": {
+      "action": "Enquire about home cleaning with an approximate number of hours and a postcode to request a free quote.",
+      "angles": [
+        {
+          "evidence": [
+            "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+            "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+            "All we require from you is the approximate number of hours you need and your postcode."
+          ],
+          "hooks": [
+            "Choose the priorities before the cleaning hours",
+            "Your room count isn't the whole brief",
+            "What should your cleaner tackle first?"
+          ],
+          "idea": "Choose the priorities before the cleaning hours",
+          "usefulInsight": "The size of a home is only part of the booking decision: what is in the rooms and the depth of cleaning required also matter. Intended carousel story: open on the difficulty of choosing hours, explain why room count alone is incomplete, introduce a clearly labelled hypothetical distinction between priority jobs and jobs that can wait, and show how that distinction gives the hours discussion a clearer starting point. The reader learns to describe the clean they want rather than treat every room as an equal priority."
+        },
+        {
+          "evidence": [
+            "We know the cleaner will be in your home and that personalities are often as important as cleaning standards.",
+            "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+            "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you."
+          ],
+          "hooks": [
+            "Meet your cleaner before you decide",
+            "The first introduction isn't a commitment",
+            "A good clean starts with personal fit"
+          ],
+          "idea": "The first meeting is a choice, not a commitment",
+          "usefulInsight": "Meeting a proposed cleaner is not merely a handover of instructions: it is also a chance to decide whether you are comfortable with that person in your home. Intended static: a complete, reassuring observation that you can discuss the tasks and assess personal fit without having to accept the first cleaner introduced. The reader learns that their comfort is a legitimate part of the decision, alongside cleaning standards."
+        },
+        {
+          "evidence": [
+            "Will I have to be at home when my cleaner visits?",
+            "No, our cleaners are vetted and are happy to hold your house keys.",
+            "We will provide you with a Key Acknowledgement Form for your cleaner to sign."
+          ],
+          "hooks": [
+            "You don't have to stay for the clean",
+            "Plan access, not your day around cleaning",
+            "A regular clean can happen without you"
+          ],
+          "idea": "A regular clean needn't mean staying home",
+          "usefulInsight": "Arranging regular cleaning involves deciding how the cleaner will access the home, not necessarily keeping yourself available for every visit. Intended story: distinguish the initial conversation about tasks from ongoing access, explain the option for a vetted cleaner to hold keys and the Key Acknowledgement Form, then invite the reader to discuss access arrangements when enquiring. The reader learns that being present for every clean is not a service requirement."
+        }
+      ],
+      "chosenAngles": [
+        "Choose the priorities before the cleaning hours",
+        "The first meeting is a choice, not a commitment"
+      ],
+      "customer": "A person arranging domestic cleaning for their own home who needs to decide what help to book and who they feel comfortable letting into their space.",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "imageStyle": "Text-led, calm domestic-service editorial design: clear headings, generous space and selective emphasis on the practical takeaway. The supplied assets are website backgrounds with generic alt text, not verified depictions of specific cleaning tasks or customers. Do not use recruitment or Trustpilot backgrounds as customer evidence. No photograph is necessary for these ideas; typography can make the priorities and personal-choice insights clear. Website colours and fonts were not supplied, so specific palette and type choices remain unconfirmed.",
+      "market": "UK domestic and home cleaning. The website explicitly states service provision throughout the UK; local rates and availability need confirming.",
+      "mechanism": "Maid2Clean sources vetted, reference-checked cleaners. Customers can meet the proposed cleaner, approve the choice and discuss tasks before mutually arranging a regular cleaning day and time. Cleaning hours can be chosen around the home, the depth of cleaning required and the customer's priorities.",
+      "note": "Brief only; no posts created at this stage. chosenAngles lists the carousel idea first and the distinct static idea second. The buyer's hesitation about hours and comfort with a new cleaner are creative hypotheses grounded in the FAQ topics, not customer testimony. UK coverage is explicitly supported by: \"We are the premier provider of domestic & home cleaning throughout the UK.\" Exact local coverage, prices, recommended hours for particular homes, website palette and fonts are unknown from the supplied material. The FAQs destination is a supplied page supporting both selected ideas. Any later hypothetical example must remain labelled and must not promise that particular jobs fit within an invented number of hours.",
+      "situation": "They are considering a regular cleaner but have not yet worked out how many hours to request or how to explain which rooms and jobs matter most."
+    },
+    "style": {
+      "bodyFont": "cr,sans-serif",
+      "headline": "sans",
+      "logoUrl": "http://127.0.0.1:3210/api/storage/820f887e-d6f1-4929-b43b-6107bdf9bf95",
+      "note": "Heading font declared: cm,sans-serif. Body font declared: cr,sans-serif. Bundled Inter or Georgia is used where the original font cannot be imported. CSS declarations are not a rendered-style guarantee.",
+      "sourceFont": "cm,sans-serif",
+      "weight": 600
+    },
+    "voice": "Calm, practical and reassuring, with plain English and respect for personal choice."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "platforms": [
+    "instagram",
+    "linkedin"
+  ],
+  "posts": [
+    {
+      "altText": "Five-slide text-led carousel in white, peach and dark ink. It explains why room count alone cannot determine cleaning hours, gives a labelled example separating priority jobs from jobs that can wait, and suggests describing tasks and depth before estimating hours.",
+      "caption": "An approximate number of hours is a starting point, not a test you need to get right first time.\n\nA room count describes your home. A priority list helps describe the clean you want—especially when some jobs matter more to you than others.\n\nFor a free Maid2Clean quote, enquire with your approximate hours and postcode.",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "A clearer starting point for cleaning hours",
+      "emotion": "Clarity and relief from having to guess.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Not sure how long to book? Start with what you most want done.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "priorities",
+            "imagePosition": "top",
+            "layout": "poster",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "Planning your first regular clean",
+          "heading": "Choose the priorities before the cleaning hours",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Hours depend on your home's size, how much is in each room and how thorough a clean you want. The number of rooms is only part of the brief.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "room count",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "Describe the work, not just the space."
+          },
+          "eyebrow": "",
+          "heading": "A room count leaves things out",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Your list might look like this:",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "equal priority",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "Hypothetical example",
+          "heading": "Not every job needs equal priority",
+          "items": [
+            {
+              "detail": "Clean the bathroom and kitchen floor.",
+              "label": "First priorities"
+            },
+            {
+              "detail": "Dust the spare room.",
+              "label": "Can wait"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "For each priority, name the job and explain how thorough you want the clean to be. Note which tasks can wait if time is limited.",
+          "composition": "process",
+          "design": {
+            "align": "left",
+            "emphasis": "brief",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "“Bathroom first” is a start. The tasks make it clearer."
+          },
+          "eyebrow": "",
+          "heading": "Turn the list into a brief",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Use your priorities to guide the hours discussion. Maid2Clean asks for approximate hours and your postcode when you request a free quote.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "starting point",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "primary",
+            "takeaway": "The aim is to describe the clean you want—not give every room equal time."
+          },
+          "eyebrow": "",
+          "heading": "Now you have a clearer starting point",
+          "items": []
+        }
+      ],
+      "hook": "Choose the priorities before the cleaning hours",
+      "layout": "headline",
+      "pain": "Being asked how many cleaning hours you need before you have worked out what you most want done.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+        "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+        "All we require from you is the approximate number of hours you need and your postcode.",
+        "If you'd like a free quote, then contact us!"
+      ]
+    },
+    {
+      "altText": "A calm, white text-led card with a selectively peach-emphasised heading: Meet your cleaner before you decide. The copy explains that the meeting is a chance to discuss tasks and personal comfort, and that you do not have to accept the first cleaner introduced.",
+      "caption": "The first conversation can cover more than rooms and jobs. It is also a chance to notice whether you feel comfortable explaining how you like things done.\n\nMaid2Clean can arrange for you to meet the proposed cleaner and discuss the tasks before you approve the choice. You do not have to accept the first person introduced.\n\nWhen you enquire, ask to meet your proposed cleaner before the first clean.",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "An introduction is a chance to choose",
+      "emotion": "Reassurance and permission to choose.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Meeting a proposed Maid2Clean cleaner is a chance to discuss the jobs—and decide whether you feel comfortable with them in your home. You don't have to accept the first person introduced.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "before you decide",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "An introduction is a choice, not an obligation."
+          },
+          "eyebrow": "Your home. Your choice.",
+          "heading": "Meet your cleaner before you decide",
+          "items": []
+        }
+      ],
+      "hook": "Meet your cleaner before you decide",
+      "layout": "note",
+      "pain": "Feeling obliged to accept the first cleaner introduced, even before deciding whether you feel comfortable with them in your home.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+        "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you."
+      ]
+    },
+    {
+      "altText": "Five-slide typographic carousel in white, peach and dark text. It explains why room count alone cannot define cleaning hours, gives a labelled hypothetical example of priority jobs versus jobs that can wait, and shows how to turn those choices into a clearer cleaning brief.",
+      "caption": "When you're asked how many cleaning hours you need, it's tempting to answer with the number of bedrooms.\n\nThat is only part of the brief. What is in the rooms, how thoroughly you want them cleaned and which jobs matter most also shape the decision.\n\nA priority list doesn't calculate the hours for you. It makes clear what you want those hours to cover—and what can wait if you choose fewer hours.\n\nFor a free Maid2Clean quote, enquire with your approximate hours and postcode. Details: https://www.maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "A clearer brief for your regular home clean",
+      "emotion": "Clarity and relief from having a practical starting point.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Before estimating the time, decide what you most want that time to cover.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "priorities",
+            "imagePosition": "top",
+            "layout": "poster",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "Planning a regular home clean",
+          "heading": "Choose the priorities before the cleaning hours",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Cleaning time also depends on how much is in each room and the depth of cleaning you want. Naming the rooms leaves those details open.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "whole brief",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "Describe the work, not just the space."
+          },
+          "eyebrow": "",
+          "heading": "Room count isn't the whole brief",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "A hypothetical starting point—not a suggested time allowance.",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "equal priority",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "Example priorities",
+          "heading": "Not every job needs equal priority",
+          "items": [
+            {
+              "detail": "Clean the bathroom and kitchen floor.",
+              "label": "First priorities"
+            },
+            {
+              "detail": "Dust the spare bedroom.",
+              "label": "Can wait"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "In that example, name the jobs you mean: the basin, toilet, shower and floor. Then explain how thoroughly you want them cleaned.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "more specific",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "A room name is a starting point, not a task list."
+          },
+          "eyebrow": "Refine the example",
+          "heading": "Make “clean the bathroom” more specific",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "You have a clearer brief: the jobs that matter most, the depth of clean you want and what can wait.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "a purpose",
+            "imagePosition": "top",
+            "layout": "poster",
+            "surface": "primary",
+            "takeaway": "Enquire with your approximate hours and postcode for a free quote."
+          },
+          "eyebrow": "Maid2Clean",
+          "heading": "Now the hours have a purpose",
+          "items": []
+        }
+      ],
+      "hook": "Choose the priorities before the cleaning hours",
+      "layout": "headline",
+      "pain": "Wanting a regular cleaner but not knowing how many hours to request or how to describe the work that matters most.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+        "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+        "If you'd like a free quote, then contact us!",
+        "All we require from you is the approximate number of hours you need and your postcode."
+      ]
+    },
+    {
+      "altText": "A single white typographic card with a peach-emphasised heading: Meet your cleaner before you decide. The text explains that the meeting is a chance to discuss tasks and assess personal fit, and that you do not have to accept the first cleaner introduced.",
+      "caption": "Explaining the cleaning tasks is only one part of meeting someone who will be working in your home. Your comfort with that person matters too.\n\nMaid2Clean can arrange for you to meet the proposed cleaner, discuss the tasks and approve the choice. You do not have to agree to the first person introduced.\n\nRead how the first meeting works in Maid2Clean's FAQs: https://www.maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "Your comfort is part of choosing a cleaner",
+      "emotion": "Reassurance and permission to exercise personal choice.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Meeting a proposed Maid2Clean cleaner is a chance to discuss the tasks—and decide whether you feel comfortable with them in your home. You don't have to accept the first person introduced.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "before you decide",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "An introduction is a choice, not an obligation."
+          },
+          "eyebrow": "Choosing your home cleaner",
+          "heading": "Meet your cleaner before you decide",
+          "items": []
+        }
+      ],
+      "hook": "Meet your cleaner before you decide",
+      "layout": "note",
+      "pain": "Feeling that being introduced to a cleaner means having to accept them, even before deciding whether the fit feels right.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+        "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you."
+      ]
+    }
+  ],
+  "sourcePages": [
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "The premier domestic cleaning company - providing a professional, affordable home clean."
+        },
+        {
+          "kind": "p",
+          "text": "Simply leave your name and a form of contact, and we'll get back to you as soon as possible."
+        },
+        {
+          "kind": "h1",
+          "text": "Looking for a reliablehouse cleaning service?"
+        },
+        {
+          "kind": "p",
+          "text": "As one of the UK's leading cleaning agencies we have years of experience in sourcing excellent cleaners for all of our clients. Leave the cleaning of your home to the professionals."
+        },
+        {
+          "kind": "h3",
+          "text": "Our local house cleaning services"
+        },
+        {
+          "kind": "p",
+          "text": "We are the premier provider of domestic & home cleaning throughout the UK. Specialising in providing unbeatable house cleaning, we have built an expertise for cleaning your home to the highest possible standard and supplying an exemplary customer service."
+        },
+        {
+          "kind": "p",
+          "text": "Our domestic cleaning service provides a fully vetted, reference checked and insured cleaner to your home that will deliver a professional clean to suit your individual needs."
+        },
+        {
+          "kind": "p",
+          "text": "Enquire about our services"
+        },
+        {
+          "kind": "h3",
+          "text": "Maid2Clean Franchise"
+        },
+        {
+          "kind": "p",
+          "text": "Interested in becoming a franchisee? Find more information on our dedicated Maid2Clean Franchise website"
+        },
+        {
+          "kind": "p",
+          "text": "Find out more"
+        }
+      ],
+      "retrievedAt": 1791136302248,
+      "title": "Domestic & Home Cleaning Services | Maid2Clean UK",
+      "url": "https://www.maid2clean.co.uk/"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Still have some questions about our house cleaning services? Here we have provided a list of the most frequently asked questions sent to our local offices"
+        },
+        {
+          "kind": "p",
+          "text": "Simply leave your name and a form of contact, and we'll get back to you as soon as possible."
+        },
+        {
+          "kind": "h1",
+          "text": "Frequently asked questions"
+        },
+        {
+          "kind": "h3",
+          "text": "How can we help?"
+        },
+        {
+          "kind": "p",
+          "text": "If you don't find the question you're looking for, don't worry, just get in touch with us and we'll help you the best we can."
+        },
+        {
+          "kind": "h3",
+          "text": "How many hours do I need?"
+        },
+        {
+          "kind": "p",
+          "text": "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require."
+        },
+        {
+          "kind": "p",
+          "text": "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed."
+        },
+        {
+          "kind": "p",
+          "text": "Below is a general guide for various property sizes:"
+        },
+        {
+          "kind": "h3",
+          "text": "How much will I pay?"
+        },
+        {
+          "kind": "p",
+          "text": "Our hourly rates include the cleaner's wage and the agency fee. Rates vary depending on the area you're in and the number of hours you require each week. If you'd like a free quote, then contact us! All we require from you is the approximate number of hours you need and your postcode."
+        },
+        {
+          "kind": "h3",
+          "text": "What time is your office open until?"
+        },
+        {
+          "kind": "p",
+          "text": "The majority of our offices are open late and available at least 6 days of the week. Go to your local office to find out the opening times."
+        },
+        {
+          "kind": "h3",
+          "text": "What sort of contract am I tied in to?"
+        },
+        {
+          "kind": "p",
+          "text": "We don't believe in long and complicated contracts and do believe in being fair. Naturally, like any business, we have to have terms and conditions, and these can be found in the footer of any page. If you do ever need to cancel, all we ask is that you give us two month's notice or notice in accordance with the billing letter provided from your local office."
+        },
+        {
+          "kind": "h3",
+          "text": "How do you vet the cleaners?"
+        },
+        {
+          "kind": "p",
+          "text": "We first carry out a telephone interview. If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home. Only after taking proof of ID and address along with references do we accept them onto our database. We then monitor every cleaner thoroughly for the whole time they are with us."
+        },
+        {
+          "kind": "h3",
+          "text": "Do I meet my cleaner before the first clean?"
+        },
+        {
+          "kind": "p",
+          "text": "Of course! We know the cleaner will be in your home and that personalities are often as important as cleaning standards. Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require. It's important that your cleaner is someone you like so there's no need to agree to the first person we send you. Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time. If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+        },
+        {
+          "kind": "h3",
+          "text": "What if my cleaner can't make it, or is sick?"
+        },
+        {
+          "kind": "p",
+          "text": "Just give us a call, and we will provide you with a cleaner to cover."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I have an evening or weekend clean?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes of course! Our cleaners are fully flexible and will take on evening or weekend cleaning work. Please note in certain areas a supplement hourly charge may be added for cleans after 6pm or at weekends."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I have a clean once a month?"
+        },
+        {
+          "kind": "p",
+          "text": "Most of our offices do not do monthly cleans - typically our most infrequent clean is every fortnight, or a one off."
+        },
+        {
+          "kind": "h3",
+          "text": "Will I have to be at home when my cleaner visits?"
+        },
+        {
+          "kind": "p",
+          "text": "No, our cleaners are vetted and are happy to hold your house keys. We will provide you with a Key Acknowledgement Form for your cleaner to sign."
+        },
+        {
+          "kind": "h3",
+          "text": "Do I need to provide cleaning supplies and equipment?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes. Cleaners use the supplies and equipment already in the home. Most clients prefer to choose what is used. We ask that bleach is not used, for health and safety reasons."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I change my cleaner if I am not happy?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes, of course, we have a large and varied cleaner base, and we'd be happy to assign you someone different if you are unhappy for any reason. Just give us a call."
+        },
+        {
+          "kind": "h3",
+          "text": "Do you have insurance cover?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes. Public liability insurance of at least £1,000,000 is in place, subject to our terms of business. The policy is indemnity cover, not new for old. Claims remain subject to liability being established and to the terms, conditions, exclusions and excesses of the policy. There is a £100 excess per claim. Where appropriate, customers should approach their household insurer first, as set out in our terms of business."
+        }
+      ],
+      "retrievedAt": 1791136304221,
+      "title": "Frequently asked questions about our services | Maid2Clean",
+      "url": "https://www.maid2clean.co.uk/faqs/"
+    }
+  ],
+  "sourceWarnings": [
+    "Related page unavailable: https://www.maid2clean.co.uk/getproductchecklist/"
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791137733755,
+  "url": "https://www.maid2clean.co.uk/"
+}
