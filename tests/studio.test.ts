@@ -38,7 +38,7 @@ test('unfinished bodies and greeting hooks cannot be saved as finished artwork',
 });
 import {extractPalette} from '../convex/brandPalette';
 test('brand palette resolves only safe default CSS colors and handles cycles',()=>{
- assert.deepEqual(extractPalette(':root{--paper:#fff;--ink:#0f0f12;--c-pink:#ff307e;--primary:var(--c-pink);--c-yellow:#f5c518;}'),{paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Default colors read from the public website CSS; tone and styling are inferred, not formal brand guidelines.'});
+ assert.deepEqual(extractPalette(':root{--paper:#fff;--ink:#0f0f12;--c-pink:#ff307e;--primary:var(--c-pink);--c-yellow:#f5c518;}'),{paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'});
  assert.equal(extractPalette(':root{--primary:var(--other);--other:var(--primary)}'),undefined);
  assert.equal(extractPalette(':root{--primary:url(https://bad.example)}'),undefined);
 });
@@ -71,3 +71,20 @@ test('Seedream 4.5 JPEG output is accepted with its real dimensions and truncate
 
 import {typographyOnly} from '../convex/brandPresentation';
 test('Founder’s Find uses a face-free brand profile; other websites keep their own media support',()=>{assert.equal(typographyOnly(foundersBrand),true);assert.equal(typographyOnly({sourceUrl:'https://basecamp.com/'}),false);assert.equal(typographyOnly({sourceUrl:'unfinished url'}),false);});
+import {extractStyle} from '../convex/brandStyle';
+test('new website packs require only carousel and static, never a reel',()=>{
+ assert.equal(checkPosts(foundersPosts.filter(p=>p.format!=='reel'),foundersBrand.facts,2).length,2);
+ assert.throws(()=>checkPosts(foundersPosts,foundersBrand.facts,2));assert.throws(()=>checkPosts(foundersPosts.filter(p=>p.format!=='static'),foundersBrand.facts,2));
+});
+test('brand extraction is semantic, not tied to a domain',()=>{
+ assert.equal(extractStyle(':root{--heading:Georgia,serif} h1{font-family:var(--heading)}').headline,'serif');
+ assert.equal(extractStyle('h1{font-family:Inter,sans-serif}').headline,'sans');assert.equal(extractStyle('').sourceFont,'Not found');
+ assert.equal(extractPalette('.button{background:#ae302f}.link{color:#ae302f}')?.primary,'#ae302f');
+});
+
+test('modern CSS colour tokens and aliases are converted without a brand lookup',()=>{
+ const p=extractPalette(':root{--l:0.535 0.1602 254.08;--color-link:oklch(var(--l));--color-canvas:oklch(1 0 0);--color-ink:rgb(10, 20, 30);}');
+ assert.equal(p?.primary,'#146dc7');assert.equal(p?.paper,'#ffffff');assert.equal(p?.ink,'#0a141e');
+});
+
+test('default colour tokens are preserved over later optional theme declarations',()=>{assert.equal(extractPalette(':root{--primary:#ff307e;--paper:#fff}@media(prefers-color-scheme:dark){:root{--primary:#0000ff;--paper:#000}}')?.paper,'#ffffff');});

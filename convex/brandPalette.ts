@@ -2,7 +2,7 @@ export type Palette={paper:string;ink:string;primary:string;accent:string;note:s
 export const foundersPalette:Palette={paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Default colors read from Founders Find’s public website CSS. No formal brand guide was supplied.'};
 export function extractPalette(css:string):Palette|undefined{
  const vars=new Map<string,string>();
- for(const root of css.matchAll(/:root(?:\s*,[^{}]+)?\s*\{([^}]+)\}/g))for(const declaration of root[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);?/g))vars.set(declaration[1],declaration[2].trim());
+ for(const root of css.matchAll(/:root(?:\s*,[^{}]+)?\s*\{([^}]+)\}/g))for(const declaration of root[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);?/g))if(!vars.has(declaration[1]))vars.set(declaration[1],declaration[2].trim());
  function resolve(name:string,depth=0):string|undefined{
   if(depth>8)return undefined;const value=vars.get(name);if(!value)return undefined;
   const ref=value.match(/^var\((--[\w-]+)\)$/);if(ref)return resolve(ref[1],depth+1);
