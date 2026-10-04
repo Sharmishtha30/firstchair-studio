@@ -4,3 +4,6 @@ dist/
 !.env.example
 .convex/
 .DS_Store
+verification/*.mp4
+verification/*.zip
+verification/founders-assets/

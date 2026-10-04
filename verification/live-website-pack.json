@@ -1,0 +1,110 @@
+{
+  "brand": {
+    "audience": "Ambitious people moving into high-impact product, founder's office, operations, growth, finance and strategy roles, especially those whose current environment limits their growth.",
+    "facts": [
+      "A feed built around your role, seniority and city.",
+      "Every role is open free, with 5 Job Assists to start: messages to hiring managers, referral requests or application forms.",
+      "Every line is checked against your record. You send it, from your own address.",
+      "Stop collecting frameworks. Start building judgement.",
+      "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio.",
+      "A seat in Proving Ground, the Intelligent Job Board with a named person on your search, mentor sessions, and every meetup with a plus-one. One relationship for a year.",
+      "The marked decision becomes the portfolio, the portfolio becomes the application, the answer you could not defend becomes next week's practice."
+    ],
+    "name": "Founder's Find",
+    "offer": "A connected career ecosystem: an Intelligent Job Board with application and outreach support, Proving Ground for practising and demonstrating judgement, and an annual Membership combining career tools, mentors and community.",
+    "sourceUrl": "https://foundersfind.club/",
+    "voice": "Inferred from the website: direct, ambitious and practical, with pointed contrasts and an emphasis on visible evidence over vague career promises."
+  },
+  "mode": "Written with your connected ChatGPT plan",
+  "posts": [
+    {
+      "altText": "Five-frame carousel offering a practical way to organise a scattered job search: filter opportunities, connect requirements to evidence, record next actions and explore the free roles on Founder's Find.",
+      "caption": "A job-search record only helps if it makes the next action obvious.\n\nUseful fields: role, fit evidence, contact, last action and next follow-up. Keep outreach grounded in work you can actually discuss.\n\nFounder's Find checks drafted lines against your record. You send them from your own address.",
+      "emotion": "Inferred: mental overload and frustration that effort is getting lost between tools.",
+      "format": "carousel",
+      "frames": [
+        {
+          "body": "The role. The draft. The referral.\nThe follow-up you forgot.\n\nGive each opportunity one home.",
+          "heading": "Your job search lives across tabs"
+        },
+        {
+          "body": "Use three filters:\n• Role\n• Seniority\n• City\n\nFounder's Find builds your feed around these—not a search for “anything.”",
+          "heading": "Start with a tighter shortlist"
+        },
+        {
+          "body": "For each requirement, note a relevant example from your record.\n\nUse that evidence in your application and outreach—not a fresh set of claims each time.",
+          "heading": "Keep evidence beside the role"
+        },
+        {
+          "body": "Keep the application, contact, referral request and next follow-up together.\n\nA useful record tells you what happens next, not just what you already sent.",
+          "heading": "Give every role a next step"
+        },
+        {
+          "body": "Every role is open free, with 5 Job Assists to start for hiring-manager messages, referral requests or application forms.\n\nSee every role free at foundersfind.club.",
+          "heading": "Put the shortlist to work"
+        }
+      ],
+      "hook": "Your job search lives across tabs",
+      "pain": "Job seekers juggle role discovery, application notes, outreach and follow-ups without a connected process.",
+      "sourceFacts": [
+        "A feed built around your role, seniority and city.",
+        "Every role is open free, with 5 Job Assists to start: messages to hiring managers, referral requests or application forms.",
+        "Every line is checked against your record. You send it, from your own address."
+      ]
+    },
+    {
+      "altText": "Single-frame post with the headline “Your best work stays invisible” and a four-part structure for demonstrating judgement: problem, options, decision and trade-off.",
+      "caption": "A title tells someone where you worked. A decision example can show how you think.\n\nA useful structure for an interview or portfolio:\n• What needed deciding?\n• Which options did you consider?\n• What did you choose—and why?\n• What cost or risk did you accept?\n\nUse work you have permission to share, and distinguish what actually happened from what you expected. Proving Ground preserves your strongest answers for use in an interview or portfolio.",
+      "emotion": "Inferred: feeling overlooked, with a desire to be recognised for substance rather than self-promotion.",
+      "format": "static",
+      "frames": [
+        {
+          "body": "Make your judgement readable:\nThe problem → your options → your call → the trade-off.\n\nProving Ground keeps your strongest answers in your own words.\n\nExplore Proving Ground at foundersfind.club.",
+          "heading": "Your best work stays invisible"
+        }
+      ],
+      "hook": "Your best work stays invisible",
+      "pain": "Capable professionals struggle to show people outside their workplace how they think and make decisions.",
+      "sourceFacts": [
+        "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+      ]
+    },
+    {
+      "altText": "Five-part, 25-second reel presenting a hypothetical delivery disruption. It asks viewers to weigh options, identify what they protect and explain the risks they accept, then introduces Proving Ground.",
+      "caption": "Being quick to act and being clear about a decision are different skills.\n\nIn this hypothetical delivery challenge, the useful question is not just “What would you do?” It is “What are you protecting, what are you sacrificing, and what would change your mind?”\n\nThat explanation makes your reasoning available for feedback. Founder's Find connects marked decisions to portfolio evidence, then connects gaps in your answers to further practice.",
+      "emotion": "Inferred: impatience with being confined to execution, mixed with uncertainty about decision-making responsibility.",
+      "format": "reel",
+      "frames": [
+        {
+          "body": "Practise the trade-off—not just the task.",
+          "heading": "Still executing, never making the call?"
+        },
+        {
+          "body": "Orders are already moving.\nPay more, pause sales, or find backup?",
+          "heading": "Imagine: your delivery partner quits"
+        },
+        {
+          "body": "Customer promises?\nMargin?\nTomorrow's capacity?",
+          "heading": "Name what you protect"
+        },
+        {
+          "body": "Every option costs something.\nExplain the cost you accept.",
+          "heading": "Name what you risk"
+        },
+        {
+          "body": "Proving Ground connects marked decisions to portfolio evidence.\nExplore it at foundersfind.club.",
+          "heading": "Make your judgement visible"
+        }
+      ],
+      "hook": "Still executing, never making the call?",
+      "pain": "Strong executors want greater ownership but lack practice explaining and defending consequential decisions.",
+      "sourceFacts": [
+        "Stop collecting frameworks. Start building judgement.",
+        "The marked decision becomes the portfolio, the portfolio becomes the application, the answer you could not defend becomes next week's practice."
+      ]
+    }
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791112141002,
+  "url": "https://foundersfind.club/"
+}

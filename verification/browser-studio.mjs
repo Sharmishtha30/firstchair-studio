@@ -1,0 +1,14 @@
+import {chromium} from '@playwright/test';
+import fs from 'node:fs/promises';
+const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1100},acceptDownloads:true});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://localhost:5173'+(process.env.PACK_TOKEN?'/#pack='+process.env.PACK_TOKEN:''));if(!process.env.PACK_TOKEN)await page.getByRole('button',{name:'Create Instagram pack'}).click();
+await page.getByRole('tab',{name:'01 / Carousel'}).waitFor({timeout:60000});
+await page.locator('.artwork').waitFor();await page.screenshot({path:'verification/studio-desktop.png',fullPage:true});
+console.log('PASS website → saved carousel/static/reel pack',page.url());
+const imagesDownload=page.waitForEvent('download');await page.getByRole('button',{name:'Download images + captions'}).click();const zip=await imagesDownload;await zip.saveAs('verification/founders-instagram.zip');console.log('PASS images and captions ZIP',zip.suggestedFilename());
+await page.getByRole('tab',{name:'03 / Reel'}).click();
+const videoDownload=page.waitForEvent('download',{timeout:180000});await page.getByRole('button',{name:'Download MP4 reel'}).click();const video=await videoDownload;await video.saveAs('verification/founders-reel.mp4');console.log('PASS MP4 download',video.suggestedFilename());
+await page.reload();await page.getByRole('tab',{name:'01 / Carousel'}).waitFor();console.log('PASS reload resumes saved pack');
+await page.setViewportSize({width:390,height:844});await page.screenshot({path:'verification/studio-mobile.png',fullPage:true});console.log('PASS mobile screenshot; page errors:',JSON.stringify(errors));
+await fs.writeFile('verification/latest-pack-url.txt',page.url());await browser.close();if(errors.length)process.exitCode=1;
