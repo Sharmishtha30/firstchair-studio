@@ -70,7 +70,7 @@ function drawFounders(post:Post,brand:Brand,index:number,progress:number,canvas?
  const pink='#ff307e',ink='#0f0f12';ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,h);
  ctx.textBaseline='top';ctx.font='400 38px Georgia';ctx.fillStyle=ink;ctx.fillText("Founder's",76,62);ctx.font='italic 38px Georgia';ctx.fillStyle=pink;ctx.fillText('Find',ctx.measureText("Founder's").width+88,62);
  ctx.strokeStyle='#e5e5e8';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(76,136);ctx.lineTo(1004,136);ctx.stroke();
- wrapped(ctx,post.format==='carousel'?`${String(index+1).padStart(2,'0')} / ${post.frames.length}`:post.format==='static'?'INSTAGRAM / STATIC':'INSTAGRAM / REEL',76,175,900,22,30,400,'#686873');
+ wrapped(ctx,post.format==='carousel'?`${String(index+1).padStart(2,'0')} / ${post.frames.length}`:'',76,175,900,22,30,400,'#686873');
  const frame=post.frames[index];c.dataset.font='Georgia';
  const words=frame.heading.split(/\s+/),accent=words.length>=4?words.splice(-2).join(' '):'',size=post.format==='static'?110:100,line=post.format==='static'?122:113;
  let headingEnd=wrapped(ctx,accent?words.join(' '):frame.heading,76,post.format==='reel'?310:250,928,size,line,400,ink);
