@@ -72,3 +72,25 @@ console.log("PASS: A transcript without customer statements is rejected.");
 console.log(
   "PASS: Every script line, on-screen line and caption has supporting customer quotes.",
 );
+
+await assert.rejects(
+  client.action(api.writer.generate, {
+    transcript: "Customer: Hello!\nCustomer: Good morning.\nCustomer: Thanks!",
+    brand,
+  }),
+  /three customer statements/,
+);
+console.log(
+  "PASS: Greeting-only calls are rejected rather than converted into content.",
+);
+await assert.rejects(
+  client.action(api.writer.generate, {
+    transcript:
+      "Customer: I lose my evenings chasing reports.\nCustomer: I feel anxious before every review.\nCustomer: I wish I had one reliable dashboard.",
+    brand,
+  }),
+  /Sample mode cannot analyze/,
+);
+console.log(
+  "PASS: Without an AI key, a custom call does not return pretend insight recommendations.",
+);

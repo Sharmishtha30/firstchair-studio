@@ -84,14 +84,20 @@ function App() {
         <a className="wordmark" href="#" onClick={() => setOpen(false)}>
           <span className="mark">“</span> Call to Reel
         </a>
-        <span className="header-note">Your customers have the words.</span>
+        <span className="header-note">
+          {mode === "ai"
+            ? "AI writer connected"
+            : mode === "sample"
+              ? "Demo only · AI key not connected"
+              : "Checking AI connection…"}
+        </span>
       </header>
       {mode === "sample" && (
         <div className="banner" role="status">
-          <strong>Sample mode</strong> — These are hand-written examples for the
-          sample call, or quote drafts for your own call—not AI analysis. Add
-          OPENAI_API_KEY for pain, emotion and brand-voice recommendations.
-          Sample revisions only shorten, expand or reorder.
+          <strong>Sample mode — AI key not connected.</strong> Your own
+          transcript cannot be analyzed yet. “Use sample transcript” shows
+          hand-written example stories. Add OPENAI_API_KEY to the running local
+          Convex backend to get real insights.
         </div>
       )}
       {error && (

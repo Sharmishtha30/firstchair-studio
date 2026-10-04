@@ -341,3 +341,5 @@ PASS: Script 1 revised and saved; scripts 2 and 3 are unchanged in the database.
 PASS: An unknown session cannot revise another run.
 PASS: A transcript without customer statements is rejected.
 PASS: Every script line, on-screen line and caption has supporting customer quotes.
+PASS: Greeting-only calls are rejected rather than converted into content.
+PASS: Without an AI key, a custom call does not return pretend insight recommendations.

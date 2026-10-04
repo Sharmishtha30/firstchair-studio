@@ -1,15 +1,29 @@
 # Morning handoff — Call to Reel v1
 
+## Latest fix: greetings were being recommended
+
+The active local backend still reported sample mode: no usable OPENAI_API_KEY was found in its environment, the preserved settings files, or the original Convex deployment. The previous custom-transcript sample fallback selected early lines, so greetings became scripts. That fallback is removed. The parser also dropped customer lines without a repeated label; it now retains them until the next speaker.
+
+With a key connected, the writer now first runs a separate insight analysis, selecting substantive pain, emotion and takeaway evidence from the whole customer conversation. Only then does it write and review the content. Greetings cannot be insight evidence. Live model output is still unverified until the active backend has a usable key.
+
+To connect the key to this running local backend, copy your OpenAI API key, then run from the project folder:
+
+```sh
+pbpaste | npx convex env set OPENAI_API_KEY
+```
+
+Refresh the page. The header should say **AI writer connected**. Generate a new run; old sample runs remain samples.
+
 ## What works
 
 - A landing page with one explanation and one button into the workspace.
 - One pasted customer transcript and a short brand note produce three Instagram reel scripts, each with spoken lines, on-screen text, a caption, and visible supporting customer quotes.
 - Feedback revises one selected script. The other two stay unchanged. The revised version is saved in Convex.
 - Copy buttons, waiting states, input limits, and readable failure messages are included.
-- No AI key is configured on the local backend. The visible **Sample mode** banner distinguishes hand-written examples for the bundled call from quote drafts for other calls; neither is AI analysis.
+- No AI key is configured on the local backend. The visible **Sample mode** banner distinguishes hand-written examples for the bundled call from AI analysis; custom transcripts require the key.
 - Recommendations now develop three distinct stories: the practical pain, the emotional moment, and a supported change or takeaway. The screen shows the selected pain, emotion, whether that emotion is stated or inferred, and the central content idea.
 - The AI path uses the Convex agent component and OpenAI `gpt-4.1-mini`. It writes hooks, short spoken narratives, screen beats and captions using faithful paraphrases in the brand's voice. Each output line carries exact supporting customer statements. A separate model review checks whether the draft's meaning is supported before saving. This review is an extra check, not a guarantee of factual accuracy; real model output still needs testing once a key is available.
-- The bundled sample call now has hand-written pain, emotion and takeaway examples with actual story structure. Other transcripts remain quote drafts in sample mode, without invented AI analysis. Sample feedback still only shortens, expands or reorders quotes. The sample banner says this explicitly.
+- The bundled sample call has hand-written pain, emotion and takeaway examples with actual story structure. Custom transcripts now require an AI key: sample mode refuses to pretend it analyzed them. Sample feedback still only shortens, expands or reorders quotes. The sample banner says this explicitly.
 - Convex handles the backend and database. Convex static hosting is configured for later, but no website or backend code was sent to a cloud deployment.
 - No login, video generation, CRM, Instagram connection, or other channels were added.
 
@@ -50,7 +64,7 @@ The command asks for the value. Paste your key there. Refresh the page and gener
 - `npm run check`: passed frontend and Convex type checks.
 - `npm run build`: passed and created `dist/`.
 - Local Convex confirmed the agent and static hosting components and accepted the backend functions.
-- `npm test`: five checks passed, covering required customer evidence, one-script revision, preservation of negation in legacy quote drafts, distinct pain/emotion/takeaway stories, and rejection of incomplete or failed factual review. These tests do not prove the model can judge meaning correctly.
+- `npm test`: eight checks passed, including greeting exclusion, retention of customer continuation lines, refusal of invented insight evidence, distinct story angles, and factual-review gating. These tests do not prove the model can judge meaning correctly.
 - `npm run test:flow`: passed using actual local Convex actions and database reads, with the sample transcript below. It verifies persistence, unchanged scripts 2 and 3, and rejection of unknown sessions and calls without customer speech.
 - HTTP request to `http://localhost:5173/`: returned the app entry page.
 
@@ -400,6 +414,8 @@ PASS: Script 1 revised and saved; scripts 2 and 3 are unchanged in the database.
 PASS: An unknown session cannot revise another run.
 PASS: A transcript without customer statements is rejected.
 PASS: Every script line, on-screen line and caption has supporting customer quotes.
+PASS: Greeting-only calls are rejected rather than converted into content.
+PASS: Without an AI key, a custom call does not return pretend insight recommendations.
 ```
 
-Next: add OPENAI_API_KEY and check these recommendations against a real customer transcript. Browser visual review remains unverified because browser controls are unavailable.
+Next: connect OPENAI_API_KEY to the active local backend, confirm the header says AI writer connected, then generate new recommendations.

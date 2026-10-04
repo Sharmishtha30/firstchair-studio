@@ -46,7 +46,13 @@ test("a writer cannot remove a customer’s negation", () => {
     "It was expensive.",
     "It was difficult.",
   ];
-  const reels = sampleReels(quotes);
+  const reels = [0, 1, 2].map((i) => ({
+    title: "A customer statement",
+    script: [quotes[i]],
+    onScreen: [quotes[i]],
+    caption: quotes[i],
+    sources: [quotes[i]],
+  }));
   assert.throws(
     () =>
       validateReels(
@@ -92,6 +98,56 @@ test("factual review must cover every line and reject changed meaning", () => {
     requireSupported(
       [{ ...items[0], text: "I did not save time." }],
       [{ id: "line", supported: true, reason: "" }],
+    ),
+  );
+});
+
+test("greetings and acknowledgements are never recommended as content", () => {
+  const quotes = customerQuotes(
+    "Customer: Hi!\nCustomer: Good morning.\nCustomer: Thanks!\nCustomer: Every Friday I waste hours finding reports.\nCustomer: I feel embarrassed when I cannot answer in meetings.\nCustomer: I wish the updates were in one place.",
+  );
+  assert.equal(quotes.length, 3);
+  assert.ok(
+    quotes.every((q) => !["Hi!", "Good morning.", "Thanks!"].includes(q)),
+  );
+  assert.throws(() => sampleReels(quotes), /Sample mode cannot analyze/);
+});
+test("customer statements on continuation lines are retained", () => {
+  const quotes = customerQuotes(
+    "Founder: Tell me what is hard.\nCustomer: Hello!\nI spend Friday chasing reports.\nI feel anxious before meetings.\nI wish I had one page.\nFounder: We guarantee success.",
+  );
+  assert.deepEqual(quotes, [
+    "I spend Friday chasing reports.",
+    "I feel anxious before meetings.",
+    "I wish I had one page.",
+  ]);
+});
+
+import { validateInsights } from "../convex/story";
+test("an insight cannot use a greeting or an invented evidence quote", () => {
+  const base = {
+    angle: "pain" as const,
+    painPoint: "Scattered reporting",
+    emotion: "Not stated",
+    emotionBasis: "not_present" as const,
+    story: "Reporting arrives after the meeting.",
+    evidence: ["Hello!"],
+  };
+  assert.throws(() => validateInsights([base], ["Hello!"], 1), /substantive/);
+  assert.throws(
+    () =>
+      validateInsights(
+        [{ ...base, evidence: ["Invented statement."] }],
+        ["I miss meetings while finding reports."],
+        1,
+      ),
+    /substantive/,
+  );
+  assert.doesNotThrow(() =>
+    validateInsights(
+      [{ ...base, evidence: ["I miss meetings while finding reports."] }],
+      ["I miss meetings while finding reports."],
+      1,
     ),
   );
 });

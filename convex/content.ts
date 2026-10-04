@@ -26,25 +26,41 @@ Customer: I got my Friday afternoons back.
 Customer: My team spends less time reporting and more time helping customers.
 Founder: Anything else?
 Customer: I wish we had made the switch sooner.`;
+export function isConversationFiller(text: string): boolean {
+  return /^(?:hi|hello|hey|good morning|good afternoon|good evening|thanks|thank you|okay|ok|yes|yeah|sure|nice to meet you|can you hear me|how are you|i(?:’|')?m (?:good|fine))(?:[.!?,\s]*)$/i.test(
+    text.trim(),
+  );
+}
 export function customerQuotes(transcript: string): string[] {
   const lines = transcript
     .trim()
     .split(/\n+/)
     .map((s) => s.trim())
     .filter(Boolean);
-  const labelled = lines.some((s) => /^[^:]{1,40}:\s/.test(s));
-  const quotes = labelled
-    ? lines
-        .filter((s) => /^(customer|client|buyer|user|participant)\s*:/i.test(s))
-        .map((s) => s.replace(/^[^:]+:\s*/, ""))
-    : lines
-        .flatMap((s) => s.match(/[^.!?]+[.!?]*/g) ?? [])
-        .map((s) => s.trim());
-  if (quotes.length < 3)
+  const speakerPattern = /^([^:]{1,40}):\s*(.*)$/;
+  const labelled = lines.some((s) => speakerPattern.test(s));
+  const quotes: string[] = [];
+  let customer = false;
+  for (const line of lines) {
+    const speaker = labelled ? line.match(speakerPattern) : null;
+    if (speaker) {
+      customer = /^(customer|client|buyer|user|participant)$/i.test(
+        speaker[1].trim(),
+      );
+      if (customer && speaker[2].trim()) quotes.push(speaker[2].trim());
+    } else if (!labelled || customer)
+      quotes.push(
+        ...(labelled ? [line] : (line.match(/[^.!?]+[.!?]*/g) ?? [])),
+      );
+  }
+  const substantive = quotes
+    .map((s) => s.trim())
+    .filter((s) => s && !isConversationFiller(s));
+  if (substantive.length < 3)
     throw new Error(
-      "Add at least three customer statements. For a labelled call, start customer lines with “Customer:”.",
+      "Add at least three customer statements about their problem, feelings or experience. Greetings do not count. For a labelled call, start the customer’s turn with “Customer:”.",
     );
-  return quotes;
+  return substantive;
 }
 export function validateReels(
   reels: Reel[],
@@ -61,7 +77,7 @@ export function validateReels(
       !r.script.length ||
       !r.onScreen.length ||
       !r.sources.length ||
-      lines.some((s) => !s.trim()) ||
+      lines.some((s) => !s.trim() || isConversationFiller(s)) ||
       r.sources.some((s) => !quotes.includes(s))
     )
       throw new Error(
@@ -106,24 +122,11 @@ export function sampleReels(quotes: string[]): Reel[] {
     quotes.every((q, i) => q === customerQuotes(sampleTranscript)[i])
   )
     return demoStories(quotes);
-  return [0, 1, 2].map((i) => {
-    const selected = [
-      quotes[i],
-      quotes[(i + (quotes.length === 3 ? 1 : 3)) % quotes.length],
-    ];
-    return {
-      title: [
-        "The everyday friction",
-        "The turning point",
-        "The customer’s takeaway",
-      ][i],
-      script: selected,
-      onScreen: [selected[0]],
-      caption: selected[1],
-      sources: selected,
-    };
-  });
+  throw new Error(
+    "Sample mode cannot analyze this transcript. Add OPENAI_API_KEY to the active local Convex backend, or use the sample transcript to see example stories.",
+  );
 }
+
 export function sampleRevision(
   reel: Reel,
   feedback: string,

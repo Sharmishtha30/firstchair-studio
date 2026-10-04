@@ -15,22 +15,25 @@ import {
 import { reelV, modeV } from "./validators";
 import {
   storyInstructions,
+  analysisInstructions,
+  validateInsights,
   reviewInstructions,
   requireSupported,
   type ReviewItem,
 } from "./story";
+const insightSchema = z.object({
+  angle: z.enum(["pain", "emotion", "takeaway"]),
+  painPoint: z.string(),
+  emotion: z.string(),
+  emotionBasis: z.enum(["stated", "inferred", "not_present"]),
+  story: z.string(),
+  evidence: z.array(z.string()).min(1),
+});
 const schema = z.object({
   reels: z.array(
     z.object({
       title: z.string(),
-      insight: z.object({
-        angle: z.enum(["pain", "emotion", "takeaway"]),
-        painPoint: z.string(),
-        emotion: z.string(),
-        emotionBasis: z.enum(["stated", "inferred", "not_present"]),
-        story: z.string(),
-        evidence: z.array(z.string()),
-      }),
+      insight: insightSchema,
       grounding: z.array(
         z.object({ text: z.string(), sources: z.array(z.string()) }),
       ),
@@ -48,6 +51,34 @@ async function write(
   feedback?: string,
   previous?: Reel,
 ): Promise<Reel[]> {
+  const analyst = new Agent(components.agent, {
+    name: "Customer insight analyst",
+    languageModel: openai("gpt-4.1-mini"),
+    instructions: analysisInstructions,
+  });
+  const analysis = await analyst.generateObject(
+    ctx,
+    {},
+    {
+      schema: z.object({
+        hasSubstantiveInsight: z.boolean(),
+        insights: z.array(insightSchema),
+      }),
+      prompt: JSON.stringify({
+        customerStatements: quotes,
+        requestedAngles: previous
+          ? [previous.insight?.angle ?? "pain"]
+          : ["pain", "emotion", "takeaway"],
+        feedback,
+      }),
+      maxRetries: 1,
+    },
+  );
+  if (!analysis.object.hasSubstantiveInsight)
+    throw new Error(
+      "The writer found no substantive customer insight. Add statements about a real problem, feeling, consequence or experience.",
+    );
+  validateInsights(analysis.object.insights, quotes, previous ? 1 : 3);
   const agent = new Agent(components.agent, {
     name: "Customer story strategist",
     languageModel: openai("gpt-4.1-mini"),
@@ -60,6 +91,7 @@ async function write(
       schema,
       prompt: JSON.stringify({
         customerStatements: quotes,
+        selectedInsights: analysis.object.insights,
         brandNote: brand,
         feedback,
         previous,
@@ -69,6 +101,18 @@ async function write(
     },
   );
   const reels = validateReels(result.object.reels, quotes, previous ? 1 : 3);
+  for (const reel of reels) {
+    const picked = analysis.object.insights.find(
+      (i) => i.angle === reel.insight?.angle,
+    );
+    if (
+      !picked ||
+      reel.insight!.evidence.some((q) => !picked.evidence.includes(q))
+    )
+      throw new Error(
+        "The writer changed the selected customer insight without supporting evidence.",
+      );
+  }
   if (!previous && new Set(reels.map((r) => r.insight?.angle)).size !== 3)
     throw new Error("The writer did not provide three distinct story angles.");
   const items: ReviewItem[] = reels.flatMap((r, i) => [
@@ -122,7 +166,7 @@ function length(value: string, min: number, max: number, label: string) {
 function fail(error: unknown): never {
   const message = error instanceof Error ? error.message : "";
   if (
-    /Add at least|must be between|writer|supporting|session|script changed|Feedback|index/.test(
+    /Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index/.test(
       message,
     )
   )
