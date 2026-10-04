@@ -20,6 +20,7 @@ import type * as chatgptModel from "../chatgptModel.js";
 import type * as chatgptSecurity from "../chatgptSecurity.js";
 import type * as chatgptStore from "../chatgptStore.js";
 import type * as content from "../content.js";
+import type * as creativeImages from "../creativeImages.js";
 import type * as creativeTypes from "../creativeTypes.js";
 import type * as demoStories from "../demoStories.js";
 import type * as foundersPack from "../foundersPack.js";
@@ -66,6 +67,7 @@ declare const fullApi: ApiFromModules<{
   chatgptSecurity: typeof chatgptSecurity;
   chatgptStore: typeof chatgptStore;
   content: typeof content;
+  creativeImages: typeof creativeImages;
   creativeTypes: typeof creativeTypes;
   demoStories: typeof demoStories;
   foundersPack: typeof foundersPack;
