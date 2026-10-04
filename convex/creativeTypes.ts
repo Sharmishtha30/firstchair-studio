@@ -1,6 +1,8 @@
 import {v} from 'convex/values';
 export const platformV=v.union(v.literal('instagram'),v.literal('linkedin'));
 export const compositionV=v.union(v.literal('editorial'),v.literal('checklist'),v.literal('comparison'),v.literal('process'),v.literal('spotlight'),v.literal('image'),v.literal('closing'));
+export const designV=v.object({layout:v.union(v.literal('essay'),v.literal('poster'),v.literal('split'),v.literal('photo'),v.literal('list')),surface:v.union(v.literal('paper'),v.literal('primary'),v.literal('ink')),align:v.union(v.literal('left'),v.literal('center')),imagePosition:v.union(v.literal('top'),v.literal('bottom'),v.literal('right')),emphasis:v.string(),takeaway:v.string()});
+export type CreativeDesign={layout:'essay'|'poster'|'split'|'photo'|'list';surface:'paper'|'primary'|'ink';align:'left'|'center';imagePosition:'top'|'bottom'|'right';emphasis:string;takeaway:string};
 export const itemV=v.object({label:v.string(),detail:v.string()});
 export const sourcePageV=v.object({url:v.string(),title:v.string(),retrievedAt:v.number(),blocks:v.array(v.object({kind:v.string(),text:v.string()}))});
 export const sourceAssetV=v.object({key:v.string(),originalUrl:v.string(),file:v.id('_storage'),width:v.number(),height:v.number(),alt:v.string(),role:v.string(),pageUrl:v.string()});

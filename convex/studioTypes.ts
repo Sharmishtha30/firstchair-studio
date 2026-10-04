@@ -1,7 +1,7 @@
 import { v } from "convex/values";
-import {platformV,compositionV,itemV,sourcePageV,sourceAssetV,clientAssetV,strategyV} from "./creativeTypes";
+import {platformV,compositionV,designV,itemV,sourcePageV,sourceAssetV,clientAssetV,strategyV} from "./creativeTypes";
 export const styleV=v.object({bodyFont:v.optional(v.string()),fontName:v.optional(v.string()),regularUrl:v.optional(v.string()),semiboldUrl:v.optional(v.string()),headline:v.union(v.literal('serif'),v.literal('sans')),weight:v.number(),sourceFont:v.string(),note:v.string(),logoUrl:v.optional(v.string())});
-export const frameV = v.object({ heading: v.string(), body: v.string(),composition:v.optional(compositionV),items:v.optional(v.array(itemV)),assetKey:v.optional(v.string()),eyebrow:v.optional(v.string()) });
+export const frameV = v.object({ heading: v.string(), body: v.string(),design:v.optional(designV),composition:v.optional(compositionV),items:v.optional(v.array(itemV)),assetKey:v.optional(v.string()),eyebrow:v.optional(v.string()) });
 export const postV = v.object({
   format: v.union(v.literal("carousel"), v.literal("static"), v.literal("reel")),
   platform:v.optional(platformV),destination:v.optional(v.string()),documentTitle:v.optional(v.string()),
@@ -12,16 +12,17 @@ export const postV = v.object({
 export const paletteV=v.object({paper:v.string(),ink:v.string(),primary:v.string(),accent:v.string(),note:v.string()});
 export const artworkV=v.object({sceneUrl:v.optional(v.string()),presenterUrl:v.optional(v.string()),note:v.string()});
 export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV),artwork:v.optional(artworkV),style:v.optional(styleV),assets:v.optional(v.array(clientAssetV)),strategy:v.optional(strategyV) });
-export type Frame = {heading:string; body:string;composition?:import("./creativeTypes").Composition;items?:{label:string;detail:string}[];assetKey?:string;eyebrow?:string};
+export type Frame = {heading:string; body:string;design?:import("./creativeTypes").CreativeDesign;composition?:import("./creativeTypes").Composition;items?:{label:string;detail:string}[];assetKey?:string;eyebrow?:string};
 export type Post = {format:"carousel"|"static"|"reel"; platform?:import("./creativeTypes").Platform;destination?:string;documentTitle?:string;hook:string; pain:string; emotion:string; frames:Frame[]; caption:string; altText:string; sourceFacts:string[];layout?:"headline"|"comparison"|"note"};
 export type Brand = {assets?:import("./creativeTypes").CreativeAsset[];strategy?:{customer:string;situation:string;market:string;mechanism:string;action:string;destination:string;imageStyle:string;angles:{idea:string;usefulInsight:string;hooks:string[];evidence:string[]}[];chosenAngles:string[];note:string};name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;style?:import('./brandStyle').BrandStyle & {logoUrl?:string};artwork?:{sceneUrl?:string;presenterUrl?:string;note:string};palette?:import('./brandPalette').Palette};
 export function checkPosts(posts:Post[], facts:string[],count=3) {
   if(posts.length!==count || new Set(posts.map(p=>p.format)).size!==count || count===2&&posts.some(p=>p.format==='reel')) throw new Error("The writer must finish each requested format exactly once.");
   for(const p of posts) {
     if(/^(hi|hello|welcome|hey)\b/i.test(p.hook.trim()))throw new Error('The hook is a greeting, not an audience insight.');
-    if(p.frames.some(f=>!f.body.trim()||/\b(puts|provides|offers|gives|and|or|the|a|an|your|because)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
+    if(p.frames.some(f=>/\b(puts|provides|offers|gives)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
+    if(p.frames.some(f=>!f.heading.trim()))throw new Error('Every slide needs a meaningful headline.');
     if(p.caption.length>2200)throw new Error('The caption exceeds Instagram’s character limit.');
-    if(p.hook.trim().split(/\s+/).length>8 || p.hook.length>65) throw new Error("The hook is too long. Keep it under eight words.");
+    if(p.hook.length>120) throw new Error("The opening is too long for a social creative. Shorten it without losing the idea.");
     if(!p.sourceFacts.length || p.sourceFacts.some(f=>!facts.includes(f))) throw new Error("The writer used an unsupported source fact.");
     const expected=p.format==='carousel'?5:p.format==='static'?1:5;
     if(p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
@@ -29,7 +30,7 @@ export function checkPosts(posts:Post[], facts:string[],count=3) {
     if(p.frames[0].heading.replace(/\s+/g,' ').trim()!==p.hook.replace(/\s+/g,' ').trim())throw new Error('The first frame does not match the short hook.');
     if(p.format==='reel'&&p.frames.map(f=>f.heading+' '+f.body).join(' ').split(/\s+/).length>100)throw new Error('The reel has too much text for 25 seconds.');
     if(p.format==='reel'&&p.frames.some(f=>f.body.length>140))throw new Error('The reel scene copy is too long for the video.');
-    if(p.frames.some(f=>f.heading.length>75 || f.body.length>220)) throw new Error("The copy is too long to fit the artwork.");
+    if(p.frames.some(f=>f.heading.length>160 || f.body.length>600)) throw new Error("The copy is too long to fit the artwork.");
   }
   return posts;
 }
@@ -55,13 +56,13 @@ export function checkCreativePosts(posts:Post[],facts:string[],platforms:import(
  for(const p of posts){
   if(!p.destination||!/^https?:\/\//.test(p.destination))throw new Error('Every post needs a real destination.');
   if(/unlock your potential|elevate your|game.changer|take .+ to the next level/i.test(p.hook))throw new Error('Replace the generic promise with a specific customer situation.');
-  if(p.format==='carousel'&&new Set(p.frames.map(f=>f.composition)).size<3)throw new Error('Vary the carousel pace with at least three purposeful compositions.');
   for(const f of p.frames){
    if(!f.composition)throw new Error('Each slide needs a designed composition.');
    if(f.assetKey&&!assetKeys.includes(f.assetKey))throw new Error('An image reference does not belong to this website.');
    if(f.composition==='image'&&!f.assetKey)throw new Error('An image layout needs a verified website image.');
-   if(['checklist','comparison','process'].includes(f.composition)&&(!f.items||f.items.length<2||f.items.length>3))throw new Error('This visual needs two or three useful items.');
-   if(f.items?.some(i=>i.label.length>32||i.detail.length>78))throw new Error('Rewrite long visual labels and details for phone readability.');
+   if(['checklist','comparison','process'].includes(f.composition)&&(!f.items?.length||f.items.length>5))throw new Error('This visual needs useful items that fit the space.');
+   if(f.composition==='comparison'&&f.items?.length!==2)throw new Error('A two-column comparison needs two sides.');
+   if(f.items?.some(i=>i.label.length>100||i.detail.length>240))throw new Error('Rewrite long visual labels and details for phone readability.');
   }
  }
  return posts;

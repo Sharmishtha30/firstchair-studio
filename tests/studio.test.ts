@@ -11,7 +11,7 @@ test('website fetch rejects private IPv4 and IPv6, credentials and unexpected po
 });
 test('three formats have short hooks, complete frames and exact source facts',()=>{
  assert.equal(checkPosts(foundersPosts,foundersBrand.facts).length,3);
- const bad=structuredClone(foundersPosts);bad[0].hook='This hook has far too many words to fit into a catchy opening';assert.throws(()=>checkPosts(bad,foundersBrand.facts),/too long/);
+ const bad=structuredClone(foundersPosts);bad[0].hook='A very long opening '.repeat(10);assert.throws(()=>checkPosts(bad,foundersBrand.facts),/too long/);
  const invented=structuredClone(foundersPosts);invented[0].sourceFacts=['Guaranteed job in 30 days'];assert.throws(()=>checkPosts(invented,foundersBrand.facts),/unsupported/);
 });
 import {seedanceRequest} from '../convex/seedanceRequest';
@@ -113,3 +113,5 @@ import {primaryLogo} from '../convex/websiteIdentity';
 test('partner logos cannot become the business logo',()=>{assert.equal(primaryLogo(load('<header><a href="/">Our brand</a></header><main><img src="/logos/partner.svg" alt="Partner"/></main>'),'https://example.com'),undefined);assert.equal(primaryLogo(load('<nav><a href="/"><img src="/logo.png" alt="Our business"/></a></nav><img src="/logos/partner.svg"/>'),'https://example.com'),'https://example.com/logo.png');});
 
 test('actual hero heading classes take priority over generic heading resets',()=>{assert.equal(extractStyle('h1{font-family:DM Sans,sans-serif}.banner__heading{font-family:Revans-Bold,DM Sans,sans-serif}',['banner__heading']).sourceFont,'Revans-Bold,DM Sans,sans-serif');});
+
+test('creative freedom allows a coherent single-layout carousel and a headline-only poster',()=>{const posts=foundersPosts.filter(p=>p.format!=='reel').map(p=>({...structuredClone(p),platform:'instagram' as const,destination:foundersBrand.sourceUrl,frames:p.frames.map(f=>({...f,composition:'editorial' as const}))}));posts[1].frames[0].body='';assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']));});

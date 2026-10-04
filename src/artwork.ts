@@ -1,7 +1,8 @@
+import {paintDesigned} from './editorialArtwork';
 import type {Brand,Post,Frame} from '../convex/studioTypes';
 export function colours(brand:Brand){return brand.palette??{paper:'#ffffff',ink:'#101010',primary:'#253e62',accent:'#253e62',note:'Neutral fallback'};}
 function luminance(hex:string){return hex.slice(1).match(/../g)!.map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((a,x,i)=>a+x*[.2126,.7152,.0722][i],0);}
-export function foreground(background:string){return luminance(background)>.3?'#101010':'#ffffff';}
+export function foreground(background:string){return luminance(background)>.19?'#101010':'#ffffff';}
 export function lines(ctx:CanvasRenderingContext2D,value:string,width:number){const result:string[]=[];for(const para of value.split('\n')){let row='';for(const word of para.split(/\s+/)){const next=row?row+' '+word:word;if(row&&ctx.measureText(next).width>width){result.push(row);row=word;}else row=next;}if(row)result.push(row);}return result;}
 export type TextBound={value:string;x:number;y:number;width:number;height:number;size:number};
 export const bounds=new WeakMap<HTMLCanvasElement,TextBound[]>();
@@ -31,7 +32,7 @@ async function paint(post:Post,brand:Brand,index:number){
  await Promise.all([400,600].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));await document.fonts.ready;
  const bodyFont=await brandFont(brand);
  const c=document.createElement('canvas');c.width=1080;c.height=1350;bounds.set(c,[]);const ctx=c.getContext('2d')!,p=colours(brand),ink=foreground(p.paper),font=brand.style?.headline==='serif'?(brand.style.fontName&&brand.style.sourceFont.toLowerCase().includes(brand.style.fontName.toLowerCase())?bodyFont:'Georgia'):bodyFont,weight=brand.style?.weight??(brand.style?.headline==='serif'?400:600),f=post.frames[index];
- if(!f)throw new Error('Slide not found.');ctx.fillStyle=p.paper;ctx.fillRect(0,0,1080,1350);await header(ctx,brand,ink);
+ if(!f)throw new Error('Slide not found.');if(f.design){await paintDesigned(ctx,post,brand,index,font,bodyFont,weight);return c;}ctx.fillStyle=p.paper;ctx.fillRect(0,0,1080,1350);await header(ctx,brand,ink);
  const rule=(y:number)=>{ctx.strokeStyle=ink;ctx.globalAlpha=.18;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;};
  rule(165);if(post.format==='carousel')text(ctx,`${String(index+1).padStart(2,'0')} / ${post.frames.length}`,850,84,150,28,36,bodyFont,ink,600,28);
  const comp=f.composition??(index===post.frames.length-1&&post.format==='carousel'?'closing':'editorial');
