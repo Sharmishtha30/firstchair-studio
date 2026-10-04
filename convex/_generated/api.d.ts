@@ -28,6 +28,7 @@ import type * as http from "../http.js";
 import type * as images from "../images.js";
 import type * as media from "../media.js";
 import type * as publicWebsite from "../publicWebsite.js";
+import type * as referenceLibrary from "../referenceLibrary.js";
 import type * as runs from "../runs.js";
 import type * as seedance from "../seedance.js";
 import type * as seedanceClient from "../seedanceClient.js";
@@ -75,6 +76,7 @@ declare const fullApi: ApiFromModules<{
   images: typeof images;
   media: typeof media;
   publicWebsite: typeof publicWebsite;
+  referenceLibrary: typeof referenceLibrary;
   runs: typeof runs;
   seedance: typeof seedance;
   seedanceClient: typeof seedanceClient;
