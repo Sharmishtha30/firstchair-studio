@@ -2,29 +2,33 @@
 > build-sprint-app@1.0.0 test
 > tsx --test tests/*.test.ts
 
-✔ the auth provider and page hooks share one React runtime (9.265458ms)
-✔ ChatGPT registration requests plan permission, loopback callback and PKCE (6.5305ms)
-✔ sign-in rejects expired state and a different browser (0.246125ms)
-✔ credentials are encrypted and tampered ciphertext is rejected (4.270958ms)
-✔ partial, failed and interrupted AI output cannot be accepted (8.392625ms)
-✔ the writer's SDK sends supported streaming plan requests with no API key (11.726333ms)
-✔ scripts require customer evidence and reject ungrounded claims (3.843042ms)
-✔ feedback revises one script while retaining customer sources (1.693292ms)
-✔ a writer cannot remove a customer’s negation (0.274709ms)
-✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.4685ms)
-✔ factual review must cover every line and reject changed meaning (0.348792ms)
-✔ greetings and acknowledgements are never recommended as content (0.175958ms)
-✔ customer statements on continuation lines are retained (0.130209ms)
-✔ an insight cannot use a greeting or an invented evidence quote (0.218292ms)
-✔ missing API credits are reported as billing, not a disconnected key (0.302083ms)
-✔ a customer paragraph contains separate substantive statements (0.185ms)
-✔ timestamped named speakers require a choice and exclude the founder (0.247708ms)
-✔ timestamps on customer labels and continuation lines preserve evidence (0.138625ms)
-ℹ tests 18
+✔ the auth provider and page hooks share one React runtime (21.139125ms)
+✔ ChatGPT registration requests plan permission, loopback callback and PKCE (25.312416ms)
+✔ sign-in rejects expired state and a different browser (1.553542ms)
+✔ credentials are encrypted and tampered ciphertext is rejected (24.179ms)
+✔ partial, failed and interrupted AI output cannot be accepted (40.372459ms)
+✔ the writer's SDK sends supported streaming plan requests with no API key (53.27125ms)
+✔ scripts require customer evidence and reject ungrounded claims (3.441542ms)
+✔ feedback revises one script while retaining customer sources (2.516792ms)
+✔ a writer cannot remove a customer’s negation (0.212208ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.451666ms)
+✔ factual review must cover every line and reject changed meaning (0.27725ms)
+✔ greetings and acknowledgements are never recommended as content (0.136542ms)
+✔ customer statements on continuation lines are retained (0.115583ms)
+✔ an insight cannot use a greeting or an invented evidence quote (0.186458ms)
+✔ missing API credits are reported as billing, not a disconnected key (0.637125ms)
+✔ a customer paragraph contains separate substantive statements (0.183708ms)
+✔ timestamped named speakers require a choice and exclude the founder (0.29525ms)
+✔ timestamps on customer labels and continuation lines preserve evidence (0.122959ms)
+✔ the writer drains the lazy stream before awaiting its object (5.551167ms)
+✔ an invalid streamed object is rejected instead of leaving the writer waiting (1.68575ms)
+✔ a real SDK structured stream completes through the writer's reader (111.43975ms)
+✔ the page stops waiting when a writer request never settles (7.755167ms)
+ℹ tests 22
 ℹ suites 0
-ℹ pass 18
+ℹ pass 22
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 460.570791
+ℹ duration_ms 1659.222542

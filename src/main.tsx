@@ -11,8 +11,10 @@ import {
   type Reel,
 } from "../convex/content";
 import "./style.css";
+import { waitForWriter, WriterWaitError } from "./writerWait";
 const url = import.meta.env.VITE_CONVEX_URL;
 function errorMessage(e: unknown) {
+  if (e instanceof WriterWaitError) return e.message;
   return e instanceof ConvexError
     ? String(e.data)
     : "Could not reach the writer. Make sure npm run dev is running, then try again.";
@@ -166,11 +168,13 @@ function App() {
     setError("");
     setNotice("");
     try {
-      const r = await generate({
-        transcript,
-        brand,
-        ...(chooseSpeaker ? { customerSpeaker } : {}),
-      });
+      const r = await waitForWriter(
+        generate({
+          transcript,
+          brand,
+          ...(chooseSpeaker ? { customerSpeaker } : {}),
+        }),
+      );
       setResult(r);
       // Connection status is checked independently from this run’s output mode.
       setFeedback(["", "", ""]);
@@ -186,11 +190,13 @@ function App() {
     setError("");
     setNotice("");
     try {
-      const reel = await revise({
-        token: result.token,
-        index: i,
-        feedback: feedback[i],
-      });
+      const reel = await waitForWriter(
+        revise({
+          token: result.token,
+          index: i,
+          feedback: feedback[i],
+        }),
+      );
       setResult({
         ...result,
         reels: result.reels.map((r, j) => (j === i ? reel : r)),

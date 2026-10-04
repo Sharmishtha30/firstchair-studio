@@ -51,7 +51,7 @@ export function planModel(credentials: Credentials) {
         throw new Error("Unsupported ChatGPT plan endpoint.");
       const response = await fetch(url, {
         ...options,
-        signal: AbortSignal.timeout(180000),
+        signal: options?.signal ?? AbortSignal.timeout(120000),
       });
       if (!response.ok) {
         // Avoid passing credentials or request details into the agent's error log.

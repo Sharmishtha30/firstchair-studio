@@ -1,5 +1,9 @@
 # Morning handoff — Call to Reel v1
 
+## Writer waiting fix
+
+The writer awaited the AI library's final object promise without consuming its lazy response stream. Analysis, writing and review now drain their streams before accepting the completed object. An actual SDK structured-stream test reproduces and verifies this path with a simulated model; incomplete streams still fail. All three stages share a two-minute cancellation deadline, and the page stops waiting after 130 seconds if a network request never returns. This does not prove a live Pro response; the owner's current call needs a retry. Type checks, the build and 22 checks pass.
+
 ## Transcript-reader fix
 
 The reported screenshot shows “ChatGPT plan connected” followed by a transcript-reader rejection. The reader now splits a customer paragraph into individual sentences, strips leading timestamps, and offers a customer-speaker choice for named speakers or “Speaker 1 / Speaker 2”. Only the chosen speaker's words are used, and the choice is saved with the run for revisions. Existing Customer/Founder labels still work. Unit checks cover these formats; a real local Convex action confirms the timestamped paragraph passes the reader. The owner's exact transcript has not been supplied, so its particular format and successful live AI output remain unverified.
@@ -59,7 +63,7 @@ Already configured on this laptop: `JWT_PRIVATE_KEY`, `JWKS` (Convex session key
 
 - `npm run check`: frontend and Convex type checks pass.
 - `npm run build`: passes; a harmless package-level “use client” warning is recorded in `verification/build.txt`.
-- `npm test`: 18 checks pass. Output: `verification/tests.txt`.
+- `npm test`: 22 checks pass. Output: `verification/tests.txt`.
 - `npm run test:chatgpt`: local browser-bound ticket, session, callback replay/expiry, disconnect, sign-out and official authorization redirect pass. Uses fake test credentials; no OpenAI inference. Output: `verification/chatgpt-flow.txt`.
 - `npm run test:flow`: bundled transcript generation, feedback, persisted unchanged scripts, evidence checks and refusal of greeting/custom-call fake output pass. Full output follows.
 - HTTP request to the local frontend returns 200; Convex authentication public keys are served.

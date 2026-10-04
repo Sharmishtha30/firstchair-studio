@@ -18,6 +18,7 @@ import type * as demoStories from "../demoStories.js";
 import type * as http from "../http.js";
 import type * as runs from "../runs.js";
 import type * as story from "../story.js";
+import type * as streamResult from "../streamResult.js";
 import type * as validators from "../validators.js";
 import type * as writer from "../writer.js";
 import type * as writerErrors from "../writerErrors.js";
@@ -39,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   runs: typeof runs;
   story: typeof story;
+  streamResult: typeof streamResult;
   validators: typeof validators;
   writer: typeof writer;
   writerErrors: typeof writerErrors;

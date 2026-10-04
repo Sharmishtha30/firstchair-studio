@@ -3,6 +3,7 @@ import type { ActionCtx } from "./_generated/server";
 import { internal, components } from "./_generated/api";
 import { v, ConvexError } from "convex/values";
 import { Agent } from "@convex-dev/agent";
+import { finishedObject } from "./streamResult";
 import { planModel } from "./chatgptModel";
 import { z } from "zod";
 import { credentialsFor } from "./chatgpt";
@@ -54,6 +55,7 @@ async function write(
   feedback?: string,
   previous?: Reel,
 ): Promise<Reel[]> {
+  const abortSignal = AbortSignal.timeout(120000);
   const credentials = await credentialsFor(ctx);
   const model = planModel(credentials);
   const analyst = new Agent(components.agent, {
@@ -78,12 +80,13 @@ async function write(
         feedback,
       }),
       maxRetries: 0,
+      abortSignal,
       providerOptions: {
         openai: { store: false, systemMessageMode: "developer" },
       },
     },
   );
-  const analysis = { object: await analysisStream.object };
+  const analysis = { object: await finishedObject(analysisStream) };
   if (!analysis.object.hasSubstantiveInsight)
     throw new Error(
       "The writer found no substantive customer insight. Add statements about a real problem, feeling, consequence or experience.",
@@ -109,12 +112,13 @@ async function write(
         count: previous ? 1 : 3,
       }),
       maxRetries: 0,
+      abortSignal,
       providerOptions: {
         openai: { store: false, systemMessageMode: "developer" },
       },
     },
   );
-  const result = { object: await resultStream.object };
+  const result = { object: await finishedObject(resultStream) };
   const reels = validateReels(result.object.reels, quotes, previous ? 1 : 3);
   for (const reel of reels) {
     const picked = analysis.object.insights.find(
@@ -170,12 +174,13 @@ async function write(
       }),
       prompt: JSON.stringify({ items }),
       maxRetries: 0,
+      abortSignal,
       providerOptions: {
         openai: { store: false, systemMessageMode: "developer" },
       },
     },
   );
-  const review = { object: await reviewStream.object };
+  const review = { object: await finishedObject(reviewStream) };
   requireSupported(items, review.object.checks);
   return reels;
 }
@@ -185,6 +190,13 @@ function length(value: string, min: number, max: number, label: string) {
 }
 function fail(error: unknown): never {
   if (error instanceof ConvexError) throw error;
+  if (
+    error instanceof Error &&
+    /timeout|timed out|abort/i.test(error.name + " " + error.message)
+  )
+    throw new ConvexError(
+      "The writer took longer than two minutes and was stopped. Your transcript is still here. Try again.",
+    );
   const message = error instanceof Error ? error.message : "";
   if (
     /Choose which|Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index|ChatGPT/.test(
