@@ -7,10 +7,11 @@ export const postV = v.object({
   sourceFacts: v.array(v.string()),
 });
 export const paletteV=v.object({paper:v.string(),ink:v.string(),primary:v.string(),accent:v.string(),note:v.string()});
-export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV) });
+export const artworkV=v.object({sceneUrl:v.optional(v.string()),presenterUrl:v.optional(v.string()),note:v.string()});
+export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV),artwork:v.optional(artworkV) });
 export type Frame = {heading:string; body:string};
 export type Post = {format:"carousel"|"static"|"reel"; hook:string; pain:string; emotion:string; frames:Frame[]; caption:string; altText:string; sourceFacts:string[]};
-export type Brand = {name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;palette?:import('./brandPalette').Palette};
+export type Brand = {name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;artwork?:{sceneUrl?:string;presenterUrl?:string;note:string};palette?:import('./brandPalette').Palette};
 export function checkPosts(posts:Post[], facts:string[]) {
   if(posts.length!==3 || new Set(posts.map(p=>p.format)).size!==3) throw new Error("The writer must finish all three formats.");
   for(const p of posts) {
@@ -36,5 +37,6 @@ export const packFields={
  brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),
  feedback:v.optional(v.string()),revisionFormat:v.optional(v.union(v.literal('carousel'),v.literal('static'),v.literal('reel'))),
  videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoTask:v.optional(v.string()),videoFile:v.optional(v.id('_storage')),
+ imageStatus:v.optional(v.string()),imageError:v.optional(v.string()),imageStartedAt:v.optional(v.number()),sceneFile:v.optional(v.id('_storage')),presenterFile:v.optional(v.id('_storage')),
  ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string()),
 };

@@ -42,3 +42,22 @@ test('brand palette resolves only safe default CSS colors and handles cycles',()
  assert.equal(extractPalette(':root{--primary:var(--other);--other:var(--primary)}'),undefined);
  assert.equal(extractPalette(':root{--primary:url(https://bad.example)}'),undefined);
 });
+
+import {generateImage,imageRequest,imageEndpoint} from '../convex/seedreamClient';
+import {readFileSync} from 'node:fs';
+test('image briefs adapt to the actual offer and never request fake testimonials or written logos',()=>{
+ const brand={...foundersBrand,audience:'parents shopping for children',offer:'durable outdoor play clothing'};
+ const request=imageRequest(brand,foundersPosts,'scene');assert.equal(request.model,'seedream-4-5-251128');assert.equal(request.response_format,'b64_json');assert.equal(request.sequential_image_generation,'disabled');
+ assert.ok(request.prompt.includes(brand.offer));assert.match(request.prompt,/do not default to an office/);assert.match(request.prompt,/not a real customer or product photograph/);assert.match(request.prompt,/Never: logos/);
+ assert.match(imageRequest(brand,foundersPosts,'presenter').prompt,/Head and face in the upper half/);
+});
+test('image client retains real PNG bytes, rejects empty output and keeps provider errors free of secrets',async()=>{
+ const png=readFileSync('public/images/founders-editorial.png');
+ const result=await generateImage('test-image-key',{},async(url,options)=>{
+  assert.equal(url,imageEndpoint);assert.equal((options?.headers as Record<string,string>).Authorization,'Bearer test-image-key');
+  return Response.json({data:[{b64_json:png.toString('base64')}]});
+ });assert.deepEqual(Buffer.from(result),png);
+ await assert.rejects(generateImage('private-image-key',{},async()=>new Response('private-image-key',{status:401})),e=>e instanceof Error&&!e.message.includes('private-image-key'));
+ await assert.rejects(generateImage('test',{},async()=>Response.json({data:[]})),/no usable image/);
+ await assert.rejects(generateImage('test',{},async()=>Response.json({data:[{b64_json:Buffer.from('not a png'.repeat(20)).toString('base64')}]})),/requested PNG/);
+});

@@ -4,7 +4,7 @@ import {v,ConvexError} from 'convex/values';
 import {getAuthUserId} from '@convex-dev/auth/server';
 import {WorkflowManager} from '@convex-dev/workflow';
 const workflow=new WorkflowManager(components.workflow);
-export const providers=query({args:{},returns:v.object({seedance:v.boolean(),ads:v.boolean()}),handler:()=>({seedance:!!process.env.ARK_API_KEY,ads:!!process.env.META_AD_LIBRARY_TOKEN&&!!process.env.META_GRAPH_VERSION})});
+export const providers=query({args:{},returns:v.object({seedance:v.boolean(),images:v.boolean(),ads:v.boolean()}),handler:()=>({seedance:!!process.env.ARK_API_KEY,images:!!process.env.ARK_API_KEY,ads:!!process.env.META_AD_LIBRARY_TOKEN&&!!process.env.META_GRAPH_VERSION})});
 export const generate=mutation({args:{token:v.string()},returns:v.null(),handler:async(ctx,{token})=>{
  if(!process.env.ARK_API_KEY)throw new ConvexError('Seedance needs ARK_API_KEY in Convex. Your ChatGPT plan does not include BytePlus video credits.');
  const userId=await getAuthUserId(ctx);if(!userId)throw new ConvexError('Connect ChatGPT before requesting paid video generation.');

@@ -25,3 +25,7 @@ export const refreshPalette=internalAction({args:{token:v.string()},returns:v.nu
  await ctx.runMutation(internal.studio.update,{packId,stage:'Ready',brand:{...p.brand,palette:p.sitePalette}});return null;
 }});
 export const deadlineFixture=internalMutation({args:{token:v.string()},returns:v.id('packs'),handler:async(ctx,{token})=>ctx.db.insert('packs',{token,url:'https://example.com/',stage:'Writing carousel, static and reel',operationStartedAt:100,createdAt:Date.now(),updatedAt:Date.now()})});
+// Temporary media fixtures prove Convex storage and browser canvas access, not AI generation.
+export const imageUploadFixture=internalMutation({args:{},returns:v.string(),handler:async(ctx)=>ctx.storage.generateUploadUrl()});
+export const imageUrlFixture=internalQuery({args:{file:v.id('_storage')},returns:v.union(v.string(),v.null()),handler:async(ctx,{file})=>ctx.storage.getUrl(file)});
+export const removeImageFixture=internalMutation({args:{file:v.id('_storage')},returns:v.null(),handler:async(ctx,{file})=>{await ctx.storage.delete(file);return null;}});

@@ -11,6 +11,7 @@ export const makePack=workflow.define({args:{packId:v.id('packs'),revision:v.opt
     if(!revision){await step.runAction(internal.website.inspect,{packId},{retry:false});
     await step.runAction(internal.adInspiration.inspect,{packId},{retry:false});}
     await step.runAction(internal.studioWriter.write,{packId},{retry:false});
+    if(!revision)await step.runMutation(internal.images.auto,{packId});
   } catch(e) {
     await step.runMutation(internal.studio.update,{packId,stage:'Needs attention',error:e instanceof Error?e.message.replace(/^Uncaught (?:\w+Error|Error):\s*/, '').split(/\n\s+at /)[0].slice(0,400):'Could not finish this pack.'});
   }
@@ -26,9 +27,9 @@ export const start=mutation({args:{url:v.string(),token:v.string()},returns:v.st
   await workflow.start(ctx,internal.studio.makePack,{packId});
   await ctx.scheduler.runAfter(140000,internal.studio.expire,{packId,startedAt:Date.now()});return args.token;
 }});
-export const get=query({args:{token:v.string()},returns:v.union(v.null(),v.object({url:v.string(),stage:v.string(),updatedAt:v.number(),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoUrl:v.optional(v.string()),hasVideoTask:v.boolean(),ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string())})),handler:async(ctx,{token})=>{
+export const get=query({args:{token:v.string()},returns:v.union(v.null(),v.object({url:v.string(),stage:v.string(),updatedAt:v.number(),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),imageStatus:v.optional(v.string()),imageError:v.optional(v.string()),videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoUrl:v.optional(v.string()),hasVideoTask:v.boolean(),ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string())})),handler:async(ctx,{token})=>{
  const p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
- if(!p)return null;return {url:p.url,stage:p.stage,updatedAt:p.updatedAt,brand:p.brand,posts:p.posts,mode:p.mode,error:p.error,videoStatus:p.videoStatus,videoError:p.videoError,videoUrl:p.videoFile?(await ctx.storage.getUrl(p.videoFile))??undefined:undefined,hasVideoTask:!!p.videoTask,ads:p.ads,adStatus:p.adStatus,adError:p.adError};
+ if(!p)return null;return {url:p.url,stage:p.stage,updatedAt:p.updatedAt,brand:p.brand?{...p.brand,artwork:{sceneUrl:p.sceneFile?(await ctx.storage.getUrl(p.sceneFile))??undefined:undefined,presenterUrl:p.presenterFile?(await ctx.storage.getUrl(p.presenterFile))??undefined:undefined,note:p.sceneFile&&p.presenterFile?'Original fictional images generated for this pack with Seedream.':'Shared fictional sample artwork is used for any image not yet generated.'}}:undefined,posts:p.posts,mode:p.mode,error:p.error,imageStatus:p.imageStatus,imageError:p.imageError,videoStatus:p.videoStatus,videoError:p.videoError,videoUrl:p.videoFile?(await ctx.storage.getUrl(p.videoFile))??undefined:undefined,hasVideoTask:!!p.videoTask,ads:p.ads,adStatus:p.adStatus,adError:p.adError};
 }});
 export const getInternal=internalQuery({args:{packId:v.id('packs')},returns:v.union(v.null(),v.object({_id:v.id('packs'),_creationTime:v.number(),...packFields})),handler:async(ctx,{packId})=>ctx.db.get(packId)});
 export const update=internalMutation({args:{packId:v.id('packs'),stage:v.string(),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string())},returns:v.null(),handler:async(ctx,{packId,...patch})=>{
