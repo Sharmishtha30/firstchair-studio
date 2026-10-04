@@ -2,7 +2,7 @@
 
 Founder feedback supersedes the earlier photographic direction below. Founder’s Find now uses the website’s Georgia serif headlines, pink italic emphasis, white space and thin-line geometric diagrams. AI faces are removed from previews, image exports and motion reels. Its image/avatar generation controls are removed and automatic portrait requests are disabled. Other brands retain their separate media support. Source-backed content was not rewritten during this visual fix. Updated ZIP and MP4 exports passed desktop/mobile browser checks; all six PNGs and a reel frame were visually inspected. Exported alt text now describes the typographic artwork rather than the old portraits.
 
-The static-ad repository URL has not been provided yet. The project inspiration library is `design/inspiration-library/`; it currently contains the verified website reference and explicitly marks the repository as pending.
+The static-ad reference is now saved in `design/inspiration-library/canva-static-ads.md`: https://www.canva.com/design/DAHTe-FNOlc/yybEqW9s2VegQvQTebCueA/edit . Canva returned an HTTP 403 browser-check page, so its creatives have not been reviewed or used yet. A PDF or image export is needed to inspect the ads. The verified Founder’s Find website reference remains in the same project library.
 
 # Morning handoff — website to Instagram
 
