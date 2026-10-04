@@ -1,3 +1,9 @@
+# Latest update — supplied static-ad board
+
+The original board is saved unchanged in `design/inspiration-library/assets/static-ads-board.png`. It is a 1920 × 1080 overview titled “98 STATIC ADS”; small individual ad copy is not reliably readable. Observed composition patterns are documented in `design/inspiration-library/board-patterns.md`.
+
+Three Founder’s Find static layouts now use those patterns: headline, comparison and note. Examples are in `verification/static-ad-variants/`, with the same approved caption in `caption.txt`. The app’s static post now uses the comparison layout; carousel and reel keep their website-led diagram style. No AI faces, fabricated testimonials, competitor claims or performance claims were added. All three PNGs were exported in Chromium and visually inspected.
+
 # Latest correction — Founder’s Find visual brand
 
 Founder feedback supersedes the earlier photographic direction below. Founder’s Find now uses the website’s Georgia serif headlines, pink italic emphasis, white space and thin-line geometric diagrams. AI faces are removed from previews, image exports and motion reels. Its image/avatar generation controls are removed and automatic portrait requests are disabled. Other brands retain their separate media support. Source-backed content was not rewritten during this visual fix. Updated ZIP and MP4 exports passed desktop/mobile browser checks; all six PNGs and a reel frame were visually inspected. Exported alt text now describes the typographic artwork rather than the old portraits.

@@ -1,3 +1,4 @@
+import {drawStaticAd} from './staticAds';
 import { zipSync, strToU8 } from 'fflate';
 import {typographyOnly} from '../convex/brandPresentation';
 import {foundersPalette} from '../convex/brandPalette';
@@ -26,7 +27,7 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
  const {ink,paper,primary:green,accent:gold}=palette;
  const onPrimary=contrast(paper,green)>=4.5?paper:ink;
  if(isFounders)await Promise.all([400,600,700].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));
- if(typographyOnly(brand))return drawFounders(post,brand,index,progress,canvas);
+ if(typographyOnly(brand))return post.format==='static'?drawStaticAd(post,brand):drawFounders(post,brand,index,progress,canvas);
  const pics=await images(brand);const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;c.dataset.ink=ink;c.dataset.font=isFounders?'"Brand Inter"':'Arial';const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
  ctx.fillStyle=paper;ctx.fillRect(0,0,1080,h);
  ctx.fillStyle=green;ctx.fillRect(64,60,34,8);
@@ -102,8 +103,8 @@ export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string
   onProgress(`Rendering ${p.format} ${i+1} of ${p.frames.length}`);
   files[`${p.format}/${String(i+1).padStart(2,'0')}.png`]=new Uint8Array(await (await frameBlob(p,brand,i)).arrayBuffer());
  }
- files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${typographyOnly(brand)?'Founder’s Find typography-led '+p.format+' with serif headlines, pink italic emphasis and thin-line career diagrams. '+p.frames.map(f=>f.heading).join(' / '):p.altText}`).join('\n\n----------\n\n'));
- files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. ${typographyOnly(brand)?'Typography and original geometric diagrams based on the website. No AI faces.':brand.artwork?.note??'Shared original fictional sample artwork.'} Imagery is conceptual, not a customer testimonial or an exact product photograph. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
+ files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${typographyOnly(brand)?'Founder’s Find typography-led '+p.format+' with serif headlines and pink italic emphasis. '+(p.format==='static'?'Execution and judgement comparison panels. ':'Thin-line career diagrams. ')+p.frames.map(f=>f.heading).join(' / '):p.altText}`).join('\n\n----------\n\n'));
+ files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. ${typographyOnly(brand)?'Typography and original geometric diagrams based on the website. No AI faces.':brand.artwork?.note??'Shared original fictional sample artwork.'} Imagery is conceptual, not a customer testimonial or an exact product photograph. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} ${typographyOnly(brand)?'Static composition inspiration: founder-supplied 98 Static Ads overview board, saved in design/inspiration-library/assets/static-ads-board.png. Composition-level reference only; individual ad copy and performance are not verified. ':''}Reel video is downloaded separately.`);
  download(new Blob([zipSync(files) as BlobPart],{type:'application/zip'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-instagram.zip`);
 }
 export async function exportReel(post:Post,brand:Brand,onProgress:(s:string)=>void){

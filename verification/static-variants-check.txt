@@ -1,0 +1,3 @@
+PASS headline 1080 × 1350 PNG; same approved hook/value/CTA; no photographs
+PASS comparison 1080 × 1350 PNG; same approved hook/value/CTA; no photographs
+PASS note 1080 × 1350 PNG; same approved hook/value/CTA; no photographs
