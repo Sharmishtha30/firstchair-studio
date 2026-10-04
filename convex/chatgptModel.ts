@@ -54,6 +54,8 @@ export function planModel(credentials: Credentials) {
         signal: options?.signal ?? AbortSignal.timeout(120000),
       });
       if (!response.ok) {
+        if(response.status===400){const details=await response.json().catch(()=>null);console.warn("Writer request rejected",{status:response.status,code:details?.error?.code,param:details?.error?.param,reason:String(details?.error?.message??"No format detail").replace(/Bearer\s+\S+/g,"[redacted]").slice(0,600)});}
+
         // Avoid passing credentials or request details into the agent's error log.
         throw new Error(
           response.status === 401

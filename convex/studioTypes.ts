@@ -19,7 +19,7 @@ export function checkPosts(posts:Post[], facts:string[],count=3) {
   if(posts.length!==count || new Set(posts.map(p=>p.format)).size!==count || count===2&&posts.some(p=>p.format==='reel')) throw new Error("The writer must finish each requested format exactly once.");
   for(const p of posts) {
     if(/^(hi|hello|welcome|hey)\b/i.test(p.hook.trim()))throw new Error('The hook is a greeting, not an audience insight.');
-    if(p.frames.some(f=>!f.body.trim()||/\b(puts|provides|offers|gives|with|and|or|to|the|a|an|your|because|at|for|from|in|on|of)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
+    if(p.frames.some(f=>!f.body.trim()||/\b(puts|provides|offers|gives|and|or|the|a|an|your|because)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
     if(p.caption.length>2200)throw new Error('The caption exceeds Instagram’s character limit.');
     if(p.hook.trim().split(/\s+/).length>8 || p.hook.length>65) throw new Error("The hook is too long. Keep it under eight words.");
     if(!p.sourceFacts.length || p.sourceFacts.some(f=>!facts.includes(f))) throw new Error("The writer used an unsupported source fact.");
@@ -37,8 +37,10 @@ export function checkPosts(posts:Post[], facts:string[],count=3) {
 export const adV=v.object({id:v.string(),pageName:v.string(),body:v.string(),snapshotUrl:v.string()});
 export const writerRunV=v.object({provider:v.string(),model:v.string(),requests:v.number(),durationMs:v.number(),review:v.string(),usageNote:v.string()});
 export const packFields={
+ draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),
  writerRun:v.optional(writerRunV),fontName:v.optional(v.string()),fontRegular:v.optional(v.id('_storage')),fontSemibold:v.optional(v.id('_storage')),
- platforms:v.optional(v.array(platformV)),sourcePages:v.optional(v.array(sourcePageV)),sourceAssets:v.optional(v.array(sourceAssetV)),sourceWarnings:v.optional(v.array(v.string())),strategy:v.optional(strategyV),revisionPlatform:v.optional(platformV),previousPosts:v.optional(v.array(postV)),previousBrand:v.optional(brandV),
+ platforms:v.optional(v.array(platformV)),sourcePages:v.optional(v.array(sourcePageV)),sourceAssets:v.optional(v.array(sourceAssetV)),sourceWarnings:v.optional(v.array(v.string())),strategy:v.optional(strategyV),revisionPlatform:v.optional(platformV),previousPosts:v.optional(v.array(postV)),previousBrand:v.optional(brandV),previousLogoFile:v.optional(v.id('_storage')),previousSiteStyle:v.optional(styleV),previousSitePalette:v.optional(paletteV),previousFontName:v.optional(v.string()),previousFontRegular:v.optional(v.id('_storage')),previousFontSemibold:v.optional(v.id('_storage')),
+ inputMethod:v.optional(v.union(v.literal('website'),v.literal('provided'))),
  token:v.string(),userId:v.optional(v.id('users')),url:v.string(),stage:v.string(),operationStartedAt:v.optional(v.number()),createdAt:v.number(),updatedAt:v.number(),
  brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),siteStyle:v.optional(styleV),logoFile:v.optional(v.id('_storage')),
  feedback:v.optional(v.string()),revisionFormat:v.optional(v.union(v.literal('carousel'),v.literal('static'),v.literal('reel'))),

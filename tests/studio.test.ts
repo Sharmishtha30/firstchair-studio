@@ -88,3 +88,26 @@ test('modern CSS colour tokens and aliases are converted without a brand lookup'
 });
 
 test('default colour tokens are preserved over later optional theme declarations',()=>{assert.equal(extractPalette(':root{--primary:#ff307e;--paper:#fff}@media(prefers-color-scheme:dark){:root{--primary:#0000ff;--paper:#000}}')?.paper,'#ffffff');});
+
+import {checkCreativePosts} from '../convex/studioTypes';
+import {imageInfo as websiteImageInfo} from '../convex/websiteAssets';
+import sharp from 'sharp';
+test('four-platform creatives reject a sixth slide and images from another brand',()=>{
+ const posts=['instagram','linkedin'].flatMap(platform=>foundersPosts.filter(p=>p.format!=='reel').map(p=>({...p,platform:platform as 'instagram'|'linkedin',destination:foundersBrand.sourceUrl,frames:p.frames.map((f,i)=>({...f,composition:(i===0?'editorial':i===2?'spotlight':i===4?'closing':'editorial') as 'editorial'|'spotlight'|'closing'}))})));
+ assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram','linkedin']));
+ const tooMany=structuredClone(posts);tooMany[0].frames.push(tooMany[0].frames[0]);assert.throws(()=>checkCreativePosts(tooMany,foundersBrand.facts,['instagram','linkedin']),/number of frames/);
+ const wrongBrand=structuredClone(posts);Object.assign(wrongBrand[1].frames[0],{composition:'image',assetKey:'other-brand'});assert.throws(()=>checkCreativePosts(wrongBrand,foundersBrand.facts,['instagram','linkedin']),/does not belong/);
+});
+test('brand typography skips reset inheritance and preserves the actual later body font',()=>{
+ const s=extractStyle('body{font-family:Roboto,Arial}h1,h2{font-family:inherit}body{font-family:cr,sans-serif}h2{font-family:cm,sans-serif}h1{font-family:cb,sans-serif}');assert.equal(s.sourceFont,'cb,sans-serif');assert.equal(s.bodyFont,'cr,sans-serif');
+ assert.equal(extractStyle('h1{font-family:Revans-Bold,DM Sans,sans-serif}').headline,'serif');
+});
+test('image dimensions match real PNG, JPEG, lossy and lossless WebP bytes',async()=>{
+ const raw=sharp({create:{width:512,height:640,channels:3,background:'#e12827'}});
+ for(const bytes of [await raw.clone().png().toBuffer(),await raw.clone().jpeg().toBuffer(),await raw.clone().webp().toBuffer(),await raw.clone().webp({lossless:true}).toBuffer()]){const info=websiteImageInfo(bytes);assert.equal(info?.width,512);assert.equal(info?.height,640);}
+ assert.equal(websiteImageInfo(new Uint8Array([1,2,3])),undefined);
+});
+test('a complete sentence may end with a preposition',()=>{const posts=structuredClone(foundersPosts);posts[1].frames[0].body='Before accepting, check what the cheaper rate commits you to.';assert.doesNotThrow(()=>checkPosts(posts,foundersBrand.facts));});
+import {load} from 'cheerio';
+import {primaryLogo} from '../convex/websiteIdentity';
+test('partner logos cannot become the business logo',()=>{assert.equal(primaryLogo(load('<header><a href="/">Our brand</a></header><main><img src="/logos/partner.svg" alt="Partner"/></main>'),'https://example.com'),undefined);assert.equal(primaryLogo(load('<nav><a href="/"><img src="/logo.png" alt="Our business"/></a></nav><img src="/logos/partner.svg"/>'),'https://example.com'),'https://example.com/logo.png');});
