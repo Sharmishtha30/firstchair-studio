@@ -1,0 +1,114 @@
+PASS https://basecamp.com/ → live carousel and static only; no paid image/video controls
+HOOK carousel Still hunting for the project update? LAYOUT headline
+HOOK static Same project. Different expectations? LAYOUT note
+BRAND {"name":"Basecamp","palette":{"accent":"#146dc7","ink":"#29353c","note":"Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.","paper":"#f5faf6","primary":"#146dc7"},"style":{"headline":"sans","note":"Font family observed in public CSS. Artwork uses the matching serif/sans family with bundled Inter or Georgia; proprietary font files are not imported.","sourceFont":"Sharpie","weight":600}}
+PASS ZIP contains six rendered PNGs and carousel/static captions only
+PASS reload, desktop/mobile and no browser errors
+PACK LINK http://localhost:5173/#pack=b45fff2209a09c9dbc10e7ce7015e1008a5e6cba7828accb8dc7cc5f10ed71ba
+FULL OUTPUT
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "artwork": {
+      "note": "Shared fictional sample artwork is used for any image not yet generated."
+    },
+    "audience": "Teams, business owners, and project leads juggling projects, client work, deadlines, and company-wide communication across scattered apps.",
+    "facts": [
+      "Basecamp puts everything you need to get work done in one place.",
+      "It’s the calm, organized way to manage projects, work with clients, and communicate company-wide.",
+      "A free plan + paid upgrades",
+      "Message Board",
+      "Project Tasks",
+      "Project Assets & Proofs",
+      "Deadlines & Milestones",
+      "Who Why How Expectations Deliverables",
+      "And software that’s hard to use doesn’t get used.",
+      "Try Basecamp Free"
+    ],
+    "name": "Basecamp",
+    "offer": "Project management software that brings tasks, discussions, files, and schedules into one place, with a free plan and paid upgrades.",
+    "palette": {
+      "accent": "#146dc7",
+      "ink": "#29353c",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#f5faf6",
+      "primary": "#146dc7"
+    },
+    "sourceUrl": "https://basecamp.com/",
+    "style": {
+      "headline": "sans",
+      "note": "Font family observed in public CSS. Artwork uses the matching serif/sans family with bundled Inter or Georgia; proprietary font files are not imported.",
+      "sourceFont": "Sharpie",
+      "weight": 600
+    },
+    "voice": "Inferred from the website: plainspoken, practical, reassuring, and lightly irreverent about complicated software."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "posts": [
+    {
+      "altText": "Five-frame text carousel about finding project information. It recommends a message board for updates, tasks with deadlines, and grouped project files, then introduces Basecamp as one shared project home.",
+      "caption": "Scattered information creates its own work: finding the update, tracking down the file, checking the deadline.\n\nA shared project home gives each kind of information a clear place. The habit matters too: new updates belong with the project, not just in someone’s inbox.",
+      "emotion": "Inferred: frustration with constant searching and a desire to feel organized and in control.",
+      "format": "carousel",
+      "frames": [
+        {
+          "body": "A project needs a shared home—not another tab to check.\nStart with these three essentials.",
+          "heading": "Still hunting for the project update?"
+        },
+        {
+          "body": "Keep project updates on a message board, so the team has a clear place to look for context.",
+          "heading": "Give decisions a place to live"
+        },
+        {
+          "body": "Keep tasks and deadlines in the project.\nMake it clear what needs doing and when it’s due.",
+          "heading": "Make the next step easy to find"
+        },
+        {
+          "body": "Group project assets and proofs together, so people know where to look before asking around.",
+          "heading": "Keep the files with the work"
+        },
+        {
+          "body": "Basecamp brings messages, tasks, files, and schedules into one place.\nTry Basecamp free.",
+          "heading": "One project. One shared home."
+        }
+      ],
+      "hook": "Still hunting for the project update?",
+      "layout": "headline",
+      "pain": "Project information is scattered across apps, emails, and chats, leaving people searching for context.",
+      "sourceFacts": [
+        "Basecamp puts everything you need to get work done in one place.",
+        "Message Board",
+        "Project Tasks",
+        "Project Assets & Proofs",
+        "Deadlines & Milestones",
+        "Try Basecamp Free"
+      ]
+    },
+    {
+      "altText": "Single text-led note headed “Same project. Different expectations?” It lists five items for a useful project note: who, why, how, expectations, and deliverables. It ends with “Try Basecamp free.”",
+      "caption": "A task list explains what needs doing. A project note adds the context behind it.\n\nWho is involved? Why does the work matter? How will it happen? What does everyone expect—and what will be delivered?\n\nKeeping those answers together gives the team something concrete to refer back to when questions come up.",
+      "emotion": "Inferred: unease about misunderstandings and a desire for shared clarity before work moves forward.",
+      "format": "static",
+      "frames": [
+        {
+          "body": "A useful project note covers:\nWho • Why • How\nExpectations • Deliverables\n\nTry Basecamp free.",
+          "heading": "Same project. Different expectations?"
+        }
+      ],
+      "hook": "Same project. Different expectations?",
+      "layout": "note",
+      "pain": "People can be working on the same project without a shared understanding of its purpose, approach, or deliverables.",
+      "sourceFacts": [
+        "Who Why How Expectations Deliverables",
+        "It’s the calm, organized way to manage projects, work with clients, and communicate company-wide.",
+        "Try Basecamp Free"
+      ]
+    }
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791124407035,
+  "url": "https://basecamp.com/"
+}

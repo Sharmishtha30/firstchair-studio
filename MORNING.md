@@ -1,58 +1,45 @@
-# Latest update — supplied static-ad board
-
-The original board is saved unchanged in `design/inspiration-library/assets/static-ads-board.png`. It is a 1920 × 1080 overview titled “98 STATIC ADS”; small individual ad copy is not reliably readable. Observed composition patterns are documented in `design/inspiration-library/board-patterns.md`.
-
-Three Founder’s Find static layouts now use those patterns: headline, comparison and note. Examples are in `verification/static-ad-variants/`, with the same approved caption in `caption.txt`. The app’s static post now uses the comparison layout; carousel and reel keep their website-led diagram style. No AI faces, fabricated testimonials, competitor claims or performance claims were added. All three PNGs were exported in Chromium and visually inspected.
-
-# Latest correction — Founder’s Find visual brand
-
-Founder feedback supersedes the earlier photographic direction below. Founder’s Find now uses the website’s Georgia serif headlines, pink italic emphasis, white space and thin-line geometric diagrams. AI faces are removed from previews, image exports and motion reels. Its image/avatar generation controls are removed and automatic portrait requests are disabled. Other brands retain their separate media support. Source-backed content was not rewritten during this visual fix. Updated ZIP and MP4 exports passed desktop/mobile browser checks; all six PNGs and a reel frame were visually inspected. Exported alt text now describes the typographic artwork rather than the old portraits.
-
-The static-ad reference is now saved in `design/inspiration-library/canva-static-ads.md`: https://www.canva.com/design/DAHTe-FNOlc/yybEqW9s2VegQvQTebCueA/edit . Canva returned an HTTP 403 browser-check page, so its creatives have not been reviewed or used yet. A PDF or image export is needed to inspect the ads. The verified Founder’s Find website reference remains in the same project library.
-
-# Morning handoff — website to Instagram
-
-The website studio has been tested in a real Chromium browser with Founders Find and Basecamp. Nothing was deployed or pushed.
+# Morning handoff — any website to carousel and static
 
 ## What works
 
-- Paste a public website; the connected writer reads its offer and produces a carousel, static post and reel with short hooks, value, a call to action and captions.
-- Claims are checked against website excerpts. Incomplete copy gets one repair attempt, then an explicit error rather than an endless wait.
-- Feedback changes one selected post and keeps the other two unchanged; this was checked in the browser and saved data.
-- Download six Instagram PNGs and captions in a ZIP, plus a vertical MP4 reel with music embedded in the file. Founders Find exports use its actual website colours and Inter font.
-- Original AI-created fictional workplace portraits are included. The motion reel uses a still portrait; it is not a speaking avatar.
-- Guest Founders Find output is prominently labelled sample mode. Real connected output is labelled separately.
-- The previous transcript writer remains available from the footer.
+- Enter a readable public website. The connected writer creates one five-slide carousel and one static, each with a short hook, useful content, a source-supported call to action and caption.
+- The website flow contains only Carousel and Static. No reels, talking avatars, generated faces or paid image requests.
+- Each website supplies its own offer and audience, observed colours, heading font family and accessible logo. The layouts are reusable headline, comparison and note compositions inspired by the supplied static-ad board.
+- Download six 1080 × 1350 PNGs with captions and sources in a ZIP. Type feedback to change one piece; the other stays unchanged.
+- Missing logos use the brand name as text. Proprietary website fonts are substituted with bundled Inter or Georgia, and this is explained in the app. Missing colours use a clearly explained neutral palette. Website colours are inferred from public CSS, not a formal brand guide.
+- Founder’s Find, Basecamp and Death Wish Coffee have passed real Chromium generation, download, reload and desktop/mobile checks. Founder’s Find also passed one-post feedback and preservation of the carousel. Every brand’s six images were visually inspected; a missing small footer found during inspection was corrected and re-exported.
+- Nothing was deployed or pushed. Changes are saved in small local commits.
 
-## Open it on your Mac
+## Open it on your laptop
 
 1. Open Terminal and enter `cd /Users/sam/build-sprint-app`.
-2. Enter `npm run dev` and leave that window running.
+2. Enter `npm run dev` and leave it running. If it is already running, use that window.
 3. Open http://localhost:5173 in Chrome.
+4. Use the existing connected ChatGPT writer and enter a website. No additional image/video API key is needed for this scope.
 
-The latest saved Founders Find pack is linked in `verification/latest-pack-url.txt`. Downloaded files are `verification/founders-instagram.zip` and `verification/founders-reel.mp4`.
+Guest Founder’s Find output is labelled sample mode. Other websites require a connected writer; they do not silently receive fake content. The local tests used an already approved ChatGPT connection and do not retest the external consent screen.
 
-## What is unfinished and why
+## What could not be finished and why
 
-**Talking AI avatar:** the Seedance 2.5 connection is implemented but not tested against the real provider because no `ARK_API_KEY` is configured. The existing MP4 is a motion reel, not lip-synced speech. A new branded avatar download path composites approved text cards and the website address over real provider footage while copying its original AAC speech without re-encoding. The fixture audio check measured an identical decoded waveform and zero timing shift. Non-AAC provider audio produces an explicit error rather than a silently altered soundtrack. This export was verified in Chromium with an explicitly fictional still-portrait/music fixture, not live Seedance footage. Text cards follow five equal scenes; they are not word-timed subtitles. Evidence is in `verification/avatar-export-check.txt` and `verification/avatar-export-proof.json`. Get a ModelArk key at https://ai.byteplus.com/ark/region:ap-southeast-1/apikey, then run `npx convex env set ARK_API_KEY` in this project and paste the key into its private prompt. Set it in Convex, not the frontend `.env.local`. BytePlus model access and credits are separate from ChatGPT Pro. Mock checks cover requests and result handling; they do not prove live avatar quality.
+- Exact proprietary font matching is not implemented: the renderer uses a matching serif/sans family instead of importing arbitrary website font files.
+- The reader cannot guarantee access to every website. Sites that block requests, require sign-in or provide too little readable text produce a clear error. The current reader uses the supplied page, not a full multi-page crawl.
+- Logo import is best effort. Inline SVG logos and some unusual image markup fall back to a text wordmark.
+- Meta ad-library import remains unavailable without approved access; no competitor ads are invented. The supplied board is stored in `design/inspiration-library/assets/static-ads-board.png`; its small individual copy cannot be read reliably. Broad composition patterns are recorded, with no performance claims.
+- Reels, avatars and video-provider access are outside the latest approved scope and are not blockers for carousel/static output.
+- The three tested sites prove the general flow, not perfect design fidelity or conversion performance for every brand.
 
-**Real ad inspiration:** Meta's public library returned HTTP 403. No ads were imported or invented. The API adapter needs approved Meta access, `META_AD_LIBRARY_TOKEN` and `META_GRAPH_VERSION` from the Meta app dashboard. Its commercial coverage includes UK/EU ads; an India-only commercial campaign is not automatically available through the API. Reference: https://br-fr.facebook.com/ads/library/api/ . Saved public ad links contain no provider access tokens.
+## Checks and full output
 
-**Images for other brands:** a Seedream 4.5 adapter now builds two image briefs from the actual offer, audience, pain points and brand colours. Once `ARK_API_KEY` and Seedream access are enabled, new connected packs automatically request a scene and a fictional presenter using BytePlus image credits. Failed requests can be retried explicitly; already saved images are retained. The form explains these requests when the key is configured. Missing access leaves prominently labelled shared sample artwork, not purported fresh imagery.
+- `verification/check-agnostic.txt`: frontend and Convex type checks.
+- `verification/tests-agnostic.txt`: 36 automated checks, including two-format rules, font extraction, colour aliases, modern colour formats and default theme preservation.
+- `verification/build-agnostic.txt`: production build.
+- `verification/agnostic-founders.txt`, `verification/agnostic-basecamp.txt`, `verification/agnostic-coffee.txt`: full live output and browser results. Each contains a saved pack URL.
+- `verification/export-agnostic.txt`: corrected exports after the footer fix.
+- `verification/foundersfind-club-contact.png`, `verification/basecamp-com-contact.png`, `verification/www-deathwishcoffee-com-contact.png`: all six images per brand.
+- Matching `*-desktop.png` and `*-mobile.png`: interface screenshots.
+- Matching `*-instagram.zip`: local downloadable files, ignored by Git.
 
-The request contract and JPEG/PNG parsing passed mock checks using real image bytes. The official API reference restricts `output_format` to newer models, so Seedream 4.5 requests omit it and retain the original returned JPEG or PNG. A browser test uploaded a temporary fixture to actual Convex storage, loaded its storage URL into the artwork renderer, exported a changed 1080 × 1350 PNG and removed the fixture. This proves storage and export, not live Seedream generation or the artistic quality of its results. Provider access is still missing, so full Relay-style output remains incomplete. Seedream uses the same `ARK_API_KEY` as Seedance; enable the image model separately in ModelArk. Official API reference: https://docs.byteplus.com/en/docs/modelark/image-generation-api .
-
-## Checks and evidence
-
-- Type checks and production build pass; 32 automated checks pass.
-- `verification/website-flow.txt`: full connected Founders Find browser generation, one-post revision, preservation of the other two, ZIP and MP4 downloads, refresh and honest provider status.
-- `verification/second-website-flow.txt`: connected Basecamp website generation and downloads.
-- `verification/website-deadline.txt`: three checks prove old deadlines cannot kill newer work, stalled jobs become errors, and late results cannot overwrite a failed job.
-- `verification/browser-final-studio.txt`: saved-pack desktop/mobile and export checks.
-- `verification/contact-sheet-final.png`: all six exported PNGs inspected for readable complete copy and overlap.
-- `verification/video-proof.json`: actual MP4 has H.264 video at 1080 × 1920, AAC stereo music at 48 kHz, approximately 25 seconds.
-
-These checks used the existing approved ChatGPT connection. They do not re-prove the external consent screen, live Seedance generation or Meta access. The latest sample banner, transcript route, saved-pack reload, desktop/mobile views and ZIP/MP4 downloads also passed browser checks (`verification/ui-final-check.txt` and `verification/browser-final-studio.txt`).
+To rerun the real browser flow: `npx tsx tests/website-flow.ts`. For another website: `TEST_WEBSITE=https://basecamp.com/ SKIP_REVISION=1 npx tsx tests/website-flow.ts`. This uses the existing local writer connection.
 
 ## Full sample transcript test output
 

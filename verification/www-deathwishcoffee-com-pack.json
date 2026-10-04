@@ -1,0 +1,96 @@
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "artwork": {
+      "note": "Shared fictional sample artwork is used for any image not yet generated."
+    },
+    "audience": "Coffee drinkers who want bold, smooth coffee, care about sourcing, and look for flavor variety or savings on their regular coffee orders.",
+    "facts": [
+      "Bold, Smooth and Delicious since 2012.",
+      "We source USDA Organic and Fair Trade Certified™ arabica and robusta coffee beans from India, Peru, and other countries throughout South and Central America for our everyday coffee roasts.",
+      "Sustainably sourced coffee with high quality standards to ensure consistency in every cup.",
+      "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF",
+      "Start a coffee subscription to save 30% off your first shipment, immediately unlock access to society-exclusive merch and more."
+    ],
+    "name": "Death Wish Coffee",
+    "offer": "Organic and Fair Trade coffee, including everyday roasts, flavored coffees, ground and whole-bean options, and single-serve pods. The website also offers bundles, subscriptions and merchandise.",
+    "palette": {
+      "accent": "#ac6e39",
+      "ink": "#101010",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#ffffff",
+      "primary": "#ac6e39"
+    },
+    "sourceUrl": "https://www.deathwishcoffee.com/",
+    "style": {
+      "headline": "sans",
+      "logoUrl": "http://127.0.0.1:3210/api/storage/00403636-1e86-435a-839f-cc725901d1ea",
+      "note": "Font family observed in public CSS. Artwork uses the matching serif/sans family with bundled Inter or Georgia; proprietary font files are not imported.",
+      "sourceFont": "Revans-Bold,DM Sans, sans-serif!important",
+      "weight": 600
+    },
+    "voice": "Inferred from the website: bold, punchy, playful and unapologetic, with straightforward product details."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "posts": [
+    {
+      "altText": "Five-frame text-only carousel explaining the sourcing details behind Death Wish's everyday roasts: USDA Organic and Fair Trade Certified beans, arabica and robusta varieties, and origins including India and Peru. Ends with an invitation to shop everyday roasts.",
+      "caption": "“Bold” tells you about the flavor pitch. Certifications, bean types and origins tell you more about the coffee behind it. Death Wish names all three for its everyday roasts—useful details when sourcing matters as much as your morning cup.",
+      "emotion": "Inferred: skepticism about vague labels, paired with a desire to feel informed about an everyday purchase.",
+      "format": "carousel",
+      "frames": [
+        {
+          "body": "Big claims aren't the whole story.\nThree useful details: certifications, bean types and origins.",
+          "heading": "Coffee Labels Leaving You Guessing?"
+        },
+        {
+          "body": "Death Wish sources USDA Organic and Fair Trade Certified™ beans for its everyday coffee roasts.",
+          "heading": "Certifications, not just adjectives"
+        },
+        {
+          "body": "The everyday roasts use arabica and robusta beans.\nThat's more specific than “bold” alone.",
+          "heading": "Know the bean types"
+        },
+        {
+          "body": "Sources include India, Peru and other countries throughout South and Central America.",
+          "heading": "Origins worth knowing"
+        },
+        {
+          "body": "Certifications, bean types and origins give you more to go on.\nShop Death Wish's everyday coffee roasts.",
+          "heading": "Bold flavor. Details behind it."
+        }
+      ],
+      "hook": "Coffee Labels Leaving You Guessing?",
+      "layout": "note",
+      "pain": "Finding concrete sourcing details behind broad coffee marketing claims.",
+      "sourceFacts": [
+        "Bold, Smooth and Delicious since 2012.",
+        "We source USDA Organic and Fair Trade Certified™ arabica and robusta coffee beans from India, Peru, and other countries throughout South and Central America for our everyday coffee roasts."
+      ]
+    },
+    {
+      "altText": "Text-only static post clarifying that Death Wish's 30% coffee subscription savings apply to the first shipment, followed by an invitation to start a subscription.",
+      "caption": "The key detail is “first shipment”—not a stated ongoing 30% discount. Starting a Death Wish coffee subscription also unlocks access to society-exclusive merch. That means access, not free merchandise.",
+      "emotion": "Inferred: caution about promotional fine print and a desire for clear savings terms.",
+      "format": "static",
+      "frames": [
+        {
+          "body": "Death Wish's 30% subscription offer applies to your first shipment.\nStart a coffee subscription.",
+          "heading": "Confused By Coffee Subscription Savings?"
+        }
+      ],
+      "hook": "Confused By Coffee Subscription Savings?",
+      "layout": "headline",
+      "pain": "Not knowing whether a headline subscription discount applies to the first shipment or every order.",
+      "sourceFacts": [
+        "Start a coffee subscription to save 30% off your first shipment, immediately unlock access to society-exclusive merch and more."
+      ]
+    }
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791124128506,
+  "url": "https://www.deathwishcoffee.com/"
+}

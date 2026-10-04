@@ -1,0 +1,101 @@
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "artwork": {
+      "note": "Shared fictional sample artwork is used for any image not yet generated."
+    },
+    "audience": "People pursuing high-impact roles in product, founder's office, operations, growth, finance and strategy, especially those whose ambition has outgrown their current environment.",
+    "facts": [
+      "The proof never gets made. You get better at the work and nobody outside the room can see it.",
+      "Stop collecting frameworks. Start building judgement.",
+      "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio.",
+      "A feed built around your role, seniority and city.",
+      "Every role is open free, with 5 Job Assists to start: messages to hiring managers, referral requests or application forms.",
+      "Every line is checked against your record. You send it, from your own address.",
+      "Jobs, training, community, rewards, and more, under a single annual membership plan.",
+      "For people moving into high-impact work"
+    ],
+    "name": "Founder's Find",
+    "offer": "A connected career system: an Intelligent Job Board with application and outreach support, Proving Ground for practising judgement, and an annual Membership combining career tools, mentors and community.",
+    "palette": {
+      "accent": "#f5c518",
+      "ink": "#0f0f12",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#ffffff",
+      "primary": "#ff307e"
+    },
+    "sourceUrl": "https://foundersfind.club/",
+    "style": {
+      "headline": "serif",
+      "note": "Font family observed in public CSS. Artwork uses the matching serif/sans family with bundled Inter or Georgia; proprietary font files are not imported.",
+      "sourceFont": "Georgia,Times New Roman,ui-serif,serif",
+      "weight": 400
+    },
+    "voice": "Inferred from the website: direct, ambitious and practical, with an emphasis on showing evidence rather than making big promises."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "posts": [
+    {
+      "altText": "Five-frame text-only carousel about making good work visible: document a real decision, explain the trade-off, separate results from hindsight, and introduce Proving Ground as a place to practise judgement.",
+      "caption": "“I handled operations” names a responsibility. Explaining a decision reveals the thinking behind it.\n\nA useful proof piece includes the situation, the options, your choice and what followed. An imperfect result still leaves room for an honest explanation of what you learned.\n\nFounder's Find's Proving Ground focuses on practising judgement and keeping your strongest answers in your own words.",
+      "emotion": "Inferred: frustration at being overlooked, with a desire to have ability recognised through evidence.",
+      "format": "carousel",
+      "frames": [
+        {
+          "body": "A list of tasks shows what you did.\nA decision you can explain shows how you think.",
+          "heading": "Good work. No visible proof?"
+        },
+        {
+          "body": "Name the problem, what was at stake and what you knew at the time. Keep private details out.",
+          "heading": "Start with one real decision"
+        },
+        {
+          "body": "Explain the options you weighed.\nWhat did your choice protect, and what did it cost?",
+          "heading": "Make the trade-off visible"
+        },
+        {
+          "body": "State what actually happened, what remains unknown and what you would change next time.",
+          "heading": "Separate results from hindsight"
+        },
+        {
+          "body": "Proving Ground keeps your strongest answers ready for an interview or portfolio.\nExplore Proving Ground.",
+          "heading": "Give your thinking something to show"
+        }
+      ],
+      "hook": "Good work. No visible proof?",
+      "layout": "headline",
+      "pain": "Capable professionals struggle to show people outside their workplace how they think and make decisions.",
+      "sourceFacts": [
+        "The proof never gets made. You get better at the work and nobody outside the room can see it.",
+        "Stop collecting frameworks. Start building judgement.",
+        "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+      ]
+    },
+    {
+      "altText": "Typography-led practical note headed “Qualified, but your outreach sounds generic?” Three short lines recommend one role requirement, one matching fact from your work and one clear ask. Ends with an invitation to see every role free at Founder's Find.",
+      "caption": "A message can be personal without a long introduction. The useful detail is the link between what the role needs and what you have actually done.\n\nChoose evidence you can explain, not a bigger claim you cannot back up.\n\nFounder's Find offers a feed built around your role, seniority and city. Every role is open free, with 5 Job Assists to start for hiring-manager messages, referral requests or application forms. Messages are checked against your record; you send them from your own address.",
+      "emotion": "Inferred: anxiety about being dismissed despite being qualified, compounded by fatigue from rewriting applications.",
+      "format": "static",
+      "frames": [
+        {
+          "body": "One role requirement.\nOne matching fact from your work.\nOne clear ask.\nSee every role free at Founder's Find.",
+          "heading": "Qualified, but your outreach sounds generic?"
+        }
+      ],
+      "hook": "Qualified, but your outreach sounds generic?",
+      "layout": "note",
+      "pain": "Job seekers struggle to make outreach reflect their relevant experience rather than sound like a message anyone could send.",
+      "sourceFacts": [
+        "A feed built around your role, seniority and city.",
+        "Every role is open free, with 5 Job Assists to start: messages to hiring managers, referral requests or application forms.",
+        "Every line is checked against your record. You send it, from your own address."
+      ]
+    }
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791124128796,
+  "url": "https://foundersfind.club/"
+}
