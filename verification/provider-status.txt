@@ -1,0 +1,5 @@
+{
+  "ads": false,
+  "images": false,
+  "seedance": false
+}

@@ -26,11 +26,13 @@ The latest saved Founders Find pack is linked in `verification/latest-pack-url.t
 
 **Real ad inspiration:** Meta's public library returned HTTP 403. No ads were imported or invented. The API adapter needs approved Meta access, `META_AD_LIBRARY_TOKEN` and `META_GRAPH_VERSION` from the Meta app dashboard. Its commercial coverage includes UK/EU ads; an India-only commercial campaign is not automatically available through the API. Reference: https://br-fr.facebook.com/ads/library/api/ . Saved public ad links contain no provider access tokens.
 
-**Images for other brands:** website colours are read, but the current workplace portraits are shared fictional assets. The app does not yet generate fresh personalised photographs for every website. Full Relay-style output is therefore not complete.
+**Images for other brands:** a Seedream 4.5 adapter now builds two image briefs from the actual offer, audience, pain points and brand colours. Once `ARK_API_KEY` and Seedream access are enabled, new connected packs automatically request a scene and a fictional presenter using BytePlus image credits. Failed requests can be retried explicitly; already saved images are retained. The form explains these requests when the key is configured. Missing access leaves prominently labelled shared sample artwork, not purported fresh imagery.
+
+The request contract and PNG parsing passed mock checks using real PNG bytes. A browser test uploaded a temporary fixture to actual Convex storage, loaded its storage URL into the artwork renderer, exported a changed 1080 × 1350 PNG and removed the fixture. This proves storage and export, not live Seedream generation or the artistic quality of its results. Provider access is still missing, so full Relay-style output remains incomplete. Seedream uses the same `ARK_API_KEY` as Seedance; enable the image model separately in ModelArk. Official API reference: https://docs.byteplus.com/en/docs/modelark/image-generation-api .
 
 ## Checks and evidence
 
-- Type checks and production build pass; 28 automated checks pass.
+- Type checks and production build pass; 30 automated checks pass.
 - `verification/website-flow.txt`: full connected Founders Find browser generation, one-post revision, preservation of the other two, ZIP and MP4 downloads, refresh and honest provider status.
 - `verification/second-website-flow.txt`: connected Basecamp website generation and downloads.
 - `verification/website-deadline.txt`: three checks prove old deadlines cannot kill newer work, stalled jobs become errors, and late results cannot overwrite a failed job.
@@ -401,4 +403,12 @@ PASS actual browser decodes footage, overlays approved copy, retains source audi
 Fixture uses a still fictional portrait and original music, NOT a live Seedance avatar.
 PASS source audio retained: decoded waveform correlation 1.000000, codec alignment offset 0.00 ms
 Fixture audio is original music; no live Seedance speech is claimed.
+```
+
+## Website-specific image checks
+
+```text
+PASS missing image access is labelled and cannot start a paid request
+PASS real Convex storage image URLs change the real exported PNG {"width":1080,"height":1350,"bytes":548207}
+PASS unreadable image URLs fail explicitly
 ```
