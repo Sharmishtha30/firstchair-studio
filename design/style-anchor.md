@@ -1,0 +1,11 @@
+# Founders Find / Instagram production desk
+
+Source: foundersfind.club homepage, fetched 4 October 2026. Brand voice is inferred from the site, not a formal brand-guideline document. The offer is practice and visible proof for ambitious professionals moving toward founder-office and decision-making work. Never invent employment outcomes.
+
+Medium: editorial workplace photography. Realistic Indian young professionals, thoughtful expressions, lived-in desks, candid decisions rather than celebratory stock-photo poses. Original fictional presenter, never a real founder, customer or testimonial.
+Palette: warm paper #F5F1E8, dark ink #192820, forest #254B36, restrained mustard #D8B45A. These are an editorial interpretation; extract actual site colors for each future brand rather than claiming this palette is official.
+Light: soft late-afternoon window light, mild natural grain, warm skin tones, quiet shadows. Materials: paper, wood, cotton, brushed metal. Mood: capable, honest, decisive.
+Composition: portrait crops with negative space above or beside the subject for separately rendered typography. Keep faces away from Instagram interface safe areas. Typography is rendered in code, never baked into generated photography.
+Never: generated logos, fake UI, invented charts, testimonials, salary promises, six-finger hands, glossy corporate handshakes, neon gradients, cartoon robots, generic floating icons.
+
+Studio interface: a light editorial production desk, one URL entry, visible stages, three format tabs, large artwork previews. Content: a short hook, concrete value, one relevant action. Emotional tension must come from an identified audience problem; no shame, false urgency or guaranteed results.

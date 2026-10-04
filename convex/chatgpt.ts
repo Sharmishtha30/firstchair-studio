@@ -1,4 +1,5 @@
 import { action, httpAction } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
 import type { ActionCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { getAuthUserId } from "@convex-dev/auth/server";
@@ -218,6 +219,10 @@ export async function credentialsFor(ctx: ActionCtx): Promise<Credentials> {
   localConfig();
   const userId = await getAuthUserId(ctx);
   if (!userId) throw new ConvexError("Continue with ChatGPT to use your plan.");
+  return credentialsForUser(ctx, userId);
+}
+export async function credentialsForUser(ctx: ActionCtx, userId: Id<"users">): Promise<Credentials> {
+  localConfig();
   const c = await ctx.runQuery(internal.chatgptStore.get, { userId });
   if (!c?.encrypted)
     throw new ConvexError(

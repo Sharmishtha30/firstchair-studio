@@ -15,11 +15,18 @@ import type * as chatgptSecurity from "../chatgptSecurity.js";
 import type * as chatgptStore from "../chatgptStore.js";
 import type * as content from "../content.js";
 import type * as demoStories from "../demoStories.js";
+import type * as foundersPack from "../foundersPack.js";
 import type * as http from "../http.js";
 import type * as runs from "../runs.js";
 import type * as story from "../story.js";
 import type * as streamResult from "../streamResult.js";
+import type * as studio from "../studio.js";
+import type * as studioTypes from "../studioTypes.js";
+import type * as studioVerification from "../studioVerification.js";
+import type * as studioWriter from "../studioWriter.js";
 import type * as validators from "../validators.js";
+import type * as website from "../website.js";
+import type * as websiteSafety from "../websiteSafety.js";
 import type * as writer from "../writer.js";
 import type * as writerErrors from "../writerErrors.js";
 
@@ -37,11 +44,18 @@ declare const fullApi: ApiFromModules<{
   chatgptStore: typeof chatgptStore;
   content: typeof content;
   demoStories: typeof demoStories;
+  foundersPack: typeof foundersPack;
   http: typeof http;
   runs: typeof runs;
   story: typeof story;
   streamResult: typeof streamResult;
+  studio: typeof studio;
+  studioTypes: typeof studioTypes;
+  studioVerification: typeof studioVerification;
+  studioWriter: typeof studioWriter;
   validators: typeof validators;
+  website: typeof website;
+  websiteSafety: typeof websiteSafety;
   writer: typeof writer;
   writerErrors: typeof writerErrors;
 }>;
@@ -75,4 +89,5 @@ export declare const internal: FilterApi<
 export declare const components: {
   staticHosting: import("@convex-dev/static-hosting/_generated/component.js").ComponentApi<"staticHosting">;
   agent: import("@convex-dev/agent/_generated/component.js").ComponentApi<"agent">;
+  workflow: import("@convex-dev/workflow/_generated/component.js").ComponentApi<"workflow">;
 };
