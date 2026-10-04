@@ -1,70 +1,67 @@
 # Morning handoff — Call to Reel v1
 
-## Current status: key connected, OpenAI credit required
+## Current status
 
-The active local backend now returns `ai`: OPENAI_API_KEY is present. The connection label refreshes automatically every 15 seconds and when returning to the browser tab, and remains visible on smaller screens.
+The app now offers **Continue with ChatGPT** for the local laptop version. This uses the supported ChatGPT plan sign-in flow described in [OpenAI's documentation](https://developers.openai.com/siwc/token-sharing-open-source/sign-in). You approved this addition after the API-credit error. The original no-login requirement is otherwise preserved: there is no separate signup/password flow.
 
-A live API test found and fixed another bug: Convex Agent requires a conversation thread, but the app passed neither a user nor a thread. Analysis, writing and review now each create their own thread. After that fix, the live request reached OpenAI and returned: **“You have no credits remaining. Add credits to continue using the API.”**
+The writer no longer uses OPENAI_API_KEY or falls back to paid API billing. Until ChatGPT is connected, sample mode only accepts the bundled transcript and returns clearly labelled hand-written stories. Your existing API key is still in local Convex settings but is unused by this path. No API key or extra API credit needs to be added for ChatGPT plan sign-in; your ChatGPT plan's allowance and eligibility still apply.
 
-The app now distinguishes this billing problem from an invalid key. Successful real AI generation and feedback remain blocked by API credit. No website was deployed.
+**Not yet proven:** actual OpenAI account approval and real AI generation using your Pro plan. I could not operate a browser: the computer connector returned “Sky Computer Use native pipe startup failed.” I tested our local session round trip using a clearly fake identity and no real provider credentials. That proves local session handling, not successful OpenAI sign-in or content quality.
 
-Next: add API credit at https://platform.openai.com/settings/organization/billing/, refresh http://localhost:5173/, and generate new scripts. `npm run test:ai` reruns the live generation and revision check after credit is available. Its latest failed output is saved in `verification/ai-flow.txt`.
+Nothing was deployed or pushed. Changes were saved in local git checkpoints.
 
 ## What works
 
-- A landing page with one explanation and one button into the workspace.
-- One pasted customer transcript and a short brand note produce three Instagram reel scripts, each with spoken lines, on-screen text, a caption, and visible supporting customer quotes.
-- Feedback revises one selected script. The other two stay unchanged. The revised version is saved in Convex.
-- Copy buttons, waiting states, input limits, and readable failure messages are included.
-- An AI key is now configured on the local backend. The visible **Sample mode** banner distinguishes hand-written examples for the bundled call from AI analysis; custom transcripts require the key.
-- Recommendations now develop three distinct stories: the practical pain, the emotional moment, and a supported change or takeaway. The screen shows the selected pain, emotion, whether that emotion is stated or inferred, and the central content idea.
-- The AI path uses the Convex agent component and OpenAI `gpt-4.1-mini`. It writes hooks, short spoken narratives, screen beats and captions using faithful paraphrases in the brand's voice. Each output line carries exact supporting customer statements. A separate model review checks whether the draft's meaning is supported before saving. This review is an extra check, not a guarantee of factual accuracy; successful real model output still needs testing once API credit is available.
-- The bundled sample call has hand-written pain, emotion and takeaway examples with actual story structure. Custom transcripts now require an AI key: sample mode refuses to pretend it analyzed them. Sample feedback still only shortens, expands or reorders quotes. The sample banner says this explicitly.
-- Convex handles the backend and database. Convex static hosting is configured for later, but no website or backend code was sent to a cloud deployment.
-- No login, video generation, CRM, Instagram connection, or other channels were added.
+- Landing page into one text transcript plus one short brand note.
+- Three Instagram reel scripts, with spoken script, on-screen text, caption, supporting customer statements, and selected pain, raw emotion, and takeaway.
+- Greeting-only calls are rejected. Customer continuation lines are retained. Inferred emotion is labelled. Each drafted claim needs supporting customer words and a separate factual review before saving.
+- Feedback revises one selected script, keeping the other two unchanged in Convex.
+- ChatGPT sign-in route opens the official approval flow using a callback on this laptop. Sign-in attempts expire, are tied to the browser that started them, and can be consumed only once.
+- Provider credentials stay encrypted in the local Convex database. They are not returned to browser storage or committed. The browser receives only a short-lived, single-use sign-in ticket, then a first-party Convex session.
+- Connected writing uses a model from the account's current catalog, streaming requests with `store: false`, and rejects interrupted or incomplete responses. Refresh and disconnect paths are implemented.
+- The page preserves typed transcript/brand during sign-in, shows the connection state, explains plan usage on first connection, and provides a disconnect button.
+- The bundled sample generation, feedback, persistence, and grounding checks pass against the running local backend.
+- No video generation, CRM, Instagram connection, or other channels.
 
 ## How to open it on your laptop
 
-Open Terminal and run:
+The local app is running now. Open **http://localhost:5173/#studio**.
 
-```sh
-cd /Users/sam/build-sprint-app
-npm run dev
-```
+If it has stopped:
 
-Keep that terminal open. Open **http://localhost:5173/** in your browser. If the command reports another port, use that address. Click **Create my scripts**, then **Use sample transcript**, then **Generate three scripts**. Type **Make it shorter** under one script and click **Revise this script**.
+1. Open Terminal and run `cd /Users/sam/build-sprint-app`.
+2. Run `npm run dev` and keep that Terminal open.
+3. Open **http://localhost:5173/#studio**. The port is fixed so sign-in returns to the correct page.
+4. Click **Continue with ChatGPT**, sign in to the account with Pro, and approve plan usage for Call to Reel.
+5. On return, look for **ChatGPT plan connected**, then paste your call and brand note and generate. Give feedback on one script to check the revision.
 
-The current development setup uses a local Convex backend at `http://127.0.0.1:3210`. It runs on your laptop and stores its data locally. Your original cloud settings were preserved in the ignored files `.env.original.local` and `.env.cloud.backup`; `.env.local` now points to the local backend so normal development does not publish anything. Do not switch back to cloud settings just to try the demo.
+To try the app without signing in, choose **Use sample transcript**, generate, and revise one script. The sample banner and output label remain visible.
 
-Refreshing clears the scripts shown in this browser session. The records remain in local Convex; a history/reopen screen is outside this v1.
+Convex backend: `http://127.0.0.1:3210`. HTTP callbacks: `http://127.0.0.1:3211`. Frontend: `http://localhost:5173`. Local settings and original cloud backups remain ignored by git. The local ChatGPT plan connection deliberately refuses cloud URLs. Do not deploy this personal setup.
 
-## Exactly which key to add
+## Setup keys
 
-Add an **OpenAI API key** as the server-side Convex environment variable **`OPENAI_API_KEY`**. A ChatGPT subscription does not supply this key. Create an API key in your OpenAI platform account, then with the local backend running use:
+Already configured on this laptop: `JWT_PRIVATE_KEY`, `JWKS` (Convex session keys), `SITE_URL=http://localhost:5173`, `CHATGPT_TOKEN_KEY` (credential encryption), and `CHATGPT_HOST_ID` (stable local app identifier). Secret values are not in git. A fresh checkout needs its own local sign-in settings; never copy provider access or refresh tokens into frontend code or chat.
 
-```sh
-npx convex env set OPENAI_API_KEY
-```
+## What could not be finished, and why
 
-The command asks for the value. Paste your key there. Refresh the page and generate again: the banner should disappear and the result should say **AI output**. Do not put the key in frontend code or any `VITE_` variable. Existing sample runs remain sample runs; generate a new run to test AI writing.
-
-## What I could not finish, and why
-
-- **Successful real AI generation and brand voice are unverified.** The key is connected, and a live attempt reached OpenAI, but OpenAI rejected it because no API credit remains. Add credit, then rerun `npm run test:ai`. Errors do not silently fall back to sample output.
-- **Browser click-through and visual review could not be completed.** The browser connector reported “No browser is available,” and native Safari controls failed with “Sky Computer Use native pipe startup failed.” I verified the page is served, the frontend builds, and the real local Convex generation/revision/database path passes. I cannot claim I saw the rendered page working in a browser.
-- **Deployment was deliberately not run**, as requested. Hosting configuration is present, but live hosting has not been tested. Local `npm run dev` and `npm run build` do not publish. `npm run deploy` is the future publishing command; do not run it yet.
-- Labelled transcripts must identify customer lines with `Customer:`, `Client:`, `Buyer:`, `User:`, or `Participant:`. Other speaker lines are excluded. Unlabelled text is treated as customer statements. At least three customer statements are required.
+- **Real ChatGPT approval, plan allowance, and live story quality:** require your account sign-in. I cannot claim these passed. The model's factual review also cannot guarantee accuracy; review scripts before posting.
+- **Real token renewal and remote revocation:** implemented but unverified without real account credentials. If remote revocation fails, local credentials are still removed and the app asks you to remove Call to Reel in ChatGPT settings.
+- **Browser visual review:** unavailable because the browser connector failed. A React loading error was detected in Vite logs; dependency deduplication and a fresh server start were applied, and a provider-render regression check passes. I have not seen the rendered page after that fix.
+- **Deployment:** intentionally not performed.
+- Sample feedback is still a demonstration that shortens, expands or reorders sample lines. Custom transcript analysis and open-ended feedback require the connected writer.
 
 ## Checks run
 
-- `npm run check`: passed frontend and Convex type checks.
-- `npm run build`: passed and created `dist/`.
-- Local Convex confirmed the agent and static hosting components and accepted the backend functions.
-- `npm test`: nine checks passed, including greeting exclusion, retention of customer continuation lines, refusal of invented insight evidence, distinct story angles, and factual-review gating. These tests do not prove the model can judge meaning correctly.
-- `npm run test:flow`: passed using actual local Convex actions and database reads, with the sample transcript below. It verifies persistence, unchanged scripts 2 and 3, and rejection of unknown sessions and calls without customer speech.
-- HTTP request to `http://localhost:5173/`: returned the app entry page.
+- `npm run check`: frontend and Convex type checks pass.
+- `npm run build`: passes; a harmless package-level “use client” warning is recorded in `verification/build.txt`.
+- `npm test`: 15 checks pass. Output: `verification/tests.txt`.
+- `npm run test:chatgpt`: local browser-bound ticket, session, callback replay/expiry, disconnect, sign-out and official authorization redirect pass. Uses fake test credentials; no OpenAI inference. Output: `verification/chatgpt-flow.txt`.
+- `npm run test:flow`: bundled transcript generation, feedback, persisted unchanged scripts, evidence checks and refusal of greeting/custom-call fake output pass. Full output follows.
+- HTTP request to the local frontend returns 200; Convex authentication public keys are served.
+- `npm run test:ai`: requires an authenticated local Convex session supplied to the developer test as `CALL_TO_REEL_TEST_SESSION`. Without one it prints **NOT RUN**, rather than pretending live AI passed. The prior API-credit rejection remains in `verification/ai-flow.txt` as historical evidence, not a current ChatGPT-plan test.
 
-## Full sample-flow test output
+## Full sample-transcript test output
 
 ```text
 
@@ -411,7 +408,21 @@ PASS: An unknown session cannot revise another run.
 PASS: A transcript without customer statements is rejected.
 PASS: Every script line, on-screen line and caption has supporting customer quotes.
 PASS: Greeting-only calls are rejected rather than converted into content.
-PASS: Without an AI key, a custom call does not return pretend insight recommendations.
+PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.
+
 ```
 
-Next: add OpenAI API credit, then generate new recommendations. The key is connected.
+## Local sign-in test output
+
+```text
+
+> build-sprint-app@1.0.0 test:chatgpt
+> tsx tests/chatgpt-flow.ts
+
+PASS: Local Convex rejects browser mismatch, expired callbacks and callback replay.
+PASS: Browser-bound ticket creates a verified Convex session and cannot be reused.
+PASS: Disconnect removes fixture credentials and sign-out returns to sample mode.
+PASS: HTTP sign-in redirects to the official OpenAI flow; forged callback returns a safe failure.
+NOT TESTED: Real OpenAI account consent, plan allowance, live story generation or token refresh. These need the owner's sign-in.
+
+```
