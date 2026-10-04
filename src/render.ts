@@ -4,8 +4,13 @@ import type { Brand, Post, Frame } from '../convex/studioTypes';
 const ink='#192820',paper='#F5F1E8',green='#254B36',gold='#D8B45A';
 function contrast(a:string,b:string){const lum=(hex:string)=>{const rgb=hex.replace('#','').match(/../g)!.slice(0,3).map(s=>parseInt(s,16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2];};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
 function paletteFor(brand:Brand){return brand.palette??(new URL(brand.sourceUrl).hostname.replace(/^www\./,'')==='foundersfind.club'?foundersPalette:{paper:'#ffffff',ink:'#101010',primary:'#192820',accent:'#d8b45a',note:'Neutral editorial template; site colours were not readable.'});}
-let portraits:Promise<HTMLImageElement[]>|undefined;
-function images(){return portraits??=Promise.all(['career-decision','fictional-presenter'].map(name=>new Promise<HTMLImageElement>((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=`/images/${name}.webp`;})));}
+const portraitCache=new Map<string,Promise<HTMLImageElement[]>>();
+function images(brand:Brand){
+ const urls=[brand.artwork?.sceneUrl??'/images/career-decision.webp',brand.artwork?.presenterUrl??'/images/fictional-presenter.webp'];
+ const key=urls.join('|');let pending=portraitCache.get(key);
+ if(!pending){pending=Promise.all(urls.map(src=>new Promise<HTMLImageElement>((resolve,reject)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>resolve(i);i.onerror=()=>reject(new Error('Artwork could not be loaded. Reload the pack and try again.'));i.src=src;})));portraitCache.set(key,pending);pending.catch(()=>portraitCache.delete(key));}
+ return pending;
+}
 function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=(ctx.canvas as HTMLCanvasElement).dataset.ink??ink){
  ctx.font=`${weight} ${size}px ${(ctx.canvas as HTMLCanvasElement).dataset.font??'Arial'}, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';
  for(const paragraph of text.split('\n')){
@@ -20,14 +25,14 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
  const {ink,paper,primary:green,accent:gold}=palette;
  const onPrimary=contrast(paper,green)>=4.5?paper:ink;
  if(isFounders)await Promise.all([400,600,700].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));
- const pics=await images();const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;c.dataset.ink=ink;c.dataset.font=isFounders?'"Brand Inter"':'Arial';const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
+ const pics=await images(brand);const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;c.dataset.ink=ink;c.dataset.font=isFounders?'"Brand Inter"':'Arial';const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
  ctx.fillStyle=paper;ctx.fillRect(0,0,1080,h);
  ctx.fillStyle=green;ctx.fillRect(64,60,34,8);
  wrapped(ctx,brand.name.toUpperCase(),116,48,750,25,32,700);
  wrapped(ctx,post.format==='carousel'?`${String(index+1).padStart(2,'0')} / ${post.frames.length}`:'',870,48,150,25,32);
  const isHero=index===0 || post.format==='static';
  if(post.format==='reel'){
-  const photo=brand.sourceUrl.includes('foundersfind.club')?pics[1]:pics[0];
+  const photo=brand.artwork?.presenterUrl||brand.sourceUrl.includes('foundersfind.club')?pics[1]:pics[0];
   cover(ctx,photo,0,770,1080,920,1+progress*.04);
   const g=ctx.createLinearGradient(0,760,0,1000);g.addColorStop(0,paper);g.addColorStop(1,'rgba(245,241,232,0)');ctx.fillStyle=g;ctx.fillRect(0,760,1080,260);
   let y=wrapped(ctx,frame.heading,76,185,930,80,89,700);
@@ -65,7 +70,7 @@ export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string
   files[`${p.format}/${String(i+1).padStart(2,'0')}.png`]=new Uint8Array(await (await frameBlob(p,brand,i)).arrayBuffer());
  }
  files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${p.altText}`).join('\n\n----------\n\n'));
- files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. Imagery depicts fictional AI-created people. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
+ files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. ${brand.artwork?.note??'Shared original fictional sample artwork.'} Imagery is conceptual, not a customer testimonial or an exact product photograph. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
  download(new Blob([zipSync(files) as BlobPart],{type:'application/zip'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-instagram.zip`);
 }
 export async function exportReel(post:Post,brand:Brand,onProgress:(s:string)=>void){
