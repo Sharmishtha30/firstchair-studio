@@ -31,34 +31,72 @@ export function isConversationFiller(text: string): boolean {
     text.trim(),
   );
 }
-export function customerQuotes(transcript: string): string[] {
-  const lines = transcript
+const customerRole = /^(customer|client|buyer|user|participant)$/i;
+function transcriptLines(transcript: string) {
+  return transcript
     .trim()
     .split(/\n+/)
-    .map((s) => s.trim())
+    .map((line) =>
+      line
+        .trim()
+        .replace(
+          /^\[?\d{1,2}:\d{2}(?::\d{2})?(?:[.,]\d+)?\]?\s*(?:[-–—]\s*)?/,
+          "",
+        ),
+    )
     .filter(Boolean);
-  const speakerPattern = /^([^:]{1,40}):\s*(.*)$/;
-  const labelled = lines.some((s) => speakerPattern.test(s));
+}
+function speakerTurn(line: string) {
+  const match = line.match(/^([^:]{1,40}):\s*(.*)$/);
+  if (!match || /^\d+$/.test(match[1])) return null;
+  return { speaker: match[1].trim(), text: match[2].trim() };
+}
+export function transcriptSpeakers(transcript: string): string[] {
+  return [
+    ...new Set(
+      transcriptLines(transcript).flatMap((line) => {
+        const turn = speakerTurn(line);
+        return turn ? [turn.speaker] : [];
+      }),
+    ),
+  ];
+}
+export function needsCustomerSpeaker(transcript: string) {
+  const speakers = transcriptSpeakers(transcript);
+  return (
+    speakers.some(
+      (s) => !/^(founder|interviewer|agent|sales|salesperson|host)$/i.test(s),
+    ) && !speakers.some((s) => customerRole.test(s))
+  );
+}
+export function customerQuotes(
+  transcript: string,
+  customerSpeaker?: string,
+): string[] {
+  const lines = transcriptLines(transcript);
+  const labelled = lines.some((line) => speakerTurn(line));
+  if (needsCustomerSpeaker(transcript) && !customerSpeaker)
+    throw new Error(
+      "Choose which speaker is the customer before generating scripts. The writer will use only that speaker’s words.",
+    );
   const quotes: string[] = [];
   let customer = false;
   for (const line of lines) {
-    const speaker = labelled ? line.match(speakerPattern) : null;
-    if (speaker) {
-      customer = /^(customer|client|buyer|user|participant)$/i.test(
-        speaker[1].trim(),
-      );
-      if (customer && speaker[2].trim()) quotes.push(speaker[2].trim());
-    } else if (!labelled || customer)
-      quotes.push(
-        ...(labelled ? [line] : (line.match(/[^.!?]+[.!?]*/g) ?? [])),
-      );
+    const turn = labelled ? speakerTurn(line) : null;
+    if (turn) {
+      customer = customerSpeaker
+        ? turn.speaker.toLowerCase() === customerSpeaker.trim().toLowerCase()
+        : customerRole.test(turn.speaker);
+      if (customer && turn.text) quotes.push(turn.text);
+    } else if (!labelled || customer) quotes.push(line);
   }
   const substantive = quotes
-    .map((s) => s.trim())
-    .filter((s) => s && !isConversationFiller(s));
+    .flatMap((text) => text.match(/[^.!?]+[.!?]*/g) ?? [])
+    .map((text) => text.trim())
+    .filter((text) => text && !isConversationFiller(text));
   if (substantive.length < 3)
     throw new Error(
-      "Add at least three customer statements about their problem, feelings or experience. Greetings do not count. For a labelled call, start the customer’s turn with “Customer:”.",
+      "Add at least three customer statements about their problem, feelings or experience. Greetings do not count. Check that the selected speaker is your customer.",
     );
   return substantive;
 }

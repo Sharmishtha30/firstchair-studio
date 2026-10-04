@@ -169,3 +169,38 @@ test("missing API credits are reported as billing, not a disconnected key", () =
     /did not accept/,
   );
 });
+
+test("a customer paragraph contains separate substantive statements", () => {
+  assert.deepEqual(
+    customerQuotes(
+      "Customer: Hello! I lose my evenings chasing reports. I feel anxious before reviews. I want one reliable dashboard.",
+    ),
+    [
+      "I lose my evenings chasing reports.",
+      "I feel anxious before reviews.",
+      "I want one reliable dashboard.",
+    ],
+  );
+});
+test("timestamped named speakers require a choice and exclude the founder", () => {
+  const transcript =
+    "[00:01] Speaker 1: We guarantee 10x growth.\n[00:12] Speaker 2: I lose my evenings chasing reports. I feel anxious before reviews. I want one reliable dashboard.\n[00:30] Speaker 1: Buy now.";
+  assert.throws(() => customerQuotes(transcript), /Choose which speaker/);
+  assert.deepEqual(customerQuotes(transcript, "Speaker 2"), [
+    "I lose my evenings chasing reports.",
+    "I feel anxious before reviews.",
+    "I want one reliable dashboard.",
+  ]);
+});
+test("timestamps on customer labels and continuation lines preserve evidence", () => {
+  assert.deepEqual(
+    customerQuotes(
+      "00:01 Founder: Our product is perfect.\n00:12 Customer: I lose my evenings chasing reports.\n00:13 I feel anxious before reviews.\n00:14 I want one reliable dashboard.",
+    ),
+    [
+      "I lose my evenings chasing reports.",
+      "I feel anxious before reviews.",
+      "I want one reliable dashboard.",
+    ],
+  );
+});

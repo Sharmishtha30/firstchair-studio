@@ -36,6 +36,7 @@ export default defineSchema({
     token: v.string(),
     userId: v.optional(v.id("users")),
     transcript: v.string(),
+    customerSpeaker: v.optional(v.string()),
     brand: v.string(),
     reels: v.array(reelV),
     mode: modeV,

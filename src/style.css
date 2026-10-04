@@ -418,3 +418,14 @@ footer {
 .hint a {
   text-decoration: underline;
 }
+
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #dce3ef;
+  border-radius: 8px;
+  font: inherit;
+  background: white;
+  color: #182b4a;
+}

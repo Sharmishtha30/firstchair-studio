@@ -343,3 +343,4 @@ PASS: A transcript without customer statements is rejected.
 PASS: Every script line, on-screen line and caption has supporting customer quotes.
 PASS: Greeting-only calls are rejected rather than converted into content.
 PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.
+PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.

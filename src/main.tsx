@@ -4,7 +4,12 @@ import { ConvexReactClient, useAction, useConvexAuth } from "convex/react";
 import { ConvexAuthProvider, useAuthActions } from "@convex-dev/auth/react";
 import { ConvexError } from "convex/values";
 import { api } from "../convex/_generated/api";
-import { sampleTranscript, type Reel } from "../convex/content";
+import {
+  sampleTranscript,
+  transcriptSpeakers,
+  needsCustomerSpeaker,
+  type Reel,
+} from "../convex/content";
 import "./style.css";
 const url = import.meta.env.VITE_CONVEX_URL;
 function errorMessage(e: unknown) {
@@ -25,6 +30,9 @@ function App() {
   const [open, setOpen] = useState(location.hash === "#studio"),
     [transcript, setTranscript] = useState(""),
     [brand, setBrand] = useState("");
+  const [customerSpeaker, setCustomerSpeaker] = useState("");
+  const speakers = transcriptSpeakers(transcript);
+  const chooseSpeaker = needsCustomerSpeaker(transcript);
   const [mode, setMode] = useState<"sample" | "ai" | null>(null),
     [result, setResult] = useState<{
       token: string;
@@ -120,7 +128,7 @@ function App() {
     sessionStorage.setItem("chatgpt_browser", browser);
     sessionStorage.setItem(
       "call_reel_draft",
-      JSON.stringify({ transcript, brand }),
+      JSON.stringify({ transcript, brand, customerSpeaker }),
     );
     location.assign("http://127.0.0.1:3211/chatgpt/start?browser=" + browser);
   }
@@ -131,6 +139,7 @@ function App() {
         const d = JSON.parse(draft);
         setTranscript(d.transcript ?? "");
         setBrand(d.brand ?? "");
+        setCustomerSpeaker(d.customerSpeaker ?? "");
       } catch {}
       sessionStorage.removeItem("call_reel_draft");
     }
@@ -157,7 +166,11 @@ function App() {
     setError("");
     setNotice("");
     try {
-      const r = await generate({ transcript, brand });
+      const r = await generate({
+        transcript,
+        brand,
+        ...(chooseSpeaker ? { customerSpeaker } : {}),
+      });
       setResult(r);
       // Connection status is checked independently from this run’s output mode.
       setFeedback(["", "", ""]);
@@ -325,10 +338,38 @@ function App() {
                 maxLength={30000}
                 value={transcript}
                 disabled={busy || revision !== null}
-                onChange={(e) => setTranscript(e.target.value)}
+                onChange={(e) => {
+                  setTranscript(e.target.value);
+                  setCustomerSpeaker("");
+                  setError("");
+                }}
                 placeholder="Customer: I used to spend every Friday chasing updates…"
                 rows={10}
               />
+              {chooseSpeaker && (
+                <>
+                  <label htmlFor="customer-speaker">
+                    Which speaker is the customer?
+                  </label>
+                  <select
+                    id="customer-speaker"
+                    value={customerSpeaker}
+                    onChange={(e) => setCustomerSpeaker(e.target.value)}
+                    required
+                    disabled={busy || revision !== null}
+                  >
+                    <option value="">Choose the customer</option>
+                    {speakers.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="hint">
+                    Only this speaker’s words will become content.
+                  </p>
+                </>
+              )}
               <label htmlFor="brand">Short brand note</label>
               <textarea
                 id="brand"

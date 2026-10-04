@@ -1,5 +1,9 @@
 # Morning handoff — Call to Reel v1
 
+## Transcript-reader fix
+
+The reported screenshot shows “ChatGPT plan connected” followed by a transcript-reader rejection. The reader now splits a customer paragraph into individual sentences, strips leading timestamps, and offers a customer-speaker choice for named speakers or “Speaker 1 / Speaker 2”. Only the chosen speaker's words are used, and the choice is saved with the run for revisions. Existing Customer/Founder labels still work. Unit checks cover these formats; a real local Convex action confirms the timestamped paragraph passes the reader. The owner's exact transcript has not been supplied, so its particular format and successful live AI output remain unverified.
+
 ## Current status
 
 The app now offers **Continue with ChatGPT** for the local laptop version. This uses the supported ChatGPT plan sign-in flow described in [OpenAI's documentation](https://developers.openai.com/siwc/token-sharing-open-source/sign-in). You approved this addition after the API-credit error. The original no-login requirement is otherwise preserved: there is no separate signup/password flow.
@@ -55,7 +59,7 @@ Already configured on this laptop: `JWT_PRIVATE_KEY`, `JWKS` (Convex session key
 
 - `npm run check`: frontend and Convex type checks pass.
 - `npm run build`: passes; a harmless package-level “use client” warning is recorded in `verification/build.txt`.
-- `npm test`: 15 checks pass. Output: `verification/tests.txt`.
+- `npm test`: 18 checks pass. Output: `verification/tests.txt`.
 - `npm run test:chatgpt`: local browser-bound ticket, session, callback replay/expiry, disconnect, sign-out and official authorization redirect pass. Uses fake test credentials; no OpenAI inference. Output: `verification/chatgpt-flow.txt`.
 - `npm run test:flow`: bundled transcript generation, feedback, persisted unchanged scripts, evidence checks and refusal of greeting/custom-call fake output pass. Full output follows.
 - HTTP request to the local frontend returns 200; Convex authentication public keys are served.
@@ -409,6 +413,7 @@ PASS: A transcript without customer statements is rejected.
 PASS: Every script line, on-screen line and caption has supporting customer quotes.
 PASS: Greeting-only calls are rejected rather than converted into content.
 PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.
+PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.
 
 ```
 

@@ -187,7 +187,7 @@ function fail(error: unknown): never {
   if (error instanceof ConvexError) throw error;
   const message = error instanceof Error ? error.message : "";
   if (
-    /Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index|ChatGPT/.test(
+    /Choose which|Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index|ChatGPT/.test(
       message,
     )
   )
@@ -206,7 +206,11 @@ export const status = action({
   },
 });
 export const generate = action({
-  args: { transcript: v.string(), brand: v.string() },
+  args: {
+    transcript: v.string(),
+    brand: v.string(),
+    customerSpeaker: v.optional(v.string()),
+  },
   returns: v.object({ token: v.string(), mode: modeV, reels: v.array(reelV) }),
   handler: async (
     ctx,
@@ -215,7 +219,7 @@ export const generate = action({
     try {
       length(args.transcript, 30, 30000, "Transcript");
       length(args.brand, 3, 1200, "Brand note");
-      const quotes = customerQuotes(args.transcript);
+      const quotes = customerQuotes(args.transcript, args.customerSpeaker);
       const userId = await getAuthUserId(ctx);
       const connection = userId
         ? await ctx.runQuery(internal.chatgptStore.get, { userId })
@@ -253,7 +257,7 @@ export const revise = action({
         throw new Error("Invalid script index.");
       const run = await ctx.runQuery(internal.runs.get, { token: args.token });
       if (!run) throw new Error("This session is unavailable. Generate again.");
-      const quotes = customerQuotes(run.transcript);
+      const quotes = customerQuotes(run.transcript, run.customerSpeaker);
       const previous = run.reels[args.index];
       if (
         run.mode === "ai" &&

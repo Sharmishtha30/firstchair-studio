@@ -5,6 +5,7 @@ export const save = internalMutation({
   args: {
     token: v.string(),
     transcript: v.string(),
+    customerSpeaker: v.optional(v.string()),
     brand: v.string(),
     reels: v.array(reelV),
     mode: modeV,
@@ -25,6 +26,7 @@ export const get = internalQuery({
       _creationTime: v.number(),
       token: v.string(),
       transcript: v.string(),
+      customerSpeaker: v.optional(v.string()),
       brand: v.string(),
       reels: v.array(reelV),
       mode: modeV,

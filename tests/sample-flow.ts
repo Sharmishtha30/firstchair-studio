@@ -94,3 +94,15 @@ await assert.rejects(
 console.log(
   "PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.",
 );
+await assert.rejects(
+  client.action(api.writer.generate, {
+    transcript:
+      "[00:01] Speaker 1: We guarantee 10x growth.\n[00:12] Speaker 2: I lose my evenings chasing reports. I feel anxious before reviews. I want one reliable dashboard.",
+    customerSpeaker: "Speaker 2",
+    brand,
+  }),
+  /Sample mode cannot analyze/,
+);
+console.log(
+  "PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.",
+);
