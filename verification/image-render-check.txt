@@ -1,3 +1,3 @@
-PASS missing image access is labelled and cannot start a paid request
-PASS real Convex storage image URLs change the real exported PNG {"width":1080,"height":1350,"bytes":488279}
+PASS Founder’s Find uses website typography and does not offer AI faces
+PASS real Convex storage image URLs change the real exported PNG {"width":1080,"height":1350,"bytes":484694}
 PASS unreadable image URLs fail explicitly

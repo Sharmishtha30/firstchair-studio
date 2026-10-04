@@ -1,6 +1,7 @@
 import {mutation,internalMutation,type MutationCtx} from './_generated/server';
 import type {Id} from './_generated/dataModel';
 import {internal,components} from './_generated/api';
+import {typographyOnly} from './brandPresentation';
 import {v,ConvexError} from 'convex/values';
 import {getAuthUserId} from '@convex-dev/auth/server';
 import {WorkflowManager} from '@convex-dev/workflow';
@@ -10,6 +11,7 @@ export const generate=mutation({args:{token:v.string()},returns:v.null(),handler
  const userId=await getAuthUserId(ctx);if(!userId)throw new ConvexError('Connect ChatGPT before requesting paid images.');
  const pack=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
  if(!pack?.posts||!pack.brand||pack.userId&&pack.userId!==userId)throw new ConvexError('This pack is not available to your connection.');
+ if(typographyOnly(pack.brand))throw new ConvexError('Founder’s Find uses website-led typography and diagrams, without AI faces.');
  if(['running','succeeded'].includes(pack.imageStatus??''))throw new ConvexError('Images are already being generated or saved.');
  await ctx.db.patch(pack._id,{userId});await queue(ctx,pack._id);return null;
 }});
@@ -19,7 +21,7 @@ async function queue(ctx:MutationCtx,packId:Id<'packs'>){
  await ctx.scheduler.runAfter(210000,internal.images.expire,{packId:packId,startedAt});return null;
 }
 export const auto=internalMutation({args:{packId:v.id('packs')},returns:v.null(),handler:async(ctx,{packId})=>{
- const pack=await ctx.db.get(packId);if(!process.env.ARK_API_KEY||!pack?.userId||!pack.brand||!pack.posts||pack.imageStatus)return null;
+ const pack=await ctx.db.get(packId);if(!process.env.ARK_API_KEY||!pack?.userId||!pack.brand||!pack.posts||pack.imageStatus||typographyOnly(pack.brand))return null;
  await queue(ctx,packId);return null;
 }});
 export const imageWorkflow=workflow.define({args:{packId:v.id('packs'),startedAt:v.number()},returns:v.null()}).handler(async(step,{packId,startedAt}):Promise<null>=>{

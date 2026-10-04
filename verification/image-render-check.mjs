@@ -5,15 +5,15 @@ const admin=(name,args)=>JSON.parse(execFileSync('npx',['convex','run',name,JSON
 const pack=JSON.parse(await fs.readFile('verification/live-website-pack.json','utf8'));
 const browser=await chromium.launch({headless:true});const page=await browser.newPage();await page.goto('http://localhost:5173/#pack='+new URL((await fs.readFile('verification/latest-pack-url.txt','utf8')).trim()).hash.split('pack=')[1]);
 await page.getByRole('tab',{name:'01 / Carousel'}).waitFor();
-await page.getByRole('button',{name:'Generate original images',exact:true}).waitFor();
-if(!await page.getByRole('button',{name:'Generate original images',exact:true}).isDisabled())throw Error('Missing image access should disable generation');
-await page.getByText('Sample artwork',{exact:true}).waitFor();console.log('PASS missing image access is labelled and cannot start a paid request');
+await page.getByText('Founder’s Find website style',{exact:true}).waitFor();
+if(await page.getByRole('button',{name:'Generate original images',exact:true}).count())throw Error('Founder’s Find must not offer AI faces');
+console.log('PASS Founder’s Find uses website typography and does not offer AI faces');
 const uploadUrl=admin('studioVerification:imageUploadFixture',{});
 const stored=await page.evaluate(async uploadUrl=>{const blob=await(await fetch('/tests/fixtures/seedream-image.jpg')).blob();const response=await fetch(uploadUrl,{method:'POST',headers:{'Content-Type':'image/jpeg'},body:blob});if(!response.ok)throw Error('Convex fixture upload failed');return response.json();},uploadUrl);
 const sceneUrl=admin('studioVerification:imageUrlFixture',{file:stored.storageId});
 try{
 const result=await page.evaluate(async ({pack,sceneUrl})=>{
- const {drawFrame,frameBlob}=await import('/src/render.ts');const post=pack.posts.find(p=>p.format==='static');
+ const {drawFrame,frameBlob}=await import('/src/render.ts');pack.brand={...pack.brand,sourceUrl:'https://basecamp.com/'};const post=pack.posts.find(p=>p.format==='static');
  const before=(await drawFrame(post,pack.brand,0)).toDataURL();
  const brand={...pack.brand,artwork:{sceneUrl,presenterUrl:'/images/career-decision.webp',note:'Explicit renderer test fixture; not live generated imagery.'}};
  const after=await drawFrame(post,brand,0);if(before===after.toDataURL())throw Error('Renderer ignored pack-specific image URL');

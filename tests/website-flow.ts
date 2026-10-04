@@ -34,8 +34,8 @@ try{
  console.log('PASS typed feedback revises only the static post; carousel and reel remain byte-for-byte unchanged');
  await page.screenshot({path:'verification/studio-revision.png',fullPage:true});
  const zipWait=page.waitForEvent('download');await page.getByRole('button',{name:'Download images + captions'}).click();await (await zipWait).saveAs('verification/founders-instagram.zip');
- await page.getByRole('tab',{name:'03 / Reel'}).click();assert.equal(await page.getByRole('button',{name:'Generate with Seedance'}).isDisabled(),true);
- console.log('PASS missing Seedance key is visible and cannot trigger a paid request; no fake imported ads');
+ await page.getByRole('tab',{name:'03 / Reel'}).click();if(new URL(after!.brand!.sourceUrl).hostname==='foundersfind.club')assert.equal(await page.getByRole('button',{name:'Generate with Seedance'}).count(),0);else assert.equal(await page.getByRole('button',{name:'Generate with Seedance'}).isDisabled(),true);
+ console.log('PASS brand media controls honour the face-free profile or missing provider access; no fake imported ads');
  const videoWait=page.waitForEvent('download',{timeout:180000});await page.getByRole('button',{name:'Download MP4 reel'}).click();await (await videoWait).saveAs('verification/founders-reel.mp4');
  console.log('PASS revised pack downloads six PNGs/captions and a finished motion MP4');
  await page.reload();await page.getByRole('tab',{name:'01 / Carousel'}).waitFor();console.log('PASS saved pack survives reload');

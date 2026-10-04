@@ -1,3 +1,9 @@
+# Latest correction — Founder’s Find visual brand
+
+Founder feedback supersedes the earlier photographic direction below. Founder’s Find now uses the website’s Georgia serif headlines, pink italic emphasis, white space and thin-line geometric diagrams. AI faces are removed from previews, image exports and motion reels. Its image/avatar generation controls are removed and automatic portrait requests are disabled. Other brands retain their separate media support. Source-backed content was not rewritten during this visual fix. Updated ZIP and MP4 exports passed desktop/mobile browser checks; all six PNGs and a reel frame were visually inspected. Exported alt text now describes the typographic artwork rather than the old portraits.
+
+The static-ad repository URL has not been provided yet. The project inspiration library is `design/inspiration-library/`; it currently contains the verified website reference and explicitly marks the repository as pending.
+
 # Morning handoff — website to Instagram
 
 The website studio has been tested in a real Chromium browser with Founders Find and Basecamp. Nothing was deployed or pushed.
@@ -32,7 +38,7 @@ The request contract and JPEG/PNG parsing passed mock checks using real image by
 
 ## Checks and evidence
 
-- Type checks and production build pass; 31 automated checks pass.
+- Type checks and production build pass; 32 automated checks pass.
 - `verification/website-flow.txt`: full connected Founders Find browser generation, one-post revision, preservation of the other two, ZIP and MP4 downloads, refresh and honest provider status.
 - `verification/second-website-flow.txt`: connected Basecamp website generation and downloads.
 - `verification/website-deadline.txt`: three checks prove old deadlines cannot kill newer work, stalled jobs become errors, and late results cannot overwrite a failed job.

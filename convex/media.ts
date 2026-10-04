@@ -1,5 +1,6 @@
 import {mutation,query,internalMutation} from './_generated/server';
 import {internal,components} from './_generated/api';
+import {typographyOnly} from './brandPresentation';
 import {v,ConvexError} from 'convex/values';
 import {getAuthUserId} from '@convex-dev/auth/server';
 import {WorkflowManager} from '@convex-dev/workflow';
@@ -10,6 +11,7 @@ export const generate=mutation({args:{token:v.string()},returns:v.null(),handler
  const userId=await getAuthUserId(ctx);if(!userId)throw new ConvexError('Connect ChatGPT before requesting paid video generation.');
  const pack=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
  if(!pack?.posts||!pack.brand||pack.userId&&pack.userId!==userId)throw new ConvexError('This pack is not available to your connection.');
+ if(typographyOnly(pack.brand))throw new ConvexError('Founder’s Find uses a typographic motion reel, without AI faces.');
  if(['queued','running','succeeded'].includes(pack.videoStatus??''))throw new ConvexError('This pack already has a video request.');
  await ctx.db.patch(pack._id,{userId,videoStatus:pack.videoTask?'running':'queued',videoError:undefined});
  await workflow.start(ctx,internal.media.videoWorkflow,{packId:pack._id,resume:!!pack.videoTask});return null;

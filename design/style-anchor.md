@@ -13,3 +13,7 @@ Studio interface: a light editorial production desk, one URL entry, visible stag
 ## Brand palette verification
 
 A later full stylesheet inspection found Founders Find’s default primary #ff307e, ink #0f0f12, paper #ffffff and accent #f5c518, and Inter font files. Exported content now uses those observed brand colors and fonts. The studio interface retains its own forest/paper production-desk palette. The original photographic subjects remain neutral workplace imagery; they are not an official brand campaign or testimonials.
+
+## Founder’s Find correction requested by the founder
+
+The active Founder’s Find creative direction supersedes the earlier workplace-photography interpretation: Georgia serif headlines with selected pink italic emphasis, Inter body copy, white space, fine rules and original thin-line isometric diagrams. No AI faces. This applies to previews, PNG exports and motion reels. Founder’s Find does not auto-request Seedream portraits or display the talking-avatar generation control. Other brands retain their separate media support. The live homepage capture is `verification/founders-brand-reference.png`; the source library is `design/inspiration-library/founders-find.md`.

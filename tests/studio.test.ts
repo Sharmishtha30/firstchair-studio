@@ -68,3 +68,6 @@ test('Seedream 4.5 JPEG output is accepted with its real dimensions and truncate
  assert.deepEqual(Buffer.from(await generateImage('test',{},async()=>Response.json({data:[{b64_json:jpeg.toString('base64')}]}))),jpeg);
  assert.throws(()=>imageInfo(jpeg.subarray(0,100)),/unsupported or incomplete/);
 });
+
+import {typographyOnly} from '../convex/brandPresentation';
+test('Founder’s Find uses a face-free brand profile; other websites keep their own media support',()=>{assert.equal(typographyOnly(foundersBrand),true);assert.equal(typographyOnly({sourceUrl:'https://basecamp.com/'}),false);assert.equal(typographyOnly({sourceUrl:'unfinished url'}),false);});

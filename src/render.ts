@@ -1,4 +1,5 @@
 import { zipSync, strToU8 } from 'fflate';
+import {typographyOnly} from '../convex/brandPresentation';
 import {foundersPalette} from '../convex/brandPalette';
 import type { Brand, Post, Frame } from '../convex/studioTypes';
 const ink='#192820',paper='#F5F1E8',green='#254B36',gold='#D8B45A';
@@ -11,8 +12,8 @@ function images(brand:Brand){
  if(!pending){pending=Promise.all(urls.map(src=>new Promise<HTMLImageElement>((resolve,reject)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>resolve(i);i.onerror=()=>reject(new Error('Artwork could not be loaded. Reload the pack and try again.'));i.src=src;})));portraitCache.set(key,pending);pending.catch(()=>portraitCache.delete(key));}
  return pending;
 }
-function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=(ctx.canvas as HTMLCanvasElement).dataset.ink??ink){
- ctx.font=`${weight} ${size}px ${(ctx.canvas as HTMLCanvasElement).dataset.font??'Arial'}, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';
+function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=(ctx.canvas as HTMLCanvasElement).dataset.ink??ink,style=''){
+ ctx.font=`${style} ${weight} ${size}px ${(ctx.canvas as HTMLCanvasElement).dataset.font??'Arial'}, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';
  for(const paragraph of text.split('\n')){
   let row='';for(const word of paragraph.split(/\s+/)){const next=row?row+' '+word:word;if(row&&ctx.measureText(next).width>width){ctx.fillText(row,x,y);y+=line;row=word;}else row=next;}ctx.fillText(row,x,y);y+=line;
  }
@@ -25,6 +26,7 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
  const {ink,paper,primary:green,accent:gold}=palette;
  const onPrimary=contrast(paper,green)>=4.5?paper:ink;
  if(isFounders)await Promise.all([400,600,700].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));
+ if(typographyOnly(brand))return drawFounders(post,brand,index,progress,canvas);
  const pics=await images(brand);const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;c.dataset.ink=ink;c.dataset.font=isFounders?'"Brand Inter"':'Arial';const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
  ctx.fillStyle=paper;ctx.fillRect(0,0,1080,h);
  ctx.fillStyle=green;ctx.fillRect(64,60,34,8);
@@ -61,6 +63,37 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
  if(post.format==='carousel'&&index<post.frames.length-1)wrapped(ctx,'SWIPE →',840,h-65,180,24,35,600,onPrimary);
  return c;
 }
+
+function drawFounders(post:Post,brand:Brand,index:number,progress:number,canvas?:HTMLCanvasElement){
+ const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;
+ c.dataset.font='"Brand Inter"';c.dataset.ink='#0f0f12';const ctx=c.getContext('2d')!,h=c.height;
+ const pink='#ff307e',ink='#0f0f12';ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,h);
+ ctx.textBaseline='top';ctx.font='400 38px Georgia';ctx.fillStyle=ink;ctx.fillText("Founder's",76,62);ctx.font='italic 38px Georgia';ctx.fillStyle=pink;ctx.fillText('Find',ctx.measureText("Founder's").width+88,62);
+ ctx.strokeStyle='#e5e5e8';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(76,136);ctx.lineTo(1004,136);ctx.stroke();
+ wrapped(ctx,post.format==='carousel'?`${String(index+1).padStart(2,'0')} / ${post.frames.length}`:post.format==='static'?'INSTAGRAM / STATIC':'INSTAGRAM / REEL',76,175,900,22,30,400,'#686873');
+ const frame=post.frames[index];c.dataset.font='Georgia';
+ const words=frame.heading.split(/\s+/),accent=words.length>=4?words.splice(-2).join(' '):'',size=post.format==='static'?110:100,line=post.format==='static'?122:113;
+ let headingEnd=wrapped(ctx,accent?words.join(' '):frame.heading,76,post.format==='reel'?310:250,928,size,line,400,ink);
+ if(accent)headingEnd=wrapped(ctx,accent,76,headingEnd,928,size,line,400,pink,'italic');
+ c.dataset.font='"Brand Inter"';const bodyEnd=wrapped(ctx,frame.body,80,headingEnd+52,890,post.format==='reel'?43:37,post.format==='reel'?59:52,400,'#45454f');
+ // Geometric career-path tiles follow the website's thin-line isometric language.
+ const centreY=Math.max(bodyEnd+110,post.format==='reel'?1220:945);
+ if(centreY+160<h-140){
+  const labels=['Proof','Capability','Opportunity'];
+  const tile=(x:number,y:number,active:boolean,label:string)=>{
+   ctx.fillStyle=active?pink:'#fff';ctx.strokeStyle=active?pink:ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y-40);ctx.lineTo(x+75,y);ctx.lineTo(x,y+40);ctx.lineTo(x-75,y);ctx.closePath();ctx.fill();ctx.stroke();
+   ctx.strokeStyle=ink;ctx.beginPath();ctx.moveTo(x-75,y);ctx.lineTo(x-75,y+16);ctx.lineTo(x,y+56);ctx.lineTo(x+75,y+16);ctx.lineTo(x+75,y);ctx.moveTo(x,y+40);ctx.lineTo(x,y+56);ctx.stroke();
+   wrapped(ctx,label.toUpperCase(),x-105,y+88,230,21,29,400,active?pink:'#686873');
+  };
+  ctx.strokeStyle='#e5e5e8';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(250,centreY+30);ctx.lineTo(810,centreY-65);ctx.stroke();
+  labels.forEach((label,n)=>tile(250+n*280,centreY+(n===1?-72:0),n===(post.format==='reel'?Math.floor(progress*3)%3:index%3),label));
+ }
+ ctx.strokeStyle='#e5e5e8';ctx.beginPath();ctx.moveTo(76,h-136);ctx.lineTo(1004,h-136);ctx.stroke();
+ wrapped(ctx,'foundersfind.club',76,h-90,760,27,36,400,ink);
+ if(post.format==='carousel'&&index<post.frames.length-1)wrapped(ctx,'SWIPE →',835,h-90,185,24,36,600,ink);
+ ctx.fillStyle=pink;ctx.fillRect(76,h-136,post.format==='reel'?928*((index+progress)/post.frames.length):84,3);
+ return c;
+}
 export async function frameBlob(post:Post,brand:Brand,index:number){const c=await drawFrame(post,brand,index);return new Promise<Blob>((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('Artwork export failed.')),'image/png'));}
 export function download(blob:Blob,name:string){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);}
 export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string)=>void,ads:{pageName:string;snapshotUrl:string;body:string}[]=[]){
@@ -69,8 +102,8 @@ export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string
   onProgress(`Rendering ${p.format} ${i+1} of ${p.frames.length}`);
   files[`${p.format}/${String(i+1).padStart(2,'0')}.png`]=new Uint8Array(await (await frameBlob(p,brand,i)).arrayBuffer());
  }
- files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${p.altText}`).join('\n\n----------\n\n'));
- files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. ${brand.artwork?.note??'Shared original fictional sample artwork.'} Imagery is conceptual, not a customer testimonial or an exact product photograph. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
+ files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${typographyOnly(brand)?'Founder’s Find typography-led '+p.format+' with serif headlines, pink italic emphasis and thin-line career diagrams. '+p.frames.map(f=>f.heading).join(' / '):p.altText}`).join('\n\n----------\n\n'));
+ files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. ${typographyOnly(brand)?'Typography and original geometric diagrams based on the website. No AI faces.':brand.artwork?.note??'Shared original fictional sample artwork.'} Imagery is conceptual, not a customer testimonial or an exact product photograph. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
  download(new Blob([zipSync(files) as BlobPart],{type:'application/zip'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-instagram.zip`);
 }
 export async function exportReel(post:Post,brand:Brand,onProgress:(s:string)=>void){

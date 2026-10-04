@@ -12,6 +12,7 @@ import type * as adInspiration from "../adInspiration.js";
 import type * as adStore from "../adStore.js";
 import type * as auth from "../auth.js";
 import type * as brandPalette from "../brandPalette.js";
+import type * as brandPresentation from "../brandPresentation.js";
 import type * as chatgpt from "../chatgpt.js";
 import type * as chatgptModel from "../chatgptModel.js";
 import type * as chatgptSecurity from "../chatgptSecurity.js";
@@ -52,6 +53,7 @@ declare const fullApi: ApiFromModules<{
   adStore: typeof adStore;
   auth: typeof auth;
   brandPalette: typeof brandPalette;
+  brandPresentation: typeof brandPresentation;
   chatgpt: typeof chatgpt;
   chatgptModel: typeof chatgptModel;
   chatgptSecurity: typeof chatgptSecurity;
