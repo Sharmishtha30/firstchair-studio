@@ -5,11 +5,11 @@ Added: 4 October 2026. Supplied by the founder as the static-ad inspiration libr
 
 ## Access and review status
 
-**Saved, not reviewed.** The web reader could not open the link. A real Chromium browser returned HTTP 403 and Canva’s “Just a moment” page. The native browser connector was also unavailable. No design pages or ads were visible, so no layouts, hooks, colours, images or performance results have been extracted or claimed.
+**Board supplied and reviewed at overview level.** The founder provided a 1920 × 1080 image titled “98 STATIC ADS”. It is saved unchanged in `assets/static-ads-board.png`. Broad composition patterns are recorded in `board-patterns.md`. Small individual copy cannot be read reliably, so no exact competitor hooks or product claims were extracted. The live Canva editor still returns HTTP 403.
 
 Evidence: `verification/canva-library-access.txt` and `verification/canva-library-access.png`.
 
-To review the actual creatives, use a PDF export or page-image exports provided by the founder. An export is needed because the current failure is Canva’s browser-access check, not evidence that the founder must change the design’s permissions.
+For detailed review of individual ads, use larger page-image or PDF exports. The supplied board is sufficient for the composition-level adaptations already made. An export is needed because the current failure is Canva’s browser-access check, not evidence that the founder must change the design’s permissions.
 
 ## How this reference will be used once readable
 

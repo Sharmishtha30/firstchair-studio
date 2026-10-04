@@ -5,4 +5,4 @@ Brand sources establish typography, palette, spacing and image treatment. Ad ref
 ## Sources
 
 - [Founder’s Find website](https://foundersfind.club/): visual brand reference. See `founders-find.md` and the captured homepage in `verification/founders-brand-reference.png`.
-- [Static-ad Canva library](https://www.canva.com/design/DAHTe-FNOlc/yybEqW9s2VegQvQTebCueA/edit): supplied by the founder. Link saved; creative review is blocked by Canva’s HTTP 403 browser-check page. See `canva-static-ads.md`.
+- [Static-ad Canva library](https://www.canva.com/design/DAHTe-FNOlc/yybEqW9s2VegQvQTebCueA/edit): supplied by the founder. The supplied board image is saved unchanged in `assets/static-ads-board.png`; observable layout patterns are reviewed in `board-patterns.md`. The live Canva editor remains blocked. See `canva-static-ads.md`.
