@@ -1,0 +1,122 @@
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "audience": "Teams, project leads, business owners, and client-facing professionals juggling tasks, files, discussions, and deadlines across scattered tools.",
+    "facts": [
+      "Basecamp puts everything you need to get work done in one place.",
+      "It’s the calm, organized way to manage projects, work with clients, and communicate company-wide.",
+      "A free plan + paid upgrades",
+      "Take a 3-minute tour",
+      "Message Board",
+      "Project Assets & Proofs",
+      "Agree on timeline, milestones, and sign-off",
+      "Unfortunately, most project management systems are bloated, complicated, and confusing.",
+      "Try Basecamp Free"
+    ],
+    "name": "Basecamp",
+    "offer": "An all-in-one project management space for organizing work, collaborating with clients, and communicating company-wide, with a free plan and paid upgrades.",
+    "sourceUrl": "https://basecamp.com/",
+    "voice": "Inferred from the website: plainspoken, practical, reassuring, and lightly opinionated about making work less complicated."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "posts": [
+    {
+      "altText": "Five-frame carousel about finding scattered project information. It recommends a message board for decisions, grouped project files, and tasks with an owner and due date. Ends with an invitation to tour Basecamp.",
+      "caption": "A useful project home answers three questions:\n\nWhat changed?\nWhere’s the file?\nWhat happens next?\n\nGive each answer a consistent place. That’s a practical starting point for organizing work—not another layer of admin.",
+      "emotion": "Inferred: frustration with constant searching and a desire to feel organized without adding more admin.",
+      "format": "carousel",
+      "frames": [
+        {
+          "body": "The task is in one app. The file is in another.\nThe decision? Somewhere in a chat.",
+          "heading": "Still hunting for that project update?"
+        },
+        {
+          "body": "Use a project message board for key updates.\nKeep the decision and its context together.",
+          "heading": "Give decisions a home"
+        },
+        {
+          "body": "Group project assets and proofs in one place.\nUse clear names so people know what they’re opening.",
+          "heading": "Keep files with the work"
+        },
+        {
+          "body": "For each task, write what needs doing, who owns it, and when it’s due.",
+          "heading": "Make the next step obvious"
+        },
+        {
+          "body": "Basecamp brings project work into one place.\nTake a 3-minute tour at basecamp.com.",
+          "heading": "One project. Less hunting."
+        }
+      ],
+      "hook": "Still hunting for that project update?",
+      "pain": "Project information is scattered across apps, emails, and chats, making even a simple status check feel like detective work.",
+      "sourceFacts": [
+        "Basecamp puts everything you need to get work done in one place.",
+        "Message Board",
+        "Project Assets & Proofs",
+        "Take a 3-minute tour"
+      ]
+    },
+    {
+      "altText": "Single-frame checklist headed “Client sign-off still a guessing game?” It lists three things to agree on before work starts: what needs approval, who gives it, and when it is due.",
+      "caption": "“Ready for review” needs a shared meaning.\n\nA simple sign-off note can name the deliverable, the person approving it, and the agreed review date. Keep it with the project so the team and client have the same reference point.\n\nBasecamp is built to manage projects and work with clients in one place.\n\nTry Basecamp free at basecamp.com.",
+      "emotion": "Inferred: unease about missed expectations and a desire for clearer boundaries with clients.",
+      "format": "static",
+      "frames": [
+        {
+          "body": "Before work starts, agree on:\nWhat needs approval.\nWho gives it.\nWhen it’s due.",
+          "heading": "Client sign-off still a guessing game?"
+        }
+      ],
+      "hook": "Client sign-off still a guessing game?",
+      "pain": "Unclear approval expectations leave project teams unsure who decides, what needs approval, and when.",
+      "sourceFacts": [
+        "Agree on timeline, milestones, and sign-off",
+        "It’s the calm, organized way to manage projects, work with clients, and communicate company-wide.",
+        "Try Basecamp Free"
+      ]
+    },
+    {
+      "altText": "Five-scene, 25-second text reel about simplifying project coordination. It focuses on clear tasks, project updates, and agreed deadlines, then invites viewers to try Basecamp free.",
+      "caption": "More setup isn’t always more clarity.\n\nA practical test for your project space: can a teammate find their next task, the latest decision, and the next deadline without asking around?\n\nBasecamp brings project work together in one place, with a free plan and paid upgrades.",
+      "emotion": "Inferred: fatigue with software complexity and a wish for a calmer, simpler working day.",
+      "format": "reel",
+      "frames": [
+        {
+          "body": "Start with what your team needs to know.",
+          "heading": "Managing the tool, not the project?"
+        },
+        {
+          "body": "Write a clear task.\nGive it an owner.",
+          "heading": "What needs doing?"
+        },
+        {
+          "body": "Keep the update with the project,\nnot scattered across chats.",
+          "heading": "What changed?"
+        },
+        {
+          "body": "Agree on deadlines and sign-off\nbefore work gets busy.",
+          "heading": "What’s due next?"
+        },
+        {
+          "body": "Try Basecamp free\nat basecamp.com.",
+          "heading": "Keep the work together"
+        }
+      ],
+      "hook": "Managing the tool, not the project?",
+      "pain": "Complicated project software creates extra upkeep when the team needs a straightforward way to coordinate work.",
+      "sourceFacts": [
+        "Unfortunately, most project management systems are bloated, complicated, and confusing.",
+        "Basecamp puts everything you need to get work done in one place.",
+        "Agree on timeline, milestones, and sign-off",
+        "A free plan + paid upgrades",
+        "Try Basecamp Free"
+      ]
+    }
+  ],
+  "stage": "Ready",
+  "updatedAt": 1791114821428,
+  "url": "https://basecamp.com/"
+}

@@ -1,0 +1,6 @@
+PASS existing approved ChatGPT connection works in the studio (new local test session; no new OAuth consent simulated)
+PASS live website → AI-written carousel, static and reel, source excerpts and claims reviewed
+HOOK carousel: Still hunting for that project update?
+HOOK static: Client sign-off still a guessing game?
+HOOK reel: Managing the tool, not the project?
+PASS second public website produces all three formats: Basecamp

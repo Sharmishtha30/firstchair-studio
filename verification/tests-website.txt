@@ -2,35 +2,39 @@
 > build-sprint-app@1.0.0 test
 > tsx --test tests/*.test.ts
 
-✔ the auth provider and page hooks share one React runtime (24.452417ms)
-✔ ChatGPT registration requests plan permission, loopback callback and PKCE (10.442833ms)
-✔ sign-in rejects expired state and a different browser (0.486459ms)
-✔ credentials are encrypted and tampered ciphertext is rejected (6.678875ms)
-✔ partial, failed and interrupted AI output cannot be accepted (12.737541ms)
-✔ the writer's SDK sends supported streaming plan requests with no API key (19.03475ms)
-✔ scripts require customer evidence and reject ungrounded claims (67.473375ms)
-✔ feedback revises one script while retaining customer sources (8.93875ms)
-✔ a writer cannot remove a customer’s negation (0.482083ms)
-✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.865792ms)
-✔ factual review must cover every line and reject changed meaning (0.929708ms)
-✔ greetings and acknowledgements are never recommended as content (0.769083ms)
-✔ customer statements on continuation lines are retained (0.29525ms)
-✔ an insight cannot use a greeting or an invented evidence quote (0.650167ms)
-✔ missing API credits are reported as billing, not a disconnected key (1.678125ms)
-✔ a customer paragraph contains separate substantive statements (1.127541ms)
-✔ timestamped named speakers require a choice and exclude the founder (7.759792ms)
-✔ timestamps on customer labels and continuation lines preserve evidence (0.279042ms)
-✔ the writer drains the lazy stream before awaiting its object (3.068375ms)
-✔ an invalid streamed object is rejected instead of leaving the writer waiting (1.247459ms)
-✔ a real SDK structured stream completes through the writer's reader (87.3175ms)
-✔ the page stops waiting when a writer request never settles (6.5095ms)
-✔ website fetch rejects private IPv4 and IPv6, credentials and unexpected ports (2.303375ms)
-✔ three formats have short hooks, complete frames and exact source facts (1.677834ms)
-ℹ tests 24
+✔ the auth provider and page hooks share one React runtime (20.535458ms)
+✔ ChatGPT registration requests plan permission, loopback callback and PKCE (10.15825ms)
+✔ sign-in rejects expired state and a different browser (0.390625ms)
+✔ credentials are encrypted and tampered ciphertext is rejected (6.533708ms)
+✔ partial, failed and interrupted AI output cannot be accepted (10.321208ms)
+✔ the writer's SDK sends supported streaming plan requests with no API key (15.59975ms)
+✔ scripts require customer evidence and reject ungrounded claims (6.229584ms)
+✔ feedback revises one script while retaining customer sources (3.6575ms)
+✔ a writer cannot remove a customer’s negation (1.771083ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.742125ms)
+✔ factual review must cover every line and reject changed meaning (0.573875ms)
+✔ greetings and acknowledgements are never recommended as content (0.533584ms)
+✔ customer statements on continuation lines are retained (0.241167ms)
+✔ an insight cannot use a greeting or an invented evidence quote (0.38775ms)
+✔ missing API credits are reported as billing, not a disconnected key (0.429416ms)
+✔ a customer paragraph contains separate substantive statements (0.314542ms)
+✔ timestamped named speakers require a choice and exclude the founder (0.550542ms)
+✔ timestamps on customer labels and continuation lines preserve evidence (0.286667ms)
+✔ the writer drains the lazy stream before awaiting its object (2.335541ms)
+✔ an invalid streamed object is rejected instead of leaving the writer waiting (0.83475ms)
+✔ a real SDK structured stream completes through the writer's reader (88.431709ms)
+✔ the page stops waiting when a writer request never settles (38.736375ms)
+✔ website fetch rejects private IPv4 and IPv6, credentials and unexpected ports (3.136916ms)
+✔ three formats have short hooks, complete frames and exact source facts (3.156708ms)
+✔ Seedance requests a vertical 25-second fictional presenter with the exact approved script (0.56025ms)
+✔ Seedance pending, completed and failed responses are distinct; invalid hosts never download (67.982167ms)
+✔ unfinished bodies and greeting hooks cannot be saved as finished artwork (0.673541ms)
+✔ brand palette resolves only safe default CSS colors and handles cycles (1.355792ms)
+ℹ tests 28
 ℹ suites 0
-ℹ pass 24
+ℹ pass 28
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 1243.920167
+ℹ duration_ms 1776.284791

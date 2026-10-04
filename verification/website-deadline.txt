@@ -1,0 +1,3 @@
+PASS a previous job deadline cannot expire a newer operation
+PASS the server watchdog turns a stalled job into an explicit error
+PASS a late response cannot overwrite the failed state

@@ -1,75 +1,48 @@
-# Morning handoff — Call to Reel v1
+# Morning handoff — website to Instagram
 
-## Writer waiting fix
-
-The writer awaited the AI library's final object promise without consuming its lazy response stream. Analysis, writing and review now drain their streams before accepting the completed object. An actual SDK structured-stream test reproduces and verifies this path with a simulated model; incomplete streams still fail. All three stages share a two-minute cancellation deadline, and the page stops waiting after 130 seconds if a network request never returns. This does not prove a live Pro response; the owner's current call needs a retry. Type checks, the build and 22 checks pass.
-
-## Transcript-reader fix
-
-The reported screenshot shows “ChatGPT plan connected” followed by a transcript-reader rejection. The reader now splits a customer paragraph into individual sentences, strips leading timestamps, and offers a customer-speaker choice for named speakers or “Speaker 1 / Speaker 2”. Only the chosen speaker's words are used, and the choice is saved with the run for revisions. Existing Customer/Founder labels still work. Unit checks cover these formats; a real local Convex action confirms the timestamped paragraph passes the reader. The owner's exact transcript has not been supplied, so its particular format and successful live AI output remain unverified.
-
-## Current status
-
-The app now offers **Continue with ChatGPT** for the local laptop version. This uses the supported ChatGPT plan sign-in flow described in [OpenAI's documentation](https://developers.openai.com/siwc/token-sharing-open-source/sign-in). You approved this addition after the API-credit error. The original no-login requirement is otherwise preserved: there is no separate signup/password flow.
-
-The writer no longer uses OPENAI_API_KEY or falls back to paid API billing. Until ChatGPT is connected, sample mode only accepts the bundled transcript and returns clearly labelled hand-written stories. Your existing API key is still in local Convex settings but is unused by this path. No API key or extra API credit needs to be added for ChatGPT plan sign-in; your ChatGPT plan's allowance and eligibility still apply.
-
-**Not yet proven:** actual OpenAI account approval and real AI generation using your Pro plan. I could not operate a browser: the computer connector returned “Sky Computer Use native pipe startup failed.” I tested our local session round trip using a clearly fake identity and no real provider credentials. That proves local session handling, not successful OpenAI sign-in or content quality.
-
-Nothing was deployed or pushed. Changes were saved in local git checkpoints.
+The website studio has been tested in a real Chromium browser with Founders Find and Basecamp. Nothing was deployed or pushed.
 
 ## What works
 
-- Landing page into one text transcript plus one short brand note.
-- Three Instagram reel scripts, with spoken script, on-screen text, caption, supporting customer statements, and selected pain, raw emotion, and takeaway.
-- Greeting-only calls are rejected. Customer continuation lines are retained. Inferred emotion is labelled. Each drafted claim needs supporting customer words and a separate factual review before saving.
-- Feedback revises one selected script, keeping the other two unchanged in Convex.
-- ChatGPT sign-in route opens the official approval flow using a callback on this laptop. Sign-in attempts expire, are tied to the browser that started them, and can be consumed only once.
-- Provider credentials stay encrypted in the local Convex database. They are not returned to browser storage or committed. The browser receives only a short-lived, single-use sign-in ticket, then a first-party Convex session.
-- Connected writing uses a model from the account's current catalog, streaming requests with `store: false`, and rejects interrupted or incomplete responses. Refresh and disconnect paths are implemented.
-- The page preserves typed transcript/brand during sign-in, shows the connection state, explains plan usage on first connection, and provides a disconnect button.
-- The bundled sample generation, feedback, persistence, and grounding checks pass against the running local backend.
-- No video generation, CRM, Instagram connection, or other channels.
+- Paste a public website; the connected writer reads its offer and produces a carousel, static post and reel with short hooks, value, a call to action and captions.
+- Claims are checked against website excerpts. Incomplete copy gets one repair attempt, then an explicit error rather than an endless wait.
+- Feedback changes one selected post and keeps the other two unchanged; this was checked in the browser and saved data.
+- Download six Instagram PNGs and captions in a ZIP, plus a vertical MP4 reel with music embedded in the file. Founders Find exports use its actual website colours and Inter font.
+- Original AI-created fictional workplace portraits are included. The motion reel uses a still portrait; it is not a speaking avatar.
+- Guest Founders Find output is prominently labelled sample mode. Real connected output is labelled separately.
+- The previous transcript writer remains available from the footer.
 
-## How to open it on your laptop
+## Open it on your Mac
 
-The local app is running now. Open **http://localhost:5173/#studio**.
+1. Open Terminal and enter `cd /Users/sam/build-sprint-app`.
+2. Enter `npm run dev` and leave that window running.
+3. Open http://localhost:5173 in Chrome.
 
-If it has stopped:
+The latest saved Founders Find pack is linked in `verification/latest-pack-url.txt`. Downloaded files are `verification/founders-instagram.zip` and `verification/founders-reel.mp4`.
 
-1. Open Terminal and run `cd /Users/sam/build-sprint-app`.
-2. Run `npm run dev` and keep that Terminal open.
-3. Open **http://localhost:5173/#studio**. The port is fixed so sign-in returns to the correct page.
-4. Click **Continue with ChatGPT**, sign in to the account with Pro, and approve plan usage for Call to Reel.
-5. On return, look for **ChatGPT plan connected**, then paste your call and brand note and generate. Give feedback on one script to check the revision.
+## What is unfinished and why
 
-To try the app without signing in, choose **Use sample transcript**, generate, and revise one script. The sample banner and output label remain visible.
+**Talking AI avatar:** the Seedance 2.5 connection is implemented but not tested against the real provider because no `ARK_API_KEY` is configured. The existing MP4 is a motion reel, not lip-synced speech. Get a ModelArk key at https://ai.byteplus.com/ark/region:ap-southeast-1/apikey, then run `npx convex env set ARK_API_KEY` in this project and paste the key into its private prompt. Set it in Convex, not the frontend `.env.local`. BytePlus model access and credits are separate from ChatGPT Pro. Mock checks cover requests and result handling; they do not prove live avatar quality.
 
-Convex backend: `http://127.0.0.1:3210`. HTTP callbacks: `http://127.0.0.1:3211`. Frontend: `http://localhost:5173`. Local settings and original cloud backups remain ignored by git. The local ChatGPT plan connection deliberately refuses cloud URLs. Do not deploy this personal setup.
+**Real ad inspiration:** Meta's public library returned HTTP 403. No ads were imported or invented. The API adapter needs approved Meta access, `META_AD_LIBRARY_TOKEN` and `META_GRAPH_VERSION` from the Meta app dashboard. Its commercial coverage includes UK/EU ads; an India-only commercial campaign is not automatically available through the API. Reference: https://br-fr.facebook.com/ads/library/api/ . Saved public ad links contain no provider access tokens.
 
-## Setup keys
+**Images for other brands:** website colours are read, but the current workplace portraits are shared fictional assets. The app does not yet generate fresh personalised photographs for every website. Full Relay-style output is therefore not complete.
 
-Already configured on this laptop: `JWT_PRIVATE_KEY`, `JWKS` (Convex session keys), `SITE_URL=http://localhost:5173`, `CHATGPT_TOKEN_KEY` (credential encryption), and `CHATGPT_HOST_ID` (stable local app identifier). Secret values are not in git. A fresh checkout needs its own local sign-in settings; never copy provider access or refresh tokens into frontend code or chat.
+## Checks and evidence
 
-## What could not be finished, and why
+- Type checks and production build pass; 28 automated checks pass.
+- `verification/website-flow.txt`: full connected Founders Find browser generation, one-post revision, preservation of the other two, ZIP and MP4 downloads, refresh and honest provider status.
+- `verification/second-website-flow.txt`: connected Basecamp website generation and downloads.
+- `verification/website-deadline.txt`: three checks prove old deadlines cannot kill newer work, stalled jobs become errors, and late results cannot overwrite a failed job.
+- `verification/browser-final-studio.txt`: saved-pack desktop/mobile and export checks.
+- `verification/contact-sheet-final.png`: all six exported PNGs inspected for readable complete copy and overlap.
+- `verification/video-proof.json`: actual MP4 has H.264 video at 1080 × 1920, AAC stereo music at 48 kHz, approximately 25 seconds.
 
-- **Real ChatGPT approval, plan allowance, and live story quality:** require your account sign-in. I cannot claim these passed. The model's factual review also cannot guarantee accuracy; review scripts before posting.
-- **Real token renewal and remote revocation:** implemented but unverified without real account credentials. If remote revocation fails, local credentials are still removed and the app asks you to remove Call to Reel in ChatGPT settings.
-- **Browser visual review:** unavailable because the browser connector failed. A React loading error was detected in Vite logs; dependency deduplication and a fresh server start were applied, and a provider-render regression check passes. I have not seen the rendered page after that fix.
-- **Deployment:** intentionally not performed.
-- Sample feedback is still a demonstration that shortens, expands or reorders sample lines. Custom transcript analysis and open-ended feedback require the connected writer.
+These checks used the existing approved ChatGPT connection. They do not re-prove the external consent screen, live Seedance generation or Meta access. The most recent small sample-banner and routing refinements have type checks; their final browser replay is still pending.
 
-## Checks run
+## Full sample transcript test output
 
-- `npm run check`: frontend and Convex type checks pass.
-- `npm run build`: passes; a harmless package-level “use client” warning is recorded in `verification/build.txt`.
-- `npm test`: 22 checks pass. Output: `verification/tests.txt`.
-- `npm run test:chatgpt`: local browser-bound ticket, session, callback replay/expiry, disconnect, sign-out and official authorization redirect pass. Uses fake test credentials; no OpenAI inference. Output: `verification/chatgpt-flow.txt`.
-- `npm run test:flow`: bundled transcript generation, feedback, persisted unchanged scripts, evidence checks and refusal of greeting/custom-call fake output pass. Full output follows.
-- HTTP request to the local frontend returns 200; Convex authentication public keys are served.
-- `npm run test:ai`: requires an authenticated local Convex session supplied to the developer test as `CALL_TO_REEL_TEST_SESSION`. Without one it prints **NOT RUN**, rather than pretending live AI passed. The prior API-credit rejection remains in `verification/ai-flow.txt` as historical evidence, not a current ChatGPT-plan test.
-
-## Full sample-transcript test output
+This is the retained original transcript-flow test, separate from the website tests above.
 
 ```text
 
@@ -418,20 +391,5 @@ PASS: Every script line, on-screen line and caption has supporting customer quot
 PASS: Greeting-only calls are rejected rather than converted into content.
 PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.
 PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.
-
-```
-
-## Local sign-in test output
-
-```text
-
-> build-sprint-app@1.0.0 test:chatgpt
-> tsx tests/chatgpt-flow.ts
-
-PASS: Local Convex rejects browser mismatch, expired callbacks and callback replay.
-PASS: Browser-bound ticket creates a verified Convex session and cannot be reused.
-PASS: Disconnect removes fixture credentials and sign-out returns to sample mode.
-PASS: HTTP sign-in redirects to the official OpenAI flow; forged callback returns a safe failure.
-NOT TESTED: Real OpenAI account consent, plan allowance, live story generation or token refresh. These need the owner's sign-in.
 
 ```

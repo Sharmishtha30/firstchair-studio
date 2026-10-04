@@ -1,0 +1,5 @@
+Meta public ad library, country IN, search Founders Find:
+- Public page fetch: HTTP 403.
+- Chromium browser visit: HTTP 403, empty readable body.
+- No ad records imported; no performance claims inferred.
+- Official API adapter prepared; META_AD_LIBRARY_TOKEN and META_GRAPH_VERSION are not configured.
