@@ -9,6 +9,14 @@ import {
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 const client = new ConvexHttpClient("http://127.0.0.1:3210");
+const sessionToken = process.env.CALL_TO_REEL_TEST_SESSION;
+if (!sessionToken) {
+  console.log(
+    "NOT RUN: Live AI verification requires an authenticated local Convex session from the owner's ChatGPT sign-in. Test generation and feedback in the signed-in app, or provide CALL_TO_REEL_TEST_SESSION to this developer-only test. Do not use a provider access token or API key here.",
+  );
+  process.exit(0);
+}
+client.setAuth(sessionToken);
 assert.equal(await client.action(api.writer.status, {}), "ai");
 const transcript =
   "Customer: Hello!\nCustomer: Good morning.\n" + sampleTranscript;
@@ -51,6 +59,6 @@ for (let i = 0; i < 3; i++)
   if (i !== index) assert.deepEqual(stored.reels[i], result.reels[i]);
 console.log("\nRevised pain script:\n" + JSON.stringify(revised, null, 2));
 console.log(
-  "\nPASS: The active backend detects the key and real AI generated three substantive story angles, excluding greetings.",
+  "\nPASS: The signed-in ChatGPT plan generated three substantive story angles, excluding greetings.",
 );
 console.log("PASS: AI feedback revised and saved only the selected script.");

@@ -1,3 +1,7 @@
+
+> build-sprint-app@1.0.0 test:chatgpt
+> tsx tests/chatgpt-flow.ts
+
 PASS: Local Convex rejects browser mismatch, expired callbacks and callback replay.
 PASS: Browser-bound ticket creates a verified Convex session and cannot be reused.
 PASS: Disconnect removes fixture credentials and sign-out returns to sample mode.

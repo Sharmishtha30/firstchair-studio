@@ -10,7 +10,8 @@
     "check": "tsc --noEmit && tsc --noEmit -p convex",
     "deploy": "npx @convex-dev/static-hosting deploy",
     "test:flow": "tsx tests/sample-flow.ts",
-    "test:ai": "tsx tests/ai-flow.ts"
+    "test:ai": "tsx tests/ai-flow.ts",
+    "test:chatgpt": "tsx tests/chatgpt-flow.ts"
   },
   "keywords": [],
   "author": "",

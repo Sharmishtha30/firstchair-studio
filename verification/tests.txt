@@ -1,0 +1,27 @@
+
+> build-sprint-app@1.0.0 test
+> tsx --test tests/*.test.ts
+
+✔ the auth provider and page hooks share one React runtime (21.715625ms)
+✔ ChatGPT registration requests plan permission, loopback callback and PKCE (11.637375ms)
+✔ sign-in rejects expired state and a different browser (0.404208ms)
+✔ credentials are encrypted and tampered ciphertext is rejected (5.982416ms)
+✔ partial, failed and interrupted AI output cannot be accepted (15.943875ms)
+✔ the writer's SDK sends supported streaming plan requests with no API key (19.747667ms)
+✔ scripts require customer evidence and reject ungrounded claims (8.996208ms)
+✔ feedback revises one script while retaining customer sources (6.487875ms)
+✔ a writer cannot remove a customer’s negation (0.999375ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (0.8845ms)
+✔ factual review must cover every line and reject changed meaning (0.645833ms)
+✔ greetings and acknowledgements are never recommended as content (1.377458ms)
+✔ customer statements on continuation lines are retained (0.785792ms)
+✔ an insight cannot use a greeting or an invented evidence quote (1.853167ms)
+✔ missing API credits are reported as billing, not a disconnected key (11.319167ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2668.973583

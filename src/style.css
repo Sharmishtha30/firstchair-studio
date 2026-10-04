@@ -404,3 +404,17 @@ footer {
   font-size: 13px;
   margin: 12px 0 0;
 }
+
+.welcome {
+  border: 1px solid #dce3ef;
+  border-radius: 12px;
+  max-width: min(460px, 90vw);
+  padding: 28px;
+  color: #182b4a;
+}
+.welcome::backdrop {
+  background: rgba(24, 43, 74, 0.45);
+}
+.hint a {
+  text-decoration: underline;
+}

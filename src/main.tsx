@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { ConvexProvider, ConvexReactClient, useAction } from "convex/react";
+import { ConvexReactClient, useAction, useConvexAuth } from "convex/react";
+import { ConvexAuthProvider, useAuthActions } from "@convex-dev/auth/react";
 import { ConvexError } from "convex/values";
 import { api } from "../convex/_generated/api";
 import { sampleTranscript, type Reel } from "../convex/content";
@@ -12,6 +13,12 @@ function errorMessage(e: unknown) {
     : "Could not reach the writer. Make sure npm run dev is running, then try again.";
 }
 function App() {
+  const { signIn, signOut } = useAuthActions();
+  const { isAuthenticated, isLoading } = useConvexAuth();
+  const disconnect = useAction(api.chatgpt.disconnect);
+  const connection = useAction(api.chatgpt.connection);
+  const welcome = useRef<HTMLDialogElement>(null);
+  const [account, setAccount] = useState<string | null>(null);
   const generate = useAction(api.writer.generate),
     revise = useAction(api.writer.revise),
     status = useAction(api.writer.status);
@@ -37,7 +44,11 @@ function App() {
       pending = true;
       try {
         const current = await status({});
-        if (active) setMode(current);
+        const account = await connection({});
+        if (active) {
+          setMode(current);
+          setAccount(account.connected ? account.email : null);
+        }
       } catch {
         if (active)
           setError("Could not reach Convex. Start the app with npm run dev.");
@@ -57,7 +68,89 @@ function App() {
       window.removeEventListener("focus", focus);
       window.removeEventListener("hashchange", listener);
     };
-  }, [status]);
+  }, [status, connection, isAuthenticated]);
+  useEffect(() => {
+    if (isLoading) return;
+    const callback = new URLSearchParams(location.hash.slice(1));
+    const ticket = callback.get("chatgpt_ticket"),
+      failure = callback.get("chatgpt_error");
+    if (!ticket && !failure) return;
+    history.replaceState(null, "", "/#studio");
+    setOpen(true);
+    if (failure) {
+      setError(failure);
+      return;
+    }
+    const browser = sessionStorage.getItem("chatgpt_browser");
+    if (!browser) {
+      setError("Sign-in could not be verified. Continue with ChatGPT again.");
+      return;
+    }
+    setNotice("Finishing ChatGPT connection…");
+    void signIn("chatgpt", { ticket: ticket!, browser })
+      .then((result) => {
+        if (!result.signingIn) throw new Error("Sign-in was rejected.");
+        sessionStorage.removeItem("chatgpt_browser");
+        setNotice(
+          "ChatGPT connected. Paste your call to find its pain, emotion and takeaway.",
+        );
+      })
+      .catch(() =>
+        setError("Sign-in did not finish. Continue with ChatGPT again."),
+      );
+  }, [signIn, isLoading]);
+  useEffect(() => {
+    if (
+      account &&
+      mode === "ai" &&
+      !localStorage.getItem("chatgpt_welcome:" + account)
+    )
+      welcome.current?.showModal();
+  }, [account, mode]);
+  function dismissWelcome() {
+    if (account) localStorage.setItem("chatgpt_welcome:" + account, "seen");
+    welcome.current?.close();
+  }
+  function connect() {
+    const bytes = crypto.getRandomValues(new Uint8Array(32));
+    const browser = btoa(String.fromCharCode(...bytes))
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+    sessionStorage.setItem("chatgpt_browser", browser);
+    sessionStorage.setItem(
+      "call_reel_draft",
+      JSON.stringify({ transcript, brand }),
+    );
+    location.assign("http://127.0.0.1:3211/chatgpt/start?browser=" + browser);
+  }
+  useEffect(() => {
+    const draft = sessionStorage.getItem("call_reel_draft");
+    if (draft) {
+      try {
+        const d = JSON.parse(draft);
+        setTranscript(d.transcript ?? "");
+        setBrand(d.brand ?? "");
+      } catch {}
+      sessionStorage.removeItem("call_reel_draft");
+    }
+  }, []);
+  async function leave() {
+    try {
+      const { revoked } = await disconnect({});
+      await signOut();
+      setResult(null);
+      setMode("sample");
+      setAccount(null);
+      setNotice(
+        revoked
+          ? "ChatGPT disconnected."
+          : "Disconnected locally. Also remove Call to Reel in ChatGPT Settings to revoke access.",
+      );
+    } catch (e) {
+      setError(errorMessage(e));
+    }
+  }
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
@@ -99,24 +192,49 @@ function App() {
   }
   return (
     <>
+      <dialog
+        ref={welcome}
+        className="welcome"
+        onCancel={dismissWelcome}
+        aria-labelledby="welcome-title"
+      >
+        <h2 id="welcome-title">You’re using your ChatGPT plan</h2>
+        <p>
+          Script writing and revisions use your plan’s allowance. You can manage
+          usage in ChatGPT settings.
+        </p>
+        <button onClick={dismissWelcome}>Got it</button>
+      </dialog>
       <header>
         <a className="wordmark" href="#" onClick={() => setOpen(false)}>
           <span className="mark">“</span> Call to Reel
         </a>
         <span className="header-note">
           {mode === "ai"
-            ? "AI writer connected"
+            ? "ChatGPT plan connected"
             : mode === "sample"
-              ? "Demo only · AI key not connected"
+              ? "Sample mode · ChatGPT not connected"
               : "Checking AI connection…"}
         </span>
+        {account ? (
+          <button
+            className="text-button"
+            onClick={() => void leave()}
+            disabled={busy || revision !== null}
+          >
+            Disconnect ChatGPT
+          </button>
+        ) : (
+          <button className="secondary" onClick={connect} disabled={isLoading}>
+            Continue with ChatGPT
+          </button>
+        )}
       </header>
       {mode === "sample" && (
         <div className="banner" role="status">
-          <strong>Sample mode — AI key not connected.</strong> Your own
-          transcript cannot be analyzed yet. “Use sample transcript” shows
-          hand-written example stories. Add OPENAI_API_KEY to the running local
-          Convex backend to get real insights.
+          <strong>Sample mode — demo stories only.</strong> Continue with
+          ChatGPT to analyze your own call using your plan’s allowance. No API
+          credits needed. “Use sample transcript” shows hand-written examples.
         </div>
       )}
       {error && (
@@ -182,6 +300,18 @@ function App() {
           <div className="workspace">
             <form onSubmit={submit}>
               <h2>Start with the conversation</h2>
+              {mode === "ai" && (
+                <p className="hint">
+                  Using ChatGPT plan ·{" "}
+                  <a
+                    href="https://chatgpt.com/settings/usage"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Manage usage
+                  </a>
+                </p>
+              )}
               <label htmlFor="transcript">Customer call transcript</label>
               <p className="hint">
                 For calls with speaker labels, use “Customer:” for customer
@@ -390,9 +520,9 @@ function App() {
 }
 createRoot(document.getElementById("root")!).render(
   url ? (
-    <ConvexProvider client={new ConvexReactClient(url)}>
+    <ConvexAuthProvider client={new ConvexReactClient(url)}>
       <App />
-    </ConvexProvider>
+    </ConvexAuthProvider>
   ) : (
     <main>
       <h1>Start your local workspace</h1>

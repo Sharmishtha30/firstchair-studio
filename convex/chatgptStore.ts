@@ -66,6 +66,8 @@ export const finish = internalMutation({
         encrypted: args.encrypted,
         email: args.email,
         model: args.model,
+        lease: undefined,
+        leaseUntil: undefined,
       });
     else
       await ctx.db.insert("chatgptConnections", {

@@ -92,5 +92,5 @@ await assert.rejects(
   /Sample mode cannot analyze/,
 );
 console.log(
-  "PASS: Without an AI key, a custom call does not return pretend insight recommendations.",
+  "PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.",
 );

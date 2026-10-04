@@ -208,13 +208,21 @@ export const status = action({
 export const generate = action({
   args: { transcript: v.string(), brand: v.string() },
   returns: v.object({ token: v.string(), mode: modeV, reels: v.array(reelV) }),
-  handler: async (ctx, args) => {
+  handler: async (
+    ctx,
+    args,
+  ): Promise<{ token: string; mode: "ai" | "sample"; reels: Reel[] }> => {
     try {
       length(args.transcript, 30, 30000, "Transcript");
       length(args.brand, 3, 1200, "Brand note");
       const quotes = customerQuotes(args.transcript);
       const userId = await getAuthUserId(ctx);
-      const mode = userId ? ("ai" as const) : ("sample" as const);
+      const connection = userId
+        ? await ctx.runQuery(internal.chatgptStore.get, { userId })
+        : null;
+      const mode = connection?.encrypted
+        ? ("ai" as const)
+        : ("sample" as const);
       const reels = validateReels(
         mode === "ai"
           ? await write(ctx, quotes, args.brand)

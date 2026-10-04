@@ -154,7 +154,10 @@ export const callback = httpAction(async (ctx, request) => {
       catalog[0];
     if (!chosen) throw new Error("models");
     const credentials: Credentials = {
-      ...tokens,
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+      id_token: tokens.id_token,
+      scope: tokens.scope,
       clientId,
       subject: identity.sub!,
       email:
@@ -253,7 +256,9 @@ export async function credentialsFor(ctx: ActionCtx): Promise<Credentials> {
       throw new Error("refresh");
     const next: Credentials = {
       ...current,
-      ...data,
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      scope: typeof data.scope === "string" ? data.scope : current.scope,
       expiresAt: Date.now() + data.expires_in * 1000,
     };
     checkPermission(next.scope);
@@ -286,6 +291,7 @@ export const disconnect = action({
         const discovery = await (
           await fetch(
             "https://auth.openai.com/.well-known/openid-configuration",
+            { signal: AbortSignal.timeout(15000) },
           )
         ).json();
         if (
