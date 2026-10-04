@@ -8,7 +8,7 @@ export const bounds=new WeakMap<HTMLCanvasElement,TextBound[]>();
 export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number,width:number,size:number,maxHeight:number,font:string,colour:string,weight=400,min=40){
  if(!value.trim())return y;let rows:string[]=[],line=0,used=size;
  for(let s=size;s>=Math.min(size,min);s-=2){used=s;ctx.font=`${weight} ${s}px ${font}`;rows=lines(ctx,value,width);line=s*1.14;if(rows.length*line<=maxHeight)break;}
- if(rows.length*line>maxHeight||rows.some(row=>ctx.measureText(row).width>width))throw new Error('This copy is too long for a readable creative. Revise it with shorter wording.');
+ if(rows.length*line>maxHeight||rows.some(row=>ctx.measureText(row).width>width))throw new Error('This text does not fit at a readable size: “'+value.slice(0,85)+'”. Shorten it or choose a different layout.');
  if(x<80||y<55||x+width>1000||y+rows.length*line>1295)throw new Error('Text falls outside the creative safe area.');
  bounds.get(ctx.canvas)?.push({value,x,y,width,height:rows.length*line,size:used});ctx.fillStyle=colour;ctx.textBaseline='top';for(const row of rows){ctx.fillText(row,x,y);y+=line;}return y;
 }
@@ -37,17 +37,17 @@ async function paint(post:Post,brand:Brand,index:number){
  const comp=f.composition??(index===post.frames.length-1&&post.format==='carousel'?'closing':'editorial');
  const tx=(value:string,x:number,y:number,w:number,size:number,max:number,family=bodyFont,colour=ink,bold=400,min=40)=>text(ctx,value,x,y,w,size,max,family,colour,bold,min);
  if(f.eyebrow)tx(f.eyebrow,80,206,880,28,42,bodyFont,ink,600,28);
- const top=f.eyebrow?270:230,headingEnd=tx(f.heading,80,top,920,comp==='editorial'?112:comp==='closing'?100:86,comp==='editorial'?440:300,font,ink,weight,64);
+ const top=f.eyebrow?260:220,structured=comp==='checklist'||comp==='process',headingEnd=tx(f.heading,80,top,920,comp==='editorial'?112:comp==='closing'?100:structured?76:86,comp==='editorial'?440:structured?240:300,font,ink,weight,64);
  const items=f.items??[];
  if(comp==='checklist'){
-  const bodyEnd=tx(f.body,80,headingEnd+32,920,42,110),start=Math.max(520,bodyEnd+38),h=Math.min(184,(1180-start)/Math.max(1,items.length));
-  items.forEach((item,i)=>{const y=start+i*h;ctx.strokeStyle=ink;ctx.globalAlpha=.18;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;rect(ctx,80,y+28,44,44,p.primary,5);ctx.strokeStyle=foreground(p.primary);ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(90,y+51);ctx.lineTo(99,y+59);ctx.lineTo(115,y+41);ctx.stroke();tx(item.label,150,y+16,850,46,65,bodyFont,ink,600);tx(item.detail,150,y+78,850,40,h-84);});
+  const bodyEnd=tx(f.body,80,headingEnd+24,920,40,110),start=Math.max(520,bodyEnd+38),h=Math.min(184,(1180-start)/Math.max(1,items.length));
+  items.forEach((item,i)=>{const y=start+i*h;ctx.strokeStyle=ink;ctx.globalAlpha=.18;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;rect(ctx,80,y+28,44,44,p.primary,5);ctx.strokeStyle=foreground(p.primary);ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(90,y+51);ctx.lineTo(99,y+59);ctx.lineTo(115,y+41);ctx.stroke();tx(item.label,150,y+16,850,46,65,bodyFont,ink,600);tx(item.detail,150,y+72,850,40,h-76);});
  }else if(comp==='comparison'){
   const bodyEnd=tx(f.body,80,headingEnd+28,920,42,100),start=Math.max(540,bodyEnd+40),height=1125-start;
   items.slice(0,2).forEach((item,i)=>{const x=80+i*476,accent=i===1,paper=accent?p.primary:p.paper,colour=accent?foreground(p.primary):ink;rect(ctx,x,start,444,height,paper,14);if(!accent)outline(ctx,x,start,444,height,ink);tx(item.label,x+30,start+45,380,52,135,font,colour,weight);tx(item.detail,x+30,start+225,380,42,height-260,bodyFont,colour);});
  }else if(comp==='process'){
   const bodyEnd=tx(f.body,80,headingEnd+28,920,42,110),start=Math.max(530,bodyEnd+35),h=Math.min(190,(1180-start)/Math.max(1,items.length));
-  items.forEach((item,i)=>{const y=start+i*h;rect(ctx,80,y+18,74,74,p.primary,37);tx(String(i+1),103,y+35,48,40,56,bodyFont,foreground(p.primary),600);if(i<items.length-1){ctx.strokeStyle=p.primary;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(117,y+97);ctx.lineTo(117,y+h+10);ctx.stroke();}tx(item.label,190,y+16,800,48,68,bodyFont,ink,600);tx(item.detail,190,y+78,790,40,h-84);});
+  items.forEach((item,i)=>{const y=start+i*h;rect(ctx,80,y+18,74,74,p.primary,37);tx(String(i+1),103,y+35,48,40,56,bodyFont,foreground(p.primary),600);if(i<items.length-1){ctx.strokeStyle=p.primary;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(117,y+97);ctx.lineTo(117,y+h+10);ctx.stroke();}tx(item.label.replace(/^\d+[.)]\s*/,''),190,y+16,800,48,68,bodyFont,ink,600);tx(item.detail,190,y+72,790,40,h-76);});
  }else if(comp==='image'){
   const end=tx(f.body,80,headingEnd+26,920,42,140),asset=brand.assets?.find(a=>a.key===f.assetKey);if(!asset)throw new Error('This layout needs a website image. Choose another image or composition.');
   const img=await loadImage(asset.url),y=Math.max(670,end+30);rect(ctx,80,y,920,1140-y,'#ffffff',16);contain(ctx,img,100,y+20,880,1100-y);
@@ -60,7 +60,10 @@ async function paint(post:Post,brand:Brand,index:number){
   const bodyEnd=tx(f.body,80,headingEnd+48,900,48,230);
   if(f.assetKey){const asset=brand.assets?.find(a=>a.key===f.assetKey);if(asset){const y=Math.max(820,bodyEnd+30);contain(ctx,await loadImage(asset.url),80,y,920,1130-y);}}
   else if(items.length){const y=Math.max(870,bodyEnd+50),w=(920-(items.length-1)*22)/items.length;items.forEach((item,i)=>{const x=80+i*(w+22);rect(ctx,x,y,w,230,p.primary,12);tx(item.label,x+22,y+28,w-44,42,172,bodyFont,foreground(p.primary),600);});}
-  else{rect(ctx,80,1050,920,80,p.primary,0);tx(post.format==='carousel'?'A practical guide':brand.name,110,1069,860,32,46,bodyFont,foreground(p.primary),600,28);}
+  else{const visual=index===0?post.frames.find(frame=>frame.composition==='comparison'&&frame.items?.length===2)?.items:undefined;
+   if(visual){const y=Math.max(860,bodyEnd+45);visual.forEach((item,i)=>{const x=80+i*476,paper=i?p.primary:p.paper,colour=i?foreground(p.primary):ink;rect(ctx,x,y,444,1140-y,paper,brand.style?.headline==='serif'?0:12);if(!i)outline(ctx,x,y,444,1140-y,ink);tx(item.label,x+30,y+35,380,52,1140-y-65,font,colour,weight,40);});}
+   else{rect(ctx,80,1050,920,80,p.primary,0);tx(post.format==='carousel'?'A practical guide':brand.name,110,1069,860,32,46,bodyFont,foreground(p.primary),600,28);}}
+
  }
  rule(1210);tx(new URL(post.destination??brand.sourceUrl).hostname.replace(/^www\./,''),80,1250,700,26,38,bodyFont,ink,400,26);
  if(post.format==='carousel'&&index<post.frames.length-1)tx('Swipe →',850,1250,150,26,38,bodyFont,ink,600,26);

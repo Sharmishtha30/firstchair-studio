@@ -13,7 +13,7 @@ function inspectHtml(url:string,html:string){
  const $=load(html),title=$('title').text().trim(),language=$('html').attr('lang')??'';
  const styles=$('link[rel="stylesheet"]').toArray().map(el=>$(el).attr('href')).filter((s):s is string=>!!s).map(s=>new URL(s,url).href).slice(0,8);
  const inline=$('style').text(),bodyClasses=($('body').attr('class')??'').split(/\s+/).filter(Boolean);
- const logo=primaryLogo($,url);
+ const logo=primaryLogo($,url);const contentHeadings=$('main h1,main h2,article h1,article h2').toArray();const headingClasses=(contentHeadings.length?contentHeadings:$('h1,h2').toArray()).find(el=>$(el).text().trim().length>12&&!/cart|notification|drawer/i.test($(el).attr('class')??''));const primaryHeadingClasses=headingClasses?($(headingClasses).attr('class')??'').split(/\s+/).filter(Boolean):[];
  const links=$('a[href]').toArray().flatMap(el=>{try{const href=new URL($(el).attr('href')!,url);href.hash='';if(href.origin!==new URL(url).origin||href.pathname==='/'||/login|sign.?in|cart|account|policy|privacy|terms|mailto|\\.(pdf|jpg|png|zip)$/i.test(href.href))return [];const words=$(el).text()+' '+href.pathname;const score=/product|service|offer|solution|proving|roast|collection/i.test(words)?4:/about|story|pricing|price|faq|case.study/i.test(words)?3:0;return score?[{url:href.href,score}]:[];}catch{return [];}}).sort((a,b)=>b.score-a.score);
  const images=$('main img,article img,section img,img').toArray().flatMap(el=>{const node=$(el),alt=node.attr('alt')??'',raw=node.attr('data-src')??node.attr('src')??node.attr('data-srcset')?.split(/[ ,]/)[0];if(!raw||/logo|icon|payment|badge|avatar|partner|pixel|tracking/i.test(alt+' '+raw))return [];try{return [{url:new URL(raw,url).href,alt:alt.slice(0,250),pageUrl:url,score:(Number(node.attr('width'))>=500?3:0)+(alt.length>15?2:0),role:/product|coffee|shoe|bottle|roast|bag|shop/i.test(alt+' '+raw)?'product':'editorial'}];}catch{return [];}});
  const og=$('meta[property="og:image"]').attr('content');if(og&&!images.some(i=>i.url===og))try{images.push({url:new URL(og,url).href,alt:title,pageUrl:url,score:1,role:'website cover'});}catch{}
@@ -21,7 +21,7 @@ function inspectHtml(url:string,html:string){
  const blocks=$('h1,h2,h3,p,li').toArray().map(el=>({kind:el.tagName,text:$(el).text().replace(/\s+/g,' ').trim()})).filter(b=>b.text.length>12&&b.text.length<1800).filter((b,i,a)=>a.findIndex(x=>x.text===b.text)===i).slice(0,100);
  const description=$('meta[name="description"]').attr('content');if(description)blocks.unshift({kind:'description',text:description});
  if(blocks.map(b=>b.text).join(' ').length<100)blocks.push({kind:'body',text:$('body').text().replace(/\s+/g,' ').trim().slice(0,16000)});
- return {language,bodyClasses,page:{url,title,retrievedAt:Date.now(),blocks} satisfies SourcePage,styles,inline,logo,links,images};
+ return {language,bodyClasses,primaryHeadingClasses,page:{url,title,retrievedAt:Date.now(),blocks} satisfies SourcePage,styles,inline,logo,links,images};
 }
 export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(),handler:async(ctx,{packId})=>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(!pack)throw new Error('Pack no longer exists.');
@@ -34,7 +34,7 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  const sheets=await Promise.allSettled(home.styles.map(u=>publicWebsite(u,'text/css')));let css=home.inline+'\n'+sheets.flatMap(s=>s.status==='fulfilled'?[s.value.html]:[]).join('\n');
  const scoped=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>home.bodyClasses.some(c=>m[1].split(',').some(selector=>selector.trim()==='.'+c||selector.trim()==='body.'+c))).map(m=>m[2]).join(';');if(scoped)css=':root{'+scoped+'}\n'+css;
  for(const [i,sheet]of sheets.entries()){if(sheet.status!=='fulfilled')continue;for(const match of sheet.value.html.matchAll(/url\([\"']?([^\"')]+\.(?:jpg|jpeg|png|webp)(?:\?[^\"')]*)?)[\"']?\)/gi)){try{home.images.push({url:new URL(match[1],home.styles[i]).href,alt:'Source background image for '+home.page.title,pageUrl:home.page.url,score:1,role:'website background'});}catch{}}}
- const palette=extractPalette(css),style=extractStyle(css);
+ const palette=extractPalette(css),style=extractStyle(css,home.primaryHeadingClasses);
  let fontName:string|undefined,fontRegular,fontSemibold;
  const openFonts=['Inter','DM Sans','Roboto','Montserrat','Poppins','Manrope','Lato','Open Sans','Work Sans','Nunito','Oswald','Bebas Neue','Space Grotesk','Playfair Display','Libre Baskerville'];
  fontName=openFonts.find(name=>style.sourceFont.split(',')[0].toLowerCase()===name.toLowerCase())??openFonts.find(name=>(style.bodyFont??'').split(',')[0].toLowerCase()===name.toLowerCase());

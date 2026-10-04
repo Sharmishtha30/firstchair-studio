@@ -111,3 +111,5 @@ test('a complete sentence may end with a preposition',()=>{const posts=structure
 import {load} from 'cheerio';
 import {primaryLogo} from '../convex/websiteIdentity';
 test('partner logos cannot become the business logo',()=>{assert.equal(primaryLogo(load('<header><a href="/">Our brand</a></header><main><img src="/logos/partner.svg" alt="Partner"/></main>'),'https://example.com'),undefined);assert.equal(primaryLogo(load('<nav><a href="/"><img src="/logo.png" alt="Our business"/></a></nav><img src="/logos/partner.svg"/>'),'https://example.com'),'https://example.com/logo.png');});
+
+test('actual hero heading classes take priority over generic heading resets',()=>{assert.equal(extractStyle('h1{font-family:DM Sans,sans-serif}.banner__heading{font-family:Revans-Bold,DM Sans,sans-serif}',['banner__heading']).sourceFont,'Revans-Bold,DM Sans,sans-serif');});

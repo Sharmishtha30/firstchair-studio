@@ -1,9 +1,10 @@
 export type BrandStyle={headline:'serif'|'sans';weight:number;sourceFont:string;note:string;bodyFont?:string;fontName?:string;regularUrl?:string;semiboldUrl?:string};
-export function extractStyle(css:string):BrandStyle{
+export function extractStyle(css:string,headingClasses:string[]=[]):BrandStyle{
  const vars=new Map<string,string>();for(const m of css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+)/g))if(!vars.has(m[1]))vars.set(m[1],m[2].trim());
  const resolve=(input:string)=>{let source=input;for(let n=0;n<8;n++){const ref=source.match(/var\((--[\w-]+)[^)]*\)/);if(!ref)break;source=source.replace(ref[0],vars.get(ref[1])??'');}source=source.replace(/["']/g,'').replace(/!important/g,'').trim();return /^(inherit|initial|unset|var\()/.test(source)?'':source;};
  const rules=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].flatMap(m=>{const family=m[2].match(/font-family\s*:\s*([^;}]+)/i)?.[1];return family?[{selector:m[1].trim(),family:resolve(family)}]:[];}).filter(r=>r.family&&!r.selector.includes('@font-face'));
- const headingRule=[...rules].reverse().find(r=>/(?:^|,|\s)(?:h1|\.headline|\.heading)(?=[\s,.:#\[]|$)/i.test(r.selector))??[...rules].reverse().find(r=>/(?:^|,|\s)h2(?=[\s,.:#\[]|$)/i.test(r.selector));
+ const classRule=[...rules].reverse().find(r=>headingClasses.some(c=>(r.selector.match(/\.[\w-]+/g)??[]).some(token=>token==='.'+c)));
+ const headingRule=classRule??[...rules].reverse().find(r=>/(?:^|,|\s)(?:h1|\.headline|\.heading)(?=[\s,.:#\[]|$)/i.test(r.selector))??[...rules].reverse().find(r=>/(?:^|,|\s)h2(?=[\s,.:#\[]|$)/i.test(r.selector));
  const source=headingRule?.family||resolve(vars.get('--font-display')??vars.get('--font-serif')??vars.get('--font-family-heading')??vars.get('--font-heading-family')??'')||[...rules].reverse().find(r=>r.selector.split(',').some(s=>s.trim()==='body'))?.family||'';
  const body=resolve(vars.get('--font-body-family')??vars.get('--font-family-body')??vars.get('--font-sans')??'')||[...rules].reverse().find(r=>r.selector.split(',').some(s=>s.trim()==='body'))?.family||'';
  const serif=/georgia|times|garamond|baskerville|revans|playfair|dm serif|libre baskerville|\bserif\b/i.test(source)&&(!/sans-serif/i.test(source)||/revans|playfair|baskerville/i.test(source));
