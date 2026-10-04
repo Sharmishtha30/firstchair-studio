@@ -1,0 +1,5 @@
+PASS: Local Convex rejects browser mismatch, expired callbacks and callback replay.
+PASS: Browser-bound ticket creates a verified Convex session and cannot be reused.
+PASS: Disconnect removes fixture credentials and sign-out returns to sample mode.
+PASS: HTTP sign-in redirects to the official OpenAI flow; forged callback returns a safe failure.
+NOT TESTED: Real OpenAI account consent, plan allowance, live story generation or token refresh. These need the owner's sign-in.

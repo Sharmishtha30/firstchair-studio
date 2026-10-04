@@ -18,10 +18,13 @@
   "type": "module",
   "dependencies": {
     "@ai-sdk/openai": "^4.0.83",
+    "@auth/core": "^0.41.3",
     "@convex-dev/agent": "^0.7.3",
+    "@convex-dev/auth": "^0.0.96",
     "@convex-dev/static-hosting": "^0.2.1",
     "ai": "^7.0.127",
     "convex": "^1.46.0",
+    "jose": "^6.2.12",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "zod": "^4.6.5"

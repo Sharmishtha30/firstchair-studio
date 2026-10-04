@@ -8,6 +8,7 @@ export const save = internalMutation({
     brand: v.string(),
     reels: v.array(reelV),
     mode: modeV,
+    userId: v.optional(v.id("users")),
   },
   returns: v.null(),
   handler: async (ctx, args) => {
@@ -27,6 +28,7 @@ export const get = internalQuery({
       brand: v.string(),
       reels: v.array(reelV),
       mode: modeV,
+      userId: v.optional(v.id("users")),
     }),
   ),
   handler: async (ctx, { token }) =>

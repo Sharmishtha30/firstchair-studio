@@ -123,7 +123,7 @@ export function sampleReels(quotes: string[]): Reel[] {
   )
     return demoStories(quotes);
   throw new Error(
-    "Sample mode cannot analyze this transcript. Add OPENAI_API_KEY to the active local Convex backend, or use the sample transcript to see example stories.",
+    "Sample mode cannot analyze this transcript. Continue with ChatGPT, or use the sample transcript to see example stories.",
   );
 }
 

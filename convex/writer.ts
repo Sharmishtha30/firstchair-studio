@@ -3,8 +3,10 @@ import type { ActionCtx } from "./_generated/server";
 import { internal, components } from "./_generated/api";
 import { v, ConvexError } from "convex/values";
 import { Agent } from "@convex-dev/agent";
-import { openai } from "@ai-sdk/openai";
+import { planModel } from "./chatgptModel";
 import { z } from "zod";
+import { credentialsFor } from "./chatgpt";
+import { getAuthUserId } from "@convex-dev/auth/server";
 import {
   customerQuotes,
   sampleReels,
@@ -52,13 +54,15 @@ async function write(
   feedback?: string,
   previous?: Reel,
 ): Promise<Reel[]> {
+  const credentials = await credentialsFor(ctx);
+  const model = planModel(credentials);
   const analyst = new Agent(components.agent, {
     name: "Customer insight analyst",
-    languageModel: openai("gpt-4.1-mini"),
+    languageModel: model,
     instructions: analysisInstructions,
   });
   const { threadId: analysisThreadId } = await analyst.createThread(ctx);
-  const analysis = await analyst.generateObject(
+  const analysisStream = await analyst.streamObject(
     ctx,
     { threadId: analysisThreadId },
     {
@@ -73,9 +77,13 @@ async function write(
           : ["pain", "emotion", "takeaway"],
         feedback,
       }),
-      maxRetries: 1,
+      maxRetries: 0,
+      providerOptions: {
+        openai: { store: false, systemMessageMode: "developer" },
+      },
     },
   );
+  const analysis = { object: await analysisStream.object };
   if (!analysis.object.hasSubstantiveInsight)
     throw new Error(
       "The writer found no substantive customer insight. Add statements about a real problem, feeling, consequence or experience.",
@@ -83,11 +91,11 @@ async function write(
   validateInsights(analysis.object.insights, quotes, previous ? 1 : 3);
   const agent = new Agent(components.agent, {
     name: "Customer story strategist",
-    languageModel: openai("gpt-4.1-mini"),
+    languageModel: model,
     instructions: storyInstructions,
   });
   const { threadId: writingThreadId } = await agent.createThread(ctx);
-  const result = await agent.generateObject(
+  const resultStream = await agent.streamObject(
     ctx,
     { threadId: writingThreadId },
     {
@@ -100,9 +108,13 @@ async function write(
         previous,
         count: previous ? 1 : 3,
       }),
-      maxRetries: 1,
+      maxRetries: 0,
+      providerOptions: {
+        openai: { store: false, systemMessageMode: "developer" },
+      },
     },
   );
+  const result = { object: await resultStream.object };
   const reels = validateReels(result.object.reels, quotes, previous ? 1 : 3);
   for (const reel of reels) {
     const picked = analysis.object.insights.find(
@@ -139,11 +151,11 @@ async function write(
   ]);
   const reviewer = new Agent(components.agent, {
     name: "Customer story fact checker",
-    languageModel: openai("gpt-4.1-mini"),
+    languageModel: model,
     instructions: reviewInstructions,
   });
   const { threadId: reviewThreadId } = await reviewer.createThread(ctx);
-  const review = await reviewer.generateObject(
+  const reviewStream = await reviewer.streamObject(
     ctx,
     { threadId: reviewThreadId },
     {
@@ -157,9 +169,13 @@ async function write(
         ),
       }),
       prompt: JSON.stringify({ items }),
-      maxRetries: 1,
+      maxRetries: 0,
+      providerOptions: {
+        openai: { store: false, systemMessageMode: "developer" },
+      },
     },
   );
+  const review = { object: await reviewStream.object };
   requireSupported(items, review.object.checks);
   return reels;
 }
@@ -168,18 +184,10 @@ function length(value: string, min: number, max: number, label: string) {
     throw new Error(`${label} must be between ${min} and ${max} characters.`);
 }
 function fail(error: unknown): never {
+  if (error instanceof ConvexError) throw error;
   const message = error instanceof Error ? error.message : "";
-  console.error(
-    "Writer failure",
-    JSON.stringify({
-      name: error instanceof Error ? error.name : "Unknown",
-      message: message
-        .replace(/sk-[A-Za-z0-9_-]+/g, "[redacted]")
-        .slice(0, 700),
-    }),
-  );
   if (
-    /Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index/.test(
+    /Add at least|Sample mode|must be between|writer|supporting|session|script changed|Feedback|index|ChatGPT/.test(
       message,
     )
   )
@@ -189,7 +197,13 @@ function fail(error: unknown): never {
 export const status = action({
   args: {},
   returns: modeV,
-  handler: async () => (process.env.OPENAI_API_KEY ? "ai" : "sample"),
+  handler: async (ctx): Promise<"ai" | "sample"> => {
+    const userId = await getAuthUserId(ctx);
+    const connection = userId
+      ? await ctx.runQuery(internal.chatgptStore.get, { userId })
+      : null;
+    return connection?.encrypted ? "ai" : "sample";
+  },
 });
 export const generate = action({
   args: { transcript: v.string(), brand: v.string() },
@@ -199,9 +213,8 @@ export const generate = action({
       length(args.transcript, 30, 30000, "Transcript");
       length(args.brand, 3, 1200, "Brand note");
       const quotes = customerQuotes(args.transcript);
-      const mode = process.env.OPENAI_API_KEY
-        ? ("ai" as const)
-        : ("sample" as const);
+      const userId = await getAuthUserId(ctx);
+      const mode = userId ? ("ai" as const) : ("sample" as const);
       const reels = validateReels(
         mode === "ai"
           ? await write(ctx, quotes, args.brand)
@@ -211,6 +224,7 @@ export const generate = action({
       const token = crypto.randomUUID();
       await ctx.runMutation(internal.runs.save, {
         ...args,
+        ...(userId ? { userId } : {}),
         token,
         reels,
         mode,
@@ -233,8 +247,13 @@ export const revise = action({
       if (!run) throw new Error("This session is unavailable. Generate again.");
       const quotes = customerQuotes(run.transcript);
       const previous = run.reels[args.index];
-      if (run.mode === "ai" && !process.env.OPENAI_API_KEY)
-        throw new Error("The AI key is no longer configured.");
+      if (
+        run.mode === "ai" &&
+        (!run.userId || run.userId !== (await getAuthUserId(ctx)))
+      )
+        throw new Error(
+          "This session is unavailable. Continue with ChatGPT and generate again.",
+        );
       const reel =
         run.mode === "sample"
           ? sampleRevision(previous, args.feedback, quotes)

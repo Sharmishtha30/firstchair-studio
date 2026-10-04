@@ -8,8 +8,14 @@
  * @module
  */
 
+import type * as auth from "../auth.js";
+import type * as chatgpt from "../chatgpt.js";
+import type * as chatgptModel from "../chatgptModel.js";
+import type * as chatgptSecurity from "../chatgptSecurity.js";
+import type * as chatgptStore from "../chatgptStore.js";
 import type * as content from "../content.js";
 import type * as demoStories from "../demoStories.js";
+import type * as http from "../http.js";
 import type * as runs from "../runs.js";
 import type * as story from "../story.js";
 import type * as validators from "../validators.js";
@@ -23,8 +29,14 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  auth: typeof auth;
+  chatgpt: typeof chatgpt;
+  chatgptModel: typeof chatgptModel;
+  chatgptSecurity: typeof chatgptSecurity;
+  chatgptStore: typeof chatgptStore;
   content: typeof content;
   demoStories: typeof demoStories;
+  http: typeof http;
   runs: typeof runs;
   story: typeof story;
   validators: typeof validators;

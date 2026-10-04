@@ -1,0 +1,11 @@
+import { httpRouter } from "convex/server";
+import { auth } from "./auth";
+import { start, callback } from "./chatgpt";
+import { registerStaticRoutes } from "@convex-dev/static-hosting";
+import { components } from "./_generated/api";
+const http = httpRouter();
+auth.addHttpRoutes(http);
+http.route({ path: "/chatgpt/start", method: "GET", handler: start });
+http.route({ path: "/chatgpt/callback", method: "GET", handler: callback });
+registerStaticRoutes(http, components.staticHosting);
+export default http;
