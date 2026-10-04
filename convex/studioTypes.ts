@@ -1,19 +1,20 @@
 import { v } from "convex/values";
+export const styleV=v.object({headline:v.union(v.literal('serif'),v.literal('sans')),weight:v.number(),sourceFont:v.string(),note:v.string(),logoUrl:v.optional(v.string())});
 export const frameV = v.object({ heading: v.string(), body: v.string() });
 export const postV = v.object({
   format: v.union(v.literal("carousel"), v.literal("static"), v.literal("reel")),
   hook: v.string(), pain: v.string(), emotion: v.string(),
   frames: v.array(frameV), caption: v.string(), altText: v.string(),
-  sourceFacts: v.array(v.string()),
+  sourceFacts: v.array(v.string()),layout:v.optional(v.union(v.literal("headline"),v.literal("comparison"),v.literal("note"))),
 });
 export const paletteV=v.object({paper:v.string(),ink:v.string(),primary:v.string(),accent:v.string(),note:v.string()});
 export const artworkV=v.object({sceneUrl:v.optional(v.string()),presenterUrl:v.optional(v.string()),note:v.string()});
-export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV),artwork:v.optional(artworkV) });
+export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV),artwork:v.optional(artworkV),style:v.optional(styleV) });
 export type Frame = {heading:string; body:string};
-export type Post = {format:"carousel"|"static"|"reel"; hook:string; pain:string; emotion:string; frames:Frame[]; caption:string; altText:string; sourceFacts:string[]};
-export type Brand = {name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;artwork?:{sceneUrl?:string;presenterUrl?:string;note:string};palette?:import('./brandPalette').Palette};
-export function checkPosts(posts:Post[], facts:string[]) {
-  if(posts.length!==3 || new Set(posts.map(p=>p.format)).size!==3) throw new Error("The writer must finish all three formats.");
+export type Post = {format:"carousel"|"static"|"reel"; hook:string; pain:string; emotion:string; frames:Frame[]; caption:string; altText:string; sourceFacts:string[];layout?:"headline"|"comparison"|"note"};
+export type Brand = {name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;style?:import('./brandStyle').BrandStyle & {logoUrl?:string};artwork?:{sceneUrl?:string;presenterUrl?:string;note:string};palette?:import('./brandPalette').Palette};
+export function checkPosts(posts:Post[], facts:string[],count=3) {
+  if(posts.length!==count || new Set(posts.map(p=>p.format)).size!==count || count===2&&posts.some(p=>p.format==='reel')) throw new Error("The writer must finish each requested format exactly once.");
   for(const p of posts) {
     if(/^(hi|hello|welcome|hey)\b/i.test(p.hook.trim()))throw new Error('The hook is a greeting, not an audience insight.');
     if(p.frames.some(f=>!f.body.trim()||/\b(puts|provides|offers|gives|with|and|or|to|the|a|an|your|because|at|for|from|in|on|of)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
@@ -34,7 +35,7 @@ export function checkPosts(posts:Post[], facts:string[]) {
 export const adV=v.object({id:v.string(),pageName:v.string(),body:v.string(),snapshotUrl:v.string()});
 export const packFields={
  token:v.string(),userId:v.optional(v.id('users')),url:v.string(),stage:v.string(),operationStartedAt:v.optional(v.number()),createdAt:v.number(),updatedAt:v.number(),
- brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),
+ brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),siteStyle:v.optional(styleV),logoFile:v.optional(v.id('_storage')),
  feedback:v.optional(v.string()),revisionFormat:v.optional(v.union(v.literal('carousel'),v.literal('static'),v.literal('reel'))),
  videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoTask:v.optional(v.string()),videoFile:v.optional(v.id('_storage')),
  imageStatus:v.optional(v.string()),imageError:v.optional(v.string()),imageStartedAt:v.optional(v.number()),sceneFile:v.optional(v.id('_storage')),presenterFile:v.optional(v.id('_storage')),
