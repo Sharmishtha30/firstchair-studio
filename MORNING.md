@@ -38,7 +38,7 @@ The latest saved Founders Find pack is linked in `verification/latest-pack-url.t
 - `verification/contact-sheet-final.png`: all six exported PNGs inspected for readable complete copy and overlap.
 - `verification/video-proof.json`: actual MP4 has H.264 video at 1080 × 1920, AAC stereo music at 48 kHz, approximately 25 seconds.
 
-These checks used the existing approved ChatGPT connection. They do not re-prove the external consent screen, live Seedance generation or Meta access. The most recent small sample-banner and routing refinements have type checks; their final browser replay is still pending.
+These checks used the existing approved ChatGPT connection. They do not re-prove the external consent screen, live Seedance generation or Meta access. The latest sample banner, transcript route, saved-pack reload, desktop/mobile views and ZIP/MP4 downloads also passed browser checks (`verification/ui-final-check.txt` and `verification/browser-final-studio.txt`).
 
 ## Full sample transcript test output
 

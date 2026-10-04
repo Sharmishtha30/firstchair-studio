@@ -1,0 +1,2 @@
+PASS guest output prominently labels sample mode
+PASS original transcript route remains available
