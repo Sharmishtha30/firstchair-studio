@@ -43,11 +43,11 @@ test('brand palette resolves only safe default CSS colors and handles cycles',()
  assert.equal(extractPalette(':root{--primary:url(https://bad.example)}'),undefined);
 });
 
-import {generateImage,imageRequest,imageEndpoint} from '../convex/seedreamClient';
+import {generateImage,imageRequest,imageEndpoint,imageInfo} from '../convex/seedreamClient';
 import {readFileSync} from 'node:fs';
 test('image briefs adapt to the actual offer and never request fake testimonials or written logos',()=>{
  const brand={...foundersBrand,audience:'parents shopping for children',offer:'durable outdoor play clothing'};
- const request=imageRequest(brand,foundersPosts,'scene');assert.equal(request.model,'seedream-4-5-251128');assert.equal(request.response_format,'b64_json');assert.equal(request.sequential_image_generation,'disabled');
+ const request=imageRequest(brand,foundersPosts,'scene');assert.equal(request.model,'seedream-4-5-251128');assert.equal(request.response_format,'b64_json');assert.equal(request.sequential_image_generation,'disabled');assert.equal('output_format' in request,false);
  assert.ok(request.prompt.includes(brand.offer));assert.match(request.prompt,/do not default to an office/);assert.match(request.prompt,/not a real customer or product photograph/);assert.match(request.prompt,/Never: logos/);
  assert.match(imageRequest(brand,foundersPosts,'presenter').prompt,/Head and face in the upper half/);
 });
@@ -59,5 +59,12 @@ test('image client retains real PNG bytes, rejects empty output and keeps provid
  });assert.deepEqual(Buffer.from(result),png);
  await assert.rejects(generateImage('private-image-key',{},async()=>new Response('private-image-key',{status:401})),e=>e instanceof Error&&!e.message.includes('private-image-key'));
  await assert.rejects(generateImage('test',{},async()=>Response.json({data:[]})),/no usable image/);
- await assert.rejects(generateImage('test',{},async()=>Response.json({data:[{b64_json:Buffer.from('not a png'.repeat(20)).toString('base64')}]})),/requested PNG/);
+ await assert.rejects(generateImage('test',{},async()=>Response.json({data:[{b64_json:Buffer.from('not a png'.repeat(20)).toString('base64')}]})),/unsupported or incomplete/);
+});
+
+test('Seedream 4.5 JPEG output is accepted with its real dimensions and truncated files are rejected',async()=>{
+ const jpeg=readFileSync('tests/fixtures/seedream-image.jpg');const info=imageInfo(jpeg);
+ assert.equal(info.mime,'image/jpeg');assert.ok(info.width>=512&&info.height>=512);
+ assert.deepEqual(Buffer.from(await generateImage('test',{},async()=>Response.json({data:[{b64_json:jpeg.toString('base64')}]}))),jpeg);
+ assert.throws(()=>imageInfo(jpeg.subarray(0,100)),/unsupported or incomplete/);
 });
