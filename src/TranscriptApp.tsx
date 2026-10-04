@@ -10,7 +10,7 @@ import {
   needsCustomerSpeaker,
   type Reel,
 } from "../convex/content";
-import "./style.css";
+import "./transcript.css";
 import { waitForWriter, WriterWaitError } from "./writerWait";
 const url = import.meta.env.VITE_CONVEX_URL;
 function errorMessage(e: unknown) {
@@ -19,7 +19,7 @@ function errorMessage(e: unknown) {
     ? String(e.data)
     : "Could not reach the writer. Make sure npm run dev is running, then try again.";
 }
-export function TranscriptApp() {
+function TranscriptEditor() {
   const { signIn, signOut } = useAuthActions();
   const { isAuthenticated, isLoading } = useConvexAuth();
   const disconnect = useAction(api.chatgpt.disconnect);
@@ -29,7 +29,7 @@ export function TranscriptApp() {
   const generate = useAction(api.writer.generate),
     revise = useAction(api.writer.revise),
     status = useAction(api.writer.status);
-  const [open, setOpen] = useState(location.hash === "#studio"),
+  const [open, setOpen] = useState(true),
     [transcript, setTranscript] = useState(""),
     [brand, setBrand] = useState("");
   const [customerSpeaker, setCustomerSpeaker] = useState("");
@@ -69,7 +69,7 @@ export function TranscriptApp() {
     void checkConnection();
     const interval = window.setInterval(() => void checkConnection(), 15000);
     const focus = () => void checkConnection();
-    const listener = () => setOpen(location.hash === "#studio");
+    const listener = () => setOpen(location.hash === "#studio" || location.hash === "#transcript");
     window.addEventListener("focus", focus);
     window.addEventListener("hashchange", listener);
     return () => {
@@ -565,3 +565,5 @@ export function TranscriptApp() {
     </>
   );
 }
+
+export function TranscriptApp(){return <div className="transcript-root"><TranscriptEditor/></div>;}

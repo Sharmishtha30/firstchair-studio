@@ -9,3 +9,7 @@ Composition: portrait crops with negative space above or beside the subject for 
 Never: generated logos, fake UI, invented charts, testimonials, salary promises, six-finger hands, glossy corporate handshakes, neon gradients, cartoon robots, generic floating icons.
 
 Studio interface: a light editorial production desk, one URL entry, visible stages, three format tabs, large artwork previews. Content: a short hook, concrete value, one relevant action. Emotional tension must come from an identified audience problem; no shame, false urgency or guaranteed results.
+
+## Brand palette verification
+
+A later full stylesheet inspection found Founders Find’s default primary #ff307e, ink #0f0f12, paper #ffffff and accent #f5c518, and Inter font files. Exported content now uses those observed brand colors and fonts. The studio interface retains its own forest/paper production-desk palette. The original photographic subjects remain neutral workplace imagery; they are not an official brand campaign or testimonials.

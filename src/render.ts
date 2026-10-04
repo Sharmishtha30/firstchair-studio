@@ -1,10 +1,12 @@
 import { zipSync, strToU8 } from 'fflate';
+import {foundersPalette} from '../convex/brandPalette';
 import type { Brand, Post, Frame } from '../convex/studioTypes';
 const ink='#192820',paper='#F5F1E8',green='#254B36',gold='#D8B45A';
+function contrast(a:string,b:string){const lum=(hex:string)=>{const rgb=hex.replace('#','').match(/../g)!.slice(0,3).map(s=>parseInt(s,16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2];};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
 let portraits:Promise<HTMLImageElement[]>|undefined;
 function images(){return portraits??=Promise.all(['career-decision','fictional-presenter'].map(name=>new Promise<HTMLImageElement>((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=`/images/${name}.webp`;})));}
-function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=ink){
- ctx.font=`${weight} ${size}px Arial, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';
+function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=(ctx.canvas as HTMLCanvasElement).dataset.ink??ink){
+ ctx.font=`${weight} ${size}px ${(ctx.canvas as HTMLCanvasElement).dataset.font??'Arial'}, sans-serif`;ctx.fillStyle=color;ctx.textBaseline='top';
  for(const paragraph of text.split('\n')){
   let row='';for(const word of paragraph.split(/\s+/)){const next=row?row+' '+word:word;if(row&&ctx.measureText(next).width>width){ctx.fillText(row,x,y);y+=line;row=word;}else row=next;}ctx.fillText(row,x,y);y+=line;
  }
@@ -12,7 +14,12 @@ function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,widt
 }
 function cover(ctx:CanvasRenderingContext2D,image:HTMLImageElement,x:number,y:number,w:number,h:number,zoom=1){const scale=Math.max(w/image.width,h/image.height)*zoom;ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(image,x+(w-image.width*scale)/2,y+(h-image.height*scale)/2,image.width*scale,image.height*scale);ctx.restore();}
 export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,canvas?:HTMLCanvasElement){
- const pics=await images();const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
+ const isFounders=new URL(brand.sourceUrl).hostname.replace(/^www\./,'')==='foundersfind.club';
+ const palette=brand.palette??(isFounders?foundersPalette:{paper:'#ffffff',ink:'#101010',primary:'#192820',accent:'#d8b45a',note:'Neutral editorial template; site colors were not readable.'});
+ const {ink,paper,primary:green,accent:gold}=palette;
+ const onPrimary=contrast(paper,green)>=4.5?paper:ink;
+ if(isFounders)await Promise.all([400,600,700].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));
+ const pics=await images();const c=canvas??document.createElement('canvas');c.width=1080;c.height=post.format==='reel'?1920:1350;c.dataset.ink=ink;c.dataset.font=isFounders?'"Brand Inter"':'Arial';const ctx=c.getContext('2d')!;const h=c.height;const frame=post.frames[index];
  ctx.fillStyle=paper;ctx.fillRect(0,0,1080,h);
  ctx.fillStyle=green;ctx.fillRect(64,60,34,8);
  wrapped(ctx,brand.name.toUpperCase(),116,48,750,25,32,700);
@@ -25,7 +32,7 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
   let y=wrapped(ctx,frame.heading,76,185,930,80,89,700);
   wrapped(ctx,frame.body,80,y+48,890,43,57,400);
   ctx.fillStyle=green;ctx.fillRect(0,1710,1080,210);
-  wrapped(ctx,brand.name+'  ·  '+new URL(brand.sourceUrl).hostname,80,1740,920,28,38,600,paper);
+  wrapped(ctx,brand.name+'  ·  '+new URL(brand.sourceUrl).hostname,80,1740,920,28,38,600,onPrimary);
   ctx.fillStyle=gold;ctx.fillRect(80,1810,920*((index+progress)/post.frames.length),5);
  }else if(isHero){
   const y=wrapped(ctx,frame.heading,76,165,930,85,96,700);
@@ -38,27 +45,26 @@ export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,ca
    cover(ctx,pics[0],0,photoTop,1080,1250-photoTop);
   }
  }else{
-  wrapped(ctx,['THE SHIFT','YOUR PRACTICE ROUND','MAKE IT VISIBLE','YOUR NEXT MOVE'][Math.min(index-1,3)],80,170,900,25,34,700,green);
   const y=wrapped(ctx,frame.heading,76,270,900,80,92,700);
   wrapped(ctx,frame.body,80,y+65,890,48,65,400);
   ctx.fillStyle=gold;ctx.beginPath();ctx.arc(930,1110,45,0,Math.PI*2);ctx.fill();
   wrapped(ctx,'→',901,1076,100,60,70,400);
  }
  ctx.fillStyle=green;ctx.fillRect(0,h-100,1080,100);
- wrapped(ctx,new URL(brand.sourceUrl).hostname,80,h-65,830,26,35,600,paper);
- if(post.format==='carousel'&&index<post.frames.length-1)wrapped(ctx,'SWIPE →',840,h-65,180,24,35,600,paper);
+ wrapped(ctx,new URL(brand.sourceUrl).hostname,80,h-65,830,26,35,600,onPrimary);
+ if(post.format==='carousel'&&index<post.frames.length-1)wrapped(ctx,'SWIPE →',840,h-65,180,24,35,600,onPrimary);
  return c;
 }
 export async function frameBlob(post:Post,brand:Brand,index:number){const c=await drawFrame(post,brand,index);return new Promise<Blob>((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('Artwork export failed.')),'image/png'));}
 export function download(blob:Blob,name:string){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);}
-export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string)=>void){
+export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string)=>void,ads:{pageName:string;snapshotUrl:string;body:string}[]=[]){
  const files:Record<string,Uint8Array>={};
  for(const p of posts.filter(p=>p.format!=='reel'))for(let i=0;i<p.frames.length;i++){
   onProgress(`Rendering ${p.format} ${i+1} of ${p.frames.length}`);
   files[`${p.format}/${String(i+1).padStart(2,'0')}.png`]=new Uint8Array(await (await frameBlob(p,brand,i)).arrayBuffer());
  }
  files['captions.txt']=strToU8(posts.map(p=>`${p.format.toUpperCase()}\n\n${p.caption}\n\nALT TEXT\n${p.altText}`).join('\n\n----------\n\n'));
- files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. Imagery depicts fictional AI-created people. No ad-library records were imported. Reel video is downloaded separately.`);
+ files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\nBrand voice and audience emotions are inferred. Imagery depicts fictional AI-created people. ${ads.length?'Imported ad sources (structural inspiration only, no performance claims):\n'+ads.map(a=>a.pageName+' — '+a.snapshotUrl).join('\n'):'No ad-library records were imported.'} Reel video is downloaded separately.`);
  download(new Blob([zipSync(files) as BlobPart],{type:'application/zip'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-instagram.zip`);
 }
 export async function exportReel(post:Post,brand:Brand,onProgress:(s:string)=>void){
