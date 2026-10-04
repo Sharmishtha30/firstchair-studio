@@ -1,0 +1,3 @@
+PASS five actual rendered PDF pages: founders
+PASS five actual rendered PDF pages: coffee
+PASS five actual rendered PDF pages: maid

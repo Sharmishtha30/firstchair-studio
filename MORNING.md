@@ -1,45 +1,48 @@
-# Morning handoff — any website to carousel and static
+# Morning handoff — website to finished social creatives
 
 ## What works
 
-- Enter a readable public website. The connected writer creates one five-slide carousel and one static, each with a short hook, useful content, a source-supported call to action and caption.
-- The website flow contains only Carousel and Static. No reels, talking avatars, generated faces or paid image requests.
-- Each website supplies its own offer and audience, observed colours, heading font family and accessible logo. The layouts are reusable headline, comparison and note compositions inspired by the supplied static-ad board.
-- Download six 1080 × 1350 PNGs with captions and sources in a ZIP. Type feedback to change one piece; the other stays unchanged.
-- Missing logos use the brand name as text. Proprietary website fonts are substituted with bundled Inter or Georgia, and this is explained in the app. Missing colours use a clearly explained neutral palette. Website colours are inferred from public CSS, not a formal brand guide.
-- Founder’s Find, Basecamp and Death Wish Coffee have passed real Chromium generation, download, reload and desktop/mobile checks. Founder’s Find also passed one-post feedback and preservation of the carousel. Every brand’s six images were visually inspected; a missing small footer found during inspection was corrected and re-exported.
-- Nothing was deployed or pushed. Changes are saved in small local commits.
+Enter a readable English business website, choose Instagram, LinkedIn or both, and receive a five-slide carousel plus a distinct static for each selected platform. Both platforms give four rendered previews and twelve 1080 × 1350 PNGs; LinkedIn also gets a five-page PDF. Each post includes a caption, destination, suggested alt text and manual posting instructions.
+
+The app reads the homepage and up to four relevant same-site pages. It saves the actual page evidence, plans three content angles with short alternative hooks, selects two ideas, then checks copy against the sources. The connected ChatGPT writer uses your existing allowance. This scope makes no paid image or video requests.
+
+Creatives use website colours, declared heading/body font character, the primary logo when readable, and relevant real website photographs. There are seven purposeful layout families: editorial, comparison, checklist, process, insight spotlight, source image and closing. Cover graphics reuse meaningful comparison labels from the story. No generated faces, invented testimonials or fake charts. Partner logos are excluded from brand-logo selection.
+
+Source fonts that can be imported from the supported open-source list are loaded from Convex storage. Proprietary or unreadable fonts use explicitly named Inter/Georgia substitutes; this is not exact proprietary font reproduction. CSS declarations are labelled as evidence, not proof of the live site's full rendered design.
+
+You can edit one post's words or image, type feedback for one platform/format, correct brand details across every preview, upload a logo/photo and restore the previous version. Saved source and completed drafts survive a failed model review; retries reuse that work. Website-reading errors offer pasted business-text recovery, labelled as provided input. Long copy blocks downloads instead of being cut off or silently shrunk below the reading-size floor.
+
+Nothing was deployed or pushed. Work is saved in small local commits. The source inspiration board remains at `design/inspiration-library/assets/static-ads-board.png`; only broad compositions are used because its small copy is unreadable. No live Meta ads were imported.
 
 ## Open it on your laptop
 
 1. Open Terminal and enter `cd /Users/sam/build-sprint-app`.
-2. Enter `npm run dev` and leave it running. If it is already running, use that window.
+2. Enter `npm run dev` and leave that window running. If it is already running, keep it open.
 3. Open http://localhost:5173 in Chrome.
-4. Use the existing connected ChatGPT writer and enter a website. No additional image/video API key is needed for this scope.
+4. Use the existing connected ChatGPT writer, enter a website and click Create posts.
 
-Guest Founder’s Find output is labelled sample mode. Other websites require a connected writer; they do not silently receive fake content. The local tests used an already approved ChatGPT connection and do not retest the external consent screen.
+No additional API key is needed for the current connected-plan carousel/static flow. The labelled guest Founder’s Find sample is a curated sample, not a new live generation. Other sites require a connected writer.
+
+## What was actually checked
+
+- Forty-two rule tests pass; both frontend and Convex type checks pass; production build passes. The build emits bundle-size and existing auth-library directive warnings, but finishes successfully.
+- Real Chromium generation/export checks passed on Founder’s Find, Death Wish Coffee and Maid2Clean. Each full pack has twelve correctly sized PNGs, a five-page LinkedIn PDF, captions, alt text and destinations. Reload, 390px phone layout and absence of browser errors passed. Signed-out access to owned packs is blocked.
+- Founder’s Find feedback revised only its Instagram static, preserving the other three posts exactly.
+- Browser edit checks passed: one-static text edit, unchanged other posts, undo, brand-wide colour correction and undo including saved fonts/logo, single-static ZIP download, and selecting a verified source photograph for the Maid2Clean carousel cover. That benchmark retains this explicit manual image edit; it is not presented as an automatic generation result.
+- Every final PNG and rendered PDF page was inspected in contact sheets. The actual source sites and measured browser fonts/colours are stored alongside the exports. Three tested brands demonstrate the flow, not universal brand fidelity or conversion performance.
+
+The final Founder’s Find re-export is `verification/creative-founders-final.txt`; its feedback proof remains in `creative-founders-flow.txt`. The visual review is `design/brand-quality-review.md`. Full website-test outputs, including complete generated content, are in `verification/creative-founders-flow.txt`, `verification/creative-coffee-flow.txt` and `verification/creative-maid-flow.txt`. Edit-check output is `verification/creative-edits.txt`; unit output is `verification/creative-tests.txt`. Review images are `verification/creative-founders-contact.png`, `verification/creative-coffee-contact.png` and `verification/creative-maid-contact.png`.
 
 ## What could not be finished and why
 
-- Exact proprietary font matching is not implemented: the renderer uses a matching serif/sans family instead of importing arbitrary website font files.
-- The reader cannot guarantee access to every website. Sites that block requests, require sign-in or provide too little readable text produce a clear error. The current reader uses the supplied page, not a full multi-page crawl.
-- Logo import is best effort. Inline SVG logos and some unusual image markup fall back to a text wordmark.
-- Meta ad-library import remains unavailable without approved access; no competitor ads are invented. The supplied board is stored in `design/inspiration-library/assets/static-ads-board.png`; its small individual copy cannot be read reliably. Broad composition patterns are recorded, with no performance claims.
-- Reels, avatars and video-provider access are outside the latest approved scope and are not blockers for carousel/static output.
-- The three tested sites prove the general flow, not perfect design fidelity or conversion performance for every brand.
+- Exact proprietary typography remains unavailable without permitted font files. Death Wish Coffee's Revans/Fenomen and Maid2Clean's custom font aliases receive named substitutions; Founder’s Find's Georgia/Inter can be represented more closely. There is no arbitrary website-font copying.
+- The PDF preserves the PNG artwork exactly; its text is not selectable. This is disclosed in the exported sources and PDF metadata.
+- Extraction cannot guarantee access to every website. Only readable public English business websites are supported; conflicting multi-offer websites need human review. Pasted-text recovery, fresh public-account consent, a different signed-in owner's access, expired connection, and every possible interrupted-run case have not all been browser-tested in this round. Do not treat these as completed launch checks.
+- Source assets are best effort, limited in number and size. Some valid brands still fall back to a text wordmark or diagrams. Uploaded fonts and fully editable vector documents are outside this version.
+- The model checks structured words and source grounding, not rendered pixels. Browser file checks catch fit problems; human review is still needed before calling a new brand's pack ready without editing. No founder acceptance or measured marketing results have been recorded yet.
+- Reels, avatars, generated photography, direct social publishing, ad buying and external integrations are outside the current scope. They require no keys for this build.
 
-## Checks and full output
-
-- `verification/check-agnostic.txt`: frontend and Convex type checks.
-- `verification/tests-agnostic.txt`: 36 automated checks, including two-format rules, font extraction, colour aliases, modern colour formats and default theme preservation.
-- `verification/build-agnostic.txt`: production build.
-- `verification/agnostic-founders.txt`, `verification/agnostic-basecamp.txt`, `verification/agnostic-coffee.txt`: full live output and browser results. Each contains a saved pack URL.
-- `verification/export-agnostic.txt`: corrected exports after the footer fix.
-- `verification/foundersfind-club-contact.png`, `verification/basecamp-com-contact.png`, `verification/www-deathwishcoffee-com-contact.png`: all six images per brand.
-- Matching `*-desktop.png` and `*-mobile.png`: interface screenshots.
-- Matching `*-instagram.zip`: local downloadable files, ignored by Git.
-
-To rerun the real browser flow: `npx tsx tests/website-flow.ts`. For another website: `TEST_WEBSITE=https://basecamp.com/ SKIP_REVISION=1 npx tsx tests/website-flow.ts`. This uses the existing local writer connection.
+Next: review the three benchmark sheets, then try one new business website and judge the actual downloaded creatives.
 
 ## Full sample transcript test output
 
@@ -394,34 +397,3 @@ PASS: Without a ChatGPT connection, a custom call does not return pretend insigh
 PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.
 
 ```
-
-## Avatar export fixture output
-
-```text
-PASS actual browser decodes footage, overlays approved copy, retains source audio and exports MP4
-Fixture uses a still fictional portrait and original music, NOT a live Seedance avatar.
-PASS source audio retained: decoded waveform correlation 1.000000, codec alignment offset 0.00 ms
-Fixture audio is original music; no live Seedance speech is claimed.
-```
-
-## Website-specific image checks
-
-```text
-PASS missing image access is labelled and cannot start a paid request
-PASS real Convex storage image URLs change the real exported PNG {"width":1080,"height":1350,"bytes":548207}
-PASS unreadable image URLs fail explicitly
-```
-
-## Full-scope completion audit
-
-1. **Website analysis and three content formats — verified.** Founders Find and Basecamp passed connected generation in a real browser. The saved pieces have short hooks, audience pain and inferred emotion, useful advice and a CTA. Exact source excerpts and claim/copy review gate saving. Evidence: `website-flow.txt`, `second-website-flow.txt`, `live-website-pack.json`.
-2. **Feedback on one piece — verified.** Typed static-post feedback changed that post while the carousel and reel remained byte-for-byte unchanged. Evidence: `website-flow.txt`.
-3. **Original imagery — partly verified.** The first pack includes original AI-generated fictional photography, with provenance. Website-specific Seedream requests, genuine JPEG/PNG validation, real Convex storage and PNG export are verified independently. Live image generation and visual approval remain unverified because provider access is missing. Shared artwork is labelled.
-4. **Downloadable images and video — verified for the existing pack.** Six 1080 × 1350 PNGs, captions and a 1080 × 1920 H.264/AAC MP4 download in Chromium. Desktop/mobile and reload checks pass. The inspected copy is complete and readable. This does not prove that every future website or generated video is ready to share without review.
-5. **Speaking AI avatar — incomplete.** Seedance requests, task polling, storage and branded export are implemented. Fixture export preserves the source audio exactly with zero measured shift. No genuine speaking-avatar output has been generated or inspected, so full ready-to-share avatar output is not claimed.
-6. **Real ad inspiration when accessible — access unavailable.** Public Meta access returned 403; the approved API credentials are absent. The adapter never invents ads and retains safe public source links. Zero ads were imported.
-7. **Brand voice and presentation — verified with limits.** Voice and emotions are explicitly inferred from public offer material. Founders Find uses observed website colours and Inter font, not a claimed formal brand guide. Other websites use observed colours when readable and a labelled neutral template otherwise.
-8. **Convex stack and no deployment — met.** Backend, database, workflow and media storage use Convex. The running app and backend are local. No deployment or push was performed. Working steps are committed locally; no CRM, social-account connections or extra posting channels were added.
-9. **Morning handoff and full transcript test output — met.** This file includes opening steps, provider keys, limitations and the entire retained transcript test output. Website and media proof files are linked separately.
-
-The goal is **not complete**. The recurring provider-access blocker is now the limit on meaningful further verification: add `ARK_API_KEY` in Convex with Seedream 4.5 and Seedance 2.5 access/credits, then generate and visually review real images and a speaking avatar before claiming the full result is share-ready. Meta approval/access is separately required for real ad imports. No credits were bypassed and no provider output was fabricated.

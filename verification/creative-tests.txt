@@ -1,0 +1,54 @@
+
+> build-sprint-app@1.0.0 test
+> tsx --test tests/*.test.ts
+
+✔ the auth provider and page hooks share one React runtime (15.603958ms)
+✔ ChatGPT registration requests plan permission, loopback callback and PKCE (8.996417ms)
+✔ sign-in rejects expired state and a different browser (0.342291ms)
+✔ credentials are encrypted and tampered ciphertext is rejected (5.376791ms)
+✔ partial, failed and interrupted AI output cannot be accepted (8.799167ms)
+✔ the writer's SDK sends supported streaming plan requests with no API key (13.806084ms)
+✔ scripts require customer evidence and reject ungrounded claims (16.877875ms)
+✔ feedback revises one script while retaining customer sources (42.476875ms)
+✔ a writer cannot remove a customer’s negation (2.593166ms)
+✔ recommendations develop pain, emotion and takeaway instead of copying two quotes (109.14425ms)
+✔ factual review must cover every line and reject changed meaning (0.704208ms)
+✔ greetings and acknowledgements are never recommended as content (0.315916ms)
+✔ customer statements on continuation lines are retained (0.216625ms)
+✔ an insight cannot use a greeting or an invented evidence quote (0.395417ms)
+✔ missing API credits are reported as billing, not a disconnected key (1.754167ms)
+✔ a customer paragraph contains separate substantive statements (0.792875ms)
+✔ timestamped named speakers require a choice and exclude the founder (0.729833ms)
+✔ timestamps on customer labels and continuation lines preserve evidence (0.275ms)
+✔ the writer drains the lazy stream before awaiting its object (1.9965ms)
+✔ an invalid streamed object is rejected instead of leaving the writer waiting (0.66975ms)
+✔ a real SDK structured stream completes through the writer's reader (59.285083ms)
+✔ the page stops waiting when a writer request never settles (5.811083ms)
+✔ website fetch rejects private IPv4 and IPv6, credentials and unexpected ports (1.131291ms)
+✔ three formats have short hooks, complete frames and exact source facts (1.11325ms)
+✔ Seedance requests a vertical 25-second fictional presenter with the exact approved script (0.256084ms)
+✔ Seedance pending, completed and failed responses are distinct; invalid hosts never download (4.1045ms)
+✔ unfinished bodies and greeting hooks cannot be saved as finished artwork (0.223042ms)
+✔ brand palette resolves only safe default CSS colors and handles cycles (1.082958ms)
+✔ image briefs adapt to the actual offer and never request fake testimonials or written logos (0.198375ms)
+✔ image client retains real PNG bytes, rejects empty output and keeps provider errors free of secrets (209.19475ms)
+✔ Seedream 4.5 JPEG output is accepted with its real dimensions and truncated files are rejected (4.603917ms)
+✔ Founder’s Find uses a face-free brand profile; other websites keep their own media support (0.270625ms)
+✔ new website packs require only carousel and static, never a reel (0.172083ms)
+✔ brand extraction is semantic, not tied to a domain (1.053167ms)
+✔ modern CSS colour tokens and aliases are converted without a brand lookup (0.407916ms)
+✔ default colour tokens are preserved over later optional theme declarations (0.134084ms)
+✔ four-platform creatives reject a sixth slide and images from another brand (0.811209ms)
+✔ brand typography skips reset inheritance and preserves the actual later body font (0.158459ms)
+✔ image dimensions match real PNG, JPEG, lossy and lossless WebP bytes (34.148917ms)
+✔ a complete sentence may end with a preposition (0.238042ms)
+✔ partner logos cannot become the business logo (5.655916ms)
+✔ actual hero heading classes take priority over generic heading resets (0.162709ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2461.369708

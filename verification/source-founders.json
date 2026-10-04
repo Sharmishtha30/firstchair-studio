@@ -1,0 +1,96 @@
+{
+  "title": "Founder's Find: the career operating system for your ambition",
+  "headings": [
+    {
+      "text": "The career operating system for your ambition.",
+      "family": "Georgia, \"Times New Roman\", ui-serif, serif",
+      "weight": "400",
+      "color": "rgb(15, 15, 18)",
+      "size": "58px"
+    },
+    {
+      "text": "Careers are continuous. Career infrastructure is not.",
+      "family": "Georgia, \"Times New Roman\", ui-serif, serif",
+      "weight": "400",
+      "color": "rgb(15, 15, 18)",
+      "size": "46.56px"
+    },
+    {
+      "text": "Start with the problem you have today.",
+      "family": "Georgia, \"Times New Roman\", ui-serif, serif",
+      "weight": "400",
+      "color": "rgb(15, 15, 18)",
+      "size": "46.56px"
+    },
+    {
+      "text": "80% - Us, 30% - You. Combined, 110% better career.",
+      "family": "Georgia, \"Times New Roman\", ui-serif, serif",
+      "weight": "400",
+      "color": "rgb(15, 15, 18)",
+      "size": "46.56px"
+    }
+  ],
+  "body": {
+    "background": "rgb(255, 255, 255)",
+    "font": "Inter, \"Inter Fallback\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif"
+  },
+  "actions": [
+    {
+      "text": "",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 18)"
+    },
+    {
+      "text": "",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 18)"
+    },
+    {
+      "text": "",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 18)"
+    },
+    {
+      "text": "01Apply",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 18)"
+    },
+    {
+      "text": "02Email",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(15, 15, 18)"
+    }
+  ],
+  "images": [
+    {
+      "url": "https://foundersfind.club/logos/razorpay.svg",
+      "alt": "Razorpay",
+      "width": 1896,
+      "height": 401
+    },
+    {
+      "url": "https://foundersfind.club/logos/zomato.svg",
+      "alt": "Zomato",
+      "width": 2500,
+      "height": 535
+    },
+    {
+      "url": "https://foundersfind.club/logos/iim-ahmedabad.svg",
+      "alt": "IIM Ahmedabad",
+      "width": 2189,
+      "height": 331
+    },
+    {
+      "url": "https://foundersfind.club/logos/razorpay.svg",
+      "alt": "Razorpay",
+      "width": 1896,
+      "height": 401
+    },
+    {
+      "url": "https://foundersfind.club/logos/zomato.svg",
+      "alt": "Zomato",
+      "width": 2500,
+      "height": 535
+    }
+  ]
+}
