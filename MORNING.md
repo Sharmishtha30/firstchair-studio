@@ -22,7 +22,7 @@ The latest saved Founders Find pack is linked in `verification/latest-pack-url.t
 
 ## What is unfinished and why
 
-**Talking AI avatar:** the Seedance 2.5 connection is implemented but not tested against the real provider because no `ARK_API_KEY` is configured. The existing MP4 is a motion reel, not lip-synced speech. Get a ModelArk key at https://ai.byteplus.com/ark/region:ap-southeast-1/apikey, then run `npx convex env set ARK_API_KEY` in this project and paste the key into its private prompt. Set it in Convex, not the frontend `.env.local`. BytePlus model access and credits are separate from ChatGPT Pro. Mock checks cover requests and result handling; they do not prove live avatar quality.
+**Talking AI avatar:** the Seedance 2.5 connection is implemented but not tested against the real provider because no `ARK_API_KEY` is configured. The existing MP4 is a motion reel, not lip-synced speech. A new branded avatar download path composites approved text cards and the website address over real provider footage while copying its original AAC speech without re-encoding. The fixture audio check measured an identical decoded waveform and zero timing shift. Non-AAC provider audio produces an explicit error rather than a silently altered soundtrack. This export was verified in Chromium with an explicitly fictional still-portrait/music fixture, not live Seedance footage. Text cards follow five equal scenes; they are not word-timed subtitles. Evidence is in `verification/avatar-export-check.txt` and `verification/avatar-export-proof.json`. Get a ModelArk key at https://ai.byteplus.com/ark/region:ap-southeast-1/apikey, then run `npx convex env set ARK_API_KEY` in this project and paste the key into its private prompt. Set it in Convex, not the frontend `.env.local`. BytePlus model access and credits are separate from ChatGPT Pro. Mock checks cover requests and result handling; they do not prove live avatar quality.
 
 **Real ad inspiration:** Meta's public library returned HTTP 403. No ads were imported or invented. The API adapter needs approved Meta access, `META_AD_LIBRARY_TOKEN` and `META_GRAPH_VERSION` from the Meta app dashboard. Its commercial coverage includes UK/EU ads; an India-only commercial campaign is not automatically available through the API. Reference: https://br-fr.facebook.com/ads/library/api/ . Saved public ad links contain no provider access tokens.
 
@@ -392,4 +392,13 @@ PASS: Greeting-only calls are rejected rather than converted into content.
 PASS: Without a ChatGPT connection, a custom call does not return pretend insight recommendations.
 PASS: A timestamped customer paragraph passes the real Convex reader after speaker selection; sample mode still refuses to pretend it analyzed the call.
 
+```
+
+## Avatar export fixture output
+
+```text
+PASS actual browser decodes footage, overlays approved copy, retains source audio and exports MP4
+Fixture uses a still fictional portrait and original music, NOT a live Seedance avatar.
+PASS source audio retained: decoded waveform correlation 1.000000, codec alignment offset 0.00 ms
+Fixture audio is original music; no live Seedance speech is claimed.
 ```

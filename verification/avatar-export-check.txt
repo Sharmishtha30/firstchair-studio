@@ -1,0 +1,2 @@
+PASS actual browser decodes footage, overlays approved copy, retains source audio and exports MP4
+Fixture uses a still fictional portrait and original music, NOT a live Seedance avatar.

@@ -1,0 +1,2 @@
+PASS source audio retained: decoded waveform correlation 1.000000, codec alignment offset 0.00 ms
+Fixture audio is original music; no live Seedance speech is claimed.

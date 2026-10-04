@@ -3,6 +3,7 @@ import {foundersPalette} from '../convex/brandPalette';
 import type { Brand, Post, Frame } from '../convex/studioTypes';
 const ink='#192820',paper='#F5F1E8',green='#254B36',gold='#D8B45A';
 function contrast(a:string,b:string){const lum=(hex:string)=>{const rgb=hex.replace('#','').match(/../g)!.slice(0,3).map(s=>parseInt(s,16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2];};const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
+function paletteFor(brand:Brand){return brand.palette??(new URL(brand.sourceUrl).hostname.replace(/^www\./,'')==='foundersfind.club'?foundersPalette:{paper:'#ffffff',ink:'#101010',primary:'#192820',accent:'#d8b45a',note:'Neutral editorial template; site colours were not readable.'});}
 let portraits:Promise<HTMLImageElement[]>|undefined;
 function images(){return portraits??=Promise.all(['career-decision','fictional-presenter'].map(name=>new Promise<HTMLImageElement>((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=`/images/${name}.webp`;})));}
 function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,width:number,size:number,line:number,weight=600,color=(ctx.canvas as HTMLCanvasElement).dataset.ink??ink){
@@ -15,7 +16,7 @@ function wrapped(ctx:CanvasRenderingContext2D,text:string,x:number,y:number,widt
 function cover(ctx:CanvasRenderingContext2D,image:HTMLImageElement,x:number,y:number,w:number,h:number,zoom=1){const scale=Math.max(w/image.width,h/image.height)*zoom;ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(image,x+(w-image.width*scale)/2,y+(h-image.height*scale)/2,image.width*scale,image.height*scale);ctx.restore();}
 export async function drawFrame(post:Post,brand:Brand,index:number,progress=0,canvas?:HTMLCanvasElement){
  const isFounders=new URL(brand.sourceUrl).hostname.replace(/^www\./,'')==='foundersfind.club';
- const palette=brand.palette??(isFounders?foundersPalette:{paper:'#ffffff',ink:'#101010',primary:'#192820',accent:'#d8b45a',note:'Neutral editorial template; site colors were not readable.'});
+ const palette=paletteFor(brand);
  const {ink,paper,primary:green,accent:gold}=palette;
  const onPrimary=contrast(paper,green)>=4.5?paper:ink;
  if(isFounders)await Promise.all([400,600,700].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));
@@ -80,4 +81,38 @@ export async function exportReel(post:Post,brand:Brand,onProgress:(s:string)=>vo
  video.close();await output.finalize();
  if(!output.target.buffer)throw new Error('Video export returned no file.');
  download(new Blob([output.target.buffer],{type:'video/mp4'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-reel.mp4`);
+}
+
+/** Composite the actual provider footage; retain its speech instead of substituting music. */
+export async function exportAvatar(post:Post,brand:Brand,url:string,onProgress:(s:string)=>void){
+ const {Input,UrlSource,ALL_FORMATS,CanvasSink,EncodedPacketSink,Output,Mp4OutputFormat,BufferTarget,CanvasSource,EncodedAudioPacketSource,QUALITY_HIGH}=await import('mediabunny');
+ const input=new Input({source:new UrlSource(url),formats:ALL_FORMATS});
+ const output=new Output({format:new Mp4OutputFormat(),target:new BufferTarget()});
+ try{
+  const track=await input.getPrimaryVideoTrack(),speech=await input.getPrimaryAudioTrack();
+  if(!track||!speech)throw new Error('The generated video needs both footage and speech before it can be exported.');
+  const duration=await input.computeDuration();
+  if(!Number.isFinite(duration)||duration<=0||duration>35)throw new Error('The generated video has an unsupported duration.');
+  const c=await drawFrame(post,brand,0),ctx=c.getContext('2d')!;
+  const palette=paletteFor(brand);
+  const video=new CanvasSource(c,{codec:'avc',bitrate:QUALITY_HIGH});output.addVideoTrack(video);
+  if(await speech.getCodec()!=='aac')throw new Error('The provider video needs AAC speech for a lossless Instagram export.');
+  const decoderConfig=await speech.getDecoderConfig();if(!decoderConfig)throw new Error('Provider audio metadata is missing.');
+  const audio=new EncodedAudioPacketSource('aac');output.addAudioTrack(audio);
+  await output.start();
+  const writeAudio=async()=>{for await(const chunk of new EncodedPacketSink(speech).packets())await audio.add(chunk,{decoderConfig});audio.close();};
+  const writeVideo=async()=>{for await(const frame of new CanvasSink(track).canvases()){
+   const scene=Math.min(post.frames.length-1,Math.floor(frame.timestamp/duration*post.frames.length)),card=post.frames[scene];
+   ctx.drawImage(frame.canvas,0,0,c.width,c.height);
+   ctx.globalAlpha=.96;ctx.fillStyle=palette.paper;ctx.fillRect(40,1130,1000,690);ctx.globalAlpha=1;
+   const y=wrapped(ctx,card.heading,80,1180,920,64,74,700,palette.ink);
+   wrapped(ctx,card.body,80,y+30,920,39,51,400,palette.ink);
+   wrapped(ctx,new URL(brand.sourceUrl).hostname,80,1750,920,26,34,600,palette.ink);
+   onProgress(`Finishing avatar reel · ${Math.round(frame.timestamp/duration*100)}%`);
+   await video.add(frame.timestamp,frame.duration);
+  }video.close();};
+  await Promise.all([writeAudio(),writeVideo()]);await output.finalize();
+  if(!output.target.buffer)throw new Error('Avatar export returned no file.');
+  download(new Blob([output.target.buffer],{type:'video/mp4'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-avatar-reel.mp4`);
+ }catch(e){await output.cancel();throw e;}finally{input.dispose();}
 }
