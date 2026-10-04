@@ -1,8 +1,11 @@
-export type BrandStyle={headline:'serif'|'sans';weight:number;sourceFont:string;note:string};
+export type BrandStyle={headline:'serif'|'sans';weight:number;sourceFont:string;note:string;bodyFont?:string;fontName?:string;regularUrl?:string;semiboldUrl?:string};
 export function extractStyle(css:string):BrandStyle{
- const vars=new Map([...css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+)/g)].map(m=>[m[1],m[2].trim()]));
- let source=css.match(/(?:h1|\.headline|\.heading)[^{]*\{[^}]*font-family\s*:\s*([^;}]+)/i)?.[1]??vars.get('--font-display')??vars.get('--font-serif')??vars.get('--font-family-heading')??css.match(/font-family\s*:\s*([^;}]+)/i)?.[1]??'';
- for(let n=0;n<5;n++){const ref=source.match(/var\((--[\w-]+)[^)]*\)/);if(!ref)break;source=source.replace(ref[0],vars.get(ref[1])??'');}
- source=source.replace(/["']/g,'').trim();if(/^(inherit|initial|unset|var\()/.test(source))source='';const serif=/georgia|times|garamond|baskerville|\bserif\b/i.test(source)&&!/sans-serif/i.test(source);
- return {headline:serif?'serif':'sans',weight:serif?400:600,sourceFont:source.slice(0,180)||'Not found',note:source?'Font family observed in public CSS. Artwork uses the matching serif/sans family with bundled Inter or Georgia; proprietary font files are not imported.':'Website fonts could not be read; bundled Inter is an explicit fallback.'};
+ const vars=new Map<string,string>();for(const m of css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+)/g))if(!vars.has(m[1]))vars.set(m[1],m[2].trim());
+ const resolve=(input:string)=>{let source=input;for(let n=0;n<8;n++){const ref=source.match(/var\((--[\w-]+)[^)]*\)/);if(!ref)break;source=source.replace(ref[0],vars.get(ref[1])??'');}source=source.replace(/["']/g,'').replace(/!important/g,'').trim();return /^(inherit|initial|unset|var\()/.test(source)?'':source;};
+ const rules=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].flatMap(m=>{const family=m[2].match(/font-family\s*:\s*([^;}]+)/i)?.[1];return family?[{selector:m[1].trim(),family:resolve(family)}]:[];}).filter(r=>r.family&&!r.selector.includes('@font-face'));
+ const headingRule=rules.find(r=>/(?:^|,|\s)(?:h1|h2|\.headline|\.heading)(?=[\s,.:#[]|$)/i.test(r.selector));
+ const source=headingRule?.family||resolve(vars.get('--font-display')??vars.get('--font-serif')??vars.get('--font-family-heading')??vars.get('--font-heading-family')??'')||rules.find(r=>r.selector.split(',').some(s=>s.trim()==='body'))?.family||'';
+ const body=resolve(vars.get('--font-body-family')??vars.get('--font-family-body')??vars.get('--font-sans')??'')||rules.find(r=>r.selector.split(',').some(s=>s.trim()==='body'))?.family||'';
+ const serif=/georgia|times|garamond|baskerville|revans|playfair|dm serif|libre baskerville|\bserif\b/i.test(source)&&(!/sans-serif/i.test(source)||/revans|playfair|baskerville/i.test(source));
+ return {bodyFont:body,headline:serif?'serif':'sans',weight:/revans|bold/i.test(source)?700:serif?400:600,sourceFont:source.slice(0,180)||'Not found',note:source?`Heading font declared: ${source}. Body font declared: ${body||'not found'}. Bundled Inter or Georgia is used where the original font cannot be imported. CSS declarations are not a rendered-style guarantee.`:'Website fonts could not be read; bundled Inter is an explicit fallback.'};
 }

@@ -1,0 +1,12 @@
+import {v} from 'convex/values';
+export const platformV=v.union(v.literal('instagram'),v.literal('linkedin'));
+export const compositionV=v.union(v.literal('editorial'),v.literal('checklist'),v.literal('comparison'),v.literal('process'),v.literal('spotlight'),v.literal('image'),v.literal('closing'));
+export const itemV=v.object({label:v.string(),detail:v.string()});
+export const sourcePageV=v.object({url:v.string(),title:v.string(),retrievedAt:v.number(),blocks:v.array(v.object({kind:v.string(),text:v.string()}))});
+export const sourceAssetV=v.object({key:v.string(),originalUrl:v.string(),file:v.id('_storage'),width:v.number(),height:v.number(),alt:v.string(),role:v.string(),pageUrl:v.string()});
+export const clientAssetV=v.object({key:v.string(),url:v.string(),originalUrl:v.string(),width:v.number(),height:v.number(),alt:v.string(),role:v.string(),pageUrl:v.string()});
+export const strategyV=v.object({customer:v.string(),situation:v.string(),market:v.string(),mechanism:v.string(),action:v.string(),destination:v.string(),imageStyle:v.string(),angles:v.array(v.object({idea:v.string(),usefulInsight:v.string(),hooks:v.array(v.string()),evidence:v.array(v.string())})),chosenAngles:v.array(v.string()),note:v.string()});
+export type Platform='instagram'|'linkedin';
+export type Composition='editorial'|'checklist'|'comparison'|'process'|'spotlight'|'image'|'closing';
+export type SourcePage={url:string;title:string;retrievedAt:number;blocks:{kind:string;text:string}[]};
+export type CreativeAsset={key:string;url:string;originalUrl:string;width:number;height:number;alt:string;role:string;pageUrl:string};
