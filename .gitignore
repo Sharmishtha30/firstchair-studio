@@ -9,3 +9,5 @@ verification/*.zip
 verification/founders-assets/
 
 verification/*-assets/
+
+verification/quality/**/*.zip

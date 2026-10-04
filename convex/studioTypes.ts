@@ -59,9 +59,9 @@ export function checkCreativePosts(posts:Post[],facts:string[],platforms:import(
   for(const f of p.frames){
    if(!f.composition)throw new Error('Each slide needs a designed composition.');
    if(f.assetKey&&!assetKeys.includes(f.assetKey))throw new Error('An image reference does not belong to this website.');
-   if(f.composition==='image'&&!f.assetKey)throw new Error('An image layout needs a verified website image.');
-   if(['checklist','comparison','process'].includes(f.composition)&&(!f.items?.length||f.items.length>5))throw new Error('This visual needs useful items that fit the space.');
-   if(f.composition==='comparison'&&f.items?.length!==2)throw new Error('A two-column comparison needs two sides.');
+   if((!f.design&&f.composition==='image'||f.design?.layout==='photo')&&!f.assetKey)throw new Error('An image layout needs a verified website image.');
+   if((!f.design&&['checklist','comparison','process'].includes(f.composition)||f.design?.layout==='list')&&(!f.items?.length||f.items.length>5))throw new Error('This visual needs useful items that fit the space.');
+   if((!f.design&&f.composition==='comparison'||f.design?.layout==='split'&&!f.assetKey&&!!f.items?.length)&&f.items?.length!==2)throw new Error('A two-column comparison needs two sides.');
    if(f.items?.some(i=>i.label.length>100||i.detail.length>240))throw new Error('Rewrite long visual labels and details for phone readability.');
   }
  }

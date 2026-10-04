@@ -16,7 +16,7 @@ try{
  await page.goto('http://localhost:5173',{waitUntil:'networkidle'});await page.evaluate(binding=>sessionStorage.setItem('chatgpt_browser',binding),binding);await page.goto('http://localhost:5173/#chatgpt_ticket='+encodeURIComponent(ticket));await page.getByRole('button',{name:'Disconnect',exact:true}).waitFor({timeout:20000});
  const session=await page.evaluate(()=>Object.entries(localStorage).find(([key])=>key.startsWith('__convexAuthJWT_'))?.[1]);assert.ok(session);client.setAuth(session);
 
- const token='11e9fbde4dd5163a1c8ff3fd1fd200ad765c2530e97190f56a99e3cf0d0574af';
+ const token=process.env.EDIT_TOKEN??'11e9fbde4dd5163a1c8ff3fd1fd200ad765c2530e97190f56a99e3cf0d0574af';
  await page.goto('http://localhost:5173/#pack='+token);await page.getByText(/Files checked/).waitFor({timeout:30000});
  const original=await client.query(api.studio.get,{token});
  await page.getByRole('tab',{name:'02 / Static'}).click();await page.locator('details.edit-panel').evaluate((el:HTMLDetailsElement)=>{el.open=true;});
@@ -30,6 +30,6 @@ try{
  await page.getByRole('button',{name:'Restore previous version',exact:true}).click();await page.waitForTimeout(1000);assert.deepEqual((await client.query(api.studio.get,{token}))!.brand,original!.brand);console.log('PASS brand correction updates shared design and restore preserves fonts and logo');
  const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Download this post',exact:true}).click();const d=await downloaded;await d.saveAs('verification/creative-single.zip');const files=unzipSync(await readFile('verification/creative-single.zip'));assert.equal(Object.keys(files).filter(n=>n.endsWith('.png')).length,1);console.log('PASS single static download contains one PNG');
  await page.getByRole('tab',{name:'01 / Carousel'}).click();await page.locator('details.edit-panel').evaluate((el:HTMLDetailsElement)=>{el.open=true;});await page.locator('.edit-panel select').selectOption(original!.brand!.assets![0].key);await page.getByRole('button',{name:'Save this post',exact:true}).click();await page.waitForTimeout(1000);await page.getByText(/Files checked/).waitFor();const withPhoto=await client.query(api.studio.get,{token});assert.equal(withPhoto!.posts!.find(p=>p.platform==='instagram'&&p.format==='carousel')!.frames[0].composition,'image');console.log('PASS original website photograph appears on the selected cover');
- console.log('The Maid2Clean sample intentionally retains this source-photo edit. Other posts are unchanged.');
+ await page.getByRole('button',{name:'Restore previous version',exact:true}).click();await page.waitForTimeout(1000);assert.deepEqual((await client.query(api.studio.get,{token}))!.posts,original!.posts);console.log('PASS source-image edit is restored; benchmark copy and design are unchanged.');
  assert.deepEqual(errors,[]);
 }catch(e){console.log(await page.locator('body').innerText());throw e;}finally{await browser.close();}
