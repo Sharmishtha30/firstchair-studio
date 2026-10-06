@@ -608,3 +608,7 @@ a{
 /* Revised identity: a typographic signature, without a literal chair. */
 .wordmark .firstchair-name{font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-1.5px;font-size:34px}.wordmark .firstchair-studio{font-size:11px;font-weight:500;letter-spacing:1px;margin-left:2px;align-self:flex-end;padding-bottom:5px}.firstchair-landing .wordmark{gap:6px}.firstchair-landing .wordmark .firstchair-name{font-size:38px}.firstchair-landing .wordmark .firstchair-studio{font-size:11px}.firstchair-landing .intro h1{font-weight:600;letter-spacing:-.055em}.firstchair-landing .website-form>p{margin-top:20px}
 @media(max-width:600px){.firstchair-landing .wordmark .firstchair-name{font-size:28px}.firstchair-landing .wordmark .firstchair-studio{font-size:9px;letter-spacing:0;padding-bottom:3px}.firstchair-landing .wordmark{gap:3px}}
+
+@font-face{font-family:FirstChairScript;src:url('/fonts/pacifico-regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+.wordmark .firstchair-name,.firstchair-landing .wordmark .firstchair-name{font-family:FirstChairScript,'Snell Roundhand',cursive;font-size:22px;font-style:normal;letter-spacing:-.5px;font-weight:400}.firstchair-landing .url-row button{background:#ff307e;color:#201047}.firstchair-landing .url-row input::placeholder{color:#928a97;opacity:1}.firstchair-landing .url-row>span{color:#ff307e}.firstchair-landing{--forest:#ff307e}
+@media(max-width:600px){.firstchair-landing .wordmark .firstchair-name{font-size:18px}}
