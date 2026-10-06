@@ -14,7 +14,7 @@ const workflow=new WorkflowManager(components.workflow);
 export const makePack=workflow.define({args:{packId:v.id('packs'),revision:v.optional(v.boolean()),startedAt:v.optional(v.number())},returns:v.null()}).handler(async(step,{packId,revision,startedAt}):Promise<null>=>{
   try {
     const current=await step.runQuery(internal.studio.getInternal,{packId});if(startedAt!==undefined&&current?.operationStartedAt!==startedAt)return null;
-    if(current){const unavailable=generationUnavailable(current.url,current.userId);if(unavailable)throw new Error(unavailable);}
+    if(current){const unavailable=generationUnavailable(current.url,current.userId);if(unavailable)throw new Error(unavailable);if(!current.userId){await step.runAction(internal.studioWriter.write,{packId,startedAt},{retry:false});return null;}}
     if(!revision){await step.runAction(internal.website.inspect,{packId},{retry:false});
     await step.runAction(internal.adInspiration.inspect,{packId},{retry:false});
  if(!await step.runMutation(internal.studio.finishInspection,{packId}))return null;
