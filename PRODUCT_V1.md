@@ -1,3 +1,5 @@
+> Historical document. Current decisions are in [PRODUCT.md](PRODUCT.md). Older directions below are not the current specification.
+
 # Website to Instagram and LinkedIn Creative Studio
 
 Product and build specification, 4 October 2026. Draft for the next build handoff.

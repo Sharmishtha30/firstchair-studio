@@ -1,3 +1,6 @@
+## Current entry point — 6 October 2026
+Read PRODUCT.md and DESIGN.md for current decisions. Entries below are chronological evidence, not all current requirements. Current live gallery: https://rightful-wombat-262.convex.site/#samples. Fresh generation is local-only and requires the user's ChatGPT connection; no API billing configured. Other-account recommendation improvements are not integrated yet.
+
 ## Latest image-led Suva correction
 - Local generator updated to visual-first-v6: bounded photo copy and no item lists; larger top photo region up to660px. Model prompt, validation, research and recommendations updated.
 - Existing benchmark edited: Fitness at their pace cover, sparse assessment/review/plan diagram, Small batch close, You care. We coordinate static. Caption context retained; no user edit consumed.
