@@ -576,3 +576,7 @@ User chose Convex publication. Restarted local app; HTTP 200 at localhost:5173. 
 Saved all accumulated final code, docs, supplied references and verification in local commit 37e9778. Codex origin CLI installed and login succeeded, but repo creation failed because account has no Origin namespace. No remote added and no online backup completed. Requires account/team workspace setup at cursor.com/codebase.
 
 Public signed-out browser verification passed: Founder’s Find website inspection, both onboarding steps, curated sample generation, rendered carousel/static and Files checked. Sample clearly labelled no live writing or platform adaptation. Public fresh generation/revisions remain blocked by local-only ChatGPT plan auth.
+
+
+## FirstChair Studio landing — 6 October 2026
+Renamed product and browser title. Chosen palette: electric violet #5424FF, solar yellow #FFE34D, deep indigo #201047, white #FFFFFF. Added user-supplied three skies as a 36-second CSS crossfade with reduced-motion fallback. Landing contains centred headline, short promise, website field and platform choices; removed explainer. Workspace content remains scrollable. Browser verified zero vertical/horizontal overflow at 390x844 and desktop 1440x900; fixed mobile input collapse. Typechecks/build pass. Branding specification: design/firstchair-brand.md.
