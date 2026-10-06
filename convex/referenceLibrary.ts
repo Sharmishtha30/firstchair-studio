@@ -71,6 +71,7 @@ export const referenceFamilies = [
       "S007-04"
     ],
     "supportedLayouts": [
+      "diagram",
       "split",
       "list"
     ]
@@ -90,6 +91,7 @@ export const referenceFamilies = [
       "S009-24"
     ],
     "supportedLayouts": [
+      "diagram",
       "list",
       "essay"
     ]
@@ -127,6 +129,7 @@ export const referenceFamilies = [
       "S005-05"
     ],
     "supportedLayouts": [
+      "note",
       "essay"
     ]
   },

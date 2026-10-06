@@ -1,6 +1,6 @@
-export type Palette={paper:string;ink:string;primary:string;accent:string;note:string};
+export type Palette={paper:string;ink:string;primary:string;accent:string;note:string;observed?:string[]};
 export const foundersPalette:Palette={paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Default colors read from Founders Find’s public website CSS. No formal brand guide was supplied.'};
-export function extractPalette(css:string):Palette|undefined{
+export function extractPalette(css:string,usedClasses:string[]=[],matchedColours?:string[],roles:{paper?:string;ink?:string;primary?:string}={}):Palette|undefined{
  const vars=new Map<string,string>();
  for(const root of css.matchAll(/:root(?:\s*,[^{}]+)?\s*\{([^}]+)\}/g))for(const declaration of root[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);?/g))if(!vars.has(declaration[1]))vars.set(declaration[1],declaration[2].trim());
  for(const declaration of css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+);?/g))if(!vars.has(declaration[1]))vars.set(declaration[1],declaration[2].trim());
@@ -14,11 +14,18 @@ export function extractPalette(css:string):Palette|undefined{
  function expand(name:string,depth=0):string{if(depth>8)return '';return (vars.get(name)??'').replace(/var\((--[\w-]+)\)/g,(_,key)=>expand(key,depth+1));}
  const frequency=new Map<string,number>();
  for(const m of css.matchAll(/#[a-f0-9]{6}\b|#[a-f0-9]{3}\b/ig)){let c=m[0].toLowerCase();if(c.length===4)c='#'+c.slice(1).split('').map(x=>x+x).join('');const rgb=c.slice(1).match(/../g)!.map(x=>parseInt(x,16));if(Math.max(...rgb)-Math.min(...rgb)<45)continue;frequency.set(c,(frequency.get(c)??0)+1);}
- const primary=resolve('--primary')??resolve('--color-primary')??resolve('--brand-color')??resolve('--accent')??resolve('--color-accent')??resolve('--color-button')??resolve('--color-link')??[...frequency].sort((a,b)=>b[1]-a[1])[0]?.[0];if(!primary)return undefined;
- return {primary,paper:resolve('--paper')??resolve('--background')??resolve('--color-background')??resolve('--color-canvas')??'#ffffff',ink:resolve('--ink')??resolve('--foreground')??resolve('--color-foreground')??resolve('--color-ink')??'#101010',accent:resolve('--c-yellow')??primary,note:'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'};
+ const used=new Map<string,number>();
+ for(const token of usedClasses){const m=token.match(/(?:bg|text|border|decoration)-\[#([a-f\d]{6})\]/i);if(m){const c='#'+m[1].toLowerCase();used.set(c,(used.get(c)??0)+1);}}
+ for(const colour of matchedColours??[])used.set(colour,(used.get(colour)??0)+1);
+ const ranked=[...used].sort((a,b)=>b[1]-a[1]).map(([c])=>c);
+ const vivid=(c:string)=>{const n=c.slice(1).match(/../g)!.map(x=>parseInt(x,16));return Math.max(...n)-Math.min(...n)>40;};
+ const declaredPrimary=roles.primary??resolve('--primary')??resolve('--color-primary')??resolve('--brand-color')??resolve('--accent')??resolve('--color-accent')??resolve('--color-button')??resolve('--color-link');const primary=roles.primary??(declaredPrimary&&vivid(declaredPrimary)&&(!ranked.length||ranked.includes(declaredPrimary))?declaredPrimary:ranked.find(vivid)??[...frequency].sort((a,b)=>b[1]-a[1])[0]?.[0]);if(!primary)return undefined;
+ const observed=[...new Set((ranked.length?ranked:[...vars.keys()].map(k=>resolve(k)).filter((c):c is string=>!!c).concat([...frequency.keys()])) )].slice(0,24);
+ const paper=roles.paper??resolve('--paper')??resolve('--bg')??resolve('--background')??resolve('--color-background')??resolve('--color-canvas')??'#ffffff',ink=roles.ink??resolve('--ink')??resolve('--foreground')??resolve('--color-foreground')??resolve('--color-ink')??(observed.includes('#000000')?'#000000':undefined)??'#101010',accent=resolve('--secondary')??resolve('--color-secondary')??resolve('--c-yellow')??observed.find(c=>c!==primary&&vivid(c))??primary;
+ return {observed,primary,paper,ink,accent,note:matchedColours?.length?'Colours from declarations matching visible website elements; inactive framework rules excluded. Public CSS evidence, not computed browser styles or a formal brand guide.':'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'};
 }
 
-function cssColour(value:string):string|undefined{
+export function cssColour(value:string):string|undefined{
  const rgb=value.match(/^rgba?\(\s*([\d.]+)[, ]+([\d.]+)[, ]+([\d.]+)/i);
  if(rgb)return '#'+rgb.slice(1,4).map(n=>Math.max(0,Math.min(255,Math.round(Number(n)))).toString(16).padStart(2,'0')).join('');
  const match=value.match(/^oklch\(\s*([\d.]+)(%)?\s+([\d.]+)\s+([\d.]+)/i);if(!match)return undefined;

@@ -1,0 +1,8 @@
+## Product-first correction — 2026-10-06
+Active policy: product-first-v8. Physical D2C covers/statics use an actual supplied product asset, a large uncropped product area and compact supporting copy (headline 36 characters, body 24, combined 60). Service/editorial brands remain exempt. Product-image edits preserve the product layout.
+
+Reader now selects declared full-size responsive image candidates instead of tiny placeholders. Blueland previously supplied 100px thumbnails; its fresh read now retains 1000px product imagery. Source layout recognition includes centered/split/image-led heroes, image-only campaigns, text overlays and CSS radius variables; these are source-CSS approximations, not a guarantee of exact responsive geometry.
+
+Blueland and Owala completed through the connected writer with automatic correction/retries, without manually editing post copy. Rendered covers checked in browser; product dominates and copy is short. A centered-font double-paint artifact was fixed and visually rechecked. Evidence: verification/product-first/. Both full-pack UI exports reached ZIP-ready. Downloaded archive integrity/PDF pixels were not independently checked. Owala still links a different colour selection than the pictured pink bottle, disclosed in its caption; variant matching remains a quality limitation. The Owala saved source predates the latest hero-recognition change; new image-only recognition is covered by tests.
+
+84 automated checks and production build passed. Local Convex functions synced; final text-paint change is frontend-only. No deployment or push. Next priority: match pictured product variants to their exact destination, and verify more fresh brands before calling recognition universal.

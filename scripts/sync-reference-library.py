@@ -4,7 +4,7 @@ import sys
 src=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).resolve().parents[1]/'design/inspiration'
 repo=Path(__file__).resolve().parents[1]
 data=json.loads((src/'LAYOUT_INDEX.json').read_text())
-mapping={'hero':['photo','poster'],'annotation':['split','photo'],'comparison':['split'],'diagram':['split','list'],'sequence':['list','essay'],'list':['list'],'notes':['essay'],'conversation':['essay'],'proof':['poster','photo'],'editorial':['essay','photo'],'offer':['poster'],'illustration':['photo','poster'],'grid':['list','split']}
+mapping={'hero':['photo','poster'],'annotation':['split','photo'],'comparison':['split'],'diagram':['diagram','split','list'],'sequence':['diagram','list','essay'],'list':['list'],'notes':['note','essay'],'conversation':['essay'],'proof':['poster','photo'],'editorial':['essay','photo'],'offer':['poster'],'illustration':['photo','poster'],'grid':['list','split']}
 lib=[]
 for f in data['families']:
  refs=[r['id'] for r in data['references'] if r['primary_family']==f['id'] and not r['duplicate_of'] and not r['variant_of']][:3]

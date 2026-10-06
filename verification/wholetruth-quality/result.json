@@ -1,0 +1,965 @@
+{
+  "stage": "Ready",
+  "brand": {
+    "audience": "People shopping for packaged protein foods and snacks, including buyers interested in ingredient transparency and flavour choice.",
+    "facts": [
+      "We're a clean-label food brand",
+      "Protein Powder",
+      "Plant Protein",
+      "Protein Bars Pro",
+      "Mini Protein Bars",
+      "Dark Cocoa Bars",
+      "20g Protein.",
+      "The food & nutrition course we should've been taught in school.",
+      "We make food so clean, we can proudly declare every single ingredient that goes into it, upfront.",
+      "Ever wondered why most brands hide their ingredient list, in microscopic font, at the back?"
+    ],
+    "name": "The Whole Truth Foods",
+    "offer": "A clean-label food range spanning protein powders, plant protein, protein bars, mini protein bars and dark cocoa bars, alongside food and nutrition education.",
+    "palette": {
+      "accent": "#ffcaf1",
+      "ink": "#0a0a0a",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "observed": [
+        "#ab406c",
+        "#ffcaf1",
+        "#8b3a5c",
+        "#c1ff64",
+        "#979797",
+        "#fff0f6",
+        "#1a181e",
+        "#231f20",
+        "#93385d",
+        "#fff3f1"
+      ],
+      "paper": "#ffffff",
+      "primary": "#ab406c"
+    },
+    "sourceUrl": "https://thewholetruthfoods.com/",
+    "strategy": {
+      "action": "Explore Protein Bars Pro through the online store. Use the supplied homepage, whose content includes this range; the supplied Hazelnut Millet product page does not substantiate the featured Pro products.",
+      "angles": [
+        {
+          "evidence": [
+            "Protein Bars Pro",
+            "We Believe Good Food is Made of Good Ingredients. So, Our Products Contains Natural Ingredients that are Mentioned on them and Nothing Else.",
+            "Our purpose is simple. We make food so clean, we can proudly declare every single ingredient that goes into it, upfront. And we can speak the whole truth, because we have #nothingtohide."
+          ],
+          "hooks": [
+            "What goes into a cocoa protein bar besides the protein?"
+          ],
+          "idea": "Carousel \u2014 A cocoa bar explained by its actual recipe",
+          "usefulInsight": "Content job: turn ingredient transparency into product understanding rather than another instruction to read labels. Awareness hypothesis: the reader knows protein bars but does not know this brand or what goes into its Double Cocoa variant. Opening/payoff pair: ask what makes a cocoa protein bar beyond the protein number; deliver the specific declared combination of cocoa powder, cocoa butter, dates, cashews, almonds and whey. The ingredient names are visible together on the Double Cocoa wrapper in image-5; do not extrapolate quantities, texture, sweetness levels or nutritional superiority. Intended progression: establish the buying question, unpack the cocoa pair, reveal the rest of the declared recipe, then connect this concrete example to the brand's upfront-disclosure belief and invite exploration. Supported mechanism: an actual front-of-pack ingredient declaration, grounded in the brand statement E72. Framework: feature \u2192 practical distinction \u2192 reader value, with the value being a more concrete picture of the product. Image relationship: image-5 is direct product evidence, specifically its upper wrapper; it is not an unwrapped-food demonstration. Comparison: high reader recognition, strong specific discovery, high credibility within the limits of the wrapper, and strong brand fit."
+        },
+        {
+          "evidence": [
+            "Protein Bars Pro",
+            "20g Protein. No chemicals."
+          ],
+          "hooks": [
+            "Cocoa, peanut or coffee? Your 20g protein bar has options."
+          ],
+          "idea": "Static \u2014 Choose the flavour, keep the 20g",
+          "usefulInsight": "Content job: create a direct, flavour-led reason to browse the Pro bar range, separate from the carousel's ingredient education. Awareness hypothesis: the reader already wants a protein bar and would welcome a choice beyond a single cocoa flavour. Opening/payoff pair: frame cocoa, peanut or coffee as the immediate appetite decision; show that the three photographed Pro wrappers each declare 20g protein. Supported mechanism: image-5 visibly names Double Cocoa, Peanut Cocoa and Coffee Cocoa and carries the same 20g declaration on each. That supports a shared protein amount, not otherwise identical nutrition, equal serving weights or equivalent effects. Framework: desire-led AIDA, compressed into one complete buying idea: three flavour directions with a common declared protein amount, followed by an invitation to explore the range. Image relationship: image-5 supplies both product presence and the relevant variant evidence. Comparison: strongest immediate reader recognition and image fit, moderate discovery, high specificity and credibility, and strong commercial fit."
+        },
+        {
+          "evidence": [
+            "Real food is flawed.",
+            "And those flaws are perfect!",
+            "Our food doesn't always look perfect. (But it tastes great!) Proof that we didn't tamper with nature."
+          ],
+          "hooks": [
+            "Does your snack need to look picture-perfect?"
+          ],
+          "idea": "Alternative \u2014 Packaged food need not look picture-perfect",
+          "usefulInsight": "Content job: introduce the brand's unusual willingness to acknowledge imperfect appearance. Awareness hypothesis: some shoppers expect packaged snacks to match polished food photography. Opening/payoff pair: question whether visual perfection should be the expectation; explain the brand's own admission that its food does not always look perfect. Framework: belief \u2192 distinction \u2192 example \u2192 action. Supported mechanism is limited to the brand-authored admission, not a demonstrated relationship between appearance and ingredients. Image relationship: no supplied asset clearly documents a real imperfect product; image-3 is highly styled and cannot serve as that proof. Comparison: distinctive discovery and strong voice fit, but weaker buying relevance and substantially weaker visual credibility than the selected ideas. Do not imply that irregular appearance proves safety, naturalness or nutritional quality."
+        }
+      ],
+      "chosenAngles": [
+        "Carousel \u2014 A cocoa bar explained by its actual recipe",
+        "Static \u2014 Choose the flavour, keep the 20g"
+      ],
+      "customer": "The Whole Truth Foods is the company being marketed: a self-described clean-label food brand selling protein powders, plant protein, protein bars, mini bars and dark cocoa bars, alongside food education. Content Studio's customer is the company; these posts address its actual consumer buyers, not founders. Proposed readers are adults considering packaged protein snacks. Their interest in ingredient transparency and flavour variety is a hypothesis, not established customer research.",
+      "destination": "https://thewholetruthfoods.com/",
+      "imageStyle": "Inspected raster assets: image-0 shows two hollow, four-point sparkle shapes in muted berry pink, arranged diagonally against a black-displayed background; decorative, not product evidence. image-1 shows two overlapping upright white-and-green plant-protein pouches, with the rear pouch higher and left. Burgundy and beige flavour panels distinguish them; large green lettering dominates their fronts. No setting or people are visible. image-2 is a wide lavender-and-purple studio banner: two upright food-drink pouches and small glasses of brown liquid sit centrally on a purple surface, with blue headline text above and a white pill-shaped button below. image-3 is a wide hot-pink banner, with pale headline text and a button on the left; on the right, a wrapped bar sits behind a mound of golden-brown nut pieces while a dark glossy stream descends onto the product arrangement. This is styled advertising imagery, not evidence of a manufacturing process. image-5 shows three horizontally wrapped bars stacked vertically against a black-displayed background: burgundy Double Cocoa, orange Peanut Cocoa and brown Coffee Cocoa. Each wrapper has a prominent white triangular panel marked 20g protein, white brand lettering and smaller ingredient text. No people or consumption setting are shown. diagram-0 was supplied only as SVG metadata and was not visually inspected. Retain the site's condensed sans-serif character and berry, pink, white and dark-ink vocabulary; these assets are source material, not finished designs.",
+      "market": "Consumer packaged foods, with these posts focused on protein bars. Selling geography, buyer demographics, company stage, social following and customer count are unknown.",
+      "mechanism": "Make the brand's ingredient-disclosure belief concrete through the visible Double Cocoa Protein Bars Pro wrapper, then use the three photographed Pro variants for a separate flavour-led buying idea. Packaging demonstrates what the brand declares, not health outcomes or customer satisfaction.",
+      "note": "The selected carousel wins on concrete recipe discovery: it demonstrates the brand's disclosure belief instead of merely telling shoppers to inspect ingredients. The static wins on immediate appetite relevance and a complete product-backed buying proposition. They perform different jobs\u2014understanding one recipe versus choosing among flavour directions\u2014even though the same supplied product asset supports both. Proposed carousel family: annotation, reference S008-01, because an actual wrapper anchors the explanation. Proposed static family: hero, reference S008-04, because the three-bar asset directly carries the offer. These are conceptual family selections, not slide copy or design specifications; reference screenshots were not inspected. Preserve readable evidence rather than enlarging claims from tiny packaging text. Exact source anchors include E2: \"We're a clean-label food brand\"; E10: \"Protein Bars Pro\"; and E72: \"Our purpose is simple. We make food so clean, we can proudly declare every single ingredient that goes into it, upfront. And we can speak the whole truth, because we have #nothingtohide.\" Use only the protein-amount portion supported by E11 and the visible wrappers; do not repeat its broad 'No chemicals' language. Homepage offers address different needs: powders and plant protein, portable bars, cocoa snacks and food education. The story page supports the disclosure belief; the sparse Hazelnut Millet page supplies no recipe evidence for these posts. The True Story page is not a campaign topic, and contested sugar claims are excluded. Motivations, awareness and the shopping occasion remain creative hypotheses. Current stock, prices and variant availability are unverified, so avoid urgency and purchase guarantees. No supplied reviews, customer messages, before/after evidence or process photographs support testimonial, transformation or manufacturing-demonstration formats. Do not use the existing styled banner as proof of taste or texture. Both posts have one next action: explore the Pro range from the inspected homepage. Any Instagram profile-link wording depends on the manual publishing setup.",
+      "situation": "A shopper is choosing a protein bar and wants something more tangible than a protein number: what actually makes up the bar, and which flavour sounds appealing. This is an illustrative buying situation, not a reported customer experience."
+    },
+    "style": {
+      "bodyFont": "",
+      "fontName": "obviouslyNarrow",
+      "headline": "sans",
+      "note": "Declared heading font loaded from the source website public font files. Usage rights are not independently verified; no formal brand guide supplied.",
+      "sourceFont": "obviouslyNarrow,obviouslyNarrow Fallback,sans-serif-condensed",
+      "weight": 600
+    },
+    "voice": "Plain-spoken, candid and lightly cheeky. Specific about food, without grand health promises."
+  },
+  "posts": [
+    {
+      "altText": "Five-slide introduction to Double Cocoa Protein Bars Pro in berry, pale pink, white and dark ink. The opening pairs a cocoa-and-nuts headline with a photograph of three wrapped Pro bars. A concise recipe slide lists six ingredients and 20g protein. A choice slide explains that Double Cocoa contains nuts and whey and is not plant-only. A brand-authored note explains why ingredients appear upfront. The closing directs readers to the Protein Bars Pro range.",
+      "caption": "The name says Double Cocoa. The recipe also says cashews and almonds.\n\nOur Protein Bars Pro bar brings those together with cocoa powder, cocoa butter, dates and whey, with 20g protein per bar. A cocoa-and-nut option, even without \u201cnut\u201d in the flavour name.\n\nExplore Protein Bars Pro at thewholetruthfoods.com.",
+      "destination": "https://thewholetruthfoods.com/",
+      "documentTitle": "Double Cocoa: a cocoa-and-nut protein bar",
+      "emotion": "Discovery of a specific product combination worth considering.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "image-5",
+          "body": "Double Cocoa Protein Bars Pro contains cashews and almonds.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "cocoa AND nuts",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "primary",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Like cocoa AND nuts in your protein bar? This one's both.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Declared on the Double Cocoa wrapper.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "list",
+            "surface": "accent",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Six ingredients. 20g protein. Here's the recipe.",
+          "items": [
+            {
+              "detail": "",
+              "label": "Cocoa powder + cocoa butter"
+            },
+            {
+              "detail": "",
+              "label": "Cashews + almonds"
+            },
+            {
+              "detail": "",
+              "label": "Dates + whey"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Double Cocoa contains nuts and whey. That makes it a cocoa-and-nut option, but not a plant-only one.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "ink",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Your flavour choice. Your ingredient preferences, too.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Because choosing food shouldn't start with squinting at the back of a pack. We declare every ingredient upfront\u2014including the ones the flavour name doesn't mention.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "A NOTE FROM THE WHOLE TRUTH",
+          "heading": "Why put the recipe on the front?",
+          "items": []
+        },
+        {
+          "assetKey": "image-5",
+          "body": "Find Double Cocoa in our Protein Bars Pro range.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "accent",
+            "takeaway": "Explore Protein Bars Pro at thewholetruthfoods.com."
+          },
+          "eyebrow": "",
+          "heading": "Sounds like your kind of protein bar?",
+          "items": []
+        }
+      ],
+      "hook": "Like cocoa AND nuts in your protein bar? This one's both.",
+      "layout": "headline",
+      "pain": "A shopper looking for a cocoa-and-nut bar may not recognise that combination from the Double Cocoa name.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Protein Bars Pro",
+        "20g Protein.",
+        "We make food so clean, we can proudly declare every single ingredient that goes into it, upfront.",
+        "Ever wondered why most brands hide their ingredient list, in microscopic font, at the back?"
+      ]
+    },
+    {
+      "altText": "Pale-pink static with a large photograph of three wrapped The Whole Truth Foods Protein Bars Pro bars: burgundy Double Cocoa, orange Peanut Cocoa and brown Coffee Cocoa. Each wrapper carries a white 20g protein panel. Below the photograph, the headline asks, \u201cCocoa, peanut or coffee? Your 20g protein bar has options.\u201d",
+      "caption": "For the cocoa mood. The peanut mood. The coffee mood.\n\nDouble Cocoa, Peanut Cocoa and Coffee Cocoa: three Protein Bars Pro flavours, with 20g protein in each bar. Which one sounds good is entirely your business.\n\nExplore Protein Bars Pro at thewholetruthfoods.com.",
+      "destination": "https://thewholetruthfoods.com/",
+      "documentTitle": "Choose your cocoa mood",
+      "emotion": "Appetite and the pleasure of choosing a flavour.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "image-5",
+          "body": "Double Cocoa. Peanut Cocoa. Coffee Cocoa.\n20g protein in each bar. Your flavour call.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "has options.",
+            "imagePosition": "top",
+            "layout": "photo",
+            "surface": "accent",
+            "takeaway": ""
+          },
+          "eyebrow": "PROTEIN BARS PRO",
+          "heading": "Cocoa, peanut or coffee? Your 20g protein bar has options.",
+          "items": []
+        }
+      ],
+      "hook": "Cocoa, peanut or coffee? Your 20g protein bar has options.",
+      "layout": "headline",
+      "pain": "Flavour can become an afterthought when shopping by protein amount.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Protein Bars Pro",
+        "20g Protein."
+      ]
+    },
+    {
+      "altText": "Five-slide Double Cocoa product introduction using berry, pale pink, white and dark ink. The first slide introduces a cocoa-and-nut protein bar beside the supplied wrapped-bar photograph. The second combines the complete six-ingredient declaration with 20g protein. The third connects nuts and whey to ingredient preferences. A ruled brand-authored note explains upfront disclosure. The final product slide invites readers to explore Protein Bars Pro.",
+      "caption": "If cocoa and nuts are the combination you're looking for, Double Cocoa deserves a place on your shortlist.\n\nIts recipe includes cashews and almonds alongside cocoa powder, cocoa butter, dates and whey. Each bar has 20g protein. It contains nuts and whey, so it isn't a plant-only option.\n\nWe declare ingredients upfront because those details belong in the product introduction\u2014not just the flavour name and protein number.\n\nExplore Protein Bars Pro in our online store: https://thewholetruthfoods.com/",
+      "destination": "https://thewholetruthfoods.com/",
+      "documentTitle": "Double Cocoa: more than a cocoa flavour",
+      "emotion": "Interest in a protein bar introduced through its actual recipe.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "image-5",
+          "body": "Double Cocoa Protein Bars Pro contains cashews and almonds.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "cocoa AND nuts",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "primary",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Like cocoa AND nuts in your protein bar? This one's both.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Declared on the Double Cocoa wrapper.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "list",
+            "surface": "accent",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Six ingredients. 20g protein. Here's the recipe.",
+          "items": [
+            {
+              "detail": "",
+              "label": "Cocoa powder + cocoa butter"
+            },
+            {
+              "detail": "",
+              "label": "Cashews + almonds"
+            },
+            {
+              "detail": "",
+              "label": "Dates + whey"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Double Cocoa contains nuts and whey. That makes it a cocoa-and-nut option, but not a plant-only one.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "ink",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Your flavour choice. Your ingredient preferences, too.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Because choosing food shouldn't start with squinting at the back of a pack. We declare every ingredient upfront\u2014including the ones the flavour name doesn't mention.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "A NOTE FROM THE WHOLE TRUTH",
+          "heading": "Why put the recipe on the front?",
+          "items": []
+        },
+        {
+          "assetKey": "image-5",
+          "body": "Find Double Cocoa in our Protein Bars Pro range.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "accent",
+            "takeaway": "Explore Protein Bars Pro at thewholetruthfoods.com."
+          },
+          "eyebrow": "",
+          "heading": "Sounds like your kind of protein bar?",
+          "items": []
+        }
+      ],
+      "hook": "Like cocoa AND nuts in your protein bar? This one's both.",
+      "layout": "headline",
+      "pain": "A shopper looking for a cocoa-and-nut bar may not recognise that combination from the Double Cocoa name.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "Protein Bars Pro",
+        "20g Protein.",
+        "We make food so clean, we can proudly declare every single ingredient that goes into it, upfront.",
+        "Ever wondered why most brands hide their ingredient list, in microscopic font, at the back?"
+      ]
+    },
+    {
+      "altText": "A pale-pink static foregrounds three wrapped Protein Bars Pro bars in Double Cocoa, Peanut Cocoa and Coffee Cocoa. Beneath the product photograph, the headline reads, \u201cCocoa, peanut or coffee? Your 20g protein bar has options.\u201d Supporting copy states that each bar has 20g protein and leaves the flavour choice to the reader.",
+      "caption": "Choosing a protein bar can still be a flavour decision.\n\nDouble Cocoa, Peanut Cocoa and Coffee Cocoa each bring 20g protein to the choice. So whether today sounds like a cocoa day, a peanut day or a coffee day, there's a Pro bar to consider.\n\nExplore Protein Bars Pro in our online store: https://thewholetruthfoods.com/",
+      "destination": "https://thewholetruthfoods.com/",
+      "documentTitle": "Protein chosen. Flavour still yours.",
+      "emotion": "Appetite-led interest and freedom to choose.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "image-5",
+          "body": "Double Cocoa. Peanut Cocoa. Coffee Cocoa.\n20g protein in each bar. Your flavour call.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "has options.",
+            "imagePosition": "top",
+            "layout": "photo",
+            "surface": "accent",
+            "takeaway": ""
+          },
+          "eyebrow": "PROTEIN BARS PRO",
+          "heading": "Cocoa, peanut or coffee? Your 20g protein bar has options.",
+          "items": []
+        }
+      ],
+      "hook": "Cocoa, peanut or coffee? Your 20g protein bar has options.",
+      "layout": "headline",
+      "pain": "A shopper wants a protein snack that appeals to their flavour preferences, not just a protein specification.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "Protein Bars Pro",
+        "20g Protein."
+      ]
+    }
+  ],
+  "sitePalette": {
+    "accent": "#ffcaf1",
+    "ink": "#0a0a0a",
+    "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+    "observed": [
+      "#ab406c",
+      "#ffcaf1",
+      "#8b3a5c",
+      "#c1ff64",
+      "#979797",
+      "#fff0f6",
+      "#1a181e",
+      "#231f20",
+      "#93385d",
+      "#fff3f1"
+    ],
+    "paper": "#ffffff",
+    "primary": "#ab406c"
+  },
+  "siteStyle": {
+    "bodyFont": "",
+    "fontName": "obviouslyNarrow",
+    "headline": "sans",
+    "note": "Declared heading font loaded from the source website public font files. Usage rights are not independently verified; no formal brand guide supplied.",
+    "sourceFont": "obviouslyNarrow,obviouslyNarrow Fallback,sans-serif-condensed",
+    "weight": 600
+  },
+  "sourcePages": [
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Order online from The Whole Truth Foods with secure payment options and seamless online shopping experience."
+        },
+        {
+          "kind": "h2",
+          "text": "We're re-building the world's trust in food."
+        },
+        {
+          "kind": "p",
+          "text": "We're a clean-label food brand"
+        },
+        {
+          "kind": "h2",
+          "text": "We make real food."
+        },
+        {
+          "kind": "h3",
+          "text": "Protein Powder"
+        },
+        {
+          "kind": "p",
+          "text": "All the protein you need"
+        },
+        {
+          "kind": "p",
+          "text": "Clean milk-mix and bars"
+        },
+        {
+          "kind": "h3",
+          "text": "Plant Protein"
+        },
+        {
+          "kind": "p",
+          "text": "Plant Protein comes clean."
+        },
+        {
+          "kind": "p",
+          "text": "Clean. Meet protein."
+        },
+        {
+          "kind": "h3",
+          "text": "Protein Bars Pro"
+        },
+        {
+          "kind": "p",
+          "text": "20g Protein. No chemicals."
+        },
+        {
+          "kind": "h3",
+          "text": "Mini Protein Bars"
+        },
+        {
+          "kind": "p",
+          "text": "Mini. Yet mighty."
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Cocoa Bars"
+        },
+        {
+          "kind": "p",
+          "text": "Sweetened with dates"
+        },
+        {
+          "kind": "p",
+          "text": "Real food. Real energy."
+        },
+        {
+          "kind": "p",
+          "text": "Real nuts. Unreal taste."
+        },
+        {
+          "kind": "h2",
+          "text": "Real food is flawed."
+        },
+        {
+          "kind": "p",
+          "text": "And those flaws are perfect!"
+        },
+        {
+          "kind": "p",
+          "text": "Our food doesn't always look perfect. (But it tastes great!) Proof that we didn't tamper with nature."
+        },
+        {
+          "kind": "h2",
+          "text": "We\u2019re also fixing food journalism."
+        },
+        {
+          "kind": "p",
+          "text": "We can\u2019t fix food without fixing food journalism. Because what you read and believe is what you eat and repeat. We\u2019re on it."
+        },
+        {
+          "kind": "h3",
+          "text": "Truth Be Told"
+        },
+        {
+          "kind": "p",
+          "text": "India's top health newsletter. Read by 50,000+."
+        },
+        {
+          "kind": "h3",
+          "text": "The Whole Truth Academy"
+        },
+        {
+          "kind": "p",
+          "text": "The food & nutrition course we should've been taught in school."
+        },
+        {
+          "kind": "p",
+          "text": "Found an ingredient you can't pronounce? Allow us to help."
+        },
+        {
+          "kind": "div",
+          "text": "Nutrition meets decadence"
+        },
+        {
+          "kind": "h1",
+          "text": "Real food made by real people."
+        },
+        {
+          "kind": "p",
+          "text": "Our Bada Barkhana in 3D"
+        },
+        {
+          "kind": "p",
+          "text": "See where our protein powders are made"
+        },
+        {
+          "kind": "div",
+          "text": "Protein PowdersProtein Bars"
+        },
+        {
+          "kind": "p",
+          "text": "Click here to step into our bada barkhana"
+        },
+        {
+          "kind": "p",
+          "text": "Be it ingredients, process or the people who make it - we literally have #nothingtohide."
+        },
+        {
+          "kind": "p",
+          "text": "PS- Our Bada Barkhana is an FSSC certified facility :)"
+        },
+        {
+          "kind": "h2",
+          "text": "Real people. Real love."
+        },
+        {
+          "kind": "p",
+          "text": "We\u2019re blessed! Because we have you"
+        },
+        {
+          "kind": "div",
+          "text": "Head to our wall of infinite love"
+        },
+        {
+          "kind": "p",
+          "text": "(and we didn't even have to pay for it)"
+        },
+        {
+          "kind": "h2",
+          "text": "Come, join the fam!"
+        },
+        {
+          "kind": "p",
+          "text": "Meet fellow health enthusiasts."
+        },
+        {
+          "kind": "div",
+          "text": "Join our Instagram Community"
+        },
+        {
+          "kind": "div",
+          "text": "Shashank Mehta on removing Instagram from the marketing mix of The Whole Truth"
+        },
+        {
+          "kind": "div",
+          "text": "TWT unmasks unhealthy food brands with Rohan Joshi"
+        },
+        {
+          "kind": "div",
+          "text": "How The Whole Truth Foods is bringing 'truth' to packaged foods"
+        },
+        {
+          "kind": "div",
+          "text": "Why is The Whole Truth Foods ditching Instagram?"
+        },
+        {
+          "kind": "div",
+          "text": "Distance running event TCS World 10K ties up with clean label food brand The Whole Truth"
+        },
+        {
+          "kind": "div",
+          "text": "The Whole Truth, a 'healthy' packaged food brand, raises $6 million to enter new categories"
+        },
+        {
+          "kind": "div",
+          "text": "The Whole Truth raises $6 million in funding led by Sequoia Capital India"
+        },
+        {
+          "kind": "div",
+          "text": "The Whole Truth Foods (TWT) introduces India's first dark chocolate sweetened ONLY with dates"
+        },
+        {
+          "kind": "div",
+          "text": "A disruptive influencer marketing campaign received 1 million views and favourable responses"
+        },
+        {
+          "kind": "div",
+          "text": "Move Over Cred, This Ad Calling Out Influencers For Selling Their Honesty Is What You Should See"
+        },
+        {
+          "kind": "div",
+          "text": "Credible, quirky & wholesome: The Whole Truth Foods' campaigns serve it right"
+        },
+        {
+          "kind": "div",
+          "text": "This Sequoia-backed clean food startup is raising the bar in a crowded D2C market"
+        },
+        {
+          "kind": "div",
+          "text": "Shashank Mehta on his journey from HUL to building a D2C food brand"
+        },
+        {
+          "kind": "div",
+          "text": "Social media detox, the Whole Truth: Saturday Sologues"
+        },
+        {
+          "kind": "div",
+          "text": "When founders become content creators"
+        },
+        {
+          "kind": "p",
+          "text": "Securely pay using:"
+        },
+        {
+          "kind": "p",
+          "text": "Oh! and Cash On Delivery too :)"
+        },
+        {
+          "kind": "p",
+          "text": "Truth-seekers, unite!"
+        },
+        {
+          "kind": "p",
+          "text": "One, BS free, in-depth article about food & fitness. Delivered every Saturday. Free (for now)"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect App"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect app lets users report food issues, check FBOs, and get safety updates."
+        },
+        {
+          "kind": "p",
+          "text": "\u00a9 2026 Fitshit Health Solutions. All rights reserved."
+        }
+      ],
+      "retrievedAt": 1791207196627,
+      "title": "The Whole Truth Foods - Online Store",
+      "url": "https://thewholetruthfoods.com/"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Order online from The Whole Truth Foods and get delivery within 2-7 days"
+        },
+        {
+          "kind": "p",
+          "text": "Securely pay using:"
+        },
+        {
+          "kind": "p",
+          "text": "Oh! and Cash On Delivery too :)"
+        },
+        {
+          "kind": "p",
+          "text": "Truth-seekers, unite!"
+        },
+        {
+          "kind": "p",
+          "text": "One, BS free, in-depth article about food & fitness. Delivered every Saturday. Free (for now)"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect App"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect app lets users report food issues, check FBOs, and get safety updates."
+        },
+        {
+          "kind": "p",
+          "text": "\u00a9 2026 Fitshit Health Solutions. All rights reserved."
+        }
+      ],
+      "retrievedAt": 1791207197071,
+      "title": "Hazelnut Millet Protein Bars - The Whole Truth Foods",
+      "url": "https://thewholetruthfoods.com/products/hazelnut-millet-protein-bars?sku_id=variant_01KRQRHJW3H97ZFYY319R8JC56&category=protein-bars"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "We Believe Good Food is Made of Good Ingredients. So, Our Products Contains Natural Ingredients that are Mentioned on them and Nothing Else."
+        },
+        {
+          "kind": "p",
+          "text": "Ever wondered why most brands hide their ingredient list, in microscopic font, at the back? Why you\u2019re made to stare, squint eyed, at the crimp, just to figure out what your food is made of?"
+        },
+        {
+          "kind": "p",
+          "text": "As an obese kid trying to eat healthy, I used to ask these questions everyday. I never got an answer, so I did my own research."
+        },
+        {
+          "kind": "p",
+          "text": "Brands hide what goes into their food, because they have something to hide."
+        },
+        {
+          "kind": "p",
+          "text": "Because they\u2019d rather have you drool over fake pictures of molten, drippy chocolate, than have you discover that your food contains artificial sugars and preservatives and other hard-to-pronounce chemicals."
+        },
+        {
+          "kind": "p",
+          "text": "In the name of \u2018healthy\u2019, we\u2019re being sold a bunch of lies. And I was done being lied to. So I, along with a few like-minded (and equally betrayed) folks, started The Whole Truth."
+        },
+        {
+          "kind": "p",
+          "text": "Our purpose is simple. We make food so clean, we can proudly declare every single ingredient that goes into it, upfront. And we can speak the whole truth, because we have #nothingtohide."
+        },
+        {
+          "kind": "p",
+          "text": "ShashankFounder. CEO. Obese kid. Fit adult. Hell bent on setting packaged food right."
+        },
+        {
+          "kind": "p",
+          "text": "Who is this guy?"
+        },
+        {
+          "kind": "p",
+          "text": "Shashank, our main man, started his fitness journey at over 100kgs, 15 years ago. In the decade that followed, he taught himself fitness, lost 40kgs, ran several marathons, and helped many friends and colleagues get onto the fitness bandwagon."
+        },
+        {
+          "kind": "p",
+          "text": "After all the years of research and self-experimentation, he believes there\u2019s only one universal food truth"
+        },
+        {
+          "kind": "p",
+          "text": "good food is made of good ingredients"
+        },
+        {
+          "kind": "p",
+          "text": "You can access all his learnings at FITSHIT.in, his free-forever fitness blog read by thousands every week."
+        },
+        {
+          "kind": "p",
+          "text": "Disclaimer \u2013 views on the blog are personal. so is the crusade."
+        },
+        {
+          "kind": "p",
+          "text": "PS: It is very strange to write about yourself in third person."
+        },
+        {
+          "kind": "p",
+          "text": "Securely pay using:"
+        },
+        {
+          "kind": "p",
+          "text": "Oh! and Cash On Delivery too :)"
+        },
+        {
+          "kind": "p",
+          "text": "Truth-seekers, unite!"
+        },
+        {
+          "kind": "p",
+          "text": "One, BS free, in-depth article about food & fitness. Delivered every Saturday. Free (for now)"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect App"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect app lets users report food issues, check FBOs, and get safety updates."
+        },
+        {
+          "kind": "p",
+          "text": "\u00a9 2026 Fitshit Health Solutions. All rights reserved."
+        }
+      ],
+      "retrievedAt": 1791207197163,
+      "title": "Good food is Made of Good Ingredients - The Whole Truth",
+      "url": "https://thewholetruthfoods.com/pages/our-story"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Order online from The Whole Truth Foods with secure payment options and seamless online shopping experience."
+        },
+        {
+          "kind": "h1",
+          "text": "The whole truth, of The Whole Truth."
+        },
+        {
+          "kind": "p",
+          "text": "When we owe you more context. Or clarification. Everything, explained."
+        },
+        {
+          "kind": "li",
+          "text": "Source: InternalWhy Our Kids' Food Drink Shelf Life ChangedNEWOur Food Drink is a milk mix for kids. It continues to have the same recipe and same ingredients as before, but we changed the shelf life from 4 months to 6 months. Here\u2019s why that happened.1 October 20264 mins readRead Article"
+        },
+        {
+          "kind": "div",
+          "text": "Source: Internal"
+        },
+        {
+          "kind": "h2",
+          "text": "Why Our Kids' Food Drink Shelf Life ChangedNEW"
+        },
+        {
+          "kind": "p",
+          "text": "Our Food Drink is a milk mix for kids. It continues to have the same recipe and same ingredients as before, but we changed the shelf life from 4 months to 6 months. Here\u2019s why that happened."
+        },
+        {
+          "kind": "div",
+          "text": "1 October 20264 mins read"
+        },
+        {
+          "kind": "li",
+          "text": "Source: RedditA Reddit post on our whey pack changes, answeredA consumer wrote a detailed post on reddit comparing old and new packs of our Whey Protein Concentrate. It\u2019s a thorough comparison and deserves a proper answer.15 September 20263 mins readRead Article"
+        },
+        {
+          "kind": "div",
+          "text": "Source: Reddit"
+        },
+        {
+          "kind": "h2",
+          "text": "A Reddit post on our whey pack changes, answered"
+        },
+        {
+          "kind": "p",
+          "text": "A consumer wrote a detailed post on reddit comparing old and new packs of our Whey Protein Concentrate. It\u2019s a thorough comparison and deserves a proper answer."
+        },
+        {
+          "kind": "div",
+          "text": "15 September 20263 mins read"
+        },
+        {
+          "kind": "li",
+          "text": "Source: InstagramAkash Yadav reel, debunkedA June 2025 video by creator Akash Yadav questioned the sugar in two of our products. The video's gone, but news pieces and Al summaries keep citing it without our side. Here's the full record, claim by claim.29 July 20263 mins readRead Article"
+        },
+        {
+          "kind": "div",
+          "text": "Source: Instagram"
+        },
+        {
+          "kind": "h2",
+          "text": "Akash Yadav reel, debunked"
+        },
+        {
+          "kind": "p",
+          "text": "A June 2025 video by creator Akash Yadav questioned the sugar in two of our products. The video's gone, but news pieces and Al summaries keep citing it without our side. Here's the full record, claim by claim."
+        },
+        {
+          "kind": "div",
+          "text": "29 July 20263 mins read"
+        },
+        {
+          "kind": "li",
+          "text": "Source: Newspaper ArticleAn update on our chocolatesThere's a piece in Mint this week about a show cause notice we received on the \"No Added Sugar\" claim on our chocolates. We want to share what's going on.18 May 20262 mins readRead Article"
+        },
+        {
+          "kind": "div",
+          "text": "Source: Newspaper Article"
+        },
+        {
+          "kind": "h2",
+          "text": "An update on our chocolates"
+        },
+        {
+          "kind": "p",
+          "text": "There's a piece in Mint this week about a show cause notice we received on the \"No Added Sugar\" claim on our chocolates. We want to share what's going on."
+        },
+        {
+          "kind": "div",
+          "text": "18 May 20262 mins read"
+        },
+        {
+          "kind": "p",
+          "text": "Securely pay using:"
+        },
+        {
+          "kind": "p",
+          "text": "Oh! and Cash On Delivery too :)"
+        },
+        {
+          "kind": "p",
+          "text": "Truth-seekers, unite!"
+        },
+        {
+          "kind": "p",
+          "text": "One, BS free, in-depth article about food & fitness. Delivered every Saturday. Free (for now)"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect App"
+        },
+        {
+          "kind": "p",
+          "text": "Food Safety Connect app lets users report food issues, check FBOs, and get safety updates."
+        },
+        {
+          "kind": "p",
+          "text": "\u00a9 2026 Fitshit Health Solutions. All rights reserved."
+        }
+      ],
+      "retrievedAt": 1791207196997,
+      "title": "True Story - The Whole Truth Foods",
+      "url": "https://thewholetruthfoods.com/learn/true-story"
+    }
+  ],
+  "sourceWarnings": [
+    "Related page unavailable: https://thewholetruthfoods.com/llmFeed.json",
+    "Inline website diagrams imported with safe presentation attributes; external CSS and animation are omitted. Compare their preview before publishing."
+  ],
+  "writerRun": {
+    "durationMs": 20421,
+    "model": "gpt-6-astra",
+    "provider": "Connected ChatGPT",
+    "requests": 1,
+    "review": "buyer-value-v2: The posts stay within the supplied product evidence: Double Cocoa\u2019s declared six ingredients, the three photographed Pro variants and their shared 20g protein declaration. Nuts and whey support the plant-only distinction without implying health benefits or nutritional superiority. The homepage is an appropriate destination for exploring Protein Bars Pro; the unrelated Hazelnut Millet page is not used as proof. Both formats give unfamiliar protein-bar shoppers a concrete buying idea: the carousel reveals the cocoa-and-nut combination behind the Double Cocoa name, while the static makes flavour choice compatible with a shared protein amount. The carousel progresses from appetite to recipe, suitability, disclosure rationale and action, although its ingredient-preference slide is the weakest editorial beat. The static performs a complementary discovery job rather than repeating the recipe explanation. Product assets, observed colours and brand-authored language are consistent with the supplied evidence, with no invented testimonials, outcomes or availability claims.",
+    "usageNote": "This version records requests and time, not token totals. Writing uses your connected account allowance."
+  }
+}

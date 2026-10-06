@@ -38,7 +38,7 @@ test('unfinished bodies and greeting hooks cannot be saved as finished artwork',
 });
 import {extractPalette} from '../convex/brandPalette';
 test('brand palette resolves only safe default CSS colors and handles cycles',()=>{
- assert.deepEqual(extractPalette(':root{--paper:#fff;--ink:#0f0f12;--c-pink:#ff307e;--primary:var(--c-pink);--c-yellow:#f5c518;}'),{paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'});
+ assert.deepEqual(extractPalette(':root{--paper:#fff;--ink:#0f0f12;--c-pink:#ff307e;--primary:var(--c-pink);--c-yellow:#f5c518;}'),{observed:['#ffffff','#0f0f12','#ff307e','#f5c518'],paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'});
  assert.equal(extractPalette(':root{--primary:var(--other);--other:var(--primary)}'),undefined);
  assert.equal(extractPalette(':root{--primary:url(https://bad.example)}'),undefined);
 });
@@ -92,10 +92,10 @@ test('default colour tokens are preserved over later optional theme declarations
 import {checkCreativePosts} from '../convex/studioTypes';
 import {imageInfo as websiteImageInfo} from '../convex/websiteAssets';
 import sharp from 'sharp';
-test('four-platform creatives reject a sixth slide and images from another brand',()=>{
+test('four-platform creatives reject an eighth slide and images from another brand',()=>{
  const posts=['instagram','linkedin'].flatMap(platform=>foundersPosts.filter(p=>p.format!=='reel').map(p=>({...p,platform:platform as 'instagram'|'linkedin',destination:foundersBrand.sourceUrl,frames:p.frames.map((f,i)=>({...f,composition:(i===0?'editorial':i===2?'spotlight':i===4?'closing':'editorial') as 'editorial'|'spotlight'|'closing'}))})));
  assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram','linkedin']));
- const tooMany=structuredClone(posts);tooMany[0].frames.push(tooMany[0].frames[0]);assert.throws(()=>checkCreativePosts(tooMany,foundersBrand.facts,['instagram','linkedin']),/number of frames/);
+ const tooMany=structuredClone(posts);tooMany[0].frames.push(...Array(3).fill(tooMany[0].frames[0]));assert.throws(()=>checkCreativePosts(tooMany,foundersBrand.facts,['instagram','linkedin']),/number of frames/);
  const wrongBrand=structuredClone(posts);Object.assign(wrongBrand[1].frames[0],{composition:'image',assetKey:'other-brand'});assert.throws(()=>checkCreativePosts(wrongBrand,foundersBrand.facts,['instagram','linkedin']),/does not belong/);
 });
 test('brand typography skips reset inheritance and preserves the actual later body font',()=>{
@@ -117,3 +117,18 @@ test('actual hero heading classes take priority over generic heading resets',()=
 test('creative freedom allows a coherent single-layout carousel and a headline-only poster',()=>{const posts=foundersPosts.filter(p=>p.format!=='reel').map(p=>({...structuredClone(p),platform:'instagram' as const,destination:foundersBrand.sourceUrl,frames:p.frames.map(f=>({...f,composition:'editorial' as const}))}));posts[1].frames[0].body='';assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']));});
 
 test('semantic process text can use an essay without being forced into a list',()=>{const posts=foundersPosts.filter(p=>p.format!=='reel').map(p=>({...structuredClone(p),platform:'instagram' as const,destination:foundersBrand.sourceUrl,frames:p.frames.map(f=>({...f,composition:'process' as const,design:{layout:'essay' as const,surface:'paper' as const,align:'left' as const,imagePosition:'bottom' as const,emphasis:'',takeaway:''}}))}));assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']));posts[0].frames[0].design.layout='list' as 'essay';assert.throws(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']),/useful items/);});
+
+ test('active website utility colours outrank neutral framework defaults without importing unused theme colours',()=>{const p=extractPalette(':root{--primary:#111;--unused:#00ff00}.x{color:#93385d}', ['text-[#93385D]','border-[#93385D]','bg-[#FFCAF1]']);assert.equal(p?.primary,'#93385d');assert.equal(p?.accent,'#ffcaf1');assert.deepEqual(p?.observed,['#93385d','#ffcaf1']);});
+
+test('a complete three-slide carousel passes while a two-slide fragment fails',()=>{const posts=foundersPosts.filter(p=>p.format!=='reel').map(p=>({...structuredClone(p),platform:'instagram' as const,destination:foundersBrand.sourceUrl,frames:p.frames.map(f=>({...f,composition:'editorial' as const}))}));posts[0].frames=posts[0].frames.slice(0,3);assert.doesNotThrow(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']));posts[0].frames.pop();assert.throws(()=>checkCreativePosts(posts,foundersBrand.facts,['instagram']),/number of frames/);});
+
+test('a secondary serif token does not override an unstyled hero that inherits the website body face',()=>{
+ const css=':root{--font-sans:Geograph,system-ui,sans-serif;--font-serif:Self Modern,serif}.font-serif{font-family:var(--font-serif)}html{font-family:var(--font-sans)}';
+ assert.equal(extractStyle(css,['relative','tracking-wide']).sourceFont,'Geograph,system-ui,sans-serif');
+ assert.equal(extractStyle(css,['font-serif']).sourceFont,'Self Modern,serif');
+});
+
+ test('declared active brand colour roles and bold serif heading survive extraction',()=>{
+ const css=":root{--bg:#FCF9F3;--primary:#0F3D3E;--secondary:#F3943B;--hl:'Libre Caslon Text',serif;--bd:'Plus Jakarta Sans',sans-serif}body{background:var(--bg);color:var(--primary);font-family:var(--bd)}h1,h2,h3{font-family:var(--hl);font-weight:700}.cta{background:var(--secondary)}";
+ const p=extractPalette(css,[],['#f3943b','#f3943b','#0f3d3e','#fcf9f3'],{paper:'#fcf9f3',ink:'#0f3d3e'});assert.equal(p?.primary,'#0f3d3e');assert.equal(p?.accent,'#f3943b');assert.equal(p?.paper,'#fcf9f3');assert.equal(p?.ink,'#0f3d3e');assert.equal(extractStyle(css).weight,700);
+ });

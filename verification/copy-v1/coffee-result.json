@@ -1,0 +1,1759 @@
+{
+  "url": "https://www.deathwishcoffee.com/",
+  "stage": "Ready",
+  "brand": {
+    "audience": "Coffee drinkers choosing everyday roasts, flavored coffees and convenient formats for their own routines, with related drinkware and merchandise.",
+    "facts": [
+      "We source USDA Organic and Fair Trade Certified\u2122 arabica and robusta coffee beans from India, Peru, and other countries throughout South and Central America for our everyday coffee roasts.",
+      "Brew it your way with ground, whole bean or single-serve coffee pods.",
+      "White Chocolate Pistachio Coffee",
+      "Coconut Caramel Coffee",
+      "Coconut Caramel Single-Serve Pods",
+      "Caramel Cold Brew Latte",
+      "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength.",
+      "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?"
+    ],
+    "name": "Death Wish Coffee",
+    "offer": "Coffee across everyday roasts and flavored varieties, ground and whole-bean formats, single-serve pods and canned lattes, plus supporting drinkware and merchandise.",
+    "palette": {
+      "accent": "#e12827",
+      "ink": "#ffffff",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#000000",
+      "primary": "#e12827"
+    },
+    "sourceUrl": "https://www.deathwishcoffee.com/",
+    "strategy": {
+      "action": "Both posts invite one next action: explore the coffee collection. The carousel earns that action by clarifying format; the static earns it by introducing a specific flavor. Do not promise stock, an automatic discount, automated DMs or an unverified product-page destination.",
+      "angles": [
+        {
+          "evidence": [
+            "Brew it your way with ground, whole bean or single-serve coffee pods.",
+            "White Chocolate Pistachio Coffee",
+            "Coconut Caramel Coffee",
+            "Coconut Caramel Single-Serve Pods",
+            "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength. Now available in Mocha, Vanilla, Caramel and Original.",
+            "Caramel Cold Brew Latte"
+          ],
+          "hooks": [
+            "Dessert-flavored coffee or canned latte\u2014which are you shopping for?"
+          ],
+          "idea": "Carousel \u2014 Dessert-like name, different kind of coffee",
+          "usefulInsight": "Content job: help a coffee shopper interpret the offer before buying, rather than treating every sweet-sounding name as a latte. Awareness hypothesis: the reader knows flavored coffee exists but may not yet know this brand's formats. Opening/payoff pair: ask whether the shopper wants coffee to brew or a canned latte; deliver a concrete distinction using White Chocolate Pistachio flavored ground coffee, Coconut Caramel coffee and single-serve pods, and Caramel Cold Brew Latte. Intended progression: establish that flavor name and product format are separate decisions; demonstrate a ground-coffee example; show that Coconut Caramel appears in both coffee and pod listings; contrast those with the separately documented canned-latte category; conclude by directing the reader to choose a format in the coffee collection. Each stage adds a new distinction, not another flavor slogan. Supported mechanism: real category descriptions and product listings, not a recipe or inferred ingredient list. Framework: belief/distinction/example/action. Image relationship: image-2 directly demonstrates the ground-coffee example through its visible label. No supplied photograph depicts pods or canned lattes, so those comparisons should remain text-led rather than borrowing drinkware imagery as a substitute. Comparison: high reader recognition, high worthwhile discovery, high specificity and credibility, and strong fit with the brand's multi-format coffee range. More useful for a carousel than a general roast checklist."
+        },
+        {
+          "evidence": [
+            "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?",
+            "White Chocolate Pistachio Coffee"
+          ],
+          "hooks": [
+            "Toasted pistachio. Sweet white chocolate. Your next ground coffee?"
+          ],
+          "idea": "Static \u2014 Toasted pistachio meets white chocolate",
+          "usefulInsight": "Content job: create specific flavor discovery for a consumer considering a new bag of flavored ground coffee. Motivation hypothesis: the reader is attracted to dessert-like flavor combinations, not necessarily seeking a problem to solve. Awareness hypothesis: category-aware but unfamiliar with White Chocolate Pistachio from Death Wish Coffee. Opening/payoff pair: introduce the toasted-pistachio/white-chocolate pairing; deliver the brand's described earthy-and-sweet flavor character and identify the product as flavored ground coffee. The static is a complete sensory product introduction, not a compressed version of the carousel's format education. Supported mechanism: the homepage's flavor description plus the matching labeled bag in image-2. Treat that description as the brand's advertised flavor profile, not independent tasting evidence or proof of actual pistachio/chocolate ingredients. Framework: sensory demonstration, moving from desire to product identification and one browsing action. Image relationship: image-2 is the exact relevant product, with green and cream packaging details complementing the named pairing; image-3 is not the preferred substitute because it introduces a separately listed bundle and vessel. Comparison: high specificity, credibility and brand fit; strong discovery potential for flavor-curious shoppers; reader recognition is narrower than the carousel but the image/product match is stronger."
+        },
+        {
+          "evidence": [
+            "Call of the Wild Mug",
+            "Inspired by the elusive nature and enduring power of the stag",
+            "Call of the Wild Mug Call of the Wild Mug Regular price $38.00 Regular price Sale price $38.00 Unit price / per Add to cart Sold out"
+          ],
+          "hooks": [
+            "A coffee mug with a stag at its center."
+          ],
+          "idea": "Alternative \u2014 A stag-emblem mug for the coffee shelf",
+          "usefulInsight": "Content job: invite design-led discovery of supporting drinkware rather than explain the coffee itself. Motivation hypothesis: some coffee buyers also choose mugs for visual character or collecting. Awareness hypothesis: the reader can appreciate the object without knowing the brand. Opening/payoff pair: ask what gives this dark mug its woodland character; reveal the visible stag emblem, brown upper glaze and irregular pale-edged drips. Supported mechanism: inspected object photography and the site's stated stag inspiration; no claims about craftsmanship, material, capacity, durability or heat retention. Framework: sensory demonstration. Image relationship: image-1 supports close inspection of visible details, while image-0 shows the whole object in its setting. Comparison: high visual specificity and credible visible-detail evidence, but lower relevance to the primary coffee buying decision and a weaker next action because the supplied listing says sold out. Brand fit is strong as merchandise, not as the definition of the whole business. Do not adopt the homepage's urgency language."
+        }
+      ],
+      "chosenAngles": [
+        "Carousel \u2014 Dessert-like name, different kind of coffee",
+        "Static \u2014 Toasted pistachio meets white chocolate"
+      ],
+      "customer": "Content Studio's prospective client is Death Wish Coffee, not the person reading these posts. Death Wish Coffee sells coffee across everyday roasts, flavored coffees, ground and whole-bean formats, single-serve pods and canned lattes, with supporting drinkware and merchandise. Its homepage describes USDA Organic and Fair Trade Certified\u2122 sourcing for its everyday roasts. The post reader is a consumer choosing coffee for their own drinking routine or flavor preferences. Company stage, social presence and customer count are not established by this website.",
+      "destination": "https://www.deathwishcoffee.com/collections/coffee",
+      "imageStyle": "Inspected supplied raster website assets, not reference-library images or finished designs. image-0: a glossy dark-brown mug sits toward the right of a wide frame on a white, gray-veined surface against a charcoal background. The mug has a right-side loop handle, a mottled brown upper section with irregular pale-edged drips, and a circular gold-toned stag emblem; substantial empty space is visible on the left. image-1: a close, nearly square view of the same visible mug design, centered with its handle to the right; the brown glaze, pale drip edges and circular stag emblem are prominent against charcoal and white-gray surroundings. image-2: an upright black coffee bag, viewed slightly from the side, on a dark textured surface against a dark backdrop. Lime-green and cream illustrations surround a white skull-and-crossbones brand emblem; the front visibly names White Chocolate Pistachio and flavored ground coffee. A small green, black and white certification graphic appears at the lower left of the image. image-3: a tall black cylindrical vessel on the left and a coffee bag on the right, both carrying green and cream graphics, on a white-gray veined surface against a gray background. The vessel has a dark lid and silver-colored base. image-4: the same visible cylindrical vessel alone, centered with generous gray space around it, on a white-gray veined surface; green and cream graphics occupy its upper portion above a largely black lower body and silver-colored base. image-5: an overhead view of four empty clear glasses arranged across a brown wood-grain board, with four dark square areas beneath them and pale brand lettering across the middle, on a white-gray veined surface. No people or drinking experiences are shown. The imagery supports a dark, high-contrast product-photography approach. Supplied CSS reports black, white and red, while individual assets add brown/gold or lime/cream. Font declarations are available, but exact rendered typography is not verified.",
+      "market": "Consumer coffee and related drinkware/merchandise. Buyer geography and selling territory are unknown. Bean origins do not establish the customer market.",
+      "mechanism": "Use documented product categories to explain a practical buying distinction, then use the homepage's specific flavor description and the matching coffee-bag photograph for a separate sensory introduction. The carousel establishes what kind of product the reader is choosing; the static helps the reader decide whether one flavor sounds appealing. Product descriptions and images support those particular facts, not customer satisfaction, physiological effects or guaranteed taste experiences.",
+      "note": "Selection: the carousel wins on useful buying education across the coffee range; the static wins on sensory specificity and an exact supplied product-image match. They perform complementary jobs\u2014understanding the format versus discovering a flavor\u2014without making the supporting mug campaign the business identity. The mug candidate loses because it serves a narrower accessory interest and has a sold-out listing.\n\nSource scope: the entry page establishes coffee as the core offer and merchandise as supporting. /collections/coffee documents the broad selection and the chosen destination; /collections/bagged and /collections/single-serve document brewing-format alternatives; /collections/canned-lattes documents the distinct latte offer. These supplied page extracts were inspected; no live availability check or individual product-page inspection occurred. The chosen coffee collection contains White Chocolate Pistachio, Coconut Caramel coffee and pods, and canned-latte listings, making it relevant to both actions without inventing a URL.\n\nProposed creative families, not design specifications: carousel\u2014comparison, references S006-01 and S008-03, because the reader needs a supported distinction between formats, with text-led treatment where matching photos are absent. Static\u2014hero, references S008-04 and S008-06, because image-2 directly identifies the featured product. Reference IDs are planning guidance only; their screenshots were not inspected or supplied as publishable assets. Preserve the website's direct, bold voice without copying urgency or making strength claims.\n\nUncertainties: reader motivations and awareness are creative hypotheses; geography, company stage, followers and customer numbers are unknown. Flavor language does not establish ingredients, allergens, sugar content or nutritional properties. Pod-machine compatibility, brewing instructions and quantified caffeine content are unsupported. Do not imply all products have identical certifications. Source prices and availability can change; neither selected idea needs promotional pricing or scarcity.\n\nExcluded formats: no health or energy before/after, comparative caffeine claims, invented customer conversations, publication endorsements or founder story. Homepage reviews exist, but their product context and reuse permissions are not established here; they are not needed for these posts and must not become a White Chocolate Pistachio testimonial. No simulated customer experience is proposed. Later captions should add context rather than repeat the creative. Instagram profile-link wording remains conditional on the app's manual publishing guide.",
+      "situation": "Carousel: a shopper sees dessert-like coffee names and wants to distinguish coffee to brew from a canned latte before choosing. Static: a shopper looking for a different flavored ground coffee encounters White Chocolate Pistachio and wants a concrete sense of its advertised flavor. These buying triggers and motivations are hypotheses, not documented customer behavior."
+    },
+    "style": {
+      "bodyFont": "Fenomen-Sans-Book, DM Sans, sans-serif",
+      "headline": "serif",
+      "note": "Heading font declared: Revans-Bold,DM Sans, sans-serif. Body font declared: Fenomen-Sans-Book, DM Sans, sans-serif. Bundled Inter or Georgia is used where the original font cannot be imported. CSS declarations are not a rendered-style guarantee.",
+      "sourceFont": "Revans-Bold,DM Sans, sans-serif",
+      "weight": 700
+    },
+    "voice": "Bold, direct and unapologetic, with concrete flavor language and a playful edge."
+  },
+  "posts": [
+    {
+      "altText": "Five-slide guide distinguishing dessert-flavored coffee from canned lattes. A bold opening asks which format the reader wants. A photograph shows the black, green and cream White Chocolate Pistachio flavored ground coffee bag. A two-part text comparison shows Coconut Caramel coffee and single-serve pods. The next slide distinguishes coffee to brew from Caramel Cold Brew Latte. The final slide advises choosing a format before a flavor.",
+      "caption": "Shopping by flavor? Give the format a second look. \u201cCaramel\u201d can appear on coffee you brew and on a canned cold brew latte\u2014they\u2019re different choices, even when the names hit the same sweet spot.\n\nDeath Wish Coffee\u2019s collection brings ground coffee, whole beans, single-serve pods and canned lattes together. Explore the coffee collection: https://www.deathwishcoffee.com/collections/coffee",
+      "destination": "https://www.deathwishcoffee.com/collections/coffee",
+      "documentTitle": "Dessert-like names, different coffee formats",
+      "emotion": "Curiosity and confidence in choosing a format.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "A sweet-sounding name doesn't tell you the format. Here's how to read Death Wish Coffee's lineup.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "canned latte?",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "primary",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Dessert-flavored coffee or canned latte?",
+          "items": []
+        },
+        {
+          "assetKey": "image-2",
+          "body": "White Chocolate Pistachio is flavored ground coffee\u2014not a canned latte. The bag names the format.",
+          "composition": "image",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "White chocolate. Pistachio. Still coffee to brew.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Coconut Caramel appears in both coffee and single-serve pod listings.",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "Two brewing formats.",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "ink",
+            "takeaway": "Choose the format that fits how you brew."
+          },
+          "eyebrow": "",
+          "heading": "One flavor name. Two brewing formats.",
+          "items": [
+            {
+              "detail": "Look for Coconut Caramel Coffee.",
+              "label": "Bagged coffee"
+            },
+            {
+              "detail": "Look for Coconut Caramel Single-Serve Pods.",
+              "label": "Single-serve pods"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Caramel Cold Brew Latte belongs to Death Wish Coffee's canned-latte range.",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "paper",
+            "takeaway": "Similar flavor words don't mean the same kind of product."
+          },
+          "eyebrow": "",
+          "heading": "A canned latte is a different choice.",
+          "items": [
+            {
+              "detail": "Ground, whole bean or single-serve pods.",
+              "label": "Coffee to brew"
+            },
+            {
+              "detail": "Coffee cold-brewed into a creamy latte.",
+              "label": "Canned latte"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Ground coffee, whole beans, pods or canned latte: start with how you want your coffee, then find a name that tempts you.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "ink",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Pick your format. Then chase the flavor.",
+          "items": []
+        }
+      ],
+      "hook": "Dessert-flavored coffee or canned latte?",
+      "layout": "comparison",
+      "pain": "A sweet-sounding product name does not tell a shopper whether they are choosing coffee to brew or a canned latte.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Brew it your way with ground, whole bean or single-serve coffee pods.",
+        "White Chocolate Pistachio Coffee",
+        "Coconut Caramel Coffee",
+        "Coconut Caramel Single-Serve Pods",
+        "Caramel Cold Brew Latte",
+        "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength."
+      ]
+    },
+    {
+      "altText": "White Chocolate Pistachio flavored ground coffee from Death Wish Coffee, pictured as an upright black bag with green and cream illustrations and a white skull-and-crossbones emblem. The headline reads \u201cToasted pistachio. Sweet white chocolate.\u201d Supporting text describes the advertised flavor as earthy and sweet.",
+      "caption": "Your next bag doesn't have to be the usual. White Chocolate Pistachio pairs the toasted character of pistachio with sweet white chocolate in Death Wish Coffee's advertised flavor profile.\n\nThat\u2019s a flavor description\u2014not an ingredient list. Explore White Chocolate Pistachio in the coffee collection: https://www.deathwishcoffee.com/collections/coffee",
+      "destination": "https://www.deathwishcoffee.com/collections/coffee",
+      "documentTitle": "Meet White Chocolate Pistachio",
+      "emotion": "Sensory curiosity and anticipation.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "image-2",
+          "body": "Meet White Chocolate Pistachio flavored ground coffee from Death Wish Coffee. Earthy, sweet and entirely unapologetic.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "top",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Toasted pistachio. Sweet white chocolate.",
+          "items": []
+        }
+      ],
+      "hook": "Toasted pistachio. Sweet white chocolate.",
+      "layout": "headline",
+      "pain": "A shopper considering an unfamiliar flavored ground coffee wants a specific sense of its advertised flavor.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "White Chocolate Pistachio Coffee",
+        "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?"
+      ]
+    },
+    {
+      "altText": "Five-slide Death Wish Coffee guide distinguishing flavor names from product formats. The cover asks whether the reader wants coffee to brew or a canned latte. A photograph of the White Chocolate Pistachio bag identifies it as flavored ground coffee. A text comparison shows Coconut Caramel coffee and single-serve pods. The next slide identifies Caramel Cold Brew Latte as a canned latte. The closing slide recommends choosing the format before the flavor. High-contrast black, white and red layouts combine dominant typography, a product photograph and concise comparisons.",
+      "caption": "Caramel on the label doesn't settle what goes in your cart. A bag of flavored coffee, single-serve pods and a canned cold brew latte are different choices\u2014even when their names share a sweet-sounding note.\n\nDeath Wish Coffee's collection includes all three. Start with the format you want, then find the flavor that calls to you.\n\nExplore the coffee collection: https://www.deathwishcoffee.com/collections/coffee",
+      "destination": "https://www.deathwishcoffee.com/collections/coffee",
+      "documentTitle": "Sweet-sounding coffee names, different formats",
+      "emotion": "Clarity and curiosity.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Death Wish Coffee has both. Here's how to tell what you're choosing.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "Coffee to brew",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "primary",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Coffee to brew or a canned latte? The flavor name won't tell you.",
+          "items": []
+        },
+        {
+          "assetKey": "image-2",
+          "body": "This bag is flavored ground coffee\u2014not a canned white chocolate latte.",
+          "composition": "image",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": "Look for the format on the bag, not just the flavor name."
+          },
+          "eyebrow": "THE GROUND-COFFEE EXAMPLE",
+          "heading": "White Chocolate Pistachio is coffee to brew.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "The collection lists both coffee and single-serve pods under this flavor name.",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "paper",
+            "takeaway": "A flavor choice doesn't finish the format choice."
+          },
+          "eyebrow": "",
+          "heading": "Coconut Caramel comes in more than one format.",
+          "items": [
+            {
+              "detail": "Coconut Caramel Coffee appears in the bagged collection.",
+              "label": "Coffee"
+            },
+            {
+              "detail": "Coconut Caramel Single-Serve Pods appear in the pod collection.",
+              "label": "Single-serve pods"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Death Wish Coffee describes its canned lattes as coffee cold-brewed into a creamy latte.",
+          "composition": "comparison",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "right",
+            "layout": "split",
+            "surface": "ink",
+            "takeaway": "\u201cLatte\u201d names a different product here\u2014not just another coffee flavor."
+          },
+          "eyebrow": "",
+          "heading": "Caramel Cold Brew Latte is the canned option.",
+          "items": [
+            {
+              "detail": "Coffee you brew.",
+              "label": "Bag or pods"
+            },
+            {
+              "detail": "Coffee already cold-brewed into a latte.",
+              "label": "Canned latte"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Ground, whole bean, single-serve pods or canned latte: choose what fits your coffee routine before choosing a name that sounds delicious.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "Pick the format.",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "paper",
+            "takeaway": "Explore the coffee collection at the link in the caption."
+          },
+          "eyebrow": "",
+          "heading": "Pick the format. Then chase the flavor.",
+          "items": []
+        }
+      ],
+      "hook": "Coffee to brew or a canned latte? The flavor name won't tell you.",
+      "layout": "comparison",
+      "pain": "Dessert-like names can make different coffee formats sound alike when shopping.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "Brew it your way with ground, whole bean or single-serve coffee pods.",
+        "White Chocolate Pistachio Coffee",
+        "Coconut Caramel Coffee",
+        "Coconut Caramel Single-Serve Pods",
+        "Caramel Cold Brew Latte",
+        "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength."
+      ]
+    },
+    {
+      "altText": "Death Wish Coffee White Chocolate Pistachio flavored ground coffee bag against a dark backdrop. The upright black bag carries lime-green and cream illustrations and the white skull-and-crossbones brand emblem. The headline reads, \u201cToasted pistachio. Sweet white chocolate. Your next ground coffee?\u201d Supporting text identifies the product and describes its advertised flavor as earthy and sweet.",
+      "caption": "For the coffee shelf that could use a different flavor direction: Death Wish Coffee describes White Chocolate Pistachio as earthy and sweet, pairing warm, toasted pistachio with sweet white chocolate.\n\nThat's the advertised flavor profile\u2014not an ingredient list. The pictured product is flavored ground coffee, for those who want this combination in a bag to brew.\n\nExplore the coffee collection: https://www.deathwishcoffee.com/collections/coffee",
+      "destination": "https://www.deathwishcoffee.com/collections/coffee",
+      "documentTitle": "Meet White Chocolate Pistachio flavored ground coffee",
+      "emotion": "Sensory curiosity and anticipation.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "image-2",
+          "body": "White Chocolate Pistachio flavored ground coffee from Death Wish Coffee. An earthy-and-sweet flavor profile.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Toasted pistachio. Sweet white chocolate. Your next ground coffee?",
+          "items": []
+        }
+      ],
+      "hook": "Toasted pistachio. Sweet white chocolate. Your next ground coffee?",
+      "layout": "headline",
+      "pain": "A shopper wants a concrete flavor description before choosing a different bag of flavored coffee.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "White Chocolate Pistachio Coffee",
+        "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?"
+      ]
+    }
+  ],
+  "strategy": {
+    "action": "Both posts invite one next action: explore the coffee collection. The carousel earns that action by clarifying format; the static earns it by introducing a specific flavor. Do not promise stock, an automatic discount, automated DMs or an unverified product-page destination.",
+    "angles": [
+      {
+        "evidence": [
+          "Brew it your way with ground, whole bean or single-serve coffee pods.",
+          "White Chocolate Pistachio Coffee",
+          "Coconut Caramel Coffee",
+          "Coconut Caramel Single-Serve Pods",
+          "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength. Now available in Mocha, Vanilla, Caramel and Original.",
+          "Caramel Cold Brew Latte"
+        ],
+        "hooks": [
+          "Dessert-flavored coffee or canned latte\u2014which are you shopping for?"
+        ],
+        "idea": "Carousel \u2014 Dessert-like name, different kind of coffee",
+        "usefulInsight": "Content job: help a coffee shopper interpret the offer before buying, rather than treating every sweet-sounding name as a latte. Awareness hypothesis: the reader knows flavored coffee exists but may not yet know this brand's formats. Opening/payoff pair: ask whether the shopper wants coffee to brew or a canned latte; deliver a concrete distinction using White Chocolate Pistachio flavored ground coffee, Coconut Caramel coffee and single-serve pods, and Caramel Cold Brew Latte. Intended progression: establish that flavor name and product format are separate decisions; demonstrate a ground-coffee example; show that Coconut Caramel appears in both coffee and pod listings; contrast those with the separately documented canned-latte category; conclude by directing the reader to choose a format in the coffee collection. Each stage adds a new distinction, not another flavor slogan. Supported mechanism: real category descriptions and product listings, not a recipe or inferred ingredient list. Framework: belief/distinction/example/action. Image relationship: image-2 directly demonstrates the ground-coffee example through its visible label. No supplied photograph depicts pods or canned lattes, so those comparisons should remain text-led rather than borrowing drinkware imagery as a substitute. Comparison: high reader recognition, high worthwhile discovery, high specificity and credibility, and strong fit with the brand's multi-format coffee range. More useful for a carousel than a general roast checklist."
+      },
+      {
+        "evidence": [
+          "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?",
+          "White Chocolate Pistachio Coffee"
+        ],
+        "hooks": [
+          "Toasted pistachio. Sweet white chocolate. Your next ground coffee?"
+        ],
+        "idea": "Static \u2014 Toasted pistachio meets white chocolate",
+        "usefulInsight": "Content job: create specific flavor discovery for a consumer considering a new bag of flavored ground coffee. Motivation hypothesis: the reader is attracted to dessert-like flavor combinations, not necessarily seeking a problem to solve. Awareness hypothesis: category-aware but unfamiliar with White Chocolate Pistachio from Death Wish Coffee. Opening/payoff pair: introduce the toasted-pistachio/white-chocolate pairing; deliver the brand's described earthy-and-sweet flavor character and identify the product as flavored ground coffee. The static is a complete sensory product introduction, not a compressed version of the carousel's format education. Supported mechanism: the homepage's flavor description plus the matching labeled bag in image-2. Treat that description as the brand's advertised flavor profile, not independent tasting evidence or proof of actual pistachio/chocolate ingredients. Framework: sensory demonstration, moving from desire to product identification and one browsing action. Image relationship: image-2 is the exact relevant product, with green and cream packaging details complementing the named pairing; image-3 is not the preferred substitute because it introduces a separately listed bundle and vessel. Comparison: high specificity, credibility and brand fit; strong discovery potential for flavor-curious shoppers; reader recognition is narrower than the carousel but the image/product match is stronger."
+      },
+      {
+        "evidence": [
+          "Call of the Wild Mug",
+          "Inspired by the elusive nature and enduring power of the stag",
+          "Call of the Wild Mug Call of the Wild Mug Regular price $38.00 Regular price Sale price $38.00 Unit price / per Add to cart Sold out"
+        ],
+        "hooks": [
+          "A coffee mug with a stag at its center."
+        ],
+        "idea": "Alternative \u2014 A stag-emblem mug for the coffee shelf",
+        "usefulInsight": "Content job: invite design-led discovery of supporting drinkware rather than explain the coffee itself. Motivation hypothesis: some coffee buyers also choose mugs for visual character or collecting. Awareness hypothesis: the reader can appreciate the object without knowing the brand. Opening/payoff pair: ask what gives this dark mug its woodland character; reveal the visible stag emblem, brown upper glaze and irregular pale-edged drips. Supported mechanism: inspected object photography and the site's stated stag inspiration; no claims about craftsmanship, material, capacity, durability or heat retention. Framework: sensory demonstration. Image relationship: image-1 supports close inspection of visible details, while image-0 shows the whole object in its setting. Comparison: high visual specificity and credible visible-detail evidence, but lower relevance to the primary coffee buying decision and a weaker next action because the supplied listing says sold out. Brand fit is strong as merchandise, not as the definition of the whole business. Do not adopt the homepage's urgency language."
+      }
+    ],
+    "chosenAngles": [
+      "Carousel \u2014 Dessert-like name, different kind of coffee",
+      "Static \u2014 Toasted pistachio meets white chocolate"
+    ],
+    "customer": "Content Studio's prospective client is Death Wish Coffee, not the person reading these posts. Death Wish Coffee sells coffee across everyday roasts, flavored coffees, ground and whole-bean formats, single-serve pods and canned lattes, with supporting drinkware and merchandise. Its homepage describes USDA Organic and Fair Trade Certified\u2122 sourcing for its everyday roasts. The post reader is a consumer choosing coffee for their own drinking routine or flavor preferences. Company stage, social presence and customer count are not established by this website.",
+    "destination": "https://www.deathwishcoffee.com/collections/coffee",
+    "imageStyle": "Inspected supplied raster website assets, not reference-library images or finished designs. image-0: a glossy dark-brown mug sits toward the right of a wide frame on a white, gray-veined surface against a charcoal background. The mug has a right-side loop handle, a mottled brown upper section with irregular pale-edged drips, and a circular gold-toned stag emblem; substantial empty space is visible on the left. image-1: a close, nearly square view of the same visible mug design, centered with its handle to the right; the brown glaze, pale drip edges and circular stag emblem are prominent against charcoal and white-gray surroundings. image-2: an upright black coffee bag, viewed slightly from the side, on a dark textured surface against a dark backdrop. Lime-green and cream illustrations surround a white skull-and-crossbones brand emblem; the front visibly names White Chocolate Pistachio and flavored ground coffee. A small green, black and white certification graphic appears at the lower left of the image. image-3: a tall black cylindrical vessel on the left and a coffee bag on the right, both carrying green and cream graphics, on a white-gray veined surface against a gray background. The vessel has a dark lid and silver-colored base. image-4: the same visible cylindrical vessel alone, centered with generous gray space around it, on a white-gray veined surface; green and cream graphics occupy its upper portion above a largely black lower body and silver-colored base. image-5: an overhead view of four empty clear glasses arranged across a brown wood-grain board, with four dark square areas beneath them and pale brand lettering across the middle, on a white-gray veined surface. No people or drinking experiences are shown. The imagery supports a dark, high-contrast product-photography approach. Supplied CSS reports black, white and red, while individual assets add brown/gold or lime/cream. Font declarations are available, but exact rendered typography is not verified.",
+    "market": "Consumer coffee and related drinkware/merchandise. Buyer geography and selling territory are unknown. Bean origins do not establish the customer market.",
+    "mechanism": "Use documented product categories to explain a practical buying distinction, then use the homepage's specific flavor description and the matching coffee-bag photograph for a separate sensory introduction. The carousel establishes what kind of product the reader is choosing; the static helps the reader decide whether one flavor sounds appealing. Product descriptions and images support those particular facts, not customer satisfaction, physiological effects or guaranteed taste experiences.",
+    "note": "Selection: the carousel wins on useful buying education across the coffee range; the static wins on sensory specificity and an exact supplied product-image match. They perform complementary jobs\u2014understanding the format versus discovering a flavor\u2014without making the supporting mug campaign the business identity. The mug candidate loses because it serves a narrower accessory interest and has a sold-out listing.\n\nSource scope: the entry page establishes coffee as the core offer and merchandise as supporting. /collections/coffee documents the broad selection and the chosen destination; /collections/bagged and /collections/single-serve document brewing-format alternatives; /collections/canned-lattes documents the distinct latte offer. These supplied page extracts were inspected; no live availability check or individual product-page inspection occurred. The chosen coffee collection contains White Chocolate Pistachio, Coconut Caramel coffee and pods, and canned-latte listings, making it relevant to both actions without inventing a URL.\n\nProposed creative families, not design specifications: carousel\u2014comparison, references S006-01 and S008-03, because the reader needs a supported distinction between formats, with text-led treatment where matching photos are absent. Static\u2014hero, references S008-04 and S008-06, because image-2 directly identifies the featured product. Reference IDs are planning guidance only; their screenshots were not inspected or supplied as publishable assets. Preserve the website's direct, bold voice without copying urgency or making strength claims.\n\nUncertainties: reader motivations and awareness are creative hypotheses; geography, company stage, followers and customer numbers are unknown. Flavor language does not establish ingredients, allergens, sugar content or nutritional properties. Pod-machine compatibility, brewing instructions and quantified caffeine content are unsupported. Do not imply all products have identical certifications. Source prices and availability can change; neither selected idea needs promotional pricing or scarcity.\n\nExcluded formats: no health or energy before/after, comparative caffeine claims, invented customer conversations, publication endorsements or founder story. Homepage reviews exist, but their product context and reuse permissions are not established here; they are not needed for these posts and must not become a White Chocolate Pistachio testimonial. No simulated customer experience is proposed. Later captions should add context rather than repeat the creative. Instagram profile-link wording remains conditional on the app's manual publishing guide.",
+    "situation": "Carousel: a shopper sees dessert-like coffee names and wants to distinguish coffee to brew from a canned latte before choosing. Static: a shopper looking for a different flavored ground coffee encounters White Chocolate Pistachio and wants a concrete sense of its advertised flavor. These buying triggers and motivations are hypotheses, not documented customer behavior."
+  },
+  "writerRun": {
+    "durationMs": 151283,
+    "model": "gpt-6-astra",
+    "provider": "Connected ChatGPT",
+    "requests": 4,
+    "review": "early-stage-v1: The copy stays within the supplied product listings, flavor description and matching White Chocolate Pistachio asset. The coffee-collection destination contains the featured ground coffee, pods and canned lattes, so the browsing CTA is coherent. No unsupported ingredients, caffeine effects, testimonials, availability or discounts are claimed. The carousel addresses a recognisable shopping decision and advances from flavor-versus-format distinction to concrete ground-coffee and pod examples, then the canned-latte contrast and a practical selection payoff. The static performs a complementary sensory-discovery job with a specific advertised flavor profile and relevant product photograph. Both platforms address coffee consumers rather than founders. Minor publishing improvement: replace Instagram\u2019s caption-only URL with a link-in-bio CTA and set the profile link to the structured destination before posting; the current URL is accurate but not a convenient clickable Instagram action.",
+    "usageNote": "This version records requests and time, not token totals. Writing uses your connected account allowance."
+  },
+  "sourceText": "PAGE https://www.deathwishcoffee.com/\n#1 Organic and #1 Fair Trade Coffee\n \u2013 Death Wish Coffee\ndescription: Bold, Smooth and Delicious since 2012. We source USDA Organic and Fair Trade Certified\u2122 arabica and robusta coffee beans from India, Peru, and other countries throughout South and Central America for our everyday coffee roasts. Sustainably sourced coffee with high quality standards to ensure consistency in every cup.\np: BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF\nh2: Item added to your cart\nh2: DESSERT CALLED. COFFEE ANSWERED.\np: Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?\nh2: ANSWER THE CALL OF THE WILD\np: Inspired by the elusive nature and enduring power of the stag, this limited-edition mug won't be around for long. Grab yours while you can.\nli: White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: White Chocolate Pistachio Coffee\nli: White Chocolate Pistachio Ground Bundle White Chocolate Pistachio Ground Bundle Sale White Chocolate Pistachio Ground Bundle Regular price $48.99 Regular price $53.99 Sale price $48.99 Unit price / per Add to cart Sold out Sale\nh3: White Chocolate Pistachio Ground Bundle\nli: White Chocolate Pistachio Klean Kanteen (20oz) White Chocolate Pistachio Klean Kanteen (20oz) White Chocolate Pistachio Klean Kanteen (20oz) Regular price $40.00 Regular price Sale price $40.00 Unit price / per Add to cart Sold out\nh3: White Chocolate Pistachio Klean Kanteen (20oz)\nli: Fight or Flight Sampler Kit Fight or Flight Sampler Kit Fight or Flight Sampler Kit Regular price $45.00 Regular price Sale price $45.00 Unit price / per Add to cart Sold out\nh3: Fight or Flight Sampler Kit\nli: Call of the Wild Mug Call of the Wild Mug Call of the Wild Mug Regular price $38.00 Regular price Sale price $38.00 Unit price / per Add to cart Sold out\nh3: Call of the Wild Mug\nli: Hidden In Plain Sight Snapback Hidden In Plain Sight Snapback Hidden In Plain Sight Snapback Regular price $25.00 Regular price Sale price $25.00 Unit price / per Add to cart Sold out\nh3: Hidden In Plain Sight Snapback\nli: Wild at Heart Beanie Wild at Heart Beanie Wild at Heart Beanie Regular price $35.00 Regular price Sale price $35.00 Unit price / per Add to cart Sold out\nh3: Wild at Heart Beanie\nli: Gates of Valhalla Long Sleeve Gates of Valhalla Long Sleeve Gates of Valhalla Long Sleeve Regular price $35.00 Regular price Sale price $35.00 Unit price / per Quick Shop Size S M L XL 2XL 3XL S - $35.00M - $35.00L - $35.00XL - $35.002XL - $35.003XL - $35.00 Add to cart\nh3: Gates of Valhalla Long Sleeve\np: the society of strong coffee\nh2: SUBSCRIBE AND SAVE 30% OFF YOUR ORDER\np: Start a coffee subscription to save 30% off your first shipment, immediately unlock access to society-exclusive merch and more.\nh2: WHAT PEOPLE ARE SAYING\nh2: MY TASTE BUDS ARE IN SHOCK\np: \u201cThe flavor of it...I'm at a loss for words. I mean, l've had some good coffee before, but NOTHING like this! Once this bag is gone, I'm absolutely getting myself another!\"\nh2: THE GOLDEN TICKET OF BOLD\np: \u201c...if you like a rich brew, and a bold coffee without compromising for overwhelming bitterness, this is the golden ticket. Brewed drip, press, or pour-over, it has never displeased me or my significant other.\"\np: - VALHALLA JUNKIE\nh2: CONSISTENT QUALITY AND TASTE\np: \u201cDeath Wish coffee for me has been the most consistent with flavor, smoothness and strength. Really love this coffee, great kickstart to the day and by the way, if you refrigerate it, it makes for a great iced coffee as well.\"\nh2: I AM SO HAPPY I STARTED DRINKING THIS COFFEE\np: \u201cThis is the first time I have not had to deal with acid issues or coffee making me feel sick after drinking it. I have not had that issue once with this coffee and that's a big deal to me.\"\np: - MICHELLE R.\nh2: THE GREATEST COFFEE ON EARTH\np: \u201cDeath Wish Coffee is the greatest coffee on earth. I wholeheartedly believe that. It's smoother than you can possibly imagine. It's strong, it's whole and it's hearty. I can't endorse this product enough.\"\nli: Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Pumpkin Chai Coffee\nli: Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Pumpkin Chai Single-Serve Pods\nli: Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Maple Cinnamon Coffee\nli: Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Power Surge Coffee\nli: Power Surge Single-Serve Pods Power Surge Single-Serve Pods Power Surge Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Power Surge Single-Serve Pods\nli: Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Coconut Caramel Coffee\nli: Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Coconut Caramel Single-Serve Pods\nh2: SHOP BY COLLECTION\nli: Fair Trade & Organic Coffee Fair Trade & Organic Coffee\nh3: Fair Trade & Organic Coffee\nli: Bundles Bundles\nh2: STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER\nli: Choosing a selection results in a full page refresh.\nli: Opens in a new window.\n\nPAGE https://www.deathwishcoffee.com/collections/coffee\nFair Trade & Organic Coffee\n \u2013 Death Wish Coffee\ndescription: Bold, smooth and delicious since 2012, all of our coffee starts with sustainably sourced, Fair Trade Certified\u2122 arabica and robusta coffee beans. Brew it your way with ground, whole bean or single-serve coffee pods.\np: BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF\nh2: Item added to your cart\nli: Bundle (2) Bundle (2 products)\nli: Coffee (34) Coffee (34 products)\nli: Coffee Bundle (25) Coffee Bundle (25 products)\nli: Ground (22) Ground (22 products)\nli: Whole Bean (13) Whole Bean (13 products)\nli: Single-Serve Pods (18) Single-Serve Pods (18 products)\nli: Canned Latte (4) Canned Latte (4 products)\nli: Cold Brew (1) Cold Brew (1 product)\nli: Instant Coffee (1) Instant Coffee (1 product)\nli: Light Roast (11) Light Roast (11 products)\nli: Medium Roast (13) Medium Roast (13 products)\nli: Dark Roast (17) Dark Roast (17 products)\nli: Espresso Roast (15) Espresso Roast (15 products)\nli: Valhalla Java Odinforce Blend (10) Valhalla Java Odinforce Blend (10 products)\nli: Flavored (15) Flavored (15 products)\nli: Blueberry (2) Blueberry (2 products)\nli: Chocolate Hazelnut (4) Chocolate Hazelnut (4 products)\nli: Coconut Caramel (2) Coconut Caramel (2 products)\nli: Maple Cinnamon (1) Maple Cinnamon (1 product)\nli: Pumpkin Chai (2) Pumpkin Chai (2 products)\nli: Vanilla (4) Vanilla (4 products)\nli: Organic (38) Organic (38 products)\nli: Fair Trade (55) Fair Trade (55 products)\nh2: Filter and sort\nli: Cold Brew (1) Cold Brew (1 products)\nli: Instant Coffee (1) Instant Coffee (1 products)\nli: Maple Cinnamon (1) Maple Cinnamon (1 products)\nli: Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Power Surge Coffee\nli: Power Surge Single-Serve Pods Power Surge Single-Serve Pods Power Surge Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Power Surge Single-Serve Pods\nli: PUMPKIN CHAI IS BACK! SHOP NOW\np: PUMPKIN CHAI IS BACK!\nli: Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Pumpkin Chai Coffee\nli: Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Pumpkin Chai Single-Serve Pods\nli: White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: White Chocolate Pistachio Coffee\nli: White Chocolate Pistachio Ground Bundle White Chocolate Pistachio Ground Bundle Sale White Chocolate Pistachio Ground Bundle Regular price $48.99 Regular price $53.99 Sale price $48.99 Unit price / per Add to cart Sold out Sale\nh3: White Chocolate Pistachio Ground Bundle\nli: Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Maple Cinnamon Coffee\nli: Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Coconut Caramel Coffee\nli: Save 30% off your first order + free shipping Subscribe And Save\np: Save 30% off your first order + free shipping\nli: Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Coconut Caramel Single-Serve Pods\nli: Caramel Cold Brew Latte Caramel Cold Brew Latte Caramel Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Caramel Cold Brew Latte\nli: Vanilla Cold Brew Latte Vanilla Cold Brew Latte Vanilla Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Vanilla Cold Brew Latte\nli: Mocha Cold Brew Latte Mocha Cold Brew Latte Mocha Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Mocha Cold Brew Latte\nli: Classic Cold Brew Latte Classic Cold Brew Latte Classic Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Classic Cold Brew Latte\nli: Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 5 lbs Ground / 1 bag - $15.99Ground / 2 bags - $31.98Ground / 3 bags - $44.99Ground / 5 lbs - $84.99Whole Bean / 1 bag - $15.99Whole Bean / 2 bags - $31.98Whole Bean / 3 bags - $44.99Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Valhalla Java Odinforce Blend\nli: Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 10 count - $14.9920 count - $29.9850 count - $59.99 Add to cart\nh3: Valhalla Java Single-Serve Pods\nli: Dark Roast Coffee Dark Roast Coffee Dark Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Dark Roast Coffee\nli: Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Dark Roast Single-Serve Pods\nli: Medium Roast Coffee Medium Roast Coffee Medium Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Medium Roast Coffee\nli: Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Medium Roast Single-Serve Pods\nli: Espresso Roast Coffee Espresso Roast Coffee Espresso Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 6 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 3 bags - $59.97Ground / 6 bags - $93.99Whole Bean / 1 bag - $19.99Whole Bean / 2 bags - $39.98Whole Bean / 3 bags - $59.97Whole Bean / 6 bags - $93.99 Add to cart\nh3: Espresso Roast Coffee\nli: Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Espresso Roast Single-Serve Pods\nli: Dark Roast Instant Coffee Dark Roast Instant Coffee Dark Roast Instant Coffee Regular price $11.99 Regular price Sale price $11.99 Unit price / per Quick Shop Size 8 count 16 count 32 count 64 count 8 count - $11.9916 count - $23.9832 count - $43.9964 count - $69.99 Add to cart\nh3: Dark Roast Instant Coffee\nh2: STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER\nli: Choosing a selection results in a full page refresh.\nli: Opens in a new window.\n\nPAGE https://www.deathwishcoffee.com/collections/bagged\nBagged\n \u2013 Death Wish Coffee\np: BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF\nh2: Item added to your cart\nli: Bundle (2) Bundle (2 products)\nli: Coffee (13) Coffee (13 products)\nli: Coffee Bundle (13) Coffee Bundle (13 products)\nli: Ground (22) Ground (22 products)\nli: Whole Bean (13) Whole Bean (13 products)\nli: Light Roast (5) Light Roast (5 products)\nli: Medium Roast (7) Medium Roast (7 products)\nli: Dark Roast (8) Dark Roast (8 products)\nli: Espresso Roast (7) Espresso Roast (7 products)\nli: Valhalla Java Odinforce Blend (5) Valhalla Java Odinforce Blend (5 products)\nli: Flavored (9) Flavored (9 products)\nli: Blueberry (1) Blueberry (1 product)\nli: Chocolate Hazelnut (2) Chocolate Hazelnut (2 products)\nli: Coconut Caramel (1) Coconut Caramel (1 product)\nli: Maple Cinnamon (1) Maple Cinnamon (1 product)\nli: Pumpkin Chai (1) Pumpkin Chai (1 product)\nli: Vanilla (2) Vanilla (2 products)\nli: Organic (17) Organic (17 products)\nli: Fair Trade (24) Fair Trade (24 products)\nh2: Filter and sort\nli: Blueberry (1) Blueberry (1 products)\nli: Coconut Caramel (1) Coconut Caramel (1 products)\nli: Maple Cinnamon (1) Maple Cinnamon (1 products)\nli: Pumpkin Chai (1) Pumpkin Chai (1 products)\nli: Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Maple Cinnamon Coffee\nli: Rise Again Collectible Gift Box Rise Again Collectible Gift Box Sale Rise Again Collectible Gift Box Regular price $30.00 Regular price $45.00 Sale price $30.00 Unit price / per Add to cart Sold out Sale\nh3: Rise Again Collectible Gift Box\nli: PUMPKIN CHAI IS BACK! SHOP NOW\np: PUMPKIN CHAI IS BACK!\nli: Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Power Surge Coffee\nli: Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Pumpkin Chai Coffee\nli: Dark Roast Coffee Dark Roast Coffee Dark Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Dark Roast Coffee\nli: Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart\nh3: Coconut Caramel Coffee\nli: Light Roast Coffee Light Roast Coffee Light Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Light Roast Coffee\nli: Medium Roast Coffee Medium Roast Coffee Medium Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Medium Roast Coffee\nli: Save 30% off your first order + free shipping Subscribe And Save\np: Save 30% off your first order + free shipping\nli: Espresso Roast Coffee Espresso Roast Coffee Espresso Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 6 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 3 bags - $59.97Ground / 6 bags - $93.99Whole Bean / 1 bag - $19.99Whole Bean / 2 bags - $39.98Whole Bean / 3 bags - $59.97Whole Bean / 6 bags - $93.99 Add to cart\nh3: Espresso Roast Coffee\nli: Chocolate Hazelnut Coffee Chocolate Hazelnut Coffee Chocolate Hazelnut Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $19.992 bags - $39.985 bags - $84.99 Add to cart\nh3: Chocolate Hazelnut Coffee\nli: Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 5 lbs Ground / 1 bag - $15.99Ground / 2 bags - $31.98Ground / 3 bags - $44.99Ground / 5 lbs - $84.99Whole Bean / 1 bag - $15.99Whole Bean / 2 bags - $31.98Whole Bean / 3 bags - $44.99Whole Bean / 5 lbs - $84.99 Add to cart\nh3: Valhalla Java Odinforce Blend\nli: Vanilla Coffee Vanilla Coffee Vanilla Coffee Regular price $19.99 Regular price $19.99 Sale price $19.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $19.992 bags - $39.985 bags - $84.99 Add to cart\nh3: Vanilla Coffee\nli: Dark Roast + Valhalla Java Bundle Dark Roast + Valhalla Java Bundle Dark Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart\nh3: Dark Roast + Valhalla Java Bundle\nli: Dark Roast + Medium Roast Bundle Dark Roast + Medium Roast Bundle Dark Roast + Medium Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart\nh3: Dark Roast + Medium Roast Bundle\nli: Triple Threat Coffee Bundle Triple Threat Coffee Bundle Triple Threat Coffee Bundle Regular price $54.99 Regular price Sale price $54.99 Unit price / per Quick Shop Type Ground Whole Bean Ground - $54.99Whole Bean - $54.99 Add to cart\nh3: Triple Threat Coffee Bundle\nli: Turn Up Trio Bundle Turn Up Trio Bundle Turn Up Trio Bundle Regular price $35.99 Regular price Sale price $35.99 Unit price / per Add to cart Sold out\nh3: Turn Up Trio Bundle\nli: Double Indulgence Ground Bundle Double Indulgence Ground Bundle Double Indulgence Ground Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Default Title - $39.98 Add to cart\nh3: Double Indulgence Ground Bundle\nli: Dark Roast + Espresso Roast Bundle Dark Roast + Espresso Roast Bundle Dark Roast + Espresso Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart\nh3: Dark Roast + Espresso Roast Bundle\nli: Espresso Roast + Medium Roast Bundle Espresso Roast + Medium Roast Bundle Espresso Roast + Medium Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart\nh3: Espresso Roast + Medium Roast Bundle\nli: Espresso Roast + Valhalla Java Bundle Espresso Roast + Valhalla Java Bundle Espresso Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart\nh3: Espresso Roast + Valhalla Java Bundle\nli: Medium Roast + Valhalla Java Bundle Medium Roast + Valhalla Java Bundle Medium Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart\nh3: Medium Roast + Valhalla Java Bundle\nli: Blueberry Coffee Blueberry Coffee Blueberry Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Size 1 bag 2 bags 5 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 5 bags - $84.99 Add to cart\nh3: Blueberry Coffee\nh2: STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER\nli: Choosing a selection results in a full page refresh.\nli: Opens in a new window.\n\nPAGE https://www.deathwishcoffee.com/collections/single-serve\nSingle-Serve Pods\n \u2013 Death Wish Coffee\np: BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF\nh2: Item added to your cart\nli: Coffee (11) Coffee (11 products)\nli: Coffee Bundle (12) Coffee Bundle (12 products)\nli: Single-Serve Pods (18) Single-Serve Pods (18 products)\nli: Light Roast (5) Light Roast (5 products)\nli: Medium Roast (6) Medium Roast (6 products)\nli: Dark Roast (6) Dark Roast (6 products)\nli: Espresso Roast (6) Espresso Roast (6 products)\nli: Valhalla Java Odinforce Blend (5) Valhalla Java Odinforce Blend (5 products)\nli: Flavored (6) Flavored (6 products)\nli: Blueberry (1) Blueberry (1 product)\nli: Chocolate Hazelnut (2) Chocolate Hazelnut (2 products)\nli: Coconut Caramel (1) Coconut Caramel (1 product)\nli: Pumpkin Chai (1) Pumpkin Chai (1 product)\nli: Vanilla (2) Vanilla (2 products)\nli: Organic (17) Organic (17 products)\nli: Fair Trade (23) Fair Trade (23 products)\nh2: Filter and sort\nli: Blueberry (1) Blueberry (1 products)\nli: Coconut Caramel (1) Coconut Caramel (1 products)\nli: Pumpkin Chai (1) Pumpkin Chai (1 products)\nli: Light Roast Single-Serve Pods Light Roast Single-Serve Pods Light Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Light Roast Single-Serve Pods\nli: Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Pumpkin Chai Single-Serve Pods\nli: PUMPKIN CHAI IS BACK! SHOP NOW\np: PUMPKIN CHAI IS BACK!\nli: Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Dark Roast Single-Serve Pods\nli: Blueberry Single-Serve Pods Blueberry Single-Serve Pods Blueberry Single-Serve Pods Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart\nh3: Blueberry Single-Serve Pods\nli: Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Medium Roast Single-Serve Pods\nli: Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart\nh3: Coconut Caramel Single-Serve Pods\nli: Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart\nh3: Espresso Roast Single-Serve Pods\nli: Vanilla Single-Serve Pods Vanilla Single-Serve Pods Vanilla Single-Serve Pods Regular price $15.99 Regular price $15.99 Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart\nh3: Vanilla Single-Serve Pods\nli: Save 30% off your first order + free shipping Subscribe And Save\np: Save 30% off your first order + free shipping\nli: Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 10 count - $14.9920 count - $29.9850 count - $59.99 Add to cart\nh3: Valhalla Java Single-Serve Pods\nli: Chocolate Hazelnut Single-Serve Pods Chocolate Hazelnut Single-Serve Pods Chocolate Hazelnut Single-Serve Pods Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart\nh3: Chocolate Hazelnut Single-Serve Pods\nli: Dark Roast + Medium Roast Single-Serve Pod Bundle Dark Roast + Medium Roast Single-Serve Pod Bundle Dark Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Dark Roast + Medium Roast Single-Serve Pod Bundle\nli: Triple Threat Single-Serve Pod Bundle Triple Threat Single-Serve Pod Bundle Triple Threat Single-Serve Pod Bundle Regular price $43.99 Regular price Sale price $43.99 Unit price / per Quick Shop Default Title - $43.99 Add to cart\nh3: Triple Threat Single-Serve Pod Bundle\nli: Double Indulgence Single-Serve Pod Bundle Double Indulgence Single-Serve Pod Bundle Double Indulgence Single-Serve Pod Bundle Regular price $31.98 Regular price Sale price $31.98 Unit price / per Quick Shop Default Title - $31.98 Add to cart\nh3: Double Indulgence Single-Serve Pod Bundle\nli: Dark Roast + Espresso Roast Single-Serve Pod Bundle Dark Roast + Espresso Roast Single-Serve Pod Bundle Dark Roast + Espresso Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Dark Roast + Espresso Roast Single-Serve Pod Bundle\nli: Espresso Roast + Medium Roast Single-Serve Pod Bundle Espresso Roast + Medium Roast Single-Serve Pod Bundle Espresso Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Espresso Roast + Medium Roast Single-Serve Pod Bundle\nli: Espresso Roast + Valhalla Java Single-Serve Pod Bundle Espresso Roast + Valhalla Java Single-Serve Pod Bundle Espresso Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Espresso Roast + Valhalla Java Single-Serve Pod Bundle\nli: Medium Roast + Valhalla Java Single-Serve Pod Bundle Medium Roast + Valhalla Java Single-Serve Pod Bundle Medium Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Medium Roast + Valhalla Java Single-Serve Pod Bundle\nli: Dark Roast + Valhalla Java Single-Serve Pod Bundle Dark Roast + Valhalla Java Single-Serve Pod Bundle Dark Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Dark Roast + Valhalla Java Single-Serve Pod Bundle\nli: Light Roast + Dark Roast Single-Serve Pod Bundle Light Roast + Dark Roast Single-Serve Pod Bundle Light Roast + Dark Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Light Roast + Dark Roast Single-Serve Pod Bundle\nli: Light Roast + Espresso Roast Single-Serve Pod Bundle Light Roast + Espresso Roast Single-Serve Pod Bundle Light Roast + Espresso Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Light Roast + Espresso Roast Single-Serve Pod Bundle\nli: Light Roast + Valhalla Java Single-Serve Pod Bundle Light Roast + Valhalla Java Single-Serve Pod Bundle Light Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Light Roast + Valhalla Java Single-Serve Pod Bundle\nli: Light Roast + Medium Roast Single-Serve Pod Bundle Light Roast + Medium Roast Single-Serve Pod Bundle Light Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart\nh3: Light Roast + Medium Roast Single-Serve Pod Bundle\nh2: STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER\nli: Choosing a selection results in a full page refresh.\nli: Opens in a new window.\n\nPAGE https://www.deathwishcoffee.com/collections/canned-lattes\nCanned Lattes\n \u2013 Death Wish Coffee\ndescription: Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength. Now available in Mocha, Vanilla, Caramel and Original.\np: BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF\nh2: Item added to your cart\nli: Accessories (1) Accessories (1 product)\nli: Coffee (4) Coffee (4 products)\nli: Canned Latte (4) Canned Latte (4 products)\nli: Fair Trade (4) Fair Trade (4 products)\nh2: Filter and sort\nli: Accessories (1) Accessories (1 products)\nli: Caramel Cold Brew Latte Caramel Cold Brew Latte Caramel Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Caramel Cold Brew Latte\nli: Vanilla Cold Brew Latte Vanilla Cold Brew Latte Vanilla Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Vanilla Cold Brew Latte\nli: Mocha Cold Brew Latte Mocha Cold Brew Latte Mocha Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Mocha Cold Brew Latte\nli: Classic Cold Brew Latte Classic Cold Brew Latte Classic Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart\nh3: Classic Cold Brew Latte\nli: Fight or Flight Sampler Kit Fight or Flight Sampler Kit Fight or Flight Sampler Kit Regular price $45.00 Regular price Sale price $45.00 Unit price / per Add to cart Sold out\nh3: Fight or Flight Sampler Kit\nh2: CRAVING A PUMPKIN SPICE LATTE?\np: You're in luck \u2014 Pumpkin Chai is back for a limited time! Grab yours today and follow the recipe below to make a Pumpkin Spice Latte that's far from basic.\nh2: STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER\nli: Choosing a selection results in a full page refresh.\nli: Opens in a new window.",
+  "sourcePages": [
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Bold, Smooth and Delicious since 2012. We source USDA Organic and Fair Trade Certified\u2122 arabica and robusta coffee beans from India, Peru, and other countries throughout South and Central America for our everyday coffee roasts. Sustainably sourced coffee with high quality standards to ensure consistency in every cup."
+        },
+        {
+          "kind": "p",
+          "text": "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF"
+        },
+        {
+          "kind": "h2",
+          "text": "Item added to your cart"
+        },
+        {
+          "kind": "h2",
+          "text": "DESSERT CALLED. COFFEE ANSWERED."
+        },
+        {
+          "kind": "p",
+          "text": "Warm, toasted pistachios meet sweet white chocolate for a flavor that's earthy, sweet and entirely unapologetic. Do we need to say more?"
+        },
+        {
+          "kind": "h2",
+          "text": "ANSWER THE CALL OF THE WILD"
+        },
+        {
+          "kind": "p",
+          "text": "Inspired by the elusive nature and enduring power of the stag, this limited-edition mug won't be around for long. Grab yours while you can."
+        },
+        {
+          "kind": "li",
+          "text": "White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "White Chocolate Pistachio Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "White Chocolate Pistachio Ground Bundle White Chocolate Pistachio Ground Bundle Sale White Chocolate Pistachio Ground Bundle Regular price $48.99 Regular price $53.99 Sale price $48.99 Unit price / per Add to cart Sold out Sale"
+        },
+        {
+          "kind": "h3",
+          "text": "White Chocolate Pistachio Ground Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "White Chocolate Pistachio Klean Kanteen (20oz) White Chocolate Pistachio Klean Kanteen (20oz) White Chocolate Pistachio Klean Kanteen (20oz) Regular price $40.00 Regular price Sale price $40.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "White Chocolate Pistachio Klean Kanteen (20oz)"
+        },
+        {
+          "kind": "li",
+          "text": "Fight or Flight Sampler Kit Fight or Flight Sampler Kit Fight or Flight Sampler Kit Regular price $45.00 Regular price Sale price $45.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Fight or Flight Sampler Kit"
+        },
+        {
+          "kind": "li",
+          "text": "Call of the Wild Mug Call of the Wild Mug Call of the Wild Mug Regular price $38.00 Regular price Sale price $38.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Call of the Wild Mug"
+        },
+        {
+          "kind": "li",
+          "text": "Hidden In Plain Sight Snapback Hidden In Plain Sight Snapback Hidden In Plain Sight Snapback Regular price $25.00 Regular price Sale price $25.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Hidden In Plain Sight Snapback"
+        },
+        {
+          "kind": "li",
+          "text": "Wild at Heart Beanie Wild at Heart Beanie Wild at Heart Beanie Regular price $35.00 Regular price Sale price $35.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Wild at Heart Beanie"
+        },
+        {
+          "kind": "li",
+          "text": "Gates of Valhalla Long Sleeve Gates of Valhalla Long Sleeve Gates of Valhalla Long Sleeve Regular price $35.00 Regular price Sale price $35.00 Unit price / per Quick Shop Size S M L XL 2XL 3XL S - $35.00M - $35.00L - $35.00XL - $35.002XL - $35.003XL - $35.00 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Gates of Valhalla Long Sleeve"
+        },
+        {
+          "kind": "p",
+          "text": "the society of strong coffee"
+        },
+        {
+          "kind": "h2",
+          "text": "SUBSCRIBE AND SAVE 30% OFF YOUR ORDER"
+        },
+        {
+          "kind": "p",
+          "text": "Start a coffee subscription to save 30% off your first shipment, immediately unlock access to society-exclusive merch and more."
+        },
+        {
+          "kind": "h2",
+          "text": "WHAT PEOPLE ARE SAYING"
+        },
+        {
+          "kind": "h2",
+          "text": "MY TASTE BUDS ARE IN SHOCK"
+        },
+        {
+          "kind": "p",
+          "text": "\u201cThe flavor of it...I'm at a loss for words. I mean, l've had some good coffee before, but NOTHING like this! Once this bag is gone, I'm absolutely getting myself another!\""
+        },
+        {
+          "kind": "h2",
+          "text": "THE GOLDEN TICKET OF BOLD"
+        },
+        {
+          "kind": "p",
+          "text": "\u201c...if you like a rich brew, and a bold coffee without compromising for overwhelming bitterness, this is the golden ticket. Brewed drip, press, or pour-over, it has never displeased me or my significant other.\""
+        },
+        {
+          "kind": "p",
+          "text": "- VALHALLA JUNKIE"
+        },
+        {
+          "kind": "h2",
+          "text": "CONSISTENT QUALITY AND TASTE"
+        },
+        {
+          "kind": "p",
+          "text": "\u201cDeath Wish coffee for me has been the most consistent with flavor, smoothness and strength. Really love this coffee, great kickstart to the day and by the way, if you refrigerate it, it makes for a great iced coffee as well.\""
+        },
+        {
+          "kind": "h2",
+          "text": "I AM SO HAPPY I STARTED DRINKING THIS COFFEE"
+        },
+        {
+          "kind": "p",
+          "text": "\u201cThis is the first time I have not had to deal with acid issues or coffee making me feel sick after drinking it. I have not had that issue once with this coffee and that's a big deal to me.\""
+        },
+        {
+          "kind": "p",
+          "text": "- MICHELLE R."
+        },
+        {
+          "kind": "h2",
+          "text": "THE GREATEST COFFEE ON EARTH"
+        },
+        {
+          "kind": "p",
+          "text": "\u201cDeath Wish Coffee is the greatest coffee on earth. I wholeheartedly believe that. It's smoother than you can possibly imagine. It's strong, it's whole and it's hearty. I can't endorse this product enough.\""
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Maple Cinnamon Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Power Surge Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Power Surge Single-Serve Pods Power Surge Single-Serve Pods Power Surge Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Power Surge Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Single-Serve Pods"
+        },
+        {
+          "kind": "h2",
+          "text": "SHOP BY COLLECTION"
+        },
+        {
+          "kind": "li",
+          "text": "Fair Trade & Organic Coffee Fair Trade & Organic Coffee"
+        },
+        {
+          "kind": "h3",
+          "text": "Fair Trade & Organic Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Bundles Bundles"
+        },
+        {
+          "kind": "h2",
+          "text": "STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER"
+        },
+        {
+          "kind": "li",
+          "text": "Choosing a selection results in a full page refresh."
+        },
+        {
+          "kind": "li",
+          "text": "Opens in a new window."
+        }
+      ],
+      "retrievedAt": 1791201689116,
+      "title": "#1 Organic and #1 Fair Trade Coffee\n \u2013 Death Wish Coffee",
+      "url": "https://www.deathwishcoffee.com/"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Bold, smooth and delicious since 2012, all of our coffee starts with sustainably sourced, Fair Trade Certified\u2122 arabica and robusta coffee beans. Brew it your way with ground, whole bean or single-serve coffee pods."
+        },
+        {
+          "kind": "p",
+          "text": "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF"
+        },
+        {
+          "kind": "h2",
+          "text": "Item added to your cart"
+        },
+        {
+          "kind": "li",
+          "text": "Bundle (2) Bundle (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee (34) Coffee (34 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee Bundle (25) Coffee Bundle (25 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Ground (22) Ground (22 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Whole Bean (13) Whole Bean (13 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Single-Serve Pods (18) Single-Serve Pods (18 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Canned Latte (4) Canned Latte (4 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Cold Brew (1) Cold Brew (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Instant Coffee (1) Instant Coffee (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast (11) Light Roast (11 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast (13) Medium Roast (13 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast (17) Dark Roast (17 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast (15) Espresso Roast (15 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Odinforce Blend (10) Valhalla Java Odinforce Blend (10 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Flavored (15) Flavored (15 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry (2) Blueberry (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Chocolate Hazelnut (4) Chocolate Hazelnut (4 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel (2) Coconut Caramel (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon (1) Maple Cinnamon (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai (2) Pumpkin Chai (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla (4) Vanilla (4 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Organic (38) Organic (38 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Fair Trade (55) Fair Trade (55 products)"
+        },
+        {
+          "kind": "h2",
+          "text": "Filter and sort"
+        },
+        {
+          "kind": "li",
+          "text": "Cold Brew (1) Cold Brew (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Instant Coffee (1) Instant Coffee (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon (1) Maple Cinnamon (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Power Surge Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Power Surge Single-Serve Pods Power Surge Single-Serve Pods Power Surge Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Power Surge Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "PUMPKIN CHAI IS BACK! SHOP NOW"
+        },
+        {
+          "kind": "p",
+          "text": "PUMPKIN CHAI IS BACK!"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee White Chocolate Pistachio Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "White Chocolate Pistachio Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "White Chocolate Pistachio Ground Bundle White Chocolate Pistachio Ground Bundle Sale White Chocolate Pistachio Ground Bundle Regular price $48.99 Regular price $53.99 Sale price $48.99 Unit price / per Add to cart Sold out Sale"
+        },
+        {
+          "kind": "h3",
+          "text": "White Chocolate Pistachio Ground Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Maple Cinnamon Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Save 30% off your first order + free shipping Subscribe And Save"
+        },
+        {
+          "kind": "p",
+          "text": "Save 30% off your first order + free shipping"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Caramel Cold Brew Latte Caramel Cold Brew Latte Caramel Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Caramel Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla Cold Brew Latte Vanilla Cold Brew Latte Vanilla Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Vanilla Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Mocha Cold Brew Latte Mocha Cold Brew Latte Mocha Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Mocha Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Classic Cold Brew Latte Classic Cold Brew Latte Classic Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Classic Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 5 lbs Ground / 1 bag - $15.99Ground / 2 bags - $31.98Ground / 3 bags - $44.99Ground / 5 lbs - $84.99Whole Bean / 1 bag - $15.99Whole Bean / 2 bags - $31.98Whole Bean / 3 bags - $44.99Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Valhalla Java Odinforce Blend"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 10 count - $14.9920 count - $29.9850 count - $59.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Valhalla Java Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast Coffee Dark Roast Coffee Dark Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast Coffee Medium Roast Coffee Medium Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast Coffee Espresso Roast Coffee Espresso Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 6 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 3 bags - $59.97Ground / 6 bags - $93.99Whole Bean / 1 bag - $19.99Whole Bean / 2 bags - $39.98Whole Bean / 3 bags - $59.97Whole Bean / 6 bags - $93.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast Instant Coffee Dark Roast Instant Coffee Dark Roast Instant Coffee Regular price $11.99 Regular price Sale price $11.99 Unit price / per Quick Shop Size 8 count 16 count 32 count 64 count 8 count - $11.9916 count - $23.9832 count - $43.9964 count - $69.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast Instant Coffee"
+        },
+        {
+          "kind": "h2",
+          "text": "STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER"
+        },
+        {
+          "kind": "li",
+          "text": "Choosing a selection results in a full page refresh."
+        },
+        {
+          "kind": "li",
+          "text": "Opens in a new window."
+        }
+      ],
+      "retrievedAt": 1791201691693,
+      "title": "Fair Trade & Organic Coffee\n \u2013 Death Wish Coffee",
+      "url": "https://www.deathwishcoffee.com/collections/coffee"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF"
+        },
+        {
+          "kind": "h2",
+          "text": "Item added to your cart"
+        },
+        {
+          "kind": "li",
+          "text": "Bundle (2) Bundle (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee (13) Coffee (13 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee Bundle (13) Coffee Bundle (13 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Ground (22) Ground (22 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Whole Bean (13) Whole Bean (13 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast (5) Light Roast (5 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast (7) Medium Roast (7 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast (8) Dark Roast (8 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast (7) Espresso Roast (7 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Odinforce Blend (5) Valhalla Java Odinforce Blend (5 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Flavored (9) Flavored (9 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry (1) Blueberry (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Chocolate Hazelnut (2) Chocolate Hazelnut (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel (1) Coconut Caramel (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon (1) Maple Cinnamon (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai (1) Pumpkin Chai (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla (2) Vanilla (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Organic (17) Organic (17 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Fair Trade (24) Fair Trade (24 products)"
+        },
+        {
+          "kind": "h2",
+          "text": "Filter and sort"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry (1) Blueberry (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel (1) Coconut Caramel (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon (1) Maple Cinnamon (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai (1) Pumpkin Chai (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Maple Cinnamon Coffee Maple Cinnamon Coffee Maple Cinnamon Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Maple Cinnamon Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Rise Again Collectible Gift Box Rise Again Collectible Gift Box Sale Rise Again Collectible Gift Box Regular price $30.00 Regular price $45.00 Sale price $30.00 Unit price / per Add to cart Sold out Sale"
+        },
+        {
+          "kind": "h3",
+          "text": "Rise Again Collectible Gift Box"
+        },
+        {
+          "kind": "li",
+          "text": "PUMPKIN CHAI IS BACK! SHOP NOW"
+        },
+        {
+          "kind": "p",
+          "text": "PUMPKIN CHAI IS BACK!"
+        },
+        {
+          "kind": "li",
+          "text": "Power Surge Coffee Power Surge Coffee Power Surge Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Power Surge Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Coffee Pumpkin Chai Coffee Pumpkin Chai Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast Coffee Dark Roast Coffee Dark Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Coffee Coconut Caramel Coffee Coconut Caramel Coffee Regular price $13.99 Regular price Sale price $13.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $13.992 bags - $27.985 bags - $69.95 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast Coffee Light Roast Coffee Light Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast Coffee Medium Roast Coffee Medium Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 lb 2 lbs 3 lbs 5 lbs Ground / 1 lb - $19.99Ground / 2 lbs - $39.98Ground / 3 lbs - $59.97Ground / 5 lbs - $84.99Whole Bean / 1 lb - $19.99Whole Bean / 2 lbs - $39.98Whole Bean / 3 lbs - $59.97Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Save 30% off your first order + free shipping Subscribe And Save"
+        },
+        {
+          "kind": "p",
+          "text": "Save 30% off your first order + free shipping"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast Coffee Espresso Roast Coffee Espresso Roast Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 6 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 3 bags - $59.97Ground / 6 bags - $93.99Whole Bean / 1 bag - $19.99Whole Bean / 2 bags - $39.98Whole Bean / 3 bags - $59.97Whole Bean / 6 bags - $93.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Chocolate Hazelnut Coffee Chocolate Hazelnut Coffee Chocolate Hazelnut Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $19.992 bags - $39.985 bags - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Chocolate Hazelnut Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Valhalla Java Odinforce Blend Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Type Ground Whole Bean Size 1 bag 2 bags 3 bags 5 lbs Ground / 1 bag - $15.99Ground / 2 bags - $31.98Ground / 3 bags - $44.99Ground / 5 lbs - $84.99Whole Bean / 1 bag - $15.99Whole Bean / 2 bags - $31.98Whole Bean / 3 bags - $44.99Whole Bean / 5 lbs - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Valhalla Java Odinforce Blend"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla Coffee Vanilla Coffee Vanilla Coffee Regular price $19.99 Regular price $19.99 Sale price $19.99 Unit price / per Quick Shop Size 1 bag 2 bags 5 bags 1 bag - $19.992 bags - $39.985 bags - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Vanilla Coffee"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Valhalla Java Bundle Dark Roast + Valhalla Java Bundle Dark Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Valhalla Java Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Medium Roast Bundle Dark Roast + Medium Roast Bundle Dark Roast + Medium Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Medium Roast Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Triple Threat Coffee Bundle Triple Threat Coffee Bundle Triple Threat Coffee Bundle Regular price $54.99 Regular price Sale price $54.99 Unit price / per Quick Shop Type Ground Whole Bean Ground - $54.99Whole Bean - $54.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Triple Threat Coffee Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Turn Up Trio Bundle Turn Up Trio Bundle Turn Up Trio Bundle Regular price $35.99 Regular price Sale price $35.99 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Turn Up Trio Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Double Indulgence Ground Bundle Double Indulgence Ground Bundle Double Indulgence Ground Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Default Title - $39.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Double Indulgence Ground Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Espresso Roast Bundle Dark Roast + Espresso Roast Bundle Dark Roast + Espresso Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Espresso Roast Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast + Medium Roast Bundle Espresso Roast + Medium Roast Bundle Espresso Roast + Medium Roast Bundle Regular price $39.98 Regular price Sale price $39.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $39.98Whole Bean - $39.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast + Medium Roast Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast + Valhalla Java Bundle Espresso Roast + Valhalla Java Bundle Espresso Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast + Valhalla Java Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast + Valhalla Java Bundle Medium Roast + Valhalla Java Bundle Medium Roast + Valhalla Java Bundle Regular price $35.98 Regular price Sale price $35.98 Unit price / per Quick Shop Type Ground Whole Bean Ground - $35.98Whole Bean - $35.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast + Valhalla Java Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry Coffee Blueberry Coffee Blueberry Coffee Regular price $19.99 Regular price Sale price $19.99 Unit price / per Quick Shop Type Ground Size 1 bag 2 bags 5 bags Ground / 1 bag - $19.99Ground / 2 bags - $39.98Ground / 5 bags - $84.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Blueberry Coffee"
+        },
+        {
+          "kind": "h2",
+          "text": "STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER"
+        },
+        {
+          "kind": "li",
+          "text": "Choosing a selection results in a full page refresh."
+        },
+        {
+          "kind": "li",
+          "text": "Opens in a new window."
+        }
+      ],
+      "retrievedAt": 1791201690415,
+      "title": "Bagged\n \u2013 Death Wish Coffee",
+      "url": "https://www.deathwishcoffee.com/collections/bagged"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF"
+        },
+        {
+          "kind": "h2",
+          "text": "Item added to your cart"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee (11) Coffee (11 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee Bundle (12) Coffee Bundle (12 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Single-Serve Pods (18) Single-Serve Pods (18 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast (5) Light Roast (5 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast (6) Medium Roast (6 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast (6) Dark Roast (6 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast (6) Espresso Roast (6 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Odinforce Blend (5) Valhalla Java Odinforce Blend (5 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Flavored (6) Flavored (6 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry (1) Blueberry (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Chocolate Hazelnut (2) Chocolate Hazelnut (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel (1) Coconut Caramel (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai (1) Pumpkin Chai (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla (2) Vanilla (2 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Organic (17) Organic (17 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Fair Trade (23) Fair Trade (23 products)"
+        },
+        {
+          "kind": "h2",
+          "text": "Filter and sort"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry (1) Blueberry (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel (1) Coconut Caramel (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai (1) Pumpkin Chai (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast Single-Serve Pods Light Roast Single-Serve Pods Light Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Pumpkin Chai Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Pumpkin Chai Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "PUMPKIN CHAI IS BACK! SHOP NOW"
+        },
+        {
+          "kind": "p",
+          "text": "PUMPKIN CHAI IS BACK!"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Dark Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Blueberry Single-Serve Pods Blueberry Single-Serve Pods Blueberry Single-Serve Pods Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Blueberry Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Medium Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Coconut Caramel Single-Serve Pods Regular price $12.99 Regular price Sale price $12.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $12.9920 count - $25.9830 count - $38.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Coconut Caramel Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Espresso Roast Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 100 count 10 count - $14.9920 count - $29.9850 count - $59.99100 count - $99.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla Single-Serve Pods Vanilla Single-Serve Pods Vanilla Single-Serve Pods Regular price $15.99 Regular price $15.99 Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Vanilla Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Save 30% off your first order + free shipping Subscribe And Save"
+        },
+        {
+          "kind": "p",
+          "text": "Save 30% off your first order + free shipping"
+        },
+        {
+          "kind": "li",
+          "text": "Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Valhalla Java Single-Serve Pods Regular price $14.99 Regular price Sale price $14.99 Unit price / per Quick Shop Size 10 count 20 count 50 count 10 count - $14.9920 count - $29.9850 count - $59.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Valhalla Java Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Chocolate Hazelnut Single-Serve Pods Chocolate Hazelnut Single-Serve Pods Chocolate Hazelnut Single-Serve Pods Regular price $15.99 Regular price Sale price $15.99 Unit price / per Quick Shop Size 10 count 20 count 30 count 10 count - $15.9920 count - $31.9830 count - $47.97 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Chocolate Hazelnut Single-Serve Pods"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Medium Roast Single-Serve Pod Bundle Dark Roast + Medium Roast Single-Serve Pod Bundle Dark Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Medium Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Triple Threat Single-Serve Pod Bundle Triple Threat Single-Serve Pod Bundle Triple Threat Single-Serve Pod Bundle Regular price $43.99 Regular price Sale price $43.99 Unit price / per Quick Shop Default Title - $43.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Triple Threat Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Double Indulgence Single-Serve Pod Bundle Double Indulgence Single-Serve Pod Bundle Double Indulgence Single-Serve Pod Bundle Regular price $31.98 Regular price Sale price $31.98 Unit price / per Quick Shop Default Title - $31.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Double Indulgence Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Espresso Roast Single-Serve Pod Bundle Dark Roast + Espresso Roast Single-Serve Pod Bundle Dark Roast + Espresso Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Espresso Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast + Medium Roast Single-Serve Pod Bundle Espresso Roast + Medium Roast Single-Serve Pod Bundle Espresso Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast + Medium Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Espresso Roast + Valhalla Java Single-Serve Pod Bundle Espresso Roast + Valhalla Java Single-Serve Pod Bundle Espresso Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Espresso Roast + Valhalla Java Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Medium Roast + Valhalla Java Single-Serve Pod Bundle Medium Roast + Valhalla Java Single-Serve Pod Bundle Medium Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Medium Roast + Valhalla Java Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Dark Roast + Valhalla Java Single-Serve Pod Bundle Dark Roast + Valhalla Java Single-Serve Pod Bundle Dark Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Dark Roast + Valhalla Java Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast + Dark Roast Single-Serve Pod Bundle Light Roast + Dark Roast Single-Serve Pod Bundle Light Roast + Dark Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast + Dark Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast + Espresso Roast Single-Serve Pod Bundle Light Roast + Espresso Roast Single-Serve Pod Bundle Light Roast + Espresso Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast + Espresso Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast + Valhalla Java Single-Serve Pod Bundle Light Roast + Valhalla Java Single-Serve Pod Bundle Light Roast + Valhalla Java Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast + Valhalla Java Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "li",
+          "text": "Light Roast + Medium Roast Single-Serve Pod Bundle Light Roast + Medium Roast Single-Serve Pod Bundle Light Roast + Medium Roast Single-Serve Pod Bundle Regular price $29.98 Regular price Sale price $29.98 Unit price / per Quick Shop Default Title - $29.98 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Light Roast + Medium Roast Single-Serve Pod Bundle"
+        },
+        {
+          "kind": "h2",
+          "text": "STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER"
+        },
+        {
+          "kind": "li",
+          "text": "Choosing a selection results in a full page refresh."
+        },
+        {
+          "kind": "li",
+          "text": "Opens in a new window."
+        }
+      ],
+      "retrievedAt": 1791201691068,
+      "title": "Single-Serve Pods\n \u2013 Death Wish Coffee",
+      "url": "https://www.deathwishcoffee.com/collections/single-serve"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Get your quick fix with premium coffee cold-brewed into a delicious, creamy latte that delivers serious strength. Now available in Mocha, Vanilla, Caramel and Original."
+        },
+        {
+          "kind": "p",
+          "text": "BUILD YOUR OWN COFFEE BUNDLE AND SAVE UP TO 15% OFF"
+        },
+        {
+          "kind": "h2",
+          "text": "Item added to your cart"
+        },
+        {
+          "kind": "li",
+          "text": "Accessories (1) Accessories (1 product)"
+        },
+        {
+          "kind": "li",
+          "text": "Coffee (4) Coffee (4 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Canned Latte (4) Canned Latte (4 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Fair Trade (4) Fair Trade (4 products)"
+        },
+        {
+          "kind": "h2",
+          "text": "Filter and sort"
+        },
+        {
+          "kind": "li",
+          "text": "Accessories (1) Accessories (1 products)"
+        },
+        {
+          "kind": "li",
+          "text": "Caramel Cold Brew Latte Caramel Cold Brew Latte Caramel Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Caramel Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Vanilla Cold Brew Latte Vanilla Cold Brew Latte Vanilla Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Vanilla Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Mocha Cold Brew Latte Mocha Cold Brew Latte Mocha Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Mocha Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Classic Cold Brew Latte Classic Cold Brew Latte Classic Cold Brew Latte Regular price $39.99 Regular price Sale price $39.99 Unit price / per Quick Shop Size 12 Pack 24 Pack 36 Pack 12 Pack - $39.9924 Pack - $79.9936 Pack - $119.99 Add to cart"
+        },
+        {
+          "kind": "h3",
+          "text": "Classic Cold Brew Latte"
+        },
+        {
+          "kind": "li",
+          "text": "Fight or Flight Sampler Kit Fight or Flight Sampler Kit Fight or Flight Sampler Kit Regular price $45.00 Regular price Sale price $45.00 Unit price / per Add to cart Sold out"
+        },
+        {
+          "kind": "h3",
+          "text": "Fight or Flight Sampler Kit"
+        },
+        {
+          "kind": "h2",
+          "text": "CRAVING A PUMPKIN SPICE LATTE?"
+        },
+        {
+          "kind": "p",
+          "text": "You're in luck \u2014 Pumpkin Chai is back for a limited time! Grab yours today and follow the recipe below to make a Pumpkin Spice Latte that's far from basic."
+        },
+        {
+          "kind": "h2",
+          "text": "STAY BOLD, STAY CAFFEINATED. SIGN UP AND SAVE 20% OFF YOUR FIRST ORDER"
+        },
+        {
+          "kind": "li",
+          "text": "Choosing a selection results in a full page refresh."
+        },
+        {
+          "kind": "li",
+          "text": "Opens in a new window."
+        }
+      ],
+      "retrievedAt": 1791201689888,
+      "title": "Canned Lattes\n \u2013 Death Wish Coffee",
+      "url": "https://www.deathwishcoffee.com/collections/canned-lattes"
+    }
+  ]
+}

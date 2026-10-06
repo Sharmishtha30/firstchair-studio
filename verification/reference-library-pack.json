@@ -1,0 +1,1352 @@
+{
+  "adError": "No ads imported. Meta ad-library access and a Graph API version are required.",
+  "adStatus": "not_connected",
+  "ads": [],
+  "brand": {
+    "artwork": {
+      "note": "This creative flow uses website images and original diagrams; no generated photos."
+    },
+    "assets": [
+      {
+        "alt": "Abhisht Abhivyakti Pathak",
+        "height": 554,
+        "key": "image-0",
+        "originalUrl": "https://foundersfind.club/_next/image?url=%2Fassets%2Fmentors%2Fabhisht.jpeg&w=3840&q=75",
+        "pageUrl": "https://foundersfind.club/about",
+        "role": "editorial",
+        "url": "http://127.0.0.1:3210/api/storage/39a1cc9a-41e9-46c9-b3e0-5ce796864639",
+        "width": 554
+      },
+      {
+        "alt": "CA Neelam Purohit",
+        "height": 800,
+        "key": "image-1",
+        "originalUrl": "https://foundersfind.club/_next/image?url=%2Fassets%2Fmentors%2Fneelam.jpeg&w=3840&q=75",
+        "pageUrl": "https://foundersfind.club/about",
+        "role": "editorial",
+        "url": "http://127.0.0.1:3210/api/storage/3fc53d00-e7b3-4d86-bebb-b24350579934",
+        "width": 800
+      },
+      {
+        "alt": "Sharmishtha Sharma",
+        "height": 800,
+        "key": "image-2",
+        "originalUrl": "https://foundersfind.club/_next/image?url=%2Fassets%2Fmentors%2Fsharmishtha.jpeg&w=3840&q=75",
+        "pageUrl": "https://foundersfind.club/about",
+        "role": "editorial",
+        "url": "http://127.0.0.1:3210/api/storage/3bc5acf6-ffa5-4ef9-bd6f-585c3ef80362",
+        "width": 800
+      },
+      {
+        "alt": "Kritika Jain",
+        "height": 500,
+        "key": "image-3",
+        "originalUrl": "https://foundersfind.club/_next/image?url=%2Fassets%2Fmentors%2Fkritika.jpeg&w=3840&q=75",
+        "pageUrl": "https://foundersfind.club/about",
+        "role": "editorial",
+        "url": "http://127.0.0.1:3210/api/storage/8b542146-a6c4-4b7b-8389-843169e71e95",
+        "width": 500
+      },
+      {
+        "alt": "Md. Zeeshan",
+        "height": 800,
+        "key": "image-4",
+        "originalUrl": "https://foundersfind.club/_next/image?url=%2Fassets%2Fmentors%2Fzeeshan.jpeg&w=3840&q=75",
+        "pageUrl": "https://foundersfind.club/about",
+        "role": "editorial",
+        "url": "http://127.0.0.1:3210/api/storage/5276f6fa-718d-48f0-b525-77b1a5583a55",
+        "width": 800
+      }
+    ],
+    "audience": "Execution-focused professionals who already own real work and want greater decision-making responsibility.",
+    "facts": [
+      "Every call you make is marked against a published standard, so you finish with a record of how you decide, not a list of what you read.",
+      "Your marked work, collected into a proof-of-skill portfolio you can send with an application.",
+      "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio.",
+      "Three calls from one founder's day in the Diwali Surge. Make them, watch the read fill in, and see what the standard would ask next.",
+      "The company's people remember how you handled them, and your score carries forward. Each week inside the company depends on what you did in the weeks before it.",
+      "Capability work inside one simulated company, module by module, then Career Translation turning the work into a portfolio and a plan."
+    ],
+    "name": "Founder's Find",
+    "offer": "Proving Ground: linked decisions inside one simulated company, marked against a published standard, followed by Career Translation with a coach and six months of the Intelligent Job Board's Foundation plan.",
+    "palette": {
+      "accent": "#f5c518",
+      "ink": "#0f0f12",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#ffffff",
+      "primary": "#ff307e"
+    },
+    "sourceUrl": "https://foundersfind.club/",
+    "strategy": {
+      "action": "Primary offer: Proving Ground. Primary content action: visit the product page and try the three-call exercise before deciding whether to apply. Application leads to a counsellor conversation about fit before payment.",
+      "angles": [
+        {
+          "evidence": [
+            "You own real work already. The reps make your decisions faster and easier to defend, which is what the next seat up asks for.",
+            "Every call you make is marked against a published standard, so you finish with a record of how you decide, not a list of what you read.",
+            "Your marked work, collected into a proof-of-skill portfolio you can send with an application.",
+            "Three calls from one founder's day in the Diwali Surge. Make them, watch the read fill in, and see what the standard would ask next."
+          ],
+          "hooks": [
+            "You delivered. What did you decide?",
+            "Your CV shows delivery. Where’s the judgement?",
+            "The missing part of your promotion story"
+          ],
+          "idea": "Your delivery record is not your decision record",
+          "usefulInsight": "For a professional seeking greater responsibility, describing completed work leaves an important question unanswered: how did you decide what was worth doing? The carousel should unfold that distinction across five slides: open on the missing decision record; distinguish delivery from judgement; show what a readable decision account contains, such as the options and the trade-off; explain how marked work makes that reasoning inspectable; then invite the reader to try the three-call exercise. The reader learns to make their reasoning visible rather than merely add stronger adjectives to their achievements."
+        },
+        {
+          "evidence": [
+            "Case studies, short lessons, live cases with mentors, and one company you run from start to finish. Each decision follows from the last, and every call is marked.",
+            "The company's people remember how you handled them, and your score carries forward. Each week inside the company depends on what you did in the weeks before it.",
+            "A cohort-based programme that builds judgement, problem solving and decision-making under uncertainty. Capability work inside one simulated company, module by module, then Career Translation turning the work into a portfolio and a plan."
+          ],
+          "hooks": [
+            "Your next decision inherits your last one",
+            "The case ends. The consequences don’t.",
+            "Practise what happens after your answer"
+          ],
+          "idea": "Practise the decision after the decision",
+          "usefulInsight": "An isolated case ends when you give an answer. Responsibility continues after it: the next situation inherits what you chose before. The static should be a complete editorial thought about practising consequences, not a second cover about career proof. Explain the value of returning to the same simulated company, where earlier choices shape later work. The reader learns to look for connected decisions in their preparation, not just a larger collection of unrelated cases."
+        },
+        {
+          "evidence": [
+            "Every score comes with the words that define it, so you can see what a top mark asks for and exactly where yours fell short.",
+            "Every mark is shown as it was given, never averaged away, so you can see where you were strong and where you slipped.",
+            "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+          ],
+          "hooks": [
+            "A score needs something beside it",
+            "What did that mark actually measure?",
+            "Read the standard, not just the score"
+          ],
+          "idea": "Ask what a score lets you inspect",
+          "usefulInsight": "When evaluating preparation for a more demanding role, a score is less useful without the standard behind it. Explain why the rubric, individual marks and original answer serve different purposes: understanding the expectation, locating uneven performance and inspecting the reasoning. The reader learns to evaluate the quality of feedback rather than treat a polished assessment number as sufficient evidence."
+        }
+      ],
+      "chosenAngles": [
+        "Your delivery record is not your decision record",
+        "Practise the decision after the decision"
+      ],
+      "customer": "An execution-focused professional who already owns real work and wants to move into a role with greater decision-making responsibility. The primary buyer is the individual considering Proving Ground, not the founder or delivery customers in its simulated company.",
+      "destination": "https://foundersfind.club/proving-ground",
+      "imageStyle": "Typography-led editorial compositions, using Georgia-style serif headings and Inter body text. Use white paper, near-black ink and selective pink emphasis from the supplied palette; reserve yellow for occasional small accents. Keep a consistent reading rhythm, generous space and precise emphasis rather than decorative cards. The supplied images are founder and mentor portraits, not customer evidence or programme screenshots, so they do not help explain the selected ideas and should not be used as filler. No generated imagery or borrowed reference artwork.",
+      "market": "Career development and preparation for high-impact roles, including product, Founder's Office, operations, growth and finance. The business identifies itself as Bengaluru-based; the programme lists INR pricing and sessions in IST with recordings. Selling territory and customer geography are not established by the supplied evidence.",
+      "mechanism": "Proving Ground uses linked decisions inside one simulated company, with each decision following from the last. Work is marked against a published standard, individual marks remain visible and participants' own answers are preserved. Career Translation then turns the work into a proof-of-skill portfolio, a rebuilt resume and profile, and a transition plan with a coach. Six months of the Intelligent Job Board's Foundation plan are included.",
+      "note": "Brief only; no platforms were specified and no posts are included at this stage. Creative hypothesis: the strongest entry point for the execution-to-responsibility buyer is making their reasoning visible, rather than a broad promise of career advancement. The application/interview trigger is an editorial inference, not a reported customer experience. Proposed carousel family: editorial, using S006-04, S008-17 and S010-18 as structural inspiration for a five-slide unfolding argument. Proposed static family: notes, using S005-03, S005-04 and S005-05 as inspiration for a plain brand-authored explanation of connected consequences. These references are planning guidance only; their images have not been inspected or treated as assets. The static must explicitly identify the company as simulated and must not suggest that exercise events are customer outcomes. Palette roles are inferred from supplied CSS, not a formal brand guide. Customer seniority, acquisition channel, cohort availability and selling geography remain unknown. A future Instagram link-in-bio action requires the manual posting guide to set the structured destination; a future LinkedIn caption should include the product-page URL directly.",
+      "situation": "They are preparing an application or interview for a step-up role. They can describe what they delivered, but find it harder to show how they chose priorities, weighed alternatives or defended a difficult call. The content should meet them at that gap between having done the work and making a readable case for greater responsibility."
+    },
+    "style": {
+      "bodyFont": "Inter,Inter Fallback,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif",
+      "fontName": "Inter",
+      "headline": "serif",
+      "note": "Declared website font Inter loaded from its open-source Google Fonts distribution.  Serif headings use Georgia when the declared heading font cannot be imported. CSS declarations are not proof of rendered site styles.",
+      "regularUrl": "http://127.0.0.1:3210/api/storage/a7d8e04d-fdf8-4215-9fe1-fa7f8af2e933",
+      "semiboldUrl": "http://127.0.0.1:3210/api/storage/1233df5e-24b2-48ee-82bb-239bf08d6ff8",
+      "sourceFont": "Georgia,Times New Roman,ui-serif,serif",
+      "weight": 400
+    },
+    "voice": "Direct, thoughtful and specific. Editorial rather than motivational; focused on making judgement visible."
+  },
+  "hasVideoTask": false,
+  "mode": "Written with your connected ChatGPT plan",
+  "platforms": [
+    "instagram"
+  ],
+  "posts": [
+    {
+      "altText": "Five-slide typography-led carousel in white, near-black and selective pink. It distinguishes a delivery record from a decision record, offers three prompts for explaining a difficult call, and describes how Proving Ground preserves marked reasoning. The closing slide invites readers to try the three-call simulated exercise.",
+      "caption": "Preparing for a role with more responsibility? Stronger adjectives won’t explain your judgement.\n\nChoose a piece of work you already discuss in interviews. Alongside what you delivered, make room for the choice: what else could you have done, what did you prioritise, and what cost did you accept?\n\nThat is a different account of the same work—not a bigger claim.\n\nTry the three-call Diwali Surge exercise on the Founder's Find Proving Ground page.",
+      "destination": "https://foundersfind.club/proving-ground",
+      "documentTitle": "From delivery record to decision record",
+      "emotion": "Recognition followed by clarity and agency.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Your next interview may need more than a list of what you got done.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "What did you decide?",
+            "imagePosition": "top",
+            "layout": "poster",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "Founder's Find · The step-up interview",
+          "heading": "You delivered. What did you decide?",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "A delivery record says what got done. A decision record explains why you chose that work over something else—and what you accepted as the cost.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "a question",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "Show the choice, not just the finish."
+          },
+          "eyebrow": "The missing reasoning",
+          "heading": "Delivery leaves a question open",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Take a decision from your own work.",
+          "composition": "checklist",
+          "design": {
+            "align": "left",
+            "emphasis": "readable",
+            "imagePosition": "top",
+            "layout": "list",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "A useful interview preparation note",
+          "heading": "Make one difficult call readable",
+          "items": [
+            {
+              "detail": "What could you realistically have done instead?",
+              "label": "The alternatives"
+            },
+            {
+              "detail": "What mattered most when you chose?",
+              "label": "The priority"
+            },
+            {
+              "detail": "What did your choice leave unresolved?",
+              "label": "The trade-off"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "In Proving Ground, each call is marked against a published standard. Your strongest answers stay in your own words; marked work becomes a portfolio you can send with an application.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "inspect",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "ink",
+            "takeaway": "Not just a claim that you have judgement."
+          },
+          "eyebrow": "How Proving Ground makes it visible",
+          "heading": "Let someone inspect the reasoning",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "The Diwali Surge exercise puts you inside a simulated founder’s day. Make three calls and see what the standard would ask next.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "making the call",
+            "imagePosition": "top",
+            "layout": "poster",
+            "surface": "paper",
+            "takeaway": "Try the exercise on the Proving Ground page."
+          },
+          "eyebrow": "Founder's Find · Proving Ground",
+          "heading": "Try making the call",
+          "items": []
+        }
+      ],
+      "hook": "You delivered. What did you decide?",
+      "layout": "headline",
+      "pain": "While preparing for a step-up interview, the reader can describe completed work but struggles to make their judgement visible.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Every call you make is marked against a published standard, so you finish with a record of how you decide, not a list of what you read.",
+        "Your marked work, collected into a proof-of-skill portfolio you can send with an application.",
+        "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio.",
+        "Three calls from one founder's day in the Diwali Surge. Make them, watch the read fill in, and see what the standard would ask next."
+      ]
+    },
+    {
+      "altText": "A white editorial note with a large serif headline and selective pink emphasis: “Your next decision inherits your last one.” The note explains that Proving Ground uses one simulated company where earlier choices shape later work, ending with: “Practise living with a choice, not just making one.”",
+      "caption": "When you’re preparing to own more decisions, ask what happens after you give an answer. Does the exercise reset—or must you work with what you chose?\n\nProving Ground returns you to the same simulated company. Each week depends on earlier choices, the company’s people remember how you handled them, and your score carries forward.\n\nFor a taste of connected decisions, try the three-call Diwali Surge exercise on the Proving Ground page.",
+      "destination": "https://foundersfind.club/proving-ground",
+      "documentTitle": "Practise the decision after the decision",
+      "emotion": "Curiosity and a more grounded sense of what responsibility involves.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "Giving an answer isn’t the end of responsibility.\n\nIn Proving Ground, you return to one simulated company. Earlier choices shape later work. Its people remember how you handled them; your score carries forward.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "inherits",
+            "imagePosition": "top",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "Practise living with a choice, not just making one."
+          },
+          "eyebrow": "Founder's Find · A note on decision practice",
+          "heading": "Your next decision inherits your last one",
+          "items": []
+        }
+      ],
+      "hook": "Your next decision inherits your last one",
+      "layout": "note",
+      "pain": "The reader is preparing for greater responsibility but may be practising answers as isolated events rather than choices with continuing consequences.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "The company's people remember how you handled them, and your score carries forward. Each week inside the company depends on what you did in the weeks before it.",
+        "Capability work inside one simulated company, module by module, then Career Translation turning the work into a portfolio and a plan.",
+        "Three calls from one founder's day in the Diwali Surge. Make them, watch the read fill in, and see what the standard would ask next."
+      ]
+    }
+  ],
+  "sourcePages": [
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Find the right opportunities and pursue them better, build judgement in Proving Ground, or put the whole system around your career with Membership."
+        },
+        {
+          "kind": "p",
+          "text": "For people moving into high-impact work"
+        },
+        {
+          "kind": "h1",
+          "text": "The career operating system for your ambition."
+        },
+        {
+          "kind": "p",
+          "text": "Find, prepare, connect, and perform at the opportunities you deserve. All inside a single ecosystem."
+        },
+        {
+          "kind": "p",
+          "text": "Where our members come from"
+        },
+        {
+          "kind": "p",
+          "text": "02The problem"
+        },
+        {
+          "kind": "h2",
+          "text": "Careers are continuous. Career infrastructure is not."
+        },
+        {
+          "kind": "p",
+          "text": "Every other so-called “career community” solves one moment and stops, if that. Nothing connects search to performance, so careers grow in bursts and then flatten."
+        },
+        {
+          "kind": "li",
+          "text": "The proof never gets made. You get better at the work and nobody outside the room can see it."
+        },
+        {
+          "kind": "li",
+          "text": "Four tools, four logins. A board for the search, a course for the skill, an app for the interview, a community for the people."
+        },
+        {
+          "kind": "li",
+          "text": "The career lives across tabs. Jobs in one place, notes in another, and the follow-up that would have mattered lost in memory."
+        },
+        {
+          "kind": "h3",
+          "text": "AI is changing what high-impact work looks like."
+        },
+        {
+          "kind": "p",
+          "text": "Leverage is going up. So is the cost of a bad call. What a good seat asks of you has moved."
+        },
+        {
+          "kind": "h2",
+          "text": "Start with the problem you have today."
+        },
+        {
+          "kind": "p",
+          "text": "Choose your starting point."
+        },
+        {
+          "kind": "h3",
+          "text": "I need better jobs and better outcomes."
+        },
+        {
+          "kind": "p",
+          "text": "A feed built around your role, seniority and city, and the application, outreach and referral request written from your record. Every role is open free, with 5 Job Assists to start: messages to hiring managers, referral requests or application forms."
+        },
+        {
+          "kind": "h3",
+          "text": "I need to be in management and not just execution."
+        },
+        {
+          "kind": "p",
+          "text": "Most of us feel the need to move up the ladder, but rarely do we take the actions that get us there. You are not missing leadership opportunities because you are not good. Rather, you are ONLY good at execution, NOT decisions."
+        },
+        {
+          "kind": "h3",
+          "text": "I need a career that I can be proud of."
+        },
+        {
+          "kind": "p",
+          "text": "Jobs, training, community, rewards, and more, under a single annual membership plan. Designed to give your career a proper support system, not limited to the next outcome alone."
+        },
+        {
+          "kind": "p",
+          "text": "04The products"
+        },
+        {
+          "kind": "h2",
+          "text": "80% - Us, 30% - You. Combined, 110% better career."
+        },
+        {
+          "kind": "p",
+          "text": "Apply for jobs, prepare for interviews, practise problem solving, and build a better career for your ambition."
+        },
+        {
+          "kind": "p",
+          "text": "Intelligent Job Board"
+        },
+        {
+          "kind": "h3",
+          "text": "Find the right opportunities. Pursue them better."
+        },
+        {
+          "kind": "p",
+          "text": "A feed built around your role, seniority and city. Then every job worth pursuing, pursued five ways, from your record."
+        },
+        {
+          "kind": "p",
+          "text": "Two things from my record match this role. I ran a 12-person ops team through a supply failure and kept 92% of promised deliveries. And I have marked simulation work on prioritisation under pressure you can read in two minutes."
+        },
+        {
+          "kind": "p",
+          "text": "Hi Meera, I saw the Founder's Office role. I have run ops through a supply failure and have marked work on prioritisation you can read in two minutes. Worth a short conversation this week?"
+        },
+        {
+          "kind": "p",
+          "text": "Saw the Founder's Office role at your company. Ops under pressure is the work I have actually done, and there is marked evidence of it. Open to a fifteen-minute call?"
+        },
+        {
+          "kind": "p",
+          "text": "Hi Arjun, you are on the growth team there. Would you introduce me to whoever owns the Founder's Office hire? Two lines on why, below, so it costs you nothing to forward."
+        },
+        {
+          "kind": "p",
+          "text": "Founder's Office Associate · Series A fintech. Applied Mon, emailed Tue, LinkedIn Tue. Follow-up due Thu 25 Sep."
+        },
+        {
+          "kind": "p",
+          "text": "Every line is checked against your record. You send it, from your own address."
+        },
+        {
+          "kind": "p",
+          "text": "Proving Ground"
+        },
+        {
+          "kind": "h3",
+          "text": "Stop collecting frameworks. Start building judgement."
+        },
+        {
+          "kind": "p",
+          "text": "Preparation for high-impact roles, with 6 months of the Intelligent Job Board included. Practise, apply, and find the outcomes you deserve, all through a personalised plan and live mentor interactions."
+        },
+        {
+          "kind": "p",
+          "text": "You are the founder, standing in for the day."
+        },
+        {
+          "kind": "p",
+          "text": "Orders are coming in four times faster than you planned for. Then your main delivery partner texts: they are pulling every rider in your area in 40 minutes. 900 orders are already out for delivery."
+        },
+        {
+          "kind": "p",
+          "text": "You are going to miss about 120 deliveries tonight, whatever you do. Your operations lead wants to refund everyone straight away. Support thinks a proper apology and a priority slot tomorrow would keep more of them."
+        },
+        {
+          "kind": "p",
+          "text": "Morning. The partner who walked out is back with an offer: three months exclusive, a lower per-drop rate, and a penalty if you use anyone else. The founder joins the call in ten minutes and wants your recommendation."
+        },
+        {
+          "kind": "p",
+          "text": "Not a pass or a fail. A measurement."
+        },
+        {
+          "kind": "li",
+          "text": "A6:42 pmPay the riders double, out of your own margin, to keep them tonight.Stop taking new orders. Look after the 900 already on their way.Message freelance riders now, pay cash per drop, and sort the mess out later."
+        },
+        {
+          "kind": "li",
+          "text": "B11:10 pmRefund all 120 now, no questions asked.Apologise and offer a priority slot tomorrow. Refund only if they ask.Call the 20 most valuable customers yourself, right now."
+        },
+        {
+          "kind": "li",
+          "text": "C8:05 am, next dayTake it. Last night cost more than the penalty ever will.Counter: the lower rate, no exclusivity, and a one-week notice clause.Decline. Sign two smaller partners so nobody can pull you off the road again."
+        },
+        {
+          "kind": "li",
+          "text": "Customer focus↑"
+        },
+        {
+          "kind": "li",
+          "text": "Unit economics↑"
+        },
+        {
+          "kind": "li",
+          "text": "Resourcefulness↑"
+        },
+        {
+          "kind": "p",
+          "text": "Selection by application (3% selection rate)"
+        },
+        {
+          "kind": "h3",
+          "text": "Put the full operating system around your ambition."
+        },
+        {
+          "kind": "p",
+          "text": "A seat in Proving Ground, the Intelligent Job Board with a named person on your search, mentor sessions, and every meetup with a plus-one. One relationship for a year."
+        },
+        {
+          "kind": "li",
+          "text": "DiagnoseAt the start"
+        },
+        {
+          "kind": "li",
+          "text": "BuildThe modules"
+        },
+        {
+          "kind": "li",
+          "text": "ProveCareer Translation"
+        },
+        {
+          "kind": "li",
+          "text": "PursueAll year"
+        },
+        {
+          "kind": "li",
+          "text": "PerformIn the seat"
+        },
+        {
+          "kind": "li",
+          "text": "Keep compoundingAll year"
+        },
+        {
+          "kind": "h2",
+          "text": "Show the mechanism beside the claim."
+        },
+        {
+          "kind": "p",
+          "text": "Every course says it builds judgement. Almost none of them will show you what they measured, or what a score means. We print the standard next to the mark, show every mark in the order it was awarded, and keep the person's own words."
+        },
+        {
+          "kind": "p",
+          "text": "Dashed line: what the role expects · Pink: how this person decided"
+        },
+        {
+          "kind": "li",
+          "text": "01The standard, printedEvery score comes with the words that define it, so you can see what a top mark asks for and exactly where yours fell short."
+        },
+        {
+          "kind": "h3",
+          "text": "The standard, printed"
+        },
+        {
+          "kind": "p",
+          "text": "Every score comes with the words that define it, so you can see what a top mark asks for and exactly where yours fell short."
+        },
+        {
+          "kind": "li",
+          "text": "02The raw marksEvery mark is shown as it was given, never averaged away, so you can see where you were strong and where you slipped."
+        },
+        {
+          "kind": "h3",
+          "text": "The raw marks"
+        },
+        {
+          "kind": "p",
+          "text": "Every mark is shown as it was given, never averaged away, so you can see where you were strong and where you slipped."
+        },
+        {
+          "kind": "li",
+          "text": "03Your own wordsYour strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+        },
+        {
+          "kind": "h3",
+          "text": "Your own words"
+        },
+        {
+          "kind": "p",
+          "text": "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+        },
+        {
+          "kind": "p",
+          "text": "06The connected system"
+        },
+        {
+          "kind": "h2",
+          "text": "Four tools become one system."
+        },
+        {
+          "kind": "p",
+          "text": "Connected means something specific: each part hands the next one a thing it can use. The marked decision becomes the portfolio, the portfolio becomes the application, the answer you could not defend becomes next week's practice."
+        },
+        {
+          "kind": "li",
+          "text": "01OpportunityFind the right opportunitiesIntelligent Job BoardHands onthe role worth preparing for"
+        },
+        {
+          "kind": "p",
+          "text": "Find the right opportunities"
+        },
+        {
+          "kind": "p",
+          "text": "Hands onthe role worth preparing for"
+        },
+        {
+          "kind": "li",
+          "text": "02SelectionWin the interviewMentor sessions, coachesHands onthe answer you could not defend"
+        },
+        {
+          "kind": "p",
+          "text": "Win the interview"
+        },
+        {
+          "kind": "p",
+          "text": "Mentor sessions, coaches"
+        },
+        {
+          "kind": "p",
+          "text": "Hands onthe answer you could not defend"
+        },
+        {
+          "kind": "li",
+          "text": "03CapabilityBuild judgementProving GroundHands onthe decision, marked"
+        },
+        {
+          "kind": "p",
+          "text": "Build judgement"
+        },
+        {
+          "kind": "p",
+          "text": "Hands onthe decision, marked"
+        },
+        {
+          "kind": "li",
+          "text": "04ProofShow how you thinkPortfolio, marked workHands onwork a stranger can read"
+        },
+        {
+          "kind": "p",
+          "text": "Show how you think"
+        },
+        {
+          "kind": "p",
+          "text": "Portfolio, marked work"
+        },
+        {
+          "kind": "p",
+          "text": "Hands onwork a stranger can read"
+        },
+        {
+          "kind": "li",
+          "text": "05PeopleOperators and peersMentors, rooms, meetupsHands onthe introduction"
+        },
+        {
+          "kind": "p",
+          "text": "Operators and peers"
+        },
+        {
+          "kind": "p",
+          "text": "Mentors, rooms, meetups"
+        },
+        {
+          "kind": "p",
+          "text": "Hands onthe introduction"
+        },
+        {
+          "kind": "p",
+          "text": "07Role territory"
+        },
+        {
+          "kind": "h2",
+          "text": "For people whose ambition is moving faster than their current environment."
+        },
+        {
+          "kind": "p",
+          "text": "The seats where ownership, judgement and execution matter more than the title, across AI, technology and business, in the cities where those companies are."
+        },
+        {
+          "kind": "li",
+          "text": "ProductAssociate PM, product manager"
+        },
+        {
+          "kind": "p",
+          "text": "Associate PM, product manager"
+        },
+        {
+          "kind": "li",
+          "text": "Founder's OfficeChief of staff, generalist"
+        },
+        {
+          "kind": "h3",
+          "text": "Founder's Office"
+        },
+        {
+          "kind": "p",
+          "text": "Chief of staff, generalist"
+        },
+        {
+          "kind": "li",
+          "text": "OperationsOps manager, programme lead"
+        },
+        {
+          "kind": "p",
+          "text": "Ops manager, programme lead"
+        },
+        {
+          "kind": "li",
+          "text": "GrowthGrowth lead, category manager"
+        },
+        {
+          "kind": "p",
+          "text": "Growth lead, category manager"
+        }
+      ],
+      "retrievedAt": 1791137448214,
+      "title": "Founder's Find: the career operating system for your ambition",
+      "url": "https://foundersfind.club/"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Real operating decisions inside one company, marked against a published standard, then Career Translation, with 6 months of the Intelligent Job Board included. ₹34,999, by application."
+        },
+        {
+          "kind": "p",
+          "text": "Proving Ground"
+        },
+        {
+          "kind": "h1",
+          "text": "Go from doing the work to deciding it."
+        },
+        {
+          "kind": "p",
+          "text": "Preparation for high-impact roles. Real operating decisions inside one company, marked by operators who have made them, and 6 months of the Intelligent Job Board to land the role."
+        },
+        {
+          "kind": "p",
+          "text": "Selection by application (3% selection rate)"
+        },
+        {
+          "kind": "p",
+          "text": "Where our members come from"
+        },
+        {
+          "kind": "p",
+          "text": "What you leave with"
+        },
+        {
+          "kind": "h2",
+          "text": "Four things you take into your next role."
+        },
+        {
+          "kind": "p",
+          "text": "Not a certificate. Work a hiring manager can read, and a plan to use it."
+        },
+        {
+          "kind": "li",
+          "text": "01Judgement you can showEvery call you make is marked against a published standard, so you finish with a record of how you decide, not a list of what you read."
+        },
+        {
+          "kind": "h3",
+          "text": "Judgement you can show"
+        },
+        {
+          "kind": "p",
+          "text": "Every call you make is marked against a published standard, so you finish with a record of how you decide, not a list of what you read."
+        },
+        {
+          "kind": "li",
+          "text": "02A portfolio that does the talkingYour marked work, collected into a proof-of-skill portfolio you can send with an application."
+        },
+        {
+          "kind": "h3",
+          "text": "A portfolio that does the talking"
+        },
+        {
+          "kind": "p",
+          "text": "Your marked work, collected into a proof-of-skill portfolio you can send with an application."
+        },
+        {
+          "kind": "li",
+          "text": "03A plan for the moveWith a coach: your resume and profile rebuilt around that work, and a transition plan naming your target roles and companies, in order."
+        },
+        {
+          "kind": "h3",
+          "text": "A plan for the move"
+        },
+        {
+          "kind": "p",
+          "text": "With a coach: your resume and profile rebuilt around that work, and a transition plan naming your target roles and companies, in order."
+        },
+        {
+          "kind": "li",
+          "text": "046 months to land itThe Intelligent Job Board's Foundation plan: roles curated to you, the hiring manager by name where we have one, and every message drafted from your record."
+        },
+        {
+          "kind": "h3",
+          "text": "6 months to land it"
+        },
+        {
+          "kind": "p",
+          "text": "The Intelligent Job Board's Foundation plan: roles curated to you, the hiring manager by name where we have one, and every message drafted from your record."
+        },
+        {
+          "kind": "h2",
+          "text": "Build the judgement, then go after the role."
+        },
+        {
+          "kind": "p",
+          "text": "Six to eight hours a week, in IST, with sessions recorded."
+        },
+        {
+          "kind": "li",
+          "text": "01 · The modulesInside one companyCase studies, short lessons, live cases with mentors, and one company you run from start to finish. Each decision follows from the last, and every call is marked."
+        },
+        {
+          "kind": "h3",
+          "text": "Inside one company"
+        },
+        {
+          "kind": "p",
+          "text": "Case studies, short lessons, live cases with mentors, and one company you run from start to finish. Each decision follows from the last, and every call is marked."
+        },
+        {
+          "kind": "li",
+          "text": "02 · Career TranslationYour case for the movePersonal work with a coach: the portfolio, the rebuilt resume and profile, and your transition plan."
+        },
+        {
+          "kind": "h3",
+          "text": "Your case for the move"
+        },
+        {
+          "kind": "p",
+          "text": "Personal work with a coach: the portfolio, the rebuilt resume and profile, and your transition plan."
+        },
+        {
+          "kind": "li",
+          "text": "03 · 6 monthsThe Intelligent Job BoardThe Foundation plan, open once you've paid in full: going after the roles, with the hiring manager named where we have one and the outreach written for you."
+        },
+        {
+          "kind": "h3",
+          "text": "The Intelligent Job Board"
+        },
+        {
+          "kind": "p",
+          "text": "The Foundation plan, open once you've paid in full: going after the roles, with the hiring manager named where we have one and the outreach written for you."
+        },
+        {
+          "kind": "p",
+          "text": "One company, start to finish"
+        },
+        {
+          "kind": "p",
+          "text": "The company's people remember how you handled them, and your score carries forward. Each week inside the company depends on what you did in the weeks before it."
+        },
+        {
+          "kind": "li",
+          "text": "Week 1Strategy and judgementThe situation the company is in, and your first call."
+        },
+        {
+          "kind": "h3",
+          "text": "Strategy and judgement"
+        },
+        {
+          "kind": "p",
+          "text": "The situation the company is in, and your first call."
+        },
+        {
+          "kind": "li",
+          "text": "Week 2Execution and operationsThe plan breaks. You keep the promise or you do not."
+        },
+        {
+          "kind": "h3",
+          "text": "Execution and operations"
+        },
+        {
+          "kind": "p",
+          "text": "The plan breaks. You keep the promise or you do not."
+        },
+        {
+          "kind": "li",
+          "text": "Week 3ProductWhat to build, what to kill, and who to tell."
+        },
+        {
+          "kind": "p",
+          "text": "What to build, what to kill, and who to tell."
+        },
+        {
+          "kind": "li",
+          "text": "Week 4GrowthWhere the next customers come from, and what each one costs."
+        },
+        {
+          "kind": "p",
+          "text": "Where the next customers come from, and what each one costs."
+        },
+        {
+          "kind": "li",
+          "text": "Week 5Finance and unit economicsThe numbers behind every call you have made so far."
+        },
+        {
+          "kind": "h3",
+          "text": "Finance and unit economics"
+        },
+        {
+          "kind": "p",
+          "text": "The numbers behind every call you have made so far."
+        },
+        {
+          "kind": "li",
+          "text": "Week 6Fundraising and investorsThe deal that costs more than it pays."
+        },
+        {
+          "kind": "h3",
+          "text": "Fundraising and investors"
+        },
+        {
+          "kind": "p",
+          "text": "The deal that costs more than it pays."
+        },
+        {
+          "kind": "h2",
+          "text": "Make three calls before you apply."
+        },
+        {
+          "kind": "p",
+          "text": "Three calls from one founder's day in the Diwali Surge. Make them, watch the read fill in, and see what the standard would ask next. The programme runs like this, inside one company."
+        },
+        {
+          "kind": "p",
+          "text": "You are the founder. Read the situation and pick what you would actually do. There is no correct answer."
+        },
+        {
+          "kind": "p",
+          "text": "Orders are coming in four times faster than you planned for. Then your main delivery partner texts: they are pulling every rider in your area in 40 minutes. 900 orders are already out for delivery."
+        },
+        {
+          "kind": "p",
+          "text": "make a call on the left, and this fills in"
+        },
+        {
+          "kind": "p",
+          "text": "How your work is marked"
+        },
+        {
+          "kind": "h2",
+          "text": "Every call is marked against a standard you can read."
+        },
+        {
+          "kind": "p",
+          "text": "Not a score card. The rubric's own words next to the mark, every mark shown, and your own sentences kept."
+        },
+        {
+          "kind": "p",
+          "text": "Dashed line: what the role expects · Pink: how this person decided"
+        },
+        {
+          "kind": "li",
+          "text": "01The standard, printedEvery score comes with the words that define it, so you can see what a top mark asks for and exactly where yours fell short."
+        },
+        {
+          "kind": "h3",
+          "text": "The standard, printed"
+        },
+        {
+          "kind": "p",
+          "text": "Every score comes with the words that define it, so you can see what a top mark asks for and exactly where yours fell short."
+        },
+        {
+          "kind": "li",
+          "text": "02The raw marksEvery mark is shown as it was given, never averaged away, so you can see where you were strong and where you slipped."
+        },
+        {
+          "kind": "h3",
+          "text": "The raw marks"
+        },
+        {
+          "kind": "p",
+          "text": "Every mark is shown as it was given, never averaged away, so you can see where you were strong and where you slipped."
+        },
+        {
+          "kind": "li",
+          "text": "03Your own wordsYour strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+        },
+        {
+          "kind": "h3",
+          "text": "Your own words"
+        },
+        {
+          "kind": "p",
+          "text": "Your strongest answers, kept exactly as you wrote them, ready to show in an interview or a portfolio."
+        },
+        {
+          "kind": "p",
+          "text": "Is it for you?"
+        },
+        {
+          "kind": "h2",
+          "text": "Built for two kinds of people."
+        },
+        {
+          "kind": "p",
+          "text": "The same seat, taken for different reasons."
+        },
+        {
+          "kind": "h3",
+          "text": "Move into the work you want."
+        },
+        {
+          "kind": "p",
+          "text": "You are aiming at a product, Founder's Office, operations, growth or finance seat and need evidence you can do a job you have not held."
+        },
+        {
+          "kind": "h3",
+          "text": "Move up from execution."
+        },
+        {
+          "kind": "p",
+          "text": "You own real work already. The reps make your decisions faster and easier to defend, which is what the next seat up asks for."
+        },
+        {
+          "kind": "h3",
+          "text": "Anyone who wants a certificate."
+        },
+        {
+          "kind": "p",
+          "text": "The work comes back marked, and the marking is blunt where it should be."
+        },
+        {
+          "kind": "p",
+          "text": "Pricing and application"
+        },
+        {
+          "kind": "h2",
+          "text": "One fee, the Job Board included."
+        },
+        {
+          "kind": "p",
+          "text": "Selection by application (3% selection rate). Apply, talk to a counsellor about fit, then book your seat with a part payment and pay the balance before the cohort starts. Nothing is paid before that conversation."
+        },
+        {
+          "kind": "p",
+          "text": "Want the whole year rather than one programme? Membership includes a Proving Ground seat. See membership →"
+        },
+        {
+          "kind": "p",
+          "text": "The programme, and 6 months of the Intelligent Job Board (Foundation plan)."
+        },
+        {
+          "kind": "li",
+          "text": "✓Real decisions inside one company, every call marked"
+        },
+        {
+          "kind": "li",
+          "text": "✓80+ interactive case studies, lessons, masterclasses and live cases"
+        },
+        {
+          "kind": "li",
+          "text": "✓Career Translation with a coach"
+        },
+        {
+          "kind": "li",
+          "text": "✓A proof-of-skill portfolio and a career transition plan"
+        },
+        {
+          "kind": "li",
+          "text": "✓6 months of the Intelligent Job Board's Foundation plan"
+        },
+        {
+          "kind": "h2",
+          "text": "Common questions."
+        },
+        {
+          "kind": "h3",
+          "text": "What is Proving Ground?+"
+        },
+        {
+          "kind": "p",
+          "text": "A cohort-based programme that builds judgement, problem solving and decision-making under uncertainty. Capability work inside one simulated company, module by module, then Career Translation turning the work into a portfolio and a plan. It includes 6 months of the Intelligent Job Board (Foundation plan)."
+        },
+        {
+          "kind": "h3",
+          "text": "What does it cost, and how do I pay?+"
+        },
+        {
+          "kind": "p",
+          "text": "₹34,999 (list price ₹39,999), with 6 months of the Intelligent Job Board included. You book your seat with a part payment and pay the balance before the cohort starts. A counsellor confirms fit on a call before you pay anything, and there is a 7-day, no-questions-asked refund from booking."
+        },
+        {
+          "kind": "h3",
+          "text": "How is it taught?+"
+        },
+        {
+          "kind": "p",
+          "text": "Real cases from real companies (80+ interactive case studies), short action-framework lessons, framework practice, mentor-led live cases, integrated simulations where each decision follows from the last, and feedback marked against a published standard. Case studies, self-paced lessons, masterclasses and the simulation engine are all live today."
+        },
+        {
+          "kind": "h3",
+          "text": "How much time does it take each week?+"
+        },
+        {
+          "kind": "p",
+          "text": "Six to eight hours a week: a live session, a simulation, and the reading. Sessions run in IST and are recorded."
+        },
+        {
+          "kind": "h3",
+          "text": "Who marks the work?+"
+        },
+        {
+          "kind": "p",
+          "text": "Written decisions are marked against a rubric with five written levels, and the feedback comes back in plain language as a conversation about the call you made. Mentors run the live cases and mark the room. Multiple-choice decisions are scored the same way every time, so two people who make the same call get the same score."
+        },
+        {
+          "kind": "h3",
+          "text": "Who is it for?+"
+        },
+        {
+          "kind": "p",
+          "text": "People with a real capability, judgement or proof gap: switchers moving into product, Founder's Office, operations, growth or finance work, and builders sharpening decisions they already make. It is not for someone who wants a certificate."
+        },
+        {
+          "kind": "h3",
+          "text": "What do I leave with?+"
+        }
+      ],
+      "retrievedAt": 1791137448845,
+      "title": "Proving Ground: build judgement before the stakes get higher | Founder's Find",
+      "url": "https://foundersfind.club/proving-ground"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Six short steps: who you are, where you are, what you are moving toward, what is limiting you, whether you will do the reps, and how soon. Then a conversation with a counsellor."
+        },
+        {
+          "kind": "p",
+          "text": "Proving Ground application"
+        },
+        {
+          "kind": "h1",
+          "text": "Apply to Proving Ground"
+        },
+        {
+          "kind": "p",
+          "text": "Six short steps. The first holds your place; the rest tell us where you are, where you are heading and what needs to change, so the conversation that follows is about you. A counsellor calls to talk through fit before you pay anything."
+        },
+        {
+          "kind": "li",
+          "text": "Where you are"
+        },
+        {
+          "kind": "li",
+          "text": "Target direction"
+        },
+        {
+          "kind": "li",
+          "text": "Immediate needs"
+        },
+        {
+          "kind": "li",
+          "text": "Timing and fee"
+        },
+        {
+          "kind": "li",
+          "text": "Application received"
+        },
+        {
+          "kind": "p",
+          "text": "About you · 1 of 6"
+        },
+        {
+          "kind": "h2",
+          "text": "First, who are you?"
+        },
+        {
+          "kind": "p",
+          "text": "Enough to hold your place. Nothing else is asked yet."
+        }
+      ],
+      "retrievedAt": 1791137448579,
+      "title": "Apply to Proving Ground | Founder's Find",
+      "url": "https://foundersfind.club/proving-ground/apply"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Founder's Find is built by operators who have seen both career growth and hiring responsibility. Career compounding, and a careers operating system, are the two ideas underneath everything."
+        },
+        {
+          "kind": "h1",
+          "text": "Careers changed. Career infrastructure did not."
+        },
+        {
+          "kind": "p",
+          "text": "A career used to be a ladder inside one company. Now it is a sequence of moves across companies, roles and sometimes whole functions, and every product built to help solves one moment of it and stops. Founder's Find is the layer that stays: the opportunity, the selection, the capability, the proof and the people, connected."
+        },
+        {
+          "kind": "h2",
+          "text": "Career compounding, and a careers operating system."
+        },
+        {
+          "kind": "li",
+          "text": "01A great career should compound.Capability, people, proof and opportunity. Grow one at a time and progress arrives in bursts. Grow them together and each raises the others."
+        },
+        {
+          "kind": "h3",
+          "text": "A great career should compound."
+        },
+        {
+          "kind": "p",
+          "text": "Capability, people, proof and opportunity. Grow one at a time and progress arrives in bursts. Grow them together and each raises the others."
+        },
+        {
+          "kind": "li",
+          "text": "02Different products. One system.A system carries what you learned in one product into the next: the marked work into the portfolio, the portfolio into the application, the practice into the interview."
+        },
+        {
+          "kind": "h3",
+          "text": "Different products. One system."
+        },
+        {
+          "kind": "p",
+          "text": "A system carries what you learned in one product into the next: the marked work into the portfolio, the portfolio into the application, the practice into the interview."
+        },
+        {
+          "kind": "li",
+          "text": "03Judgement is the job.Whatever the title says, you are paid for your decisions. So the product practises decisions, marks decisions and shows decisions."
+        },
+        {
+          "kind": "h3",
+          "text": "Judgement is the job."
+        },
+        {
+          "kind": "p",
+          "text": "Whatever the title says, you are paid for your decisions. So the product practises decisions, marks decisions and shows decisions."
+        },
+        {
+          "kind": "li",
+          "text": "04Proof beside the claim.Every score is printed next to the rubric it was marked against, every mark is shown, and the person's own words are kept."
+        },
+        {
+          "kind": "h3",
+          "text": "Proof beside the claim."
+        },
+        {
+          "kind": "p",
+          "text": "Every score is printed next to the rubric it was marked against, every mark is shown, and the person's own words are kept."
+        },
+        {
+          "kind": "p",
+          "text": "Founders and credibility"
+        },
+        {
+          "kind": "h2",
+          "text": "Built by operators who have seen both career growth and hiring responsibility."
+        },
+        {
+          "kind": "p",
+          "text": "The sessions are taught by people who have run the room. The marking is done by people who have had to live with the decisions they are grading."
+        },
+        {
+          "kind": "h3",
+          "text": "Abhisht Abhivyakti Pathak"
+        },
+        {
+          "kind": "p",
+          "text": "Founder, Founder's Find"
+        },
+        {
+          "kind": "li",
+          "text": "2nd time entrepreneur | ISB Alum"
+        },
+        {
+          "kind": "li",
+          "text": "Ex Founder's Office, MyCaptain, raised $4M+, grew revenue to Rs. 40 crore, managed 180+ people"
+        },
+        {
+          "kind": "h3",
+          "text": "CA Neelam Purohit"
+        },
+        {
+          "kind": "p",
+          "text": "Director Finance, Hiver"
+        },
+        {
+          "kind": "li",
+          "text": "Chartered Accountant | ISB Alum"
+        },
+        {
+          "kind": "li",
+          "text": "Director of Finance at Hiver, a $200M startup from the US"
+        },
+        {
+          "kind": "p",
+          "text": "Strategy & New Initiatives, Newton School"
+        },
+        {
+          "kind": "li",
+          "text": "Strategy & Ops across 4 engineering campuses at Newton School"
+        },
+        {
+          "kind": "li",
+          "text": "Grassroot Impact at Udhyam Learning Foundation, started by ex-Flipkart Founder"
+        },
+        {
+          "kind": "p",
+          "text": "Senior VP (M&A), Imarticus"
+        },
+        {
+          "kind": "li",
+          "text": "Manager, Mergers & Acquisitions at Imarticus"
+        },
+        {
+          "kind": "li",
+          "text": "Founder of MyCaptain, raised Rs. 35 crore, sold for Rs. 50 crore"
+        },
+        {
+          "kind": "h3",
+          "text": "Sharmishtha Sharma"
+        },
+        {
+          "kind": "p",
+          "text": "Product Owner, $3B AUM Real Estate Tech Startup"
+        },
+        {
+          "kind": "li",
+          "text": "Product Owner at a $3 Billion AUM Real Estate Tech startup in the US"
+        },
+        {
+          "kind": "p",
+          "text": "Founder's Find is operated by Dhanushal Skilling LLP, Bengaluru, India. Write to us at hello@foundersfind.club."
+        },
+        {
+          "kind": "h2",
+          "text": "See how we think, before you buy anything."
+        },
+        {
+          "kind": "p",
+          "text": "Read an assessment as it was published, every mark next to the standard it was judged against."
+        }
+      ],
+      "retrievedAt": 1791137448509,
+      "title": "About: careers changed. Career infrastructure did not. | Founder's Find",
+      "url": "https://foundersfind.club/about"
+    }
+  ],
+  "sourceWarnings": [],
+  "stage": "Ready",
+  "updatedAt": 1791137574351,
+  "url": "https://foundersfind.club/"
+}

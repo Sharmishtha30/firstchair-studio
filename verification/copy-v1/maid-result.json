@@ -1,0 +1,692 @@
+{
+  "url": "https://www.maid2clean.co.uk/",
+  "stage": "Ready",
+  "brand": {
+    "audience": "People seeking domestic cleaning for their own homes across the UK.",
+    "facts": [
+      "We are the premier provider of domestic & home cleaning throughout the UK.",
+      "Our domestic cleaning service provides a fully vetted, reference checked and insured cleaner to your home that will deliver a professional clean to suit your individual needs.",
+      "We first carry out a telephone interview.",
+      "If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home.",
+      "Only after taking proof of ID and address along with references do we accept them onto our database.",
+      "We then monitor every cleaner thoroughly for the whole time they are with us.",
+      "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+      "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you.",
+      "Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time.",
+      "If you'd like to skip the interview and go straight to cleaning this can also be arranged.",
+      "Yes. Cleaners use the supplies and equipment already in the home.",
+      "We ask that bleach is not used, for health and safety reasons."
+    ],
+    "name": "Maid2Clean",
+    "offer": "A UK domestic cleaning agency that sources vetted, reference-checked and insured cleaners for individual home-cleaning needs.",
+    "palette": {
+      "accent": "#ff8d67",
+      "ink": "#101010",
+      "note": "Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.",
+      "paper": "#ffffff",
+      "primary": "#ff8d67"
+    },
+    "sourceUrl": "https://www.maid2clean.co.uk/",
+    "strategy": {
+      "action": "Read Maid2Clean's service FAQs to understand the arrangements before enquiring about home cleaning.",
+      "angles": [
+        {
+          "evidence": [
+            "We first carry out a telephone interview.",
+            "If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home.",
+            "Only after taking proof of ID and address along with references do we accept them onto our database.",
+            "We then monitor every cleaner thoroughly for the whole time they are with us.",
+            "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+            "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you.",
+            "Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time.",
+            "If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+          ],
+          "hooks": [
+            "Can you meet your house cleaner before the first clean?",
+            "You don't have to accept the first cleaner introduced.",
+            "Before a cleaner starts, you can meet them."
+          ],
+          "idea": "Meet the cleaner before you decide",
+          "usefulInsight": "Content job: resolve a meaningful buying hesitation about inviting a cleaner into a private home. Awareness hypothesis: readers know they want help with cleaning but may assume the agency's first choice is final. Opening/payoff pair: ask whether they can meet the cleaner first, then explain the checks, the optional meeting, the right to decline the first person and how the regular arrangement follows approval. Supported mechanism: Maid2Clean's documented vetting and introduction process. Framework: objection \u2192 answer \u2192 demonstration. Five-slide story: 1) the meeting question and direct answer; 2) what vetting involves, shown as a short ordered diagram; 3) what the meeting is for\u2014approval and discussion of tasks; 4) the useful distinction that the first introduction is not an obligation to accept; 5) once satisfied, mutually arrange the regular day and time, with one FAQ action. Reader payoff: distinguish agency checks from their own decision about personal fit. Image relationship: image-1 or image-2 can establish the private-home setting on the cover, without implying the visible person is a cleaner or customer. Subsequent slides should make the actual process the focal point."
+        },
+        {
+          "evidence": [
+            "Do I need to provide cleaning supplies and equipment?",
+            "Yes. Cleaners use the supplies and equipment already in the home.",
+            "Most clients prefer to choose what is used.",
+            "We ask that bleach is not used, for health and safety reasons."
+          ],
+          "hooks": [
+            "Who supplies the cleaning products?",
+            "Your house cleaner uses your supplies and equipment.",
+            "Before the first clean: keep your cleaning kit ready."
+          ],
+          "idea": "Your cleaner uses the supplies already in your home",
+          "usefulInsight": "Content job: make first-clean preparation tangible through a service detail buyers may not expect. Awareness hypothesis: some readers assume a domestic cleaner brings a standard kit. Opening/payoff pair: ask who supplies the cleaning products, then answer clearly that Maid2Clean cleaners use the home's existing supplies and equipment and that bleach should not be used. Supported mechanism: the documented equipment and supplies policy. Framework: question \u2192 practical difference \u2192 reader preparation. One-frame story: a Maid2Clean-authored ruled note headed 'Who supplies the cleaning products?' with a concise answer covering supplies, equipment and the no-bleach instruction. This is a complete standalone service explanation, not a teaser for the carousel. Reader payoff: know what must already be available at home and one explicit restriction. Image relationship: type-only is appropriate because none of the supplied photographs shows cleaning supplies or equipment; unrelated portraits or phone imagery would weaken the explanation."
+        },
+        {
+          "evidence": [
+            "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+            "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+            "Rates vary depending on the area you're in and the number of hours you require each week.",
+            "All we require from you is the approximate number of hours you need and your postcode."
+          ],
+          "hooks": [
+            "How many cleaning hours does your home need?",
+            "Room count isn't the whole cleaning-hours question.",
+            "Before choosing cleaning hours, choose your priorities."
+          ],
+          "idea": "Choose cleaning hours around the work, not just the room count",
+          "usefulInsight": "Content job: help a buyer frame a useful cleaning enquiry without inventing a universal hours estimate. Awareness hypothesis: readers may expect one fixed number of hours for a home of a given size. Opening/payoff pair: ask how many hours to book, then explain that room contents and cleaning depth also matter and that buyers can prioritise rooms and jobs. Supported mechanism: the FAQ describes the factors affecting hours and asks for approximate hours plus postcode when requesting a quote. Framework: belief \u2192 distinction \u2192 practical example \u2192 action. A potential carousel would progress from room count to contents, depth and priorities before explaining the information required for a quote. Any worked example would be explicitly hypothetical and would not assign unsupported cleaning times. Reader payoff: understand what to consider before estimating hours. Image relationship: image-2 could show a furnished domestic setting, but it cannot demonstrate a required duration or cleaning standard."
+        }
+      ],
+      "chosenAngles": [
+        "Meet the cleaner before you decide",
+        "Your cleaner uses the supplies already in your home"
+      ],
+      "customer": "People seeking domestic cleaning for their own homes. Maid2Clean is a UK home-cleaning agency that sources cleaners; its primary offer is domestic cleaning, not commercial cleaning or advice for cleaning businesses. The homepage also links to a separate franchise opportunity, which is not the focus of this brief.",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "imageStyle": "Visible website assets inspected: image-1 shows a bright bedroom with white bedding, a pale upholstered bed, white horizontal walls, a lamp and long white curtains. A person in a striped dress stands at black-framed glass doors on the right. A patterned throw introduces muted red, black and beige; the composition is wide, airy and predominantly white. image-2 shows a tighter, taller view of the same bedroom setting: the bed and patterned throw fill the left foreground, wooden floorboards lead toward the black-framed doorway, and a partly cropped person stands near the bright opening. image-3 shows a person from behind with shoulder-length light hair and a pale top, facing a small visible screen. The softly lit interior includes pale seating, a plant on the right and a muted green cast; the person occupies the left side. image-4 shows a smiling person with shoulder-length dark hair wearing a navy T-shirt, positioned on the right against a pale pink-grey background, with a light curved surface across the lower foreground and generous empty space on the left. image-6 is a close-up of hands holding and touching a smartphone; a white shirt fills the right foreground and deep blue upholstery forms much of the background. Screen details are not legible enough to describe a workflow. None of these images establishes a person's identity, customer status or cleaning outcome. Use image-1 or image-2 only as a domestic-setting image, not evidence of a completed clean. For the selected ideas, combine an airy home-setting cover with original process typography, then use a separate brand-authored ruled note for the static. Use the supplied CSS-observed peach #ff8d67, ink #101010 and white #ffffff. Font declarations are cm,sans-serif for headings and cr,sans-serif for body; use Inter if those fonts cannot be imported. Keep headings at least 64px and body at least 40px at 1080\u00d71350.",
+      "market": "UK domestic and home cleaning. The homepage explicitly states coverage throughout the UK. Rates and some service arrangements vary by local office or area.",
+      "mechanism": "Maid2Clean sources cleaners through a telephone interview, a more thorough interview in the applicant's home, checks of identity, address and references, and ongoing monitoring. Once a cleaner is chosen, the buyer can meet them, discuss tasks and approve the choice before mutually arranging a regular cleaning day and time. Cleaners use the supplies and equipment already in the customer's home.",
+      "note": "This is the pre-post brief requested in the supplied instruction. Overall identity comes from the homepage: domestic cleaning across the UK, with a separate franchise link. The FAQs support the selected service details without redefining the business. The meeting angle wins on reader recognition, discovery, specificity, credibility and brand fit: a personally relevant decision is answered by an unusually concrete, documented introduction process. The supplies angle wins as its complement because it performs a practical preparation job rather than repeating reassurance. The hours angle is relevant and credible but less distinctive, and the supplied text does not include the property-size guide's actual figures. Proposed carousel families: hero (S008-04) for a domestic-setting cover, sequence (S006-02) for the vetting steps, and conversation (S005-01) for the introduction explanation. Proposed static family: notes (S005-03), using a clearly brand-authored ruled card, not a customer message. These reference IDs guide composition only; reference screenshots were not inspected. The carousel should progress through photography, an ordered diagram and concise explanations rather than repeat five covers. The static should use a different note composition and remain understandable by itself. Keep the optional nature of the pre-clean meeting clear in the caption. Instagram and LinkedIn can address the same household buyer; no founder framing is warranted. Use one FAQ next action per post. LinkedIn should include the supplied FAQ URL; Instagram may use link-in-bio wording only if the manual publishing guide sets that destination. No such setting is supplied here. Motivations and current awareness remain hypotheses. CSS colours are observed values rather than a verified formal brand guide. Exclude testimonials, before-and-after claims, invented cleaning durations, savings, guarantees and portrait-based customer stories: the supplied evidence supports none of them.",
+      "situation": "A prospective buyer is considering letting a cleaner into their home and wants to understand how the person is selected, whether they can meet first, and what they need to prepare. Concern about personal fit and uncertainty about cleaning arrangements are creative hypotheses, not documented customer experiences."
+    },
+    "style": {
+      "bodyFont": "cr,sans-serif",
+      "headline": "sans",
+      "note": "Heading font declared: cm,sans-serif. Body font declared: cr,sans-serif. Bundled Inter or Georgia is used where the original font cannot be imported. CSS declarations are not a rendered-style guarantee.",
+      "sourceFont": "cm,sans-serif",
+      "weight": 600
+    },
+    "voice": "Approachable, reassuring and practical, with clear explanations of how home-cleaning arrangements work."
+  },
+  "posts": [
+    {
+      "altText": "Five-slide Maid2Clean carousel in peach, black and white. The cover pairs a bright bedroom setting with a question about meeting a cleaner first; the photograph illustrates a home, not a cleaning result. The next slides explain telephone and home interviews, identity and reference checks, the opportunity to meet and discuss tasks, the right not to accept the first person, and arranging a regular day and time once satisfied.",
+      "caption": "Choosing someone to clean your home involves more than agreeing a time. Maid2Clean's checks and your chance to discuss the tasks serve different purposes: the agency vets the cleaner, while the introduction lets you decide whether you're comfortable with the choice.\n\nThe meeting is optional. If you'd prefer to skip it and go straight to cleaning, that can also be arranged.\n\nRead the service FAQs before enquiring: maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "Meeting your Maid2Clean cleaner",
+      "emotion": "Reassurance and a sense of choice.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "image-2",
+          "body": "Yes. Maid2Clean can arrange an introduction so you can discuss the tasks and approve the choice.",
+          "composition": "image",
+          "design": {
+            "align": "left",
+            "emphasis": "before the first clean?",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Can you meet your house cleaner before the first clean?",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Maid2Clean vets cleaners before accepting them onto its database.",
+          "composition": "process",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "diagram",
+            "surface": "primary",
+            "takeaway": "Monitoring continues throughout their time with Maid2Clean."
+          },
+          "eyebrow": "",
+          "heading": "What happens before an introduction?",
+          "items": [
+            {
+              "detail": "Suitable applicants move on to a more thorough interview.",
+              "label": "Telephone interview"
+            },
+            {
+              "detail": "Maid2Clean interviews the applicant in their own home.",
+              "label": "Interview in their home"
+            },
+            {
+              "detail": "These are taken before acceptance onto the database.",
+              "label": "ID, address and references"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Once Maid2Clean has chosen a cleaner, you can meet them before cleaning begins.",
+          "composition": "checklist",
+          "design": {
+            "align": "left",
+            "emphasis": "your decision",
+            "imagePosition": "bottom",
+            "layout": "list",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "The meeting is for your decision, too.",
+          "items": [
+            {
+              "detail": "Talk through the tasks you want the cleaner to carry out.",
+              "label": "Discuss the cleaning"
+            },
+            {
+              "detail": "Use the introduction to decide whether to approve the choice.",
+              "label": "Decide on the fit"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Maid2Clean makes clear that you can decline the first person. Personal fit matters as well as cleaning standards.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "don't have to",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "ink",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "You don't have to accept the first cleaner introduced.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Once you're satisfied, you and your cleaner can mutually arrange a regular cleaning day and time.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "essay",
+            "surface": "primary",
+            "takeaway": "Read the service FAQs: maid2clean.co.uk/faqs/"
+          },
+          "eyebrow": "",
+          "heading": "Happy with the choice? Then agree the routine.",
+          "items": []
+        }
+      ],
+      "hook": "Can you meet your house cleaner before the first clean?",
+      "layout": "headline",
+      "pain": "Uncertainty about who will be coming into the home and whether the agency's first choice must be accepted.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "We first carry out a telephone interview.",
+        "If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home.",
+        "Only after taking proof of ID and address along with references do we accept them onto our database.",
+        "We then monitor every cleaner thoroughly for the whole time they are with us.",
+        "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+        "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you.",
+        "Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time.",
+        "If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+      ]
+    },
+    {
+      "altText": "A Maid2Clean-authored ruled note card in white, peach and black. Heading: Who supplies the cleaning products? The note explains that Maid2Clean cleaners use the supplies and equipment already in the home, asks that these are ready for the visit, and states that bleach should not be used for health and safety reasons.",
+      "caption": "A useful detail to know before your first home clean: with Maid2Clean, the cleaning kit comes from your home, rather than arriving with the cleaner. That means both products and equipment need to be available.\n\nMaid2Clean also asks that bleach is not used, for health and safety reasons.\n\nRead the service FAQs for the practical arrangements: maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "What to have ready for your home clean",
+      "emotion": "Prepared and clear about the arrangements.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "You do. Maid2Clean cleaners use the supplies and equipment already in your home.\n\nHave both ready for the visit. Please don't include bleach: Maid2Clean asks that it is not used for health and safety reasons.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "paper",
+            "takeaway": "Read the service FAQs: maid2clean.co.uk/faqs/"
+          },
+          "eyebrow": "Before your home clean",
+          "heading": "Who supplies the cleaning products?",
+          "items": []
+        }
+      ],
+      "hook": "Who supplies the cleaning products?",
+      "layout": "note",
+      "pain": "Uncertainty about what needs to be available at home for the cleaner.",
+      "platform": "instagram",
+      "sourceFacts": [
+        "Yes. Cleaners use the supplies and equipment already in the home.",
+        "We ask that bleach is not used, for health and safety reasons."
+      ]
+    },
+    {
+      "altText": "Five-slide Maid2Clean carousel in peach, black and white. The cover pairs a bright bedroom setting with the question: Can you meet your house cleaner before the first clean? The answer is yes. Slide two outlines telephone interview, interview in the applicant's home, and ID, address and reference checks, followed by ongoing monitoring. Slide three explains that the introduction is for discussing tasks and approving the choice. Slide four says there is no need to accept the first person introduced. Slide five explains that, once satisfied, you mutually arrange a regular cleaning day and time. The bedroom photograph is a domestic setting, not evidence of a cleaning outcome.",
+      "caption": "Choosing someone to clean your home involves more than agreeing a time. Maid2Clean's agency checks and your own introduction serve different purposes: the checks support selection, while the meeting lets you discuss the work and decide whether you're comfortable with the person introduced.\n\nThat meeting is optional. If you'd prefer to skip it and go straight to cleaning, Maid2Clean says this can also be arranged.\n\nRead the service FAQs before enquiring: https://www.maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "Meeting your Maid2Clean cleaner: checks, choice and arrangements",
+      "emotion": "Reassurance and a sense of choice.",
+      "format": "carousel",
+      "frames": [
+        {
+          "assetKey": "image-1",
+          "body": "Yes. Maid2Clean can arrange an introduction so you can discuss the tasks and approve the choice.",
+          "composition": "image",
+          "design": {
+            "align": "left",
+            "emphasis": "before the first clean?",
+            "imagePosition": "bottom",
+            "layout": "photo",
+            "surface": "paper",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "Can you meet your house cleaner before the first clean?",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Maid2Clean's selection process has three stages.",
+          "composition": "process",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "diagram",
+            "surface": "paper",
+            "takeaway": "Monitoring continues throughout the cleaner's time with Maid2Clean."
+          },
+          "eyebrow": "",
+          "heading": "What happens before a cleaner joins the database?",
+          "items": [
+            {
+              "detail": "Suitable applicants move on to a more thorough interview.",
+              "label": "1. Telephone interview"
+            },
+            {
+              "detail": "The applicant is interviewed in their own home before the checks.",
+              "label": "2. Interview in their home"
+            },
+            {
+              "detail": "These are taken before acceptance onto the database.",
+              "label": "3. ID, address and references"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Once Maid2Clean chooses a cleaner for you, you can meet them before the first clean.",
+          "composition": "checklist",
+          "design": {
+            "align": "left",
+            "emphasis": "a say",
+            "imagePosition": "bottom",
+            "layout": "list",
+            "surface": "primary",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "The introduction gives you a say.",
+          "items": [
+            {
+              "detail": "Explain the cleaning tasks you want done.",
+              "label": "Discuss the work"
+            },
+            {
+              "detail": "Decide whether you're comfortable with the person introduced.",
+              "label": "Approve the choice"
+            }
+          ]
+        },
+        {
+          "assetKey": "",
+          "body": "Maid2Clean says there's no need to agree to the first person they send you.",
+          "composition": "spotlight",
+          "design": {
+            "align": "left",
+            "emphasis": "don't have to accept",
+            "imagePosition": "bottom",
+            "layout": "poster",
+            "surface": "ink",
+            "takeaway": ""
+          },
+          "eyebrow": "",
+          "heading": "You don't have to accept the first cleaner introduced.",
+          "items": []
+        },
+        {
+          "assetKey": "",
+          "body": "Once you're satisfied, you and your cleaner mutually arrange a regular day and time.",
+          "composition": "closing",
+          "design": {
+            "align": "left",
+            "emphasis": "",
+            "imagePosition": "bottom",
+            "layout": "essay",
+            "surface": "paper",
+            "takeaway": "Read Maid2Clean's service FAQs before enquiring."
+          },
+          "eyebrow": "",
+          "heading": "Happy with the choice? Agree your regular cleaning time.",
+          "items": []
+        }
+      ],
+      "hook": "Can you meet your house cleaner before the first clean?",
+      "layout": "headline",
+      "pain": "Uncertainty about how a cleaner is selected and whether the household has a say before cleaning begins.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "We first carry out a telephone interview.",
+        "If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home.",
+        "Only after taking proof of ID and address along with references do we accept them onto our database.",
+        "We then monitor every cleaner thoroughly for the whole time they are with us.",
+        "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+        "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you.",
+        "Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time.",
+        "If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+      ]
+    },
+    {
+      "altText": "A Maid2Clean-authored ruled note card in white with black type and peach accents. Heading: Who supplies the cleaning products? The note explains that Maid2Clean cleaners use the supplies and equipment already in your home, and asks that bleach is not used for health and safety reasons. A closing line directs readers to the service FAQs before enquiring.",
+      "caption": "One practical detail to know before arranging home cleaning: with Maid2Clean, the cleaning kit comes from your home, rather than being supplied by the cleaner. That includes equipment as well as products.\n\nThe service also asks that bleach is not used, for health and safety reasons.\n\nRead the service FAQs for the arrangements before enquiring: https://www.maid2clean.co.uk/faqs/",
+      "destination": "https://www.maid2clean.co.uk/faqs/",
+      "documentTitle": "Maid2Clean: what to have ready at home",
+      "emotion": "Clarity and preparedness.",
+      "format": "static",
+      "frames": [
+        {
+          "assetKey": "",
+          "body": "You do. Maid2Clean cleaners use the supplies and equipment already in your home.\n\nPlease don't provide bleach for use: Maid2Clean asks that it isn't used for health and safety reasons.",
+          "composition": "editorial",
+          "design": {
+            "align": "left",
+            "emphasis": "cleaning products",
+            "imagePosition": "bottom",
+            "layout": "note",
+            "surface": "paper",
+            "takeaway": "Read the service FAQs before enquiring."
+          },
+          "eyebrow": "Before your first clean",
+          "heading": "Who supplies the cleaning products?",
+          "items": []
+        }
+      ],
+      "hook": "Who supplies the cleaning products?",
+      "layout": "note",
+      "pain": "Uncertainty about what needs to be available at home for a domestic cleaner.",
+      "platform": "linkedin",
+      "sourceFacts": [
+        "Yes. Cleaners use the supplies and equipment already in the home.",
+        "We ask that bleach is not used, for health and safety reasons."
+      ]
+    }
+  ],
+  "strategy": {
+    "action": "Read Maid2Clean's service FAQs to understand the arrangements before enquiring about home cleaning.",
+    "angles": [
+      {
+        "evidence": [
+          "We first carry out a telephone interview.",
+          "If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home.",
+          "Only after taking proof of ID and address along with references do we accept them onto our database.",
+          "We then monitor every cleaner thoroughly for the whole time they are with us.",
+          "Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require.",
+          "It's important that your cleaner is someone you like so there's no need to agree to the first person we send you.",
+          "Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time.",
+          "If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+        ],
+        "hooks": [
+          "Can you meet your house cleaner before the first clean?",
+          "You don't have to accept the first cleaner introduced.",
+          "Before a cleaner starts, you can meet them."
+        ],
+        "idea": "Meet the cleaner before you decide",
+        "usefulInsight": "Content job: resolve a meaningful buying hesitation about inviting a cleaner into a private home. Awareness hypothesis: readers know they want help with cleaning but may assume the agency's first choice is final. Opening/payoff pair: ask whether they can meet the cleaner first, then explain the checks, the optional meeting, the right to decline the first person and how the regular arrangement follows approval. Supported mechanism: Maid2Clean's documented vetting and introduction process. Framework: objection \u2192 answer \u2192 demonstration. Five-slide story: 1) the meeting question and direct answer; 2) what vetting involves, shown as a short ordered diagram; 3) what the meeting is for\u2014approval and discussion of tasks; 4) the useful distinction that the first introduction is not an obligation to accept; 5) once satisfied, mutually arrange the regular day and time, with one FAQ action. Reader payoff: distinguish agency checks from their own decision about personal fit. Image relationship: image-1 or image-2 can establish the private-home setting on the cover, without implying the visible person is a cleaner or customer. Subsequent slides should make the actual process the focal point."
+      },
+      {
+        "evidence": [
+          "Do I need to provide cleaning supplies and equipment?",
+          "Yes. Cleaners use the supplies and equipment already in the home.",
+          "Most clients prefer to choose what is used.",
+          "We ask that bleach is not used, for health and safety reasons."
+        ],
+        "hooks": [
+          "Who supplies the cleaning products?",
+          "Your house cleaner uses your supplies and equipment.",
+          "Before the first clean: keep your cleaning kit ready."
+        ],
+        "idea": "Your cleaner uses the supplies already in your home",
+        "usefulInsight": "Content job: make first-clean preparation tangible through a service detail buyers may not expect. Awareness hypothesis: some readers assume a domestic cleaner brings a standard kit. Opening/payoff pair: ask who supplies the cleaning products, then answer clearly that Maid2Clean cleaners use the home's existing supplies and equipment and that bleach should not be used. Supported mechanism: the documented equipment and supplies policy. Framework: question \u2192 practical difference \u2192 reader preparation. One-frame story: a Maid2Clean-authored ruled note headed 'Who supplies the cleaning products?' with a concise answer covering supplies, equipment and the no-bleach instruction. This is a complete standalone service explanation, not a teaser for the carousel. Reader payoff: know what must already be available at home and one explicit restriction. Image relationship: type-only is appropriate because none of the supplied photographs shows cleaning supplies or equipment; unrelated portraits or phone imagery would weaken the explanation."
+      },
+      {
+        "evidence": [
+          "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.",
+          "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.",
+          "Rates vary depending on the area you're in and the number of hours you require each week.",
+          "All we require from you is the approximate number of hours you need and your postcode."
+        ],
+        "hooks": [
+          "How many cleaning hours does your home need?",
+          "Room count isn't the whole cleaning-hours question.",
+          "Before choosing cleaning hours, choose your priorities."
+        ],
+        "idea": "Choose cleaning hours around the work, not just the room count",
+        "usefulInsight": "Content job: help a buyer frame a useful cleaning enquiry without inventing a universal hours estimate. Awareness hypothesis: readers may expect one fixed number of hours for a home of a given size. Opening/payoff pair: ask how many hours to book, then explain that room contents and cleaning depth also matter and that buyers can prioritise rooms and jobs. Supported mechanism: the FAQ describes the factors affecting hours and asks for approximate hours plus postcode when requesting a quote. Framework: belief \u2192 distinction \u2192 practical example \u2192 action. A potential carousel would progress from room count to contents, depth and priorities before explaining the information required for a quote. Any worked example would be explicitly hypothetical and would not assign unsupported cleaning times. Reader payoff: understand what to consider before estimating hours. Image relationship: image-2 could show a furnished domestic setting, but it cannot demonstrate a required duration or cleaning standard."
+      }
+    ],
+    "chosenAngles": [
+      "Meet the cleaner before you decide",
+      "Your cleaner uses the supplies already in your home"
+    ],
+    "customer": "People seeking domestic cleaning for their own homes. Maid2Clean is a UK home-cleaning agency that sources cleaners; its primary offer is domestic cleaning, not commercial cleaning or advice for cleaning businesses. The homepage also links to a separate franchise opportunity, which is not the focus of this brief.",
+    "destination": "https://www.maid2clean.co.uk/faqs/",
+    "imageStyle": "Visible website assets inspected: image-1 shows a bright bedroom with white bedding, a pale upholstered bed, white horizontal walls, a lamp and long white curtains. A person in a striped dress stands at black-framed glass doors on the right. A patterned throw introduces muted red, black and beige; the composition is wide, airy and predominantly white. image-2 shows a tighter, taller view of the same bedroom setting: the bed and patterned throw fill the left foreground, wooden floorboards lead toward the black-framed doorway, and a partly cropped person stands near the bright opening. image-3 shows a person from behind with shoulder-length light hair and a pale top, facing a small visible screen. The softly lit interior includes pale seating, a plant on the right and a muted green cast; the person occupies the left side. image-4 shows a smiling person with shoulder-length dark hair wearing a navy T-shirt, positioned on the right against a pale pink-grey background, with a light curved surface across the lower foreground and generous empty space on the left. image-6 is a close-up of hands holding and touching a smartphone; a white shirt fills the right foreground and deep blue upholstery forms much of the background. Screen details are not legible enough to describe a workflow. None of these images establishes a person's identity, customer status or cleaning outcome. Use image-1 or image-2 only as a domestic-setting image, not evidence of a completed clean. For the selected ideas, combine an airy home-setting cover with original process typography, then use a separate brand-authored ruled note for the static. Use the supplied CSS-observed peach #ff8d67, ink #101010 and white #ffffff. Font declarations are cm,sans-serif for headings and cr,sans-serif for body; use Inter if those fonts cannot be imported. Keep headings at least 64px and body at least 40px at 1080\u00d71350.",
+    "market": "UK domestic and home cleaning. The homepage explicitly states coverage throughout the UK. Rates and some service arrangements vary by local office or area.",
+    "mechanism": "Maid2Clean sources cleaners through a telephone interview, a more thorough interview in the applicant's home, checks of identity, address and references, and ongoing monitoring. Once a cleaner is chosen, the buyer can meet them, discuss tasks and approve the choice before mutually arranging a regular cleaning day and time. Cleaners use the supplies and equipment already in the customer's home.",
+    "note": "This is the pre-post brief requested in the supplied instruction. Overall identity comes from the homepage: domestic cleaning across the UK, with a separate franchise link. The FAQs support the selected service details without redefining the business. The meeting angle wins on reader recognition, discovery, specificity, credibility and brand fit: a personally relevant decision is answered by an unusually concrete, documented introduction process. The supplies angle wins as its complement because it performs a practical preparation job rather than repeating reassurance. The hours angle is relevant and credible but less distinctive, and the supplied text does not include the property-size guide's actual figures. Proposed carousel families: hero (S008-04) for a domestic-setting cover, sequence (S006-02) for the vetting steps, and conversation (S005-01) for the introduction explanation. Proposed static family: notes (S005-03), using a clearly brand-authored ruled card, not a customer message. These reference IDs guide composition only; reference screenshots were not inspected. The carousel should progress through photography, an ordered diagram and concise explanations rather than repeat five covers. The static should use a different note composition and remain understandable by itself. Keep the optional nature of the pre-clean meeting clear in the caption. Instagram and LinkedIn can address the same household buyer; no founder framing is warranted. Use one FAQ next action per post. LinkedIn should include the supplied FAQ URL; Instagram may use link-in-bio wording only if the manual publishing guide sets that destination. No such setting is supplied here. Motivations and current awareness remain hypotheses. CSS colours are observed values rather than a verified formal brand guide. Exclude testimonials, before-and-after claims, invented cleaning durations, savings, guarantees and portrait-based customer stories: the supplied evidence supports none of them.",
+    "situation": "A prospective buyer is considering letting a cleaner into their home and wants to understand how the person is selected, whether they can meet first, and what they need to prepare. Concern about personal fit and uncertainty about cleaning arrangements are creative hypotheses, not documented customer experiences."
+  },
+  "writerRun": {
+    "durationMs": 158427,
+    "model": "gpt-6-astra",
+    "provider": "Connected ChatGPT",
+    "requests": 4,
+    "review": "early-stage-v1: The copy accurately reflects Maid2Clean\u2019s documented vetting, optional introduction, buyer approval, scheduling and cleaning-supplies policies. The FAQ destination supports each next action, and the supplied bedroom assets are used only as domestic context, not customer proof or cleaning results. No testimonials, outcomes or unsupported offers are invented. The carousel addresses a recognisable household buying hesitation and advances from agency checks to the buyer\u2019s separate role in deciding personal fit, declining the first introduction and agreeing a routine. The static performs a distinct practical preparation job by explaining who provides supplies and equipment and the no-bleach requirement. Both formats identify the domestic-cleaning category clearly and deliver specific, useful answers rather than generic promotion. The strategy compares three relevant angles and explains the complementary selections and evidence limitations.",
+    "usageNote": "This version records requests and time, not token totals. Writing uses your connected account allowance."
+  },
+  "sourceText": "PAGE https://www.maid2clean.co.uk/\nDomestic & Home Cleaning Services | Maid2Clean UK\ndescription: The premier domestic cleaning company - providing a professional, affordable home clean.\np: Simply leave your name and a form of contact, and we'll get back to you as soon as possible.\nh1: Looking for a reliablehouse cleaning service?\np: As one of the UK's leading cleaning agencies we have years of experience in sourcing excellent cleaners for all of our clients. Leave the cleaning of your home to the professionals.\nh3: Our local house cleaning services\np: We are the premier provider of domestic & home cleaning throughout the UK. Specialising in providing unbeatable house cleaning, we have built an expertise for cleaning your home to the highest possible standard and supplying an exemplary customer service.\np: Our domestic cleaning service provides a fully vetted, reference checked and insured cleaner to your home that will deliver a professional clean to suit your individual needs.\np: Enquire about our services\nh3: Maid2Clean Franchise\np: Interested in becoming a franchisee? Find more information on our dedicated Maid2Clean Franchise website\np: Find out more\n\nPAGE https://www.maid2clean.co.uk/faqs/\nFrequently asked questions about our services | Maid2Clean\ndescription: Still have some questions about our house cleaning services? Here we have provided a list of the most frequently asked questions sent to our local offices\np: Simply leave your name and a form of contact, and we'll get back to you as soon as possible.\nh1: Frequently asked questions\nh3: How can we help?\np: If you don't find the question you're looking for, don't worry, just get in touch with us and we'll help you the best we can.\nh3: How many hours do I need?\np: It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require.\np: Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed.\np: Below is a general guide for various property sizes:\nh3: How much will I pay?\np: Our hourly rates include the cleaner's wage and the agency fee. Rates vary depending on the area you're in and the number of hours you require each week. If you'd like a free quote, then contact us! All we require from you is the approximate number of hours you need and your postcode.\nh3: What time is your office open until?\np: The majority of our offices are open late and available at least 6 days of the week. Go to your local office to find out the opening times.\nh3: What sort of contract am I tied in to?\np: We don't believe in long and complicated contracts and do believe in being fair. Naturally, like any business, we have to have terms and conditions, and these can be found in the footer of any page. If you do ever need to cancel, all we ask is that you give us two month's notice or notice in accordance with the billing letter provided from your local office.\nh3: How do you vet the cleaners?\np: We first carry out a telephone interview. If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home. Only after taking proof of ID and address along with references do we accept them onto our database. We then monitor every cleaner thoroughly for the whole time they are with us.\nh3: Do I meet my cleaner before the first clean?\np: Of course! We know the cleaner will be in your home and that personalities are often as important as cleaning standards. Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require. It's important that your cleaner is someone you like so there's no need to agree to the first person we send you. Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time. If you'd like to skip the interview and go straight to cleaning this can also be arranged.\nh3: What if my cleaner can't make it, or is sick?\np: Just give us a call, and we will provide you with a cleaner to cover.\nh3: Can I have an evening or weekend clean?\np: Yes of course! Our cleaners are fully flexible and will take on evening or weekend cleaning work. Please note in certain areas a supplement hourly charge may be added for cleans after 6pm or at weekends.\nh3: Can I have a clean once a month?\np: Most of our offices do not do monthly cleans - typically our most infrequent clean is every fortnight, or a one off.\nh3: Will I have to be at home when my cleaner visits?\np: No, our cleaners are vetted and are happy to hold your house keys. We will provide you with a Key Acknowledgement Form for your cleaner to sign.\nh3: Do I need to provide cleaning supplies and equipment?\np: Yes. Cleaners use the supplies and equipment already in the home. Most clients prefer to choose what is used. We ask that bleach is not used, for health and safety reasons.\nh3: Can I change my cleaner if I am not happy?\np: Yes, of course, we have a large and varied cleaner base, and we'd be happy to assign you someone different if you are unhappy for any reason. Just give us a call.\nh3: Do you have insurance cover?\np: Yes. Public liability insurance of at least \u00a31,000,000 is in place, subject to our terms of business. The policy is indemnity cover, not new for old. Claims remain subject to liability being established and to the terms, conditions, exclusions and excesses of the policy. There is a \u00a3100 excess per claim. Where appropriate, customers should approach their household insurer first, as set out in our terms of business.",
+  "sourcePages": [
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "The premier domestic cleaning company - providing a professional, affordable home clean."
+        },
+        {
+          "kind": "p",
+          "text": "Simply leave your name and a form of contact, and we'll get back to you as soon as possible."
+        },
+        {
+          "kind": "h1",
+          "text": "Looking for a reliablehouse cleaning service?"
+        },
+        {
+          "kind": "p",
+          "text": "As one of the UK's leading cleaning agencies we have years of experience in sourcing excellent cleaners for all of our clients. Leave the cleaning of your home to the professionals."
+        },
+        {
+          "kind": "h3",
+          "text": "Our local house cleaning services"
+        },
+        {
+          "kind": "p",
+          "text": "We are the premier provider of domestic & home cleaning throughout the UK. Specialising in providing unbeatable house cleaning, we have built an expertise for cleaning your home to the highest possible standard and supplying an exemplary customer service."
+        },
+        {
+          "kind": "p",
+          "text": "Our domestic cleaning service provides a fully vetted, reference checked and insured cleaner to your home that will deliver a professional clean to suit your individual needs."
+        },
+        {
+          "kind": "p",
+          "text": "Enquire about our services"
+        },
+        {
+          "kind": "h3",
+          "text": "Maid2Clean Franchise"
+        },
+        {
+          "kind": "p",
+          "text": "Interested in becoming a franchisee? Find more information on our dedicated Maid2Clean Franchise website"
+        },
+        {
+          "kind": "p",
+          "text": "Find out more"
+        }
+      ],
+      "retrievedAt": 1791201716061,
+      "title": "Domestic & Home Cleaning Services | Maid2Clean UK",
+      "url": "https://www.maid2clean.co.uk/"
+    },
+    {
+      "blocks": [
+        {
+          "kind": "description",
+          "text": "Still have some questions about our house cleaning services? Here we have provided a list of the most frequently asked questions sent to our local offices"
+        },
+        {
+          "kind": "p",
+          "text": "Simply leave your name and a form of contact, and we'll get back to you as soon as possible."
+        },
+        {
+          "kind": "h1",
+          "text": "Frequently asked questions"
+        },
+        {
+          "kind": "h3",
+          "text": "How can we help?"
+        },
+        {
+          "kind": "p",
+          "text": "If you don't find the question you're looking for, don't worry, just get in touch with us and we'll help you the best we can."
+        },
+        {
+          "kind": "h3",
+          "text": "How many hours do I need?"
+        },
+        {
+          "kind": "p",
+          "text": "It depends on the size of your home, how many rooms and how much is in them, plus the quality and depth of cleaning that you require."
+        },
+        {
+          "kind": "p",
+          "text": "Ultimately the choice is yours, and you may want fewer or more hours and then prioritise the rooms and jobs to be completed."
+        },
+        {
+          "kind": "p",
+          "text": "Below is a general guide for various property sizes:"
+        },
+        {
+          "kind": "h3",
+          "text": "How much will I pay?"
+        },
+        {
+          "kind": "p",
+          "text": "Our hourly rates include the cleaner's wage and the agency fee. Rates vary depending on the area you're in and the number of hours you require each week. If you'd like a free quote, then contact us! All we require from you is the approximate number of hours you need and your postcode."
+        },
+        {
+          "kind": "h3",
+          "text": "What time is your office open until?"
+        },
+        {
+          "kind": "p",
+          "text": "The majority of our offices are open late and available at least 6 days of the week. Go to your local office to find out the opening times."
+        },
+        {
+          "kind": "h3",
+          "text": "What sort of contract am I tied in to?"
+        },
+        {
+          "kind": "p",
+          "text": "We don't believe in long and complicated contracts and do believe in being fair. Naturally, like any business, we have to have terms and conditions, and these can be found in the footer of any page. If you do ever need to cancel, all we ask is that you give us two month's notice or notice in accordance with the billing letter provided from your local office."
+        },
+        {
+          "kind": "h3",
+          "text": "How do you vet the cleaners?"
+        },
+        {
+          "kind": "p",
+          "text": "We first carry out a telephone interview. If the applicant seems suitable, we then arrange for a more thorough interview to take place in their own home. Only after taking proof of ID and address along with references do we accept them onto our database. We then monitor every cleaner thoroughly for the whole time they are with us."
+        },
+        {
+          "kind": "h3",
+          "text": "Do I meet my cleaner before the first clean?"
+        },
+        {
+          "kind": "p",
+          "text": "Of course! We know the cleaner will be in your home and that personalities are often as important as cleaning standards. Once we choose a cleaner for you, we'll arrange for them to come along and meet you so that you can approve our choice and discuss the cleaning tasks you require. It's important that your cleaner is someone you like so there's no need to agree to the first person we send you. Once you're satisfied that we've sent the right person for you, you can then mutually arrange a regular clean day and time. If you'd like to skip the interview and go straight to cleaning this can also be arranged."
+        },
+        {
+          "kind": "h3",
+          "text": "What if my cleaner can't make it, or is sick?"
+        },
+        {
+          "kind": "p",
+          "text": "Just give us a call, and we will provide you with a cleaner to cover."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I have an evening or weekend clean?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes of course! Our cleaners are fully flexible and will take on evening or weekend cleaning work. Please note in certain areas a supplement hourly charge may be added for cleans after 6pm or at weekends."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I have a clean once a month?"
+        },
+        {
+          "kind": "p",
+          "text": "Most of our offices do not do monthly cleans - typically our most infrequent clean is every fortnight, or a one off."
+        },
+        {
+          "kind": "h3",
+          "text": "Will I have to be at home when my cleaner visits?"
+        },
+        {
+          "kind": "p",
+          "text": "No, our cleaners are vetted and are happy to hold your house keys. We will provide you with a Key Acknowledgement Form for your cleaner to sign."
+        },
+        {
+          "kind": "h3",
+          "text": "Do I need to provide cleaning supplies and equipment?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes. Cleaners use the supplies and equipment already in the home. Most clients prefer to choose what is used. We ask that bleach is not used, for health and safety reasons."
+        },
+        {
+          "kind": "h3",
+          "text": "Can I change my cleaner if I am not happy?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes, of course, we have a large and varied cleaner base, and we'd be happy to assign you someone different if you are unhappy for any reason. Just give us a call."
+        },
+        {
+          "kind": "h3",
+          "text": "Do you have insurance cover?"
+        },
+        {
+          "kind": "p",
+          "text": "Yes. Public liability insurance of at least \u00a31,000,000 is in place, subject to our terms of business. The policy is indemnity cover, not new for old. Claims remain subject to liability being established and to the terms, conditions, exclusions and excesses of the policy. There is a \u00a3100 excess per claim. Where appropriate, customers should approach their household insurer first, as set out in our terms of business."
+        }
+      ],
+      "retrievedAt": 1791201716930,
+      "title": "Frequently asked questions about our services | Maid2Clean",
+      "url": "https://www.maid2clean.co.uk/faqs/"
+    }
+  ]
+}

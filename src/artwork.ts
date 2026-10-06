@@ -6,33 +6,35 @@ export function foreground(background:string){return luminance(background)>.19?'
 export function lines(ctx:CanvasRenderingContext2D,value:string,width:number){const result:string[]=[];for(const para of value.split('\n')){let row='';for(const word of para.split(/\s+/)){const next=row?row+' '+word:word;if(row&&ctx.measureText(next).width>width){result.push(row);row=word;}else row=next;}if(row)result.push(row);}return result;}
 export type TextBound={value:string;x:number;y:number;width:number;height:number;size:number};
 export const bounds=new WeakMap<HTMLCanvasElement,TextBound[]>();
-export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number,width:number,size:number,maxHeight:number,font:string,colour:string,weight=400,min=40){
+export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number,width:number,size:number,maxHeight:number,font:string,colour:string,weight=400,min=40,paint=true){
  if(!value.trim())return y;let rows:string[]=[],line=0,used=size;
- for(let s=size;s>=Math.min(size,min);s-=2){used=s;ctx.font=`${weight} ${s}px ${font}`;rows=lines(ctx,value,width);line=s*1.14;if(rows.length*line<=maxHeight)break;}
+ for(let s=size;s>=Math.min(size,min);s-=2){used=s;ctx.font=`${weight} ${s}px ${font}`;rows=lines(ctx,value,width);line=s*1.14;if(rows.length*line<=maxHeight&&rows.every(row=>ctx.measureText(row).width<=width))break;}
  if(rows.length*line>maxHeight||rows.some(row=>ctx.measureText(row).width>width))throw new Error('This text does not fit at a readable size: “'+value.slice(0,85)+'”. Shorten it or choose a different layout.');
  if(x<80||y<55||x+width>1000||y+rows.length*line>1295)throw new Error('Text falls outside the creative safe area.');
- bounds.get(ctx.canvas)?.push({value,x,y,width,height:rows.length*line,size:used});ctx.fillStyle=colour;ctx.textBaseline='top';for(const row of rows){ctx.fillText(row,x,y);y+=line;}return y;
+ bounds.get(ctx.canvas)?.push({value,x,y,width,height:rows.length*line,size:used});ctx.fillStyle=colour;ctx.textBaseline='top';for(const row of rows){if(paint)ctx.fillText(row,x,y);y+=line;}return y;
 }
 const images=new Map<string,Promise<HTMLImageElement>>();
 export function loadImage(url:string){let request=images.get(url);if(!request){request=new Promise((resolve,reject)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>resolve(i);i.onerror=()=>reject(new Error('A website image could not load. Change the image or retry.'));i.src=url;});images.set(url,request);}return request;}
 function rect(ctx:CanvasRenderingContext2D,x:number,y:number,w:number,h:number,fill:string,radius=0){ctx.fillStyle=fill;ctx.beginPath();ctx.roundRect(x,y,w,h,radius);ctx.fill();}
 function outline(ctx:CanvasRenderingContext2D,x:number,y:number,w:number,h:number,colour:string){ctx.strokeStyle=colour;ctx.lineWidth=2;ctx.strokeRect(x,y,w,h);}
 function contain(ctx:CanvasRenderingContext2D,img:HTMLImageElement,x:number,y:number,w:number,h:number){const s=Math.min(w/img.width,h/img.height);ctx.drawImage(img,x+(w-img.width*s)/2,y+(h-img.height*s)/2,img.width*s,img.height*s);}
-export async function header(ctx:CanvasRenderingContext2D,brand:Brand,ink:string){
- if(brand.style?.logoUrl){try{const img=await loadImage(brand.style.logoUrl);const s=Math.min(340/img.width,64/img.height);const p=colours(brand);if(foreground(p.paper)==='#ffffff')rect(ctx,80,60,img.width*s+24,88,'#ffffff',4);ctx.drawImage(img,foreground(p.paper)==='#ffffff'?92:80,72,img.width*s,img.height*s);return;}catch{/* Text wordmark is the honest fallback. */}}
+export async function header(ctx:CanvasRenderingContext2D,brand:Brand,ink:string,font?:string){
+ if(brand.style?.logoUrl){try{const img=await loadImage(brand.style.logoUrl);const s=Math.min(340/img.width,64/img.height);const p=colours(brand);if(foreground(p.paper)==='#ffffff')rect(ctx,80,60,img.width*s+24,88,'#ffffff',4);ctx.drawImage(img,foreground(p.paper)==='#ffffff'?92:80,72,img.width*s,img.height*s);if(img.width/img.height<1.6)text(ctx,brand.name,80+img.width*s+30,84,600,36,60,font??(brand.style?.headline==='serif'?'Georgia':'\"Brand Inter\"'),ink,600,28);return;}catch{/* Text wordmark is the honest fallback. */}}
  text(ctx,brand.name,80,80,680,32,74,brand.style?.headline==='serif'?'Georgia':'"Brand Inter"',ink,600,28);
 }
 const fontCache=new Map<string,Promise<string>>();
-async function brandFont(brand:Brand){const style=brand.style;if(!style?.regularUrl||!style.semiboldUrl)return '\"Brand Inter\"';const key=style.regularUrl+'|'+style.semiboldUrl;let p=fontCache.get(key);if(!p){p=(async()=>{const name='WebsiteFont'+fontCache.size;for(const [url,weight]of [[style.regularUrl,'400'],[style.semiboldUrl,'600']] as const){const face=new FontFace(name,`url(${url})`,{weight});await face.load();document.fonts.add(face);}return name;})();fontCache.set(key,p);}return p;}
+async function brandFont(brand:Brand,body=false){const original=brand.style;const style=body?{regularUrl:original?.bodyRegularUrl,semiboldUrl:original?.bodySemiboldUrl}:original;if(!style?.regularUrl||!style.semiboldUrl)return '\"Brand Inter\"';const key=style.regularUrl+'|'+style.semiboldUrl;let p=fontCache.get(key);if(!p){p=(async()=>{const name='WebsiteFont'+fontCache.size;for(const [url,weight]of [[style.regularUrl,'400'],[style.semiboldUrl,'600']] as const){const face=new FontFace(name,`url(${url})`,{weight});await face.load();document.fonts.add(face);}return name;})();fontCache.set(key,p);}return p;}
 const renderCache=new Map<string,Promise<HTMLCanvasElement>>();
 export function renderArtwork(post:Post,brand:Brand,index=0,_layout=post.layout??'headline'){
  const key=JSON.stringify([post,brand,index]);let result=renderCache.get(key);if(!result){result=paint(post,brand,index);renderCache.set(key,result);if(renderCache.size>80)renderCache.delete(renderCache.keys().next().value!);}return result;
 }
 async function paint(post:Post,brand:Brand,index:number){
  await Promise.all([400,600].map(w=>document.fonts.load(`${w} 40px "Brand Inter"`)));await document.fonts.ready;
- const bodyFont=await brandFont(brand);
- const c=document.createElement('canvas');c.width=1080;c.height=1350;bounds.set(c,[]);const ctx=c.getContext('2d')!,p=colours(brand),ink=foreground(p.paper),font=brand.style?.headline==='serif'?(brand.style.fontName&&brand.style.sourceFont.toLowerCase().includes(brand.style.fontName.toLowerCase())?bodyFont:'Georgia'):bodyFont,weight=brand.style?.weight??(brand.style?.headline==='serif'?400:600),f=post.frames[index];
- if(!f)throw new Error('Slide not found.');if(f.design){await paintDesigned(ctx,post,brand,index,font,bodyFont,weight);return c;}ctx.fillStyle=p.paper;ctx.fillRect(0,0,1080,1350);await header(ctx,brand,ink);
+ const headingFont=await brandFont(brand);
+ const separateBody=!!brand.style?.bodyFont&&brand.style.bodyFont.split(',')[0].trim().toLowerCase()!==brand.style.sourceFont.split(',')[0].trim().toLowerCase();
+ const bodyFont=separateBody?await brandFont(brand,true):headingFont;
+ const c=document.createElement('canvas');c.width=1080;c.height=1350;bounds.set(c,[]);const ctx=c.getContext('2d')!,p=colours(brand),ink=foreground(p.paper),font=brand.style?.headline==='serif'?(brand.style.fontName&&brand.style.sourceFont.toLowerCase().includes(brand.style.fontName.toLowerCase())?headingFont:'Georgia'):headingFont,weight=brand.style?.weight??(brand.style?.headline==='serif'?400:600),f=post.frames[index];
+ if(!f)throw new Error('Slide not found.');if(f.design){await paintDesigned(ctx,post,brand,index,font,bodyFont,weight);return c;}ctx.fillStyle=p.paper;ctx.fillRect(0,0,1080,1350);await header(ctx,brand,ink,font);
  const rule=(y:number)=>{ctx.strokeStyle=ink;ctx.globalAlpha=.18;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;};
  rule(165);if(post.format==='carousel')text(ctx,`${String(index+1).padStart(2,'0')} / ${post.frames.length}`,850,84,150,28,36,bodyFont,ink,600,28);
  const comp=f.composition??(index===post.frames.length-1&&post.format==='carousel'?'closing':'editorial');

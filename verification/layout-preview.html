@@ -1,0 +1,13 @@
+<!doctype html><html><head><title>Creative layout verification</title><style>body{background:#eee;font:16px Arial;padding:30px}main{display:flex;gap:24px;flex-wrap:wrap}img{width:324px;height:405px}figure{margin:0;width:324px}pre{white-space:pre-wrap}</style></head><body><h1>Brand-derived layout check</h1><main id="results"></main><pre id="report">Rendering</pre><script type="module">
+import {renderArtwork,bounds} from '/src/artwork.ts';
+const brand={name:"Example brand",sourceUrl:'https://example.com/',audience:'People comparing supported options',offer:'An evidenced product',voice:'Direct',facts:[],palette:{paper:'#ffffff',ink:'#101010',primary:'#ff307e',accent:'#ff307e',note:''},style:{headline:'serif',weight:400,sourceFont:'Georgia',note:''}};
+const report=[];
+for(const layout of ['poster','note','diagram','split']){
+ const heading=layout==='diagram'?'Turn practice into proof.':layout==='note'?'Before you send that application.':layout==='split'?'Different asks. Same experience.':'Show how you think.';
+ const body=layout==='note'?'Name one decision you made. Explain the options you considered and the trade-off you accepted. Keep it faithful to what actually happened.':layout==='diagram'?'A supported three-step workflow.':'Make your experience easier to understand.';
+ const items=layout==='diagram'?[{label:'Practise',detail:'Make a decision in a simulated scenario.'},{label:'Review',detail:'Read the marking standard beside your answer.'},{label:'Show',detail:'Keep your strongest work in a portfolio.'}]:[{label:'Hiring manager',detail:'Explain why your experience fits.'},{label:'Referrer',detail:'Ask for a relevant introduction.'}];
+ const post={platform:'instagram',format:'static',hook:heading,pain:'',emotion:'',caption:'',altText:'',sourceFacts:[],frames:[{heading,body,eyebrow:brand.name,composition:'editorial',items,design:{layout,surface:layout==='poster'?'ink':layout==='note'?'primary':'paper',align:'left',imagePosition:'right',emphasis:'',takeaway:''}}]};
+ try{const c=await renderArtwork(post,brand);const figure=document.createElement('figure');const img=document.createElement('img');img.src=c.toDataURL();img.alt=layout+' layout';figure.append(img);const caption=document.createElement('figcaption');caption.textContent=layout;figure.append(caption);document.querySelector('main').append(figure);report.push({layout,width:c.width,height:c.height,text:bounds.get(c)});}catch(e){report.push({layout,error:e.message});}
+}
+document.querySelector('#report').textContent=JSON.stringify(report,null,2);
+</script></body></html>

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "WA-OCT6-01",
+    "file": "01.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.38 PM (1).jpeg",
+    "sha256": "496ef051e758011587ecaf3f0bbe7c3fa8c86923b5720d087263427a734f2833",
+    "pattern": "colour-hierarchy",
+    "lesson": "Contrast and readable palette; preserve source colour roles.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-02",
+    "file": "02.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.38 PM.jpeg",
+    "sha256": "4d771458c244cfe90f026425fb68f6d3aaa52bb4552b6b1692df20ecb09572e2",
+    "pattern": "sequence-framework",
+    "lesson": "Hook, development, payoff and action; fixed ten-slide count is not adopted.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-03",
+    "file": "03.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.39 PM.jpeg",
+    "sha256": "bdb7936cee120fac2d07f75ec0658dd5398f295d040fd9592d848b779ca36e07",
+    "pattern": "size-claim",
+    "lesson": "Claims older sizes are obsolete. Unverified; retain existing 1080x1350 pending official/publishing tests.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-04",
+    "file": "04.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.40 PM.jpeg",
+    "sha256": "fb0a987f0cb6ec264a1815de07c59f60f0cf7fb455b30f25fce02646678ee492",
+    "pattern": "reading-order",
+    "lesson": "Headline and supporting copy follow a clear reading path.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-05",
+    "file": "05.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.41 PM (1).jpeg",
+    "sha256": "ac6f715cd097b5aa3c28606cbe9dd5c960f2431a3b4eaef303d96b95ca4adccc",
+    "pattern": "personality-inversion",
+    "lesson": "Humour by reversing a recognisable personality; do not fabricate celebrity endorsement.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-06",
+    "file": "06.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.41 PM (2).jpeg",
+    "sha256": "9b7eeaee96af6978dffe61ec508fa4c6e378cb3fb27d977786f069fe7db358c2",
+    "pattern": "belief-exaggeration",
+    "lesson": "Exaggerate a fictional belief for humour; never factual efficacy or outcomes.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-07",
+    "file": "07.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.41 PM (3).jpeg",
+    "sha256": "a153af97d416f00f8f5eea93a438f8e6d39a2a0ead77376a5f238b50a30b9173",
+    "pattern": "integrated-imagery",
+    "lesson": "Make image/text one visual argument rather than a disconnected illustration.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-08",
+    "file": "08.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.41 PM.jpeg",
+    "sha256": "53c38635dab8ba580dc7af7f47d7ac0d520cb20017f9300209c26763a0086b59",
+    "pattern": "category-joke",
+    "lesson": "A category stereotype can create recognition; avoid unsupported consensus or insulting customers.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-09",
+    "file": "09.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.42 PM (1).jpeg",
+    "sha256": "78ff492c734cb726e6a4c2e091175d3abe8cb38cf9ad4ee1c993973fb601199d",
+    "pattern": "unexpected-character",
+    "lesson": "Unexpected fictional character in a familiar situation; only when brand-appropriate.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-10",
+    "file": "10.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.42 PM (2).jpeg",
+    "sha256": "d5a05a279b14dc04f3090bec8b1e6a0d11a26829e91521fb0e5fd5a04b1532e3",
+    "pattern": "literal-benefit",
+    "lesson": "Visualise a benefit literally as labelled creative fiction, not promised performance.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-11",
+    "file": "11.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.42 PM.jpeg",
+    "sha256": "a25516a1853a498616c3dea83a2b98bb09c95474b2991b2f066351226fad211b",
+    "pattern": "escalating-chaos",
+    "lesson": "Escalation can create curiosity; optional, not a mandatory sales pattern.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  },
+  {
+    "id": "WA-OCT6-12",
+    "file": "12.jpeg",
+    "originalName": "WhatsApp Image 2026-10-06 at 1.05.43 PM.jpeg",
+    "sha256": "9113d2a3392af22307ce3016fbe310466bbbbdbfa6f523da6926e15fbd01fa15",
+    "pattern": "absurd-problem",
+    "lesson": "Exaggerated fictional frustration; no fear, medical misinformation or invented harm.",
+    "source": "User-supplied ZIP; original creator/source URL unknown",
+    "rights": "unknown; private reference review only, not approved for training or output asset reuse",
+    "performance": "not supplied; no effectiveness inference"
+  }
+]
