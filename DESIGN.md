@@ -39,7 +39,7 @@ For each website: name and clickable domain, then a two-column static/carousel p
 
 ## Result workspace
 
-Allow scrolling where needed to inspect the work. Keep FirstChair identity and sky continuity. Prioritise rendered creatives, slide navigation, captions and downloads. Group brand evidence and detailed corrections behind secondary controls. Show the edit allowance clearly. Preserve the existing internal export variants without repeating essentially identical platform previews.
+Keep FirstChair identity and sky continuity. Use two columns: Carousel / Statics tabs and one rendered creative on the left; only image-text editing on the right. Preview edits immediately. Keep slide navigation below the carousel. Hide brand metadata, captions, downloads, rewrite controls and edit-count messaging from this preview. Use a compact saved-draft recovery notice. Stack the editor below the creative on narrow screens. Billing remains separate and unimplemented.
 
 ## Customer creative principles
 

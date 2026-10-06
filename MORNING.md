@@ -606,3 +606,12 @@ Added top-right Sample preview gallery, preserving in-progress pack on return. T
 
 ## Product positioning update — 6 October 2026
 PRODUCT.md now centres solopreneurs creating organic product marketing, the time spent choosing copy and brand design in Canva, and FirstChair's editable carousel/static journey. Relay is interaction inspiration for a separate reels-focused journey. Defined success as time to an accepted publishable creative, correction effort and avoided rebuilding, without unmeasured performance claims. Clarified current in-app edits versus flattened PNG exports; no editable Canva/layered export or edit-limit change implemented. Documentation only.
+
+
+## 6 October: preview/editor simplification
+
+- Carousel and Statics tabs, one preview on the left, image-text editor on the right; responsive stacking. Removed metadata, duplicate thumbnails, caption/download/rewrite controls and visible edit allowance. Billing is not implemented; existing ownership/edit rules remain.
+- Browser checked a local saved sample at 1440 x 900 and the default narrow viewport. Tab switching and immediate headline preview verified. Saving was disabled for the anonymous sample; owned-pack saving was not exercised.
+- Cosmix writer record: 330982 ms / eight requests. Reviewer requests conflicted with product layout/asset and copy limits. Aligned reviewer constraints; no fresh timing benchmark yet because the browser requires user sign-in for that saved owned pack.
+- Type checks, all 99 tests and production build passed.
+- Published successfully to https://rightful-wombat-262.convex.site (deployment 5c6eb6fb-d650-45bf-a10c-3baa3747975b). Public saved-sample creation reached the new Carousel/Statics and image-text editor screen; this does not validate fresh AI generation speed.

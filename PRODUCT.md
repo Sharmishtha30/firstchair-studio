@@ -50,11 +50,10 @@ Later, measure actual organic-marketing outcomes for published posts. An interna
 1. Open the single-screen sky landing. Enter a website and click Create my posts.
 2. For fresh local generation, connect ChatGPT first. Website reading starts while two short questions appear: desired outcome (awareness, enquiries or sales), then optional product/programme focus (Choose for me).
 3. Save answers and continue generation. Show the actual saved stage; retain the sky and visual identity through onboarding, waiting and results.
-4. Show one carousel and one static as the visible creative pair, with slide controls, captions, destination and evidence. Avoid duplicate platform tabs or Instagram/LinkedIn branding in this interface.
-5. A connected owned pack supports one creative edit: a rewrite or manual text/image save. Brand corrections are separate and affect the pack. Keep unrelated posts unchanged and retain earlier versions.
-6. Download one post or the complete ZIP. Copy captions separately. Publishing social posts is manual.
-7. A connected pack whose export preparation was recorded can create a separate pack from another copy perspective. Export preparation is not proof that a file was saved or published.
-8. Reopening a saved pack respects account ownership. Failures identify the step and allow appropriate recovery; saved evidence and drafts should survive.
+4. Show Carousel and Statics tabs above a single creative preview on the left. Keep slide navigation with the preview. On narrow screens, place the editor below the preview.
+5. The right panel contains only image-text editing. Preview changes immediately; save through the existing owned-pack edit rules. The current backend still permits one edit on a ready pack, but the interface does not show an edit counter. Failed drafts can be previewed and retried; saving remains unavailable until review succeeds.
+6. Hide captions, downloads, brand colours, audience/offer details, sources and rewrite controls from this preview. These are candidates for a future paid experience; billing and payment-based access restrictions are not implemented.
+7. Reopening a saved pack respects account ownership. Failures identify the step and preserve source evidence and drafts. Drafts with artwork use a compact recovery notice beside the preview rather than a floating technical error.
 
 Do not ask for team size, revenue, role, editing tools, referral source, current posting history or ad spend before delivering the first creative pair. Question choices must help produce the first useful creative; Relay’s separate journey does not define FirstChair’s information requirements.
 
@@ -97,3 +96,8 @@ The saved gallery was inspected locally and publicly; carousel next-slide contro
 The other ChatGPT account receives a source ZIP and iterates within its conversation. It has no direct write access to this Mac. Interim local tests require bringing changes here; a final changed-file package is requested only when the user is ready. Returned changes must be checked and tested before integration or publication.
 
 Next product milestone: a fresh connected local run through onboarding, reviewed creatives, one edit and export, followed by evidence-based recommendation improvement. Billing and public live-generation integration are deferred.
+
+
+## 6 October result simplification
+
+The Cosmix writer took 330,982 ms across eight requests. Its review demanded text-only product slides and longer copy that conflicted with enforced product-image and text-length rules. Review instructions now respect those constraints and permit relevant product-image reuse when the ideas differ. This removes a known source of futile revisions; a faster end-to-end generation time has not yet been measured.
