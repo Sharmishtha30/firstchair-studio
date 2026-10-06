@@ -3,11 +3,47 @@
 Current decisions and implementation status, 6 October 2026.
 This is the current product reference. PRODUCT_V1.md and IDEA_SCOPE.md retain historical context; their older journey and platform-label decisions do not override this document. MORNING.md records verification history.
 
-## Purpose
+## Product promise
 
-Turn a public business website into useful, source-grounded carousel and static creatives with the business's own visual identity. The first result should show the reader a recognisable situation, offer a useful insight, and lead to a relevant action. Quality includes writing, imagery, brand fidelity and actual exported files.
+FirstChair Studio helps a solopreneur turn their product website into editable, brand-aligned carousels and static posts for organic marketing. Start with a useful creative rather than a blank canvas: review the story, make a focused correction, and download a post ready to publish.
 
-The intended starting audience is founders and small marketing teams with a business website. This is a product hypothesis, not validated demand. Each submitted business's buyer and offer must be understood separately.
+The goal is to give a stretched founder back time while producing content that serves a clear marketing purpose. “Content that does the job” means a relevant idea for the intended buyer, an accurate explanation of the offer, recognisable brand design and a useful next action. It is not a promise of reach, leads or sales before those outcomes are measured.
+
+## Primary customer and problem
+
+The primary customer is a solopreneur who owns a product or business website and creates their own organic marketing content. Small marketing teams are a possible later audience; they should not drive the first journey.
+
+The founder already divides their time between building, selling and running the business. When they need a post, they often end up in Canva deciding what to say and how to make it look like their brand: which template, font, font size, colours, product image, spacing and layout to use. The work is more than moving text into a template. They must find a worthwhile story, make the design coherent, and check that the result explains their product accurately.
+
+This is the problem hypothesis supplied by the founder of FirstChair, not a completed customer-research finding. Validate where the time goes and what users consider publishable through observed tasks and interviews.
+
+## Job to be done
+
+“When I need to market my product organically, help me turn what is already on my website into useful, on-brand posts I can adjust and publish, so I can spend less time writing and designing from scratch and more time running my business.”
+
+FirstChair should make the first meaningful decision for the user: propose a supported story and a fitting design. It should retain the user's control over the result through focused editing. Asking the founder to recreate their brand guide, fill in a long brief or rebuild the creative elsewhere would undermine the time-saving purpose.
+
+## Relay inspiration and separate journeys
+
+Relay Studio is the user's reference for a reels-focused product and a fluid onboarding experience. FirstChair's product is editable carousels and static posts. These are separate products and separate user journeys; Relay's questionnaire, video workflow, publishing choices and sales narrative are not FirstChair requirements.
+
+Borrow the interaction principles: a strong first screen, few words, one meaningful decision at a time, smooth transitions and useful questions while work happens in the background. Design the rest around FirstChair's own task: understand the website and buyer, create a static/carousel pair, let the founder inspect and edit it, then export.
+
+## What FirstChair takes off the founder's plate
+
+- Finding a useful content angle from the actual product, buyer situation and website evidence.
+- Carrying the brand's colours, typography, logos and relevant imagery into the creative.
+- Choosing readable font sizes, spacing and a layout that suits the story.
+- Turning an idea into a coherent carousel or a complete static post, with a caption and relevant next action.
+- Preparing ordered files for manual publication while keeping the working version editable in FirstChair.
+
+“Editable” currently means text/image corrections, a requested rewrite and brand adjustments inside FirstChair, subject to the existing one-creative-edit allowance. Downloaded PNGs are flattened images, and a downloadable layered design or Canva-editable file is not currently implemented. The edit limit should be evaluated against the goal of reaching a publishable result without sending the founder back to another design tool; this document does not change that limit.
+
+## Success criteria
+
+Measure time from website entry to the first creative the founder accepts as publishable, active time spent correcting it, and whether they need to rebuild it in Canva. Compare these with the same founder completing a comparable task in their usual workflow. Track brand accuracy, source accuracy and how much of the proposed story/design they retain. Measure generation waiting time separately from the founder's active effort.
+
+Later, measure actual organic-marketing outcomes for published posts. An internal quality score, successful export or saved sample does not establish that the content performs. No numerical time-saving or conversion claim has been validated yet.
 
 ## Current user journey
 
@@ -20,7 +56,7 @@ The intended starting audience is founders and small marketing teams with a busi
 7. A connected pack whose export preparation was recorded can create a separate pack from another copy perspective. Export preparation is not proof that a file was saved or published.
 8. Reopening a saved pack respects account ownership. Failures identify the step and allow appropriate recovery; saved evidence and drafts should survive.
 
-Do not ask for team size, revenue, role, editing tools, referral source, current posting history or ad spend before delivering the first creative pair. The long Relay questionnaire is inspiration for fluid interaction, not the required information set.
+Do not ask for team size, revenue, role, editing tools, referral source, current posting history or ad spend before delivering the first creative pair. Question choices must help produce the first useful creative; Relay’s separate journey does not define FirstChair’s information requirements.
 
 ## Sample preview
 
