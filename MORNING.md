@@ -585,3 +585,7 @@ Renamed product and browser title. Chosen palette: electric violet #5424FF, sola
 ## Continuous onboarding and speed — 6 October 2026
 Questions now appear during website inspection. Goal choice advances directly to focus; answers are saved before reading finishes or resume an already-paused workflow. Atomic finishInspection mutation prevents losing a confirmation at the inspection/answer boundary. get exposes onboardingComplete for reload persistence. Same fixed sky and clear small sans-serif identity continue through questions, waiting, and finished pack. Question transition respects reduced motion. Long 48-second overlapping fades retain opaque base sky, eliminating blank/dark gaps.
 Parallel related-page and stylesheet fetches plus parallel verified image storage remove serial waits without reducing evidence/assets. No quantitative speedup claimed. Browser tested early answers and sample completion to Files checked; phone 390x844 questions fit without scrolling. Typechecks, 95 automated tests, build passed. Public fresh ChatGPT-plan writing remains local-only as before.
+
+
+## October 6: preview label cleanup
+Removed duplicate platform preview tabs and visible Instagram/LinkedIn labels from finished packs. Kept both export outputs. Wordmark reads FirstChair. Build passed and Convex deployment completed. Relay public logo is SVG outlines, not a declared font; exact typeface remains unresolved pending font file or permission to match the lettering.
