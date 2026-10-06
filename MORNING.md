@@ -615,3 +615,7 @@ PRODUCT.md now centres solopreneurs creating organic product marketing, the time
 - Cosmix writer record: 330982 ms / eight requests. Reviewer requests conflicted with product layout/asset and copy limits. Aligned reviewer constraints; no fresh timing benchmark yet because the browser requires user sign-in for that saved owned pack.
 - Type checks, all 99 tests and production build passed.
 - Published successfully to https://rightful-wombat-262.convex.site (deployment 5c6eb6fb-d650-45bf-a10c-3baa3747975b). Public saved-sample creation reached the new Carousel/Statics and image-text editor screen; this does not validate fresh AI generation speed.
+
+## 2026-10-06 sample gallery and spacing
+Shared styled heading spacing fixed and three saved first slides regenerated. All 47 saved sample headings inspected. Phone gallery stacks statics before carousels; images open a full-size viewer with carousel arrows and original-size zoom. Gallery end returns home and focuses website. Reviewed/edited notice appears in intro and footer. Home includes a real sample and Instagram output line; 44px phone header targets and social metadata added. Sky, colours, headline and input preserved. Check/test: 102 passing. Live verification follows publishing. See verification/heading-spacing-fixes.txt.
+Published successfully to rightful-wombat-262.convex.site. Verified live at 390x844 and 1440x900, including viewer navigation, original-size image, 44px targets, CTA field focus and metadata image (1200x630). Raw logs saved under verification/sample-gallery-*-raw.txt.

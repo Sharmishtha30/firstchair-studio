@@ -1,0 +1,17 @@
+Heading spacing audit — 2026-10-06
+Checked all 47 headings across all 10 saved samples (10 statics + 37 carousel slides).
+
+Found and fixed:
+1. The Whole Truth Foods — carousel slide 1: nutsin -> nuts in.
+   Like cocoa AND nuts in your protein bar? This one's both.
+2. Go Zero — carousel slide 1: creamin -> cream in.
+   Want fruit and cream in the same frozen bite?
+3. Maid2Clean — carousel slide 1: beforeMaid2Clean -> before Maid2Clean.
+   What happens before Maid2Clean accepts a cleaner?
+
+All other 44 headings: no joined-word spacing fix required.
+Sample heading totals: Whole Truth Foods 6; Go Zero 4; Suva Life 4; Buffer 4;
+Ugmonk 4; Allbirds 5; Death Wish Coffee 4; Maid2Clean 4; Founder's Find 6; Basecamp 6.
+
+Renderer now keeps explicit whitespace runs and reserves italic ink overhang.
+Only the affected heading layers were regenerated with the shared renderer; all other sample imagery, colours, and copy were preserved.

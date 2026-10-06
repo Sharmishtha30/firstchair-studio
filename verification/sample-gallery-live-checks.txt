@@ -1,0 +1,7 @@
+Live: https://rightful-wombat-262.convex.site/
+390x844: static above carousel; 10 examples; logo 44px; Sample preview 44px; no horizontal overflow.
+Image viewer: static opens; carousel slide 1 -> 2 -> 1; original-size view 810px matches natural width.
+Gallery end: home URL and active element id=website. Reviewed/edited disclaimer identical in introduction and footer.
+1440x900: home sample beside field; gallery columns 489px + 489px; no horizontal overflow.
+All three regenerated slides opened and visually checked live.
+Social image: loaded 1200x630; page description and Open Graph/Twitter title/image present.

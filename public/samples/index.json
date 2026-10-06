@@ -1,1 +1,119 @@
-[{"slug": "whole-truth", "name": "The Whole Truth Foods", "url": "https://thewholetruthfoods.com/", "static": "/samples/whole-truth/static-01.webp", "slides": ["/samples/whole-truth/carousel-01.webp", "/samples/whole-truth/carousel-02.webp", "/samples/whole-truth/carousel-03.webp", "/samples/whole-truth/carousel-04.webp", "/samples/whole-truth/carousel-05.webp"]}, {"slug": "go-zero", "name": "Go Zero", "url": "https://letsgozero.in/", "static": "/samples/go-zero/static-01.webp", "slides": ["/samples/go-zero/carousel-01.webp", "/samples/go-zero/carousel-02.webp", "/samples/go-zero/carousel-03.webp"]}, {"slug": "suva", "name": "Suva Life", "url": "https://www.suvalife.in/", "static": "/samples/suva/static-01.webp", "slides": ["/samples/suva/carousel-01.webp", "/samples/suva/carousel-02.webp", "/samples/suva/carousel-03.webp"]}, {"slug": "buffer", "name": "Buffer", "url": "https://buffer.com/", "static": "/samples/buffer/static-01.webp", "slides": ["/samples/buffer/carousel-01.webp", "/samples/buffer/carousel-02.webp", "/samples/buffer/carousel-03.webp"]}, {"slug": "ugmonk", "name": "Ugmonk", "url": "https://ugmonk.com/", "static": "/samples/ugmonk/static-01.webp", "slides": ["/samples/ugmonk/carousel-01.webp", "/samples/ugmonk/carousel-02.webp", "/samples/ugmonk/carousel-03.webp"]}, {"slug": "allbirds", "name": "Allbirds", "url": "https://www.allbirds.com/", "static": "/samples/allbirds/static-01.webp", "slides": ["/samples/allbirds/carousel-01.webp", "/samples/allbirds/carousel-02.webp", "/samples/allbirds/carousel-03.webp", "/samples/allbirds/carousel-04.webp"]}, {"slug": "coffee", "name": "Death Wish Coffee", "url": "https://www.deathwishcoffee.com/", "static": "/samples/coffee/static-01.webp", "slides": ["/samples/coffee/carousel-01.webp", "/samples/coffee/carousel-02.webp", "/samples/coffee/carousel-03.webp"]}, {"slug": "maid", "name": "Maid2Clean", "url": "https://www.maid2clean.co.uk/", "static": "/samples/maid/static-01.webp", "slides": ["/samples/maid/carousel-01.webp", "/samples/maid/carousel-02.webp", "/samples/maid/carousel-03.webp"]}, {"slug": "founders", "name": "Founder\u2019s Find", "url": "https://foundersfind.club/", "static": "/samples/founders/static-01.webp", "slides": ["/samples/founders/carousel-01.webp", "/samples/founders/carousel-02.webp", "/samples/founders/carousel-03.webp", "/samples/founders/carousel-04.webp", "/samples/founders/carousel-05.webp"]}, {"slug": "basecamp", "name": "Basecamp", "url": "https://basecamp.com/", "static": "/samples/basecamp/static-01.webp", "slides": ["/samples/basecamp/carousel-01.webp", "/samples/basecamp/carousel-02.webp", "/samples/basecamp/carousel-03.webp", "/samples/basecamp/carousel-04.webp", "/samples/basecamp/carousel-05.webp"]}]
+[
+  {
+    "slug": "whole-truth",
+    "name": "The Whole Truth Foods",
+    "url": "https://thewholetruthfoods.com/",
+    "static": "/samples/whole-truth/static-01.webp",
+    "slides": [
+      "/samples/whole-truth/carousel-01-spaced.webp",
+      "/samples/whole-truth/carousel-02.webp",
+      "/samples/whole-truth/carousel-03.webp",
+      "/samples/whole-truth/carousel-04.webp",
+      "/samples/whole-truth/carousel-05.webp"
+    ]
+  },
+  {
+    "slug": "go-zero",
+    "name": "Go Zero",
+    "url": "https://letsgozero.in/",
+    "static": "/samples/go-zero/static-01.webp",
+    "slides": [
+      "/samples/go-zero/carousel-01-spaced.webp",
+      "/samples/go-zero/carousel-02.webp",
+      "/samples/go-zero/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "suva",
+    "name": "Suva Life",
+    "url": "https://www.suvalife.in/",
+    "static": "/samples/suva/static-01.webp",
+    "slides": [
+      "/samples/suva/carousel-01.webp",
+      "/samples/suva/carousel-02.webp",
+      "/samples/suva/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "buffer",
+    "name": "Buffer",
+    "url": "https://buffer.com/",
+    "static": "/samples/buffer/static-01.webp",
+    "slides": [
+      "/samples/buffer/carousel-01.webp",
+      "/samples/buffer/carousel-02.webp",
+      "/samples/buffer/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "ugmonk",
+    "name": "Ugmonk",
+    "url": "https://ugmonk.com/",
+    "static": "/samples/ugmonk/static-01.webp",
+    "slides": [
+      "/samples/ugmonk/carousel-01.webp",
+      "/samples/ugmonk/carousel-02.webp",
+      "/samples/ugmonk/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "allbirds",
+    "name": "Allbirds",
+    "url": "https://www.allbirds.com/",
+    "static": "/samples/allbirds/static-01.webp",
+    "slides": [
+      "/samples/allbirds/carousel-01.webp",
+      "/samples/allbirds/carousel-02.webp",
+      "/samples/allbirds/carousel-03.webp",
+      "/samples/allbirds/carousel-04.webp"
+    ]
+  },
+  {
+    "slug": "coffee",
+    "name": "Death Wish Coffee",
+    "url": "https://www.deathwishcoffee.com/",
+    "static": "/samples/coffee/static-01.webp",
+    "slides": [
+      "/samples/coffee/carousel-01.webp",
+      "/samples/coffee/carousel-02.webp",
+      "/samples/coffee/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "maid",
+    "name": "Maid2Clean",
+    "url": "https://www.maid2clean.co.uk/",
+    "static": "/samples/maid/static-01.webp",
+    "slides": [
+      "/samples/maid/carousel-01-spaced.webp",
+      "/samples/maid/carousel-02.webp",
+      "/samples/maid/carousel-03.webp"
+    ]
+  },
+  {
+    "slug": "founders",
+    "name": "Founder\u2019s Find",
+    "url": "https://foundersfind.club/",
+    "static": "/samples/founders/static-01.webp",
+    "slides": [
+      "/samples/founders/carousel-01.webp",
+      "/samples/founders/carousel-02.webp",
+      "/samples/founders/carousel-03.webp",
+      "/samples/founders/carousel-04.webp",
+      "/samples/founders/carousel-05.webp"
+    ]
+  },
+  {
+    "slug": "basecamp",
+    "name": "Basecamp",
+    "url": "https://basecamp.com/",
+    "static": "/samples/basecamp/static-01.webp",
+    "slides": [
+      "/samples/basecamp/carousel-01.webp",
+      "/samples/basecamp/carousel-02.webp",
+      "/samples/basecamp/carousel-03.webp",
+      "/samples/basecamp/carousel-04.webp",
+      "/samples/basecamp/carousel-05.webp"
+    ]
+  }
+]
