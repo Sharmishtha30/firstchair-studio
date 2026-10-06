@@ -589,3 +589,8 @@ Parallel related-page and stylesheet fetches plus parallel verified image storag
 
 ## October 6: preview label cleanup
 Removed duplicate platform preview tabs and visible Instagram/LinkedIn labels from finished packs. Kept both export outputs. Wordmark reads FirstChair. Build passed and Convex deployment completed. Relay public logo is SVG outlines, not a declared font; exact typeface remains unresolved pending font file or permission to match the lettering.
+
+
+## October 6: reported endless public creation
+Reported pack 55674f...6311b was anonymously reading https://thewholetruthfoods.com/ after onboarding. Public generation was unavailable but was checked only after ingestion. Fixed start/workflow/retry availability gates and made existing anonymous unsupported packs show an immediate unavailable message. Public header no longer offers the loopback-only ChatGPT connection. Recovery offers a labeled curated sample. Fresh public AI generation remains unavailable; paid daily budget was requested and is unanswered.
+Website request deadlines now include DNS/address lookup and the full redirect chain; aborted/incomplete responses reject rather than remaining pending. Progress displays actual saved stage. Twelve-minute fallback message matches its schedule. 99 tests passed; frontend and backend type checks passed; Convex deployment completed. Exact reported URL checked in browser and fresh production start rejected before queuing. Local homepage network+parsing probe: 463ms, not a production end-to-end benchmark.
