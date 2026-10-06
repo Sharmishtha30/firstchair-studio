@@ -580,3 +580,8 @@ Public signed-out browser verification passed: Founder’s Find website inspecti
 
 ## FirstChair Studio landing — 6 October 2026
 Renamed product and browser title. Chosen palette: electric violet #5424FF, solar yellow #FFE34D, deep indigo #201047, white #FFFFFF. Added user-supplied three skies as a 36-second CSS crossfade with reduced-motion fallback. Landing contains centred headline, short promise, website field and platform choices; removed explainer. Workspace content remains scrollable. Browser verified zero vertical/horizontal overflow at 390x844 and desktop 1440x900; fixed mobile input collapse. Typechecks/build pass. Branding specification: design/firstchair-brand.md.
+
+
+## Continuous onboarding and speed — 6 October 2026
+Questions now appear during website inspection. Goal choice advances directly to focus; answers are saved before reading finishes or resume an already-paused workflow. Atomic finishInspection mutation prevents losing a confirmation at the inspection/answer boundary. get exposes onboardingComplete for reload persistence. Same fixed sky and clear small sans-serif identity continue through questions, waiting, and finished pack. Question transition respects reduced motion. Long 48-second overlapping fades retain opaque base sky, eliminating blank/dark gaps.
+Parallel related-page and stylesheet fetches plus parallel verified image storage remove serial waits without reducing evidence/assets. No quantitative speedup claimed. Browser tested early answers and sample completion to Files checked; phone 390x844 questions fit without scrolling. Typechecks, 95 automated tests, build passed. Public fresh ChatGPT-plan writing remains local-only as before.

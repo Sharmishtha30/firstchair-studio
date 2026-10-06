@@ -38,9 +38,11 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  if(home.language&&!/^en(?:-|$)/i.test(home.language))throw new Error('Only English output is tested in this version. Paste English business text to continue.');
  if(home.page.blocks.map(b=>b.text).join('').length<100)throw new Error('This website has too little readable text. Try a public product or service page.');
  const urls=[...new Set(home.links.map(l=>l.url))].slice(0,4);
- const pages=await Promise.allSettled(urls.map(async u=>{const r=await publicWebsite(u);if(new URL(r.url).origin!==new URL(main.url).origin)throw new Error('Related page redirected outside this website.');return inspectHtml(r.url,r.html);}));
+ const pagesPromise=Promise.allSettled(urls.map(async u=>{const r=await publicWebsite(u);if(new URL(r.url).origin!==new URL(main.url).origin)throw new Error('Related page redirected outside this website.');return inspectHtml(r.url,r.html);}));
+ const sheetsPromise=Promise.allSettled(home.styles.map(u=>publicWebsite(u,'text/css')));
+ const [pages,sheets]=await Promise.all([pagesPromise,sheetsPromise]);
  const sources=[home,...pages.flatMap((p,i)=>{if(p.status==='fulfilled')return[p.value];warnings.push('Related page unavailable: '+urls[i]+' — '+(p.reason instanceof Error?p.reason.message.slice(0,120):'could not read page'));return[];})];
- const sheets=await Promise.allSettled(home.styles.map(u=>publicWebsite(u,'text/css')));let css=home.inline+'\n'+sheets.flatMap(s=>s.status==='fulfilled'?[s.value.html]:[]).join('\n');
+ let css=home.inline+'\n'+sheets.flatMap(s=>s.status==='fulfilled'?[s.value.html]:[]).join('\n');
  const scoped=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>home.bodyClasses.some(c=>m[1].split(',').some(selector=>selector.trim()==='.'+c||selector.trim()==='body.'+c))).map(m=>m[2]).join(';');if(scoped)css=':root{'+scoped+'}\n'+css;
  for(const [i,sheet]of sheets.entries()){if(sheet.status!=='fulfilled')continue;for(const match of sheet.value.html.matchAll(/url\([\"']?([^\"')]+\.(?:jpg|jpeg|png|webp)(?:\?[^\"')]*)?)[\"']?\)/gi)){try{home.images.push({url:new URL(match[1],home.styles[i]).href,alt:'Source background image for '+home.page.title,pageUrl:home.page.url,score:1,role:'website background'});}catch{}}}
  const palette=extractPalette(css,home.usedClasses,matchedWebsiteColours(load(main.html),css),matchedWebsiteColourRoles(load(main.html),css)),style={...extractStyle(css,home.primaryHeadingClasses),...websiteGeometry(load(main.html),css)};
@@ -94,7 +96,8 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
   sourceAssets.push({key:'diagram-'+sourceAssets.length,file,originalUrl:d.url,width:d.width,height:d.height,alt:d.alt,role:d.role,pageUrl:d.pageUrl});
  }
  if(sourceAssets.length)warnings.push('Inline website diagrams imported with safe presentation attributes; external CSS and animation are omitted. Compare their preview before publishing.');
- for(const result of fetched){if(result.status!=='fulfilled'||sourceAssets.length>=24)continue;const a=result.value;const file=await ctx.storage.store(new Blob([a.bytes as BlobPart],{type:a.mime}));sourceAssets.push({key:a.key,file,originalUrl:a.url,width:a.width,height:a.height,alt:a.alt,role:a.role,pageUrl:a.pageUrl});}
+ const usable=fetched.flatMap(r=>r.status==='fulfilled'?[r.value]:[]).slice(0,24-sourceAssets.length);
+ sourceAssets.push(...await Promise.all(usable.map(async a=>({key:a.key,file:await ctx.storage.store(new Blob([a.bytes as BlobPart],{type:a.mime})),originalUrl:a.url,width:a.width,height:a.height,alt:a.alt,role:a.role,pageUrl:a.pageUrl}))));
  if(!sourceAssets.length)warnings.push('No suitable website imagery loaded. Original typographic diagrams will be used.');
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Understanding customers',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile});return null;
 }});
