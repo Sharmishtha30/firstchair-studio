@@ -604,3 +604,7 @@ a{
 .firstchair-landing .url-row button{width:auto;flex:0 0 auto}
 .firstchair-landing .url-row input{width:auto;flex:1 1 120px;min-width:0}
 @media(max-width:600px){.firstchair-landing .url-row>span{display:none}.firstchair-landing .url-row{padding-left:16px}.firstchair-landing .url-row input{flex:1 1 100px}}
+
+/* Revised identity: a typographic signature, without a literal chair. */
+.wordmark .firstchair-name{font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-1.5px;font-size:34px}.wordmark .firstchair-studio{font-size:11px;font-weight:500;letter-spacing:1px;margin-left:2px;align-self:flex-end;padding-bottom:5px}.firstchair-landing .wordmark{gap:6px}.firstchair-landing .wordmark .firstchair-name{font-size:38px}.firstchair-landing .wordmark .firstchair-studio{font-size:11px}.firstchair-landing .intro h1{font-weight:600;letter-spacing:-.055em}.firstchair-landing .website-form>p{margin-top:20px}
+@media(max-width:600px){.firstchair-landing .wordmark .firstchair-name{font-size:28px}.firstchair-landing .wordmark .firstchair-studio{font-size:9px;letter-spacing:0;padding-bottom:3px}.firstchair-landing .wordmark{gap:3px}}
