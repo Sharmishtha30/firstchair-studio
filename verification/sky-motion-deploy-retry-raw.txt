@@ -1,0 +1,216 @@
+
+> build-sprint-app@1.0.0 deploy
+> npx @convex-dev/static-hosting deploy
+
+⠙[1G[0K
+🚀 Convex + Static Files Deployment
+═══════════════════════════════════════════════════════════
+
+Step 1: Getting deployment URLs...
+   ✓ https://rightful-wombat-262.convex.site
+
+Step 2: Building frontend...
+   Build command: npm run build
+   VITE_CONVEX_URL=https://rightful-wombat-262.convex.cloud
+   STATIC_HOSTING_BASE_PATH=/
+
+
+> build-sprint-app@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+[2Ktransforming (272) src/style.css[2K✓ 272 modules transformed.
+[2Krendering chunks (1)...[2Kcomputing gzip size...
+[2Kdist/index.html                   1.62 kB │ gzip:   0.57 kB
+dist/assets/index-BDTW3c41.css   32.42 kB │ gzip:   7.09 kB
+dist/assets/index-CQ_n-urY.js   764.03 kB │ gzip: 280.94 kB
+
+[2K[1G[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/@convex-dev/auth/dist/react/index.js" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/@convex-dev/auth/dist/react/index.js:6:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m6 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[2K[1G[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 413ms
+⠙[1G[0K
+   ✓ Build complete
+
+Step 3: Deploying Convex backend...
+
+[38;2;139;33;241m▌[39m Deploying code to deployment:
+[38;2;139;33;241m▌[39m [1m[48;2;234;202;231m[38;2;100;26;169m Production [39m[49m[22m [2msharmistha-gemini:build-sprint-app:[22m[1mproduction[22m [2m([22m[1mprod[22m[2m)[22m (]8;;https://dashboard.convex.dev/t/sharmistha-gemini/build-sprint-app/rightful-wombat-262\[4mdashboard[24m]8;;\)
+[38;2;139;33;241m▌[39m [2m└─[22m [2m[4m]8;;https://rightful-wombat-262.convex.cloud\https://rightful-wombat-262.convex.cloud]8;;\[24m[22m
+You're currently developing against your [1mlocal[22m deployment
+
+  local-sharmistha_gemini-build_sprint_app (set in CONVEX_DEPLOYMENT)
+
+Your [1mprod[22m deployment [1mrightful-wombat-262[22m serves traffic at:
+
+  VITE_CONVEX_URL=[1mhttps://rightful-wombat-262.convex.cloud[22m
+
+Make sure that your published client is configured with this URL (for instructions see https://docs.convex.dev/hosting)
+
+? Do you want to push your code to your prod deployment rightful-wombat-262 now?
+ (Y/n)[8G[9G[2K[1A[2K[G? Do you want to push your code to your prod deployment rightful-wombat-262 now?
+ (Y/n) y[9G[8G[2K[1A[2K[G✔ Do you want to push your code to your prod deployment rightful-wombat-262
+now? Yes[5G
+[?25h[?25l[1G[36m⠋[39m Deploying to https://rightful-wombat-262.convex.cloud...
+[1G[0K[1A[0K[36m⠙[39m Finding component definitions...
+[1G[0K[1A[0K[36m⠹[39m Bundling component definitions...
+[1G[0K[1A[0K[36m⠸[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠼[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠼[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠴[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[33mConvex AI files are not installed. Run [1mnpx convex ai-files install[22m to get started or [1mnpx convex ai-files disable[22m to hide this message.[39m
+[1G[36m⠴[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠦[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠧[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠇[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠏[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠋[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠋[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠙[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠹[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠸[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠼[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠴[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠴[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠦[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠧[39m Bundling component schemas and implementations...
+[1G[0K[1A[0K[36m⠇[39m Downloading current deployment state...
+[1G[0K[1A[0K[36m⠏[39m Downloading current deployment state...
+[1G[0K[1A[0K[36m⠋[39m Downloading current deployment state...
+[1G[0K[1A[0K[36m⠙[39m Downloading current deployment state...
+[1G[0K[1A[0K[36m⠹[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠸[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠼[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠴[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠦[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠧[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠇[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠏[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠋[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠙[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠹[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠸[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠼[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠴[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠦[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠧[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠇[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠏[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠋[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠙[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[36m⠹[39m Verifying that the push isn’t deleting large indexes...
+[1G[0K[1A[0K[?25h✔ No indexes are deleted by this push
+Uploading functions to Convex...
+Generating TypeScript bindings...
+Running TypeScript...
+Pushing code to your Convex deployment...
+Schema validation complete.
+Finalizing push...
+[32m✔[39m Deployed Convex functions to https://rightful-wombat-262.convex.cloud
+[?25h
+   ✓ Convex backend deployed
+
+Step 4: Deploying static files to Convex storage...
+
+📦 Uploading static files to Convex storage...
+
+🚀 Deploying to production environment
+🔒 Using secure internal functions (requires Convex CLI auth)
+Uploading 67 files with deployment ID: 41f6b53d-40e5-4d99-9c53-119094aee772
+Component: staticHosting
+
+  Generating 67 upload URLs...
+  [1/67] /fonts/OFL.txt (storage)
+  [2/67] /fonts/inter-500.woff2 (storage)
+  [3/67] /fonts/inter-400.woff2 (storage)
+  [4/67] /fonts/pacifico-OFL.txt (storage)
+  [5/67] /fonts/inter-600.woff2 (storage)
+  [6/67] /assets/index-BDTW3c41.css (storage)
+  [7/67] /images/fictional-presenter.webp (storage)
+  [8/67] /images/career-decision.webp (storage)
+  [9/67] /fonts/pacifico-regular.ttf (storage)
+  [10/67] /images/firstchair-sky-1.jpg (storage)
+  [11/67] /assets/index-CQ_n-urY.js (storage)
+  [12/67] /images/firstchair-sky-2.jpg (storage)
+  [13/67] /images/firstchair-sky-3.jpg (storage)
+  [14/67] /index.html (storage/html)
+  [15/67] /samples/allbirds/carousel-03.webp (storage)
+  [16/67] /samples/allbirds/carousel-02.webp (storage)
+  [17/67] /samples/allbirds/carousel-01.webp (storage)
+  [18/67] /samples/allbirds/carousel-04.webp (storage)
+  [19/67] /samples/allbirds/static-01.webp (storage)
+  [20/67] /samples/basecamp/carousel-02.webp (storage)
+  [21/67] /samples/basecamp/carousel-01.webp (storage)
+  [22/67] /samples/basecamp/carousel-04.webp (storage)
+  [23/67] /samples/basecamp/carousel-03.webp (storage)
+  [24/67] /samples/basecamp/carousel-05.webp (storage)
+  [25/67] /images/founders-editorial.png (storage)
+  [26/67] /samples/basecamp/static-01.webp (storage)
+  [27/67] /samples/buffer/carousel-01.webp (storage)
+  [28/67] /samples/buffer/carousel-02.webp (storage)
+  [29/67] /samples/coffee/carousel-01.webp (storage)
+  [30/67] /samples/buffer/carousel-03.webp (storage)
+  [31/67] /samples/buffer/static-01.webp (storage)
+  [32/67] /samples/coffee/carousel-02.webp (storage)
+  [33/67] /samples/coffee/carousel-03.webp (storage)
+  [34/67] /samples/founders/carousel-01.webp (storage)
+  [35/67] /samples/coffee/static-01.webp (storage)
+  [36/67] /samples/founders/carousel-02.webp (storage)
+  [37/67] /samples/founders/carousel-03.webp (storage)
+  [38/67] /samples/founders/static-01.webp (storage)
+  [39/67] /samples/founders/carousel-05.webp (storage)
+  [40/67] /samples/founders/carousel-04.webp (storage)
+  [41/67] /samples/go-zero/carousel-01-spaced.webp (storage)
+  [42/67] /samples/go-zero/carousel-01.webp (storage)
+  [43/67] /samples/go-zero/carousel-02.webp (storage)
+  [44/67] /samples/go-zero/static-01.webp (storage)
+  [45/67] /samples/index.json (storage)
+  [46/67] /samples/go-zero/carousel-03.webp (storage)
+  [47/67] /samples/maid/carousel-01.webp (storage)
+  [48/67] /samples/maid/carousel-02.webp (storage)
+  [49/67] /samples/maid/static-01.webp (storage)
+  [50/67] /samples/maid/carousel-03.webp (storage)
+  [51/67] /samples/suva/carousel-01.webp (storage)
+  [52/67] /samples/suva/carousel-02.webp (storage)
+  [53/67] /samples/maid/carousel-01-spaced.webp (storage)
+  [54/67] /samples/suva/carousel-03.webp (storage)
+  [55/67] /samples/suva/static-01.webp (storage)
+  [56/67] /samples/ugmonk/carousel-01.webp (storage)
+  [57/67] /samples/ugmonk/carousel-02.webp (storage)
+  [58/67] /samples/ugmonk/static-01.webp (storage)
+  [59/67] /samples/whole-truth/carousel-01-spaced.webp (storage)
+  [60/67] /samples/ugmonk/carousel-03.webp (storage)
+  [61/67] /samples/whole-truth/carousel-01.webp (storage)
+  [62/67] /samples/whole-truth/carousel-02.webp (storage)
+  [63/67] /samples/whole-truth/carousel-04.webp (storage)
+  [64/67] /samples/whole-truth/carousel-03.webp (storage)
+  [65/67] /samples/whole-truth/carousel-05.webp (storage)
+  [66/67] /samples/whole-truth/static-01.webp (storage)
+  [67/67] /social-preview.png (storage)
+  Staging manifest chunk 1/1...
+  Publishing deployment...
+
+Cleaned up 67 old storage file(s) from previous deployments
+
+✨ Upload complete!
+
+Your app is now available at: https://rightful-wombat-262.convex.site
+
+═══════════════════════════════════════════════════════════
+✨ Deployment complete! (48.5s)
+
+Frontend: https://rightful-wombat-262.convex.site
+
+⠙[1G[0K⠙[1G[0K

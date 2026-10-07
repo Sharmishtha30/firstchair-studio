@@ -1,0 +1,4 @@
+{"width":390,"height":844,"scrollWidth":390,"scrollHeight":844,"animations":[{"name":"firstchair-sky-drift","duration":"36s","delay":"0s"},{"name":"firstchair-sky, firstchair-sky-drift","duration":"48s, 36s","delay":"-32s, 0s"},{"name":"firstchair-sky, firstchair-sky-drift","duration":"48s, 36s","delay":"-16s, 0s"}]}
+PASS 390: moving sky, original fades, no scrolling, full coverage across 144 seconds, reduced motion frozen.
+{"width":1440,"height":900,"scrollWidth":1440,"scrollHeight":900,"animations":[{"name":"firstchair-sky-drift","duration":"36s","delay":"0s"},{"name":"firstchair-sky, firstchair-sky-drift","duration":"48s, 36s","delay":"-32s, 0s"},{"name":"firstchair-sky, firstchair-sky-drift","duration":"48s, 36s","delay":"-16s, 0s"}]}
+PASS 1440: moving sky, original fades, no scrolling, full coverage across 144 seconds, reduced motion frozen.

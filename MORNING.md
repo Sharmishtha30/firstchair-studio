@@ -627,3 +627,8 @@ Measured two failed local Britannia attempts: 2m19.424s and latest retry 58.797s
 
 ## 2026-10-07: Landing simplification saved
 Removed adjacent sample static and its label, removed Instagram output line and carousel/static footer, replaced field arrow with globe icon, updated subtitle to “Your website, turned into visual posts worth sharing.” Centred form; sky, headline, colours and website placeholder retained. npm run check passed and local browser visually checked. PRODUCT.md and DESIGN.md updated. Not deployed or pushed.
+
+## 2026-10-07: Continuous sky motion
+- Shared sky on landing/onboarding/waiting/results now pans gently and scales from 1.06 to 1.12 and back over a seamless 36-second CSS loop. Existing 48-second opacity fades and opaque base photo preserved. Fixed overlay, text, form and layout unchanged; clipped photo overflow. Reduced motion disables all sky animation and transforms, preserving the original first photo.
+- npm run check passed. First deploy stopped at non-interactive confirmation; interactive npm run deploy succeeded (41f6b53d-40e5-4d99-9c53-119094aee772). Complete raw outputs: verification/sky-motion-*-raw.txt.
+- Live Chromium landing checked at 390x844 and 1440x900: actual transforms progress, original fade durations/delays, zero page overflow, reduced motion static. Sampled photo coverage every three seconds over the combined 144-second cycle; visually inspected all three photo states at both sizes. Shared component wiring confirms all journey screens use these styles; did not run fresh generation or benchmark physical phones. Screenshots and browser results in verification/sky-*.
