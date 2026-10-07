@@ -38,8 +38,12 @@ export function checkPosts(posts:Post[], facts:string[],count=3) {
 
 export const adV=v.object({id:v.string(),pageName:v.string(),body:v.string(),snapshotUrl:v.string()});
 export const writerRunV=v.object({provider:v.string(),model:v.string(),requests:v.number(),durationMs:v.number(),review:v.string(),usageNote:v.string()});
+export const categoryV=v.union(v.literal('D2C brand'),v.literal('Education'),v.literal('Health and wellness'),v.literal('SaaS'),v.literal('Consumer tech and wearables'),v.literal('Services or agency'),v.literal('Food and beverage'),v.literal('Fashion and beauty'),v.literal('Finance'),v.literal('Other'));
+export const directionAnswersV=v.object({goal:v.optional(v.string()),focus:v.optional(v.string()),category:v.optional(categoryV),topic:v.optional(v.string()),tone:v.optional(v.string()),promotion:v.optional(v.string())});
+export const stageHistoryV=v.array(v.object({stage:v.string(),startedAt:v.number()}));
 export const packFields={
- onboardingRequested:v.optional(v.boolean()),onboarding:v.optional(v.object({primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),goal:v.union(v.literal("understand"),v.literal("enquire"),v.literal("buy"))})),
+ onboardingVersion:v.optional(v.number()),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),answersSavedAt:v.optional(v.number()),inspectionCompleteAt:v.optional(v.number()),firstReadyAt:v.optional(v.number()),stageHistory:v.optional(stageHistoryV),
+ onboardingRequested:v.optional(v.boolean()),onboarding:v.optional(v.object({primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),category:v.optional(categoryV),topic:v.optional(v.string()),promotion:v.optional(v.string()),goal:v.union(v.literal("understand"),v.literal("enquire"),v.literal("buy"))})),
  editCount:v.optional(v.number()),downloadedAt:v.optional(v.number()),copyLens:v.optional(copyLensV),parentToken:v.optional(v.string()),
  draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),
  writerRun:v.optional(writerRunV),fontName:v.optional(v.string()),fontRegular:v.optional(v.id('_storage')),fontSemibold:v.optional(v.id('_storage')),bodyFontRegular:v.optional(v.id('_storage')),bodyFontSemibold:v.optional(v.id('_storage')),

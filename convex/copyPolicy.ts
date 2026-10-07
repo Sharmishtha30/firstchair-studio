@@ -24,6 +24,6 @@ EDIT SUBSTANCE FIRST. Truth, reader relevance, argument/payoff, natural brand la
 
 ADAPT TO THE BUYER, NOT PLATFORM STEREOTYPES. Keep facts consistent. Adapt professional decisions or consumer occasions when relevant; do not force every LinkedIn post into founder advice. One real next action, with an inspected destination. Instagram profile-link instructions are conditional on the app's manual publishing guide; never promise automated DMs. Captions add context rather than duplicating all slides. Do not expose editorial tests or planning notes in the published creative.`;
 
-export function reviewNeedsRewrite(review: {supported: boolean; useful: boolean; publishable?:boolean}): boolean {
- return !review.supported || !review.useful || review.publishable===false;
+export function reviewNeedsRewrite(review: {supported: boolean; useful: boolean; publishable?:boolean;directionFollowed?:boolean}): boolean {
+ return review.directionFollowed===false||!review.supported || !review.useful || review.publishable===false;
 }

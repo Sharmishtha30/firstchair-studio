@@ -35,6 +35,7 @@ import type * as http from "../http.js";
 import type * as images from "../images.js";
 import type * as inspectedDestinations from "../inspectedDestinations.js";
 import type * as media from "../media.js";
+import type * as onboarding from "../onboarding.js";
 import type * as publicWebsite from "../publicWebsite.js";
 import type * as referenceLibrary from "../referenceLibrary.js";
 import type * as requestDeadline from "../requestDeadline.js";
@@ -98,6 +99,7 @@ declare const fullApi: ApiFromModules<{
   images: typeof images;
   inspectedDestinations: typeof inspectedDestinations;
   media: typeof media;
+  onboarding: typeof onboarding;
   publicWebsite: typeof publicWebsite;
   referenceLibrary: typeof referenceLibrary;
   requestDeadline: typeof requestDeadline;

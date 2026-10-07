@@ -1,0 +1,103 @@
+{
+  "url": "https://praan.health/",
+  "directionAnswers": {
+    "category": "Health and wellness",
+    "focus": "Personalised health programmes",
+    "goal": "enquire",
+    "promotion": "advice",
+    "tone": "Warm and friendly",
+    "topic": "Helping adult children support their parents\u2019 daily health habits"
+  },
+  "inspectionCompleteAt": 1791356888760,
+  "answersSavedAt": 1791356909263,
+  "stageHistory": [
+    {
+      "stage": "Reading the website",
+      "startedAt": 1791356835805
+    },
+    {
+      "stage": "Reading related pages",
+      "startedAt": 1791356837109
+    },
+    {
+      "stage": "Picking brand colours",
+      "startedAt": 1791356838050
+    },
+    {
+      "stage": "Loading website fonts",
+      "startedAt": 1791356886301
+    },
+    {
+      "stage": "Collecting brand imagery",
+      "startedAt": 1791356886434
+    },
+    {
+      "stage": "Website reading complete",
+      "startedAt": 1791356887904
+    },
+    {
+      "stage": "Confirm your direction",
+      "startedAt": 1791356888760
+    },
+    {
+      "stage": "Preparing writer",
+      "startedAt": 1791356909263
+    },
+    {
+      "stage": "Inspecting website imagery and choosing useful angles",
+      "startedAt": 1791356910818
+    },
+    {
+      "stage": "Writing posts",
+      "startedAt": 1791356998527
+    },
+    {
+      "stage": "Writing platform drafts",
+      "startedAt": 1791356998548
+    },
+    {
+      "stage": "Checking draft structure",
+      "startedAt": 1791357060277
+    },
+    {
+      "stage": "Checking content and design structure",
+      "startedAt": 1791357060314
+    },
+    {
+      "stage": "Ready",
+      "startedAt": 1791357076341
+    }
+  ],
+  "firstReadyAt": 1791357076341,
+  "writerRun": {
+    "durationMs": 165559,
+    "model": "gpt-6-astra",
+    "provider": "Connected ChatGPT",
+    "requests": 4,
+    "review": "category-evidence-v10: All four posts are grounded in the supplied website evidence. Dedicated-doctor oversight, coordinated care, weekly doctor involvement, monthly family reports and consideration of food preferences are supported; no health outcomes, testimonials or participant identities are invented. The homepage supports the free-consultation offer and destination. Both three-slide carousels progress from a recognisable adult-child concern to coordinated support and a concrete distinction between clinical involvement and family updates. The statics provide a complementary buying idea: personalisation includes what a parent will actually eat, with practical consultation preparation in the captions. The supplied older-woman portrait provides relevant human context without being presented as proof of programme participation. All six approved decisions are respected: enquiry next steps, personalised programmes, health-and-wellness service framing, support for parents\u2019 daily habits, warm wording and advice-led promotion. This assessment covers the structured copy and asset choices, not rendered visuals.",
+    "usageNote": "This version records requests and time, not token totals. Writing uses your connected account allowance."
+  },
+  "entryToReadyMs": 240536,
+  "formats": [
+    {
+      "platform": "instagram",
+      "format": "carousel",
+      "frames": 3
+    },
+    {
+      "platform": "instagram",
+      "format": "static",
+      "frames": 1
+    },
+    {
+      "platform": "linkedin",
+      "format": "carousel",
+      "frames": 3
+    },
+    {
+      "platform": "linkedin",
+      "format": "static",
+      "frames": 1
+    }
+  ]
+}
