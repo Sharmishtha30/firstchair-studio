@@ -21,11 +21,14 @@ test('category suggestions use page evidence with Other as the honest fallback',
  assert.equal(detectCategory('Mac mini, laptops and wearables'),'Consumer tech and wearables');
  assert.equal(detectCategory('unknown'),'Other');
 });
-test('progress logs record actual stage changes once and estimate uses measured average',()=>{
+test('progress logs record actual stage changes once and estimate uses the requested five minutes',()=>{
  const first=appendStage(undefined,'Reading website',100);assert.deepEqual(appendStage(first,'Reading website',200),first);
  assert.deepEqual(appendStage(first,'Writing platform drafts',300),[...first,{stage:'Writing platform drafts',startedAt:300}]);
- assert.equal(onboardingEstimateMinutes,7);
+ assert.equal(onboardingEstimateMinutes,5);
 });
 
 import {reviewNeedsRewrite} from '../convex/copyPolicy';
 test('review rejects a draft that ignores an approved answer',()=>{assert.equal(reviewNeedsRewrite({supported:true,useful:true,publishable:true,directionFollowed:false}),true);});
+
+import {completedProgress,recordCompletion} from '../convex/onboarding';
+test('progress moves only for unique completed steps, never elapsed time or retries',()=>{let done=recordCompletion(undefined);assert.equal(completedProgress(done),0);done=recordCompletion(done,'website');assert.equal(completedProgress(done),17);assert.equal(completedProgress(recordCompletion(done,'website')),17);assert.equal(completedProgress(recordCompletion(done)),17);assert.equal(completedProgress(['website','colours','assets','plan','drafts']),83);assert.equal(completedProgress(['website','colours','assets','plan','drafts','review']),100);});

@@ -648,3 +648,12 @@ Removed adjacent sample static and its label, removed Instagram output line and 
 - Live sample onboarding walked through to result. Final live category screen and landing checked at 390px and 1440px without overflow. Public preview still uses a saved sample; fresh generation proof is the authenticated local test, not the public sample.
 - npm run check passed, 108 automated tests passed, npm run deploy completed. Full raw output in verification/onboarding-check-raw.txt and onboarding-deploy-raw.txt. The readable deployment log removes terminal colour controls only.
 - Local test initially caught an import above the Node runtime directive; corrected before deployment. Restarted stalled local server, then verified fresh generation. Local npm run dev is running with output in /tmp/firstchair-onboarding-dev.log.
+
+## 7 Oct — supplied logo, five-minute copy and completed-step progress
+- Header now uses the exact supplied transparent PNG at public/images/firstchair-studio-logo.png; source and copied-file SHA256 match. Sample gallery uses the same silhouette in dark ink. Sky and layout remain intact.
+- First question includes the owner's exact five-minute sentence. Waiting estimate is now five minutes by explicit request; this is not a newly measured average (427148ms historical baseline retained in onboarding.ts).
+- Progress counts six explicitly persisted completions: website pages, colours, assets/fonts, planning, drafts, final review. Stage starts and time do not advance it; duplicate completions/retries do not advance it twice. Revision resets only draft/review completion.
+- Closed a fresh authenticated local pack at 17% on 2026-10-07T07:20:47.563Z. With no pack tab open, server finished reading, planning, drafting and review; Ready observed at 07:24:15.992Z. Total entry-to-ready ~239s. Reopened the identical URL and saw the finished carousel with Save changes enabled. Evidence: verification/progress-resume-proof.json, progress-before-tab-close.png, progress-reopened-result.png.
+- Also closed live sample onboarding after saving goal; identical live link reopened at question 2 with the goal retained. Fresh connected generation proof remains local; the public preview uses curated samples.
+- Live UI checked at 390x844 and 1440x900, including exact intro and supplied logo; no page overflow. Screenshots in verification/progress-live-intro-*.png.
+- npm run check passed, 109 tests passed, npm run deploy succeeded (64.4s). Raw logs in verification/progress-{check,tests,deploy}-raw.txt.

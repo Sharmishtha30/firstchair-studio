@@ -5,7 +5,7 @@ export const directionKeys=['goal','focus','category','topic','tone','promotion'
 export type DirectionKey=typeof directionKeys[number];
 export type DirectionAnswers=Partial<Record<DirectionKey,string>>;
 export const onboardingAverageMs=427148; // 4 completed current-onboarding runs, measured 7 Oct 2026; includes retries.
-export const onboardingEstimateMinutes=Math.round(onboardingAverageMs/60000);
+export const onboardingEstimateMinutes=5; // Product estimate requested by the owner; measured baseline above is retained.
 export function validDirectionAnswer(key:DirectionKey,value:string){
  if(!value.trim()||value.length>600)return false;
  if(key==='goal')return ['understand','enquire','buy'].includes(value);
@@ -58,3 +58,9 @@ export function progressMessage(stage:string){
  return messages[stage]??stage;
 }
 export function appendStage(history:{stage:string;startedAt:number}[]|undefined,stage:string,now:number){const previous=history??[];return previous.at(-1)?.stage===stage?previous:[...previous,{stage,startedAt:now}].slice(-100);}
+
+// Only explicit successful completion events count. No clock or stage-start inference.
+export const generationSteps=['website','colours','assets','plan','drafts','review'] as const;
+export type GenerationStep=typeof generationSteps[number];
+export function completedProgress(completed?:string[]){return Math.round(generationSteps.filter(step=>completed?.includes(step)).length/generationSteps.length*100);}
+export function recordCompletion(completed:string[]|undefined,step?:string){return step?[...new Set([...(completed??[]),step])]:completed;}

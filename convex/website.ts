@@ -47,11 +47,11 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  let css=home.inline+'\n'+sheets.flatMap(s=>s.status==='fulfilled'?[s.value.html]:[]).join('\n');
  const scoped=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>home.bodyClasses.some(c=>m[1].split(',').some(selector=>selector.trim()==='.'+c||selector.trim()==='body.'+c))).map(m=>m[2]).join(';');if(scoped)css=':root{'+scoped+'}\n'+css;
  for(const [i,sheet]of sheets.entries()){if(sheet.status!=='fulfilled')continue;for(const match of sheet.value.html.matchAll(/url\([\"']?([^\"')]+\.(?:jpg|jpeg|png|webp)(?:\?[^\"')]*)?)[\"']?\)/gi)){try{home.images.push({url:new URL(match[1],home.styles[i]).href,alt:'Source background image for '+home.page.title,pageUrl:home.page.url,score:1,role:'website background'});}catch{}}}
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Picking brand colours'});
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Picking brand colours',completedStep:'website'});
  const palette=extractPalette(css,home.usedClasses,matchedWebsiteColours(load(main.html),css),matchedWebsiteColourRoles(load(main.html),css)),style={...extractStyle(css,home.primaryHeadingClasses),...websiteGeometry(load(main.html),css)};
  home.page.blocks.push(...websiteBrandEvidence(load(main.html),css));
  warnings.push('Asset collection covers the homepage and up to four linked offer, about or review pages, with up to 24 imported images and illustrations. Dynamic or protected content may be missing; CSS declarations are not computed browser styles.');
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Loading website fonts',sitePalette:palette});
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Loading website fonts',completedStep:'colours',sitePalette:palette});
  let fontName:string|undefined,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold;
  const openFonts=['Inter','DM Sans','Roboto','Montserrat','Poppins','Manrope','Lato','Open Sans','Work Sans','Nunito','Oswald','Bebas Neue','Space Grotesk','Playfair Display','Libre Baskerville'];
  fontName=openFonts.find(name=>style.sourceFont.split(',')[0].toLowerCase()===name.toLowerCase())??openFonts.find(name=>(style.bodyFont??'').split(',')[0].toLowerCase()===name.toLowerCase());
@@ -103,5 +103,5 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  const usable=fetched.flatMap(r=>r.status==='fulfilled'?[r.value]:[]).slice(0,24-sourceAssets.length);
  sourceAssets.push(...await Promise.all(usable.map(async a=>({key:a.key,file:await ctx.storage.store(new Blob([a.bytes as BlobPart],{type:a.mime})),originalUrl:a.url,width:a.width,height:a.height,alt:a.alt,role:a.role,pageUrl:a.pageUrl}))));
  if(!sourceAssets.length)warnings.push('No suitable website imagery loaded. Original typographic diagrams will be used.');
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website reading complete',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile});return null;
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website reading complete',completedStep:'assets',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile});return null;
 }});

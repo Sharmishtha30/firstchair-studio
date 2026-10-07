@@ -1,0 +1,124 @@
+{
+  "closedAt": "2026-10-07T07:20:47.563Z",
+  "closedAtProgress": 17,
+  "environment": "authenticated local Convex",
+  "observations": [
+    {
+      "observedAt": "2026-10-07T07:21:07.214Z",
+      "stage": "Picking brand colours",
+      "completedSteps": [
+        "website"
+      ]
+    },
+    {
+      "observedAt": "2026-10-07T07:21:18.582Z",
+      "stage": "Preparing writer",
+      "completedSteps": [
+        "website",
+        "colours",
+        "assets"
+      ]
+    },
+    {
+      "observedAt": "2026-10-07T07:21:33.700Z",
+      "stage": "Inspecting website imagery and choosing useful angles",
+      "completedSteps": [
+        "website",
+        "colours",
+        "assets"
+      ]
+    },
+    {
+      "observedAt": "2026-10-07T07:22:55.141Z",
+      "stage": "Writing platform drafts",
+      "completedSteps": [
+        "website",
+        "colours",
+        "assets",
+        "plan"
+      ]
+    },
+    {
+      "observedAt": "2026-10-07T07:24:04.654Z",
+      "stage": "Checking content and design structure",
+      "completedSteps": [
+        "website",
+        "colours",
+        "assets",
+        "plan",
+        "drafts"
+      ]
+    },
+    {
+      "observedAt": "2026-10-07T07:24:15.992Z",
+      "stage": "Ready",
+      "completedSteps": [
+        "website",
+        "colours",
+        "assets",
+        "plan",
+        "drafts",
+        "review"
+      ]
+    }
+  ],
+  "answersSavedAt": 1791357641894,
+  "firstReadyAt": 1791357853667,
+  "stageHistory": [
+    {
+      "stage": "Reading the website",
+      "startedAt": 1791357615086
+    },
+    {
+      "stage": "Reading related pages",
+      "startedAt": 1791357617196
+    },
+    {
+      "stage": "Picking brand colours",
+      "startedAt": 1791357617897
+    },
+    {
+      "stage": "Loading website fonts",
+      "startedAt": 1791357675440
+    },
+    {
+      "stage": "Collecting brand imagery",
+      "startedAt": 1791357675655
+    },
+    {
+      "stage": "Website reading complete",
+      "startedAt": 1791357676907
+    },
+    {
+      "stage": "Preparing writer",
+      "startedAt": 1791357678230
+    },
+    {
+      "stage": "Inspecting website imagery and choosing useful angles",
+      "startedAt": 1791357680066
+    },
+    {
+      "stage": "Writing posts",
+      "startedAt": 1791357774320
+    },
+    {
+      "stage": "Writing platform drafts",
+      "startedAt": 1791357774390
+    },
+    {
+      "stage": "Checking draft structure",
+      "startedAt": 1791357840770
+    },
+    {
+      "stage": "Checking content and design structure",
+      "startedAt": 1791357840803
+    },
+    {
+      "stage": "Ready",
+      "startedAt": 1791357853667
+    }
+  ],
+  "reopenedSameLink": true,
+  "reopenedResult": "Completed carousel visible, three slides, Save changes enabled",
+  "liveLinkRestore": "Closed live sample onboarding after goal save; exact link reopened at question 2 with goal retained"
+}

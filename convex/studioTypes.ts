@@ -42,7 +42,7 @@ export const categoryV=v.union(v.literal('D2C brand'),v.literal('Education'),v.l
 export const directionAnswersV=v.object({goal:v.optional(v.string()),focus:v.optional(v.string()),category:v.optional(categoryV),topic:v.optional(v.string()),tone:v.optional(v.string()),promotion:v.optional(v.string())});
 export const stageHistoryV=v.array(v.object({stage:v.string(),startedAt:v.number()}));
 export const packFields={
- onboardingVersion:v.optional(v.number()),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),answersSavedAt:v.optional(v.number()),inspectionCompleteAt:v.optional(v.number()),firstReadyAt:v.optional(v.number()),stageHistory:v.optional(stageHistoryV),
+ completedSteps:v.optional(v.array(v.string())),onboardingVersion:v.optional(v.number()),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),answersSavedAt:v.optional(v.number()),inspectionCompleteAt:v.optional(v.number()),firstReadyAt:v.optional(v.number()),stageHistory:v.optional(stageHistoryV),
  onboardingRequested:v.optional(v.boolean()),onboarding:v.optional(v.object({primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),category:v.optional(categoryV),topic:v.optional(v.string()),promotion:v.optional(v.string()),goal:v.union(v.literal("understand"),v.literal("enquire"),v.literal("buy"))})),
  editCount:v.optional(v.number()),downloadedAt:v.optional(v.number()),copyLens:v.optional(copyLensV),parentToken:v.optional(v.string()),
  draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),

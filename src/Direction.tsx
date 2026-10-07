@@ -15,6 +15,7 @@ export function Direction({token,pack}:{token:string;pack:DirectionPack}){
  const topics=[...new Set((pack.sourcePages?.[0]?.blocks??[]).filter(b=>/^h[123]$/.test(b.kind)&&b.text.length>8&&b.text.length<90&&!/^(menu|log in|sign up|subscribe|shop now|contact|cookies)/i.test(b.text)).map(b=>b.text))].slice(0,3);
  function custom(label:string,placeholder:string){return <form onSubmit={e=>{e.preventDefault();void answer((text??saved??'').trim()||(key==='tone'?'Match the website':'Choose for me'));}}><label className="sr-only" htmlFor={'direction-'+key}>{label}</label><input id={'direction-'+key} value={text??saved??''} maxLength={600} disabled={busy} onChange={e=>setText(e.target.value)} placeholder={placeholder}/><button type="submit" disabled={busy}>{busy?'Saving…':'Continue'}</button></form>;}
  return <section className="direction-panel journey-question journey-six-questions">
+ <>{step===0&&<p className="onboarding-intro">This takes about 5 minutes. Answer a few quick questions while we read your website.</p>}</>
  <div className="journey-dots" aria-label={'Question '+(step+1)+' of 6'}>{directionKeys.map((k,i)=><span key={k} className={i===step?'active':''}/>)}</div>
  <div className="question-content" key={step}><h2>{questions[step]}</h2>
  {step===0&&choices([['understand','Build awareness'],['enquire','Get enquiries'],['buy','Drive sales']])}
