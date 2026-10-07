@@ -1,0 +1,126 @@
+{
+  "url": "https://praan.health/",
+  "answers": {
+    "category": "Health and wellness",
+    "focus": "Personalised health programmes",
+    "goal": "enquire",
+    "tone": "Warm and friendly",
+    "topic": "Helping adult children support their parents’ daily health habits"
+  },
+  "answersSavedAt": 1791358254793,
+  "inspectionCompleteAt": 1791358310035,
+  "firstReadyAt": 1791358485292,
+  "stageHistory": [
+    {
+      "stage": "Reading the website",
+      "startedAt": 1791358224512
+    },
+    {
+      "stage": "Reading related pages",
+      "startedAt": 1791358226108
+    },
+    {
+      "stage": "Picking brand colours",
+      "startedAt": 1791358227123
+    },
+    {
+      "stage": "Loading website fonts",
+      "startedAt": 1791358306524
+    },
+    {
+      "stage": "Collecting brand imagery",
+      "startedAt": 1791358306678
+    },
+    {
+      "stage": "Website reading complete",
+      "startedAt": 1791358309094
+    },
+    {
+      "stage": "Preparing writer",
+      "startedAt": 1791358310659
+    },
+    {
+      "stage": "Inspecting website imagery and choosing useful angles",
+      "startedAt": 1791358310722
+    },
+    {
+      "stage": "Writing posts",
+      "startedAt": 1791358412821
+    },
+    {
+      "stage": "Writing platform drafts",
+      "startedAt": 1791358412848
+    },
+    {
+      "stage": "Checking draft structure",
+      "startedAt": 1791358470261
+    },
+    {
+      "stage": "Checking content and design structure",
+      "startedAt": 1791358470467
+    },
+    {
+      "stage": "Ready",
+      "startedAt": 1791358485292
+    }
+  ],
+  "completedSteps": [
+    "website",
+    "colours",
+    "assets",
+    "plan",
+    "drafts",
+    "review"
+  ],
+  "observations": [
+    {
+      "at": "2026-10-07T07:31:29.380Z",
+      "stage": "Picking brand colours",
+      "percent": 17
+    },
+    {
+      "at": "2026-10-07T07:31:56.100Z",
+      "stage": "Inspecting website imagery and choosing useful angles",
+      "percent": 50
+    },
+    {
+      "at": "2026-10-07T07:33:40.477Z",
+      "stage": "Writing platform drafts",
+      "percent": 67
+    },
+    {
+      "at": "2026-10-07T07:34:37.630Z",
+      "stage": "Checking content and design structure",
+      "percent": 83
+    },
+    {
+      "at": "2026-10-07T07:34:49.642Z",
+      "stage": "Ready",
+      "percent": 100
+    }
+  ],
+  "posts": [
+    {
+      "platform": "instagram",
+      "format": "carousel",
+      "slides": 3
+    },
+    {
+      "platform": "instagram",
+      "format": "static",
+      "slides": 1
+    },
+    {
+      "platform": "linkedin",
+      "format": "carousel",
+      "slides": 3
+    },
+    {
+      "platform": "linkedin",
+      "format": "static",
+      "slides": 1
+    }
+  ],
+  "review": "category-evidence-v10: All four posts are grounded in the supplied website evidence: dedicated doctor oversight, weekly involvement, monthly plain-language family reports, consideration of food preferences and the free consultation at the stated homepage destination. They introduce no invented testimony, medical outcomes or guaranteed adherence. The three-slide carousels progress from a recognisable between-calls concern to coordinated care and family visibility; the statics provide a complementary, concrete buying idea about accommodating food preferences within medically informed care. The supplied parent portrait is relevant human context, not presented as proof of service delivery or endorsement. All approved decisions are respected: enquiry-focused actions, personalised programmes, health-and-wellness service patterns and imagery, adult children supporting parents’ daily habits, and warm, friendly wording. The structured layouts and copy are suitable for publication; this assessment does not imply inspection of rendered artwork.",
+  "reloadedDuringGeneration": true
+}

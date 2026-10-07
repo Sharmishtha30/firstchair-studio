@@ -1,0 +1,185 @@
+
+> build-sprint-app@1.0.0 deploy
+> npx @convex-dev/static-hosting deploy
+
+
+🚀 Convex + Static Files Deployment
+═══════════════════════════════════════════════════════════
+
+Step 1: Getting deployment URLs...
+   ✓ https://rightful-wombat-262.convex.site
+
+Step 2: Building frontend...
+   Build command: npm run build
+   VITE_CONVEX_URL=https://rightful-wombat-262.convex.cloud
+   STATIC_HOSTING_BASE_PATH=/
+
+
+> build-sprint-app@1.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 277 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   1.62 kB │ gzip:   0.57 kB
+dist/assets/index-BuwbCJyI.css   37.21 kB │ gzip:   7.96 kB
+dist/assets/index-BdwYvYgM.js   770.62 kB │ gzip: 283.13 kB
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@convex-dev/auth/dist/react/index.js" may not be preserved when bundling.
+   ╭─[ node_modules/@convex-dev/auth/dist/react/index.js:6:1 ]
+   │
+ 6 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 670ms
+
+   ✓ Build complete
+
+Step 3: Deploying Convex backend...
+
+▌ Deploying code to deployment:
+▌ [Production] sharmistha-gemini:build-sprint-app:production (prod) (dashboard: https://dashboard.convex.dev/t/sharmistha-gemini/build-sprint-app/rightful-wombat-262)
+▌ └─ https://rightful-wombat-262.convex.cloud
+- Deploying to https://rightful-wombat-262.convex.cloud...
+
+Convex AI files are not installed. Run npx convex ai-files install to get started or npx convex ai-files disable to hide this message.
+✔ No indexes are deleted by this push
+Uploading functions to Convex...
+Generating TypeScript bindings...
+Running TypeScript...
+Pushing code to your Convex deployment...
+Schema validation complete.
+Finalizing push...
+✔ Deployed Convex functions to https://rightful-wombat-262.convex.cloud
+
+   ✓ Convex backend deployed
+
+Step 4: Deploying static files to Convex storage...
+
+📦 Uploading static files to Convex storage...
+
+🚀 Deploying to production environment
+🔒 Using secure internal functions (requires Convex CLI auth)
+Uploading 94 files with deployment ID: ecf248b1-c16a-48a8-9dfa-8ad8c7d810ca
+Component: staticHosting
+
+  Generating 94 upload URLs...
+  [1/94] /assets/index-BuwbCJyI.css (storage)
+  [2/94] /fonts/OFL.txt (storage)
+  [3/94] /fonts/inter-500.woff2 (storage)
+  [4/94] /fonts/inter-400.woff2 (storage)
+  [5/94] /assets/index-BdwYvYgM.js (storage)
+  [6/94] /fonts/pacifico-OFL.txt (storage)
+  [7/94] /images/career-decision.webp (storage)
+  [8/94] /fonts/inter-600.woff2 (storage)
+  [9/94] /fonts/pacifico-regular.ttf (storage)
+  [10/94] /images/fictional-presenter.webp (storage)
+  [11/94] /images/firstchair-sky-3.jpg (storage)
+  [12/94] /images/firstchair-sky-1.jpg (storage)
+  [13/94] /images/firstchair-sky-2.jpg (storage)
+  [14/94] /index.html (storage/html)
+  [15/94] /logo-options/01-pacifico-indigo.png (storage)
+  [16/94] /logo-options/01-pacifico-indigo.svg (storage)
+  [17/94] /images/firstchair-studio-logo.png (storage)
+  [18/94] /logo-options/01-pacifico-white.png (storage)
+  [19/94] /logo-options/01-pacifico-white.svg (storage)
+  [20/94] /logo-options/02-dancing-script-indigo.png (storage)
+  [21/94] /logo-options/02-dancing-script-indigo.svg (storage)
+  [22/94] /logo-options/02-dancing-script-white.svg (storage)
+  [23/94] /logo-options/02-dancing-script-white.png (storage)
+  [24/94] /logo-options/03-caveat-indigo.png (storage)
+  [25/94] /logo-options/03-caveat-white.svg (storage)
+  [26/94] /logo-options/03-caveat-indigo.svg (storage)
+  [27/94] /logo-options/04-satisfy-indigo.png (storage)
+  [28/94] /logo-options/04-satisfy-indigo.svg (storage)
+  [29/94] /logo-options/04-satisfy-white.png (storage)
+  [30/94] /logo-options/04-satisfy-white.svg (storage)
+  [31/94] /logo-options/README.md (storage)
+  [32/94] /logo-options/03-caveat-white.png (storage)
+  [33/94] /logo-options/fonts/dancingscript-OFL.txt (storage)
+  [34/94] /logo-options/fonts/dancingscript-DancingScript[wght].ttf (storage)
+  [35/94] /logo-options/fonts/caveat-OFL.txt (storage)
+  [36/94] /logo-options/fonts/caveat-Caveat[wght].ttf (storage)
+  [37/94] /logo-options/fonts/pacifico-OFL.txt (storage)
+  [38/94] /logo-options/manifest.json (storage)
+  [39/94] /logo-options/fonts/satisfy-LICENSE.txt (storage)
+  [40/94] /logo-options/fonts/pacifico-Pacifico-Regular.ttf (storage)
+  [41/94] /samples/allbirds/carousel-01.webp (storage)
+  [42/94] /samples/allbirds/carousel-02.webp (storage)
+  [43/94] /logo-options/fonts/satisfy-Satisfy-Regular.ttf (storage)
+  [44/94] /samples/allbirds/carousel-04.webp (storage)
+  [45/94] /images/founders-editorial.png (storage)
+  [46/94] /samples/basecamp/carousel-01.webp (storage)
+  [47/94] /samples/allbirds/static-01.webp (storage)
+  [48/94] /samples/basecamp/carousel-02.webp (storage)
+  [49/94] /samples/allbirds/carousel-03.webp (storage)
+  [50/94] /samples/basecamp/carousel-03.webp (storage)
+  [51/94] /samples/basecamp/carousel-04.webp (storage)
+  [52/94] /samples/basecamp/carousel-05.webp (storage)
+  [53/94] /samples/basecamp/static-01.webp (storage)
+  [54/94] /samples/buffer/carousel-02.webp (storage)
+  [55/94] /samples/buffer/carousel-01.webp (storage)
+  [56/94] /samples/buffer/carousel-03.webp (storage)
+  [57/94] /samples/buffer/static-01.webp (storage)
+  [58/94] /samples/coffee/carousel-01.webp (storage)
+  [59/94] /samples/coffee/static-01.webp (storage)
+  [60/94] /samples/coffee/carousel-02.webp (storage)
+  [61/94] /samples/coffee/carousel-03.webp (storage)
+  [62/94] /samples/founders/carousel-05.webp (storage)
+  [63/94] /samples/founders/carousel-01.webp (storage)
+  [64/94] /samples/founders/carousel-02.webp (storage)
+  [65/94] /samples/founders/carousel-04.webp (storage)
+  [66/94] /samples/founders/carousel-03.webp (storage)
+  [67/94] /samples/founders/static-01.webp (storage)
+  [68/94] /samples/go-zero/carousel-02.webp (storage)
+  [69/94] /samples/go-zero/carousel-01.webp (storage)
+  [70/94] /samples/go-zero/carousel-03.webp (storage)
+  [71/94] /samples/go-zero/carousel-01-spaced.webp (storage)
+  [72/94] /samples/go-zero/static-01.webp (storage)
+  [73/94] /samples/index.json (storage)
+  [74/94] /samples/maid/carousel-01.webp (storage)
+  [75/94] /samples/maid/carousel-02.webp (storage)
+  [76/94] /samples/maid/carousel-03.webp (storage)
+  [77/94] /samples/maid/carousel-01-spaced.webp (storage)
+  [78/94] /samples/maid/static-01.webp (storage)
+  [79/94] /samples/suva/carousel-01.webp (storage)
+  [80/94] /samples/ugmonk/carousel-01.webp (storage)
+  [81/94] /samples/suva/carousel-02.webp (storage)
+  [82/94] /samples/suva/carousel-03.webp (storage)
+  [83/94] /samples/ugmonk/carousel-02.webp (storage)
+  [84/94] /samples/whole-truth/carousel-01-spaced.webp (storage)
+  [85/94] /samples/ugmonk/carousel-03.webp (storage)
+  [86/94] /samples/suva/static-01.webp (storage)
+  [87/94] /samples/ugmonk/static-01.webp (storage)
+  [88/94] /samples/whole-truth/carousel-01.webp (storage)
+  [89/94] /samples/whole-truth/carousel-02.webp (storage)
+  [90/94] /samples/whole-truth/carousel-03.webp (storage)
+  [91/94] /samples/whole-truth/carousel-04.webp (storage)
+  [92/94] /samples/whole-truth/carousel-05.webp (storage)
+  [93/94] /samples/whole-truth/static-01.webp (storage)
+  [94/94] /social-preview.png (storage)
+  Staging manifest chunk 1/1...
+  Publishing deployment...
+
+Cleaned up 94 old storage file(s) from previous deployments
+
+✨ Upload complete!
+
+Your app is now available at: https://rightful-wombat-262.convex.site
+
+═══════════════════════════════════════════════════════════
+✨ Deployment complete! (84.8s)
+
+Frontend: https://rightful-wombat-262.convex.site
+

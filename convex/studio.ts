@@ -112,7 +112,7 @@ export const createPerspective=mutation({args:{token:v.string(),newToken:v.strin
 export const confirmDirection=mutation({args:{token:v.string(),primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),goal:v.union(v.literal('understand'),v.literal('enquire'),v.literal('buy'))},returns:v.null(),handler:async(ctx,{token,...onboarding})=>{
  const userId=await getAuthUserId(ctx),p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
  if(!p||p.userId&&p.userId!==userId)throw new ConvexError('This pack is not available to your account.');
- if(p.onboardingVersion===2)throw new ConvexError('Please finish all six questions.');
+ if(p.onboardingVersion===2)throw new ConvexError('Please finish all five questions.');
  if(p.onboarding||p.stage==='Ready'||p.error)throw new ConvexError('This direction has already been confirmed.');
  if(Object.values(onboarding).some(x=>x!==undefined&&x.length>600))throw new ConvexError('Keep each answer under 600 characters.');
  if([onboarding.primary,onboarding.paper].some(c=>c!==undefined&&!/^#[a-f0-9]{6}$/i.test(c)))throw new ConvexError('Choose a valid colour.');
@@ -137,7 +137,7 @@ export const saveDirectionAnswer=mutation({args:{token:v.string(),key:v.union(v.
  const now=Date.now();
  const inspectionComplete=p.inspectionCompleteAt??(p.stage==='Confirm your direction'?now:undefined);
  if(!completeDirection(answers)){await ctx.db.patch(p._id,{onboardingVersion:2,inspectionCompleteAt:inspectionComplete,directionAnswers:answers,updatedAt:now});return null;}
- const onboarding={goal:answers.goal as 'understand'|'enquire'|'buy',focus:answers.focus!,category:answers.category!,topic:answers.topic!,tone:answers.tone!,promotion:answers.promotion!,audience:''};
+ const onboarding={goal:answers.goal as 'understand'|'enquire'|'buy',focus:answers.focus!,category:answers.category!,topic:answers.topic!,tone:answers.tone!,...(answers.promotion?{promotion:answers.promotion}:{}),audience:''};
  await ctx.db.patch(p._id,{onboardingVersion:2,inspectionCompleteAt:inspectionComplete,directionAnswers:answers,onboarding,answersSavedAt:now,updatedAt:now});
  // The mutation and finishInspection serialize: exactly one side starts writing.
  if(inspectionComplete){await ctx.db.patch(p._id,{stage:'Preparing writer',stageHistory:appendStage(p.stageHistory,'Preparing writer',now),operationStartedAt:now});await workflow.start(ctx,internal.studio.makePack,{packId:p._id,revision:true,startedAt:now});await ctx.scheduler.runAfter(720000,internal.studio.expire,{packId:p._id,startedAt:now});}

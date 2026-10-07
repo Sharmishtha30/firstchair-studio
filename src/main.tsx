@@ -14,7 +14,8 @@ import './style.css';
 import {SampleGallery} from './SampleGallery';
 import {LogoOptions} from './LogoOptions';
 import {Direction} from './Direction';
-import {progressMessage,onboardingEstimateMinutes,completedProgress} from '../convex/onboarding';
+import {progressMessage,onboardingEstimateMinutes} from '../convex/onboarding';
+import {GenerationProgress} from './GenerationProgress';
 const convexUrl=import.meta.env.VITE_CONVEX_URL;
 function Preview({post,brand,index,small=false}:{post:Post;brand:Brand;index:number;small?:boolean}){
  const [src,setSrc]=useState(''),[failure,setFailure]=useState('');
@@ -73,7 +74,7 @@ function App(){
  {token&&pack===null&&!isLoading&&<div className="error">This saved pack requires the account that created it.<button onClick={connect}>Connect ChatGPT</button></div>}
  {token&&!pack&&!error&&<section className="journey-loading"><span className="spinner"/>Opening your studio…</section>}
  {pack&&pack.stage!=='Ready'&&!pack.onboardingComplete&&!pack.error&&<Direction key={token} token={token} pack={pack}/>}
- {pack&&pack.onboardingComplete&&pack.stage!=='Ready'&&!pack.error&&<section className="journey-loading"><span className="spinner"/><h2 role="status" aria-live="polite">{progressMessage(pack.stage)}</h2><div className="generation-progress" role="progressbar" aria-label="Completed generation steps" aria-valuemin={0} aria-valuemax={100} aria-valuenow={completedProgress(pack.completedSteps)}><span style={{width:completedProgress(pack.completedSteps)+'%'}}/></div><p>Usually about {onboardingEstimateMinutes} minutes from website entry.</p><p className="waiting-estimate-note">Progress advances when a step finishes. You can close this tab and reopen this same link.</p></section>}
+ {pack&&pack.onboardingComplete&&pack.stage!=='Ready'&&!pack.error&&<section className="journey-loading"><span className="spinner"/><h2 role="status" aria-live="polite">{progressMessage(pack.stage)}</h2><GenerationProgress completed={pack.completedSteps}/><p>Usually about {onboardingEstimateMinutes} minutes from website entry.</p><p className="waiting-estimate-note">Progress advances when a step finishes.</p></section>}
 
  {pack?.error&&!pack.posts&&<section className="error" role="alert"><strong>{publicPreview&&!connected?'Fresh posts aren’t connected yet.':'This pack needs attention.'}</strong><p>{pack.error}</p>{publicPreview&&!connected?<button disabled={starting} onClick={openSamples}>View sample posts</button>:<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry failed step</button>}{connected&&<details className="provided-recovery"><summary>Website blocked? Use your business text</summary><label>Business, customer, offer and next action<textarea value={providedText} maxLength={24000} onChange={e=>setProvidedText(e.target.value)}/></label><button type="button" onClick={()=>void provided({token,text:providedText}).catch(e=>setError(readableError(e)))}>Create from provided text</button><p>The pack will clearly say it uses your input, rather than claiming the website was analysed.</p></details>}</section>}
  {pack?.posts&&pack.brand&&(pack.stage==='Ready'||!!pack.error)&&post&&<section className="result-studio">

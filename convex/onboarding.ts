@@ -1,12 +1,12 @@
 // Shared by the form, persistence gate, writer and reviewer.
 export const onboardingCategories=['D2C brand','Education','Health and wellness','SaaS','Consumer tech and wearables','Services or agency','Food and beverage','Fashion and beauty','Finance','Other'] as const;
 export type OnboardingCategory=typeof onboardingCategories[number];
-export const directionKeys=['goal','focus','category','topic','tone','promotion'] as const;
+export const directionKeys=['goal','focus','category','topic','tone'] as const;
 export type DirectionKey=typeof directionKeys[number];
 export type DirectionAnswers=Partial<Record<DirectionKey,string>>;
 export const onboardingAverageMs=427148; // 4 completed current-onboarding runs, measured 7 Oct 2026; includes retries.
 export const onboardingEstimateMinutes=5; // Product estimate requested by the owner; measured baseline above is retained.
-export function validDirectionAnswer(key:DirectionKey,value:string){
+export function validDirectionAnswer(key:DirectionKey|'promotion',value:string){
  if(!value.trim()||value.length>600)return false;
  if(key==='goal')return ['understand','enquire','buy'].includes(value);
  if(key==='category')return onboardingCategories.includes(value as OnboardingCategory);
@@ -17,7 +17,7 @@ export function completeDirection(answers?:DirectionAnswers){return !!answers&&d
 export function needsDirection(pack:{onboardingRequested?:boolean;onboardingVersion?:number;onboarding?:unknown;directionAnswers?:DirectionAnswers}){
  return !!pack.onboardingRequested&&(pack.onboardingVersion===2?!pack.onboarding||!completeDirection(pack.directionAnswers):!pack.onboarding);
 }
-export function nextDirectionStep(answers?:DirectionAnswers){const i=directionKeys.findIndex(k=>!validDirectionAnswer(k,answers?.[k]??''));return i<0?5:i;}
+export function nextDirectionStep(answers?:DirectionAnswers){const i=directionKeys.findIndex(k=>!validDirectionAnswer(k,answers?.[k]??''));return i<0?directionKeys.length-1:i;}
 export function categoryProfile(category?:string){return ({'D2C brand':'consumer-products','Education':'education-career','Health and wellness':'fitness-program','SaaS':'software','Consumer tech and wearables':'consumer-products','Services or agency':'professional-services','Food and beverage':'food','Fashion and beauty':'fashion','Finance':'professional-services','Other':'other'} as Record<string,string>)[category??''];}
 export function detectCategory(text:string):OnboardingCategory{
  const rules:Array<[OnboardingCategory,RegExp]>=[
@@ -41,8 +41,8 @@ export function directionGuidance(direction?:{goal:string;focus:string;category?
   category:{answer:direction.category??'Infer from website',use:'Use this confirmed business category to select the buyer context, content pattern and imagery. Health/finance claims require source evidence; never assume a health programme is a physical product. Fashion and beauty may use garment or skincare imagery as appropriate to the actual offer.'},
   topic:{answer:direction.topic??'Choose for me',use:'Build two complementary ideas within this topic, not an unrelated homepage summary. Choose for me means use the strongest supported topic for the selected focus and goal.'},
   tone:{answer:direction.tone||'Match the website',use:'Apply this tone to headings, supporting copy, captions and closing lines. Match the website means follow the observed brand voice.'},
-  promotion:{answer:direction.promotion??'balanced',use:direction.promotion==='advice'?'Lead with useful source-backed advice; show the actual offer where it explains the point and use a gentle relevant closing action.':direction.promotion==='offer'?'Lead with the actual offer, real product or service imagery, a supported buying reason and a direct goal-aligned action.':'Balance a useful insight with the actual offer; connect source-backed value to a goal-aligned next action.'},
-  rule:'Apply ALL six decisions in planning, copy and applicable image/layout choices. These are creative instructions, not proof of claims. Do not change brand colours or typography based on tone. Review every decision before approval.'
+  ...(direction.promotion?{promotion:{answer:direction.promotion,use:direction.promotion==='advice'?'Lead with useful source-backed advice; show the actual offer where it explains the point and use a gentle relevant closing action.':direction.promotion==='offer'?'Lead with the actual offer, real product or service imagery, a supported buying reason and a direct goal-aligned action.':'Balance a useful insight with the actual offer; connect source-backed value to a goal-aligned next action.'}}:{}),
+  rule:'Apply ALL supplied decisions in planning, copy and applicable image/layout choices. These are creative instructions, not proof of claims. Do not change brand colours or typography based on tone. Review every decision before approval.'
  };
 }
 export function progressMessage(stage:string){
@@ -64,3 +64,5 @@ export const generationSteps=['website','colours','assets','plan','drafts','revi
 export type GenerationStep=typeof generationSteps[number];
 export function completedProgress(completed?:string[]){return Math.round(generationSteps.filter(step=>completed?.includes(step)).length/generationSteps.length*100);}
 export function recordCompletion(completed:string[]|undefined,step?:string){return step?[...new Set([...(completed??[]),step])]:completed;}
+
+export const generationStepLabels:Record<GenerationStep,string>={website:'Website read',colours:'Colours picked',assets:'Images and fonts collected',plan:'Story and images chosen',drafts:'Slides and statics written',review:'Claims and direction checked'};
