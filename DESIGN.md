@@ -4,7 +4,7 @@ Current visual direction, 6 October 2026. This supersedes earlier FirstChair vio
 
 ## Identity
 
-Product name: FirstChair Studio. Visible header wordmark: FirstChair, small and restrained. Current implementation uses a clear sans-serif wordmark. The user supplied Relay's handwritten logo as an exact lettering reference, but the actual font has not been identified; do not claim an exact match or substitute an unrelated script as complete.
+Product name: FirstChair Studio. Use the supplied script wordmark. On the landing only, display its full FirstChair lettering with a separate light, letter-spaced STUDIO centred beneath it. Preserve the original combined logo on later screens. The browser icon is a pink #FF307E FC monogram.
 
 Primary action: bold pink #FF307E. Interface ink: deep indigo #201047, with white #FFFFFF over the sky where appropriate. Violet #5424FF and yellow #FFE34D are retired as the primary interface direction. Keep colour emphasis on the action rather than adding competing accents.
 
@@ -13,11 +13,11 @@ Primary action: bold pink #FF307E. Interface ink: deep indigo #201047, with whit
 One viewport, no page scroll at the previously checked desktop/mobile sizes. Small FirstChair wordmark at top left; Sample preview at top right, plus the local ChatGPT connection control where supported. Centre the short headline and one website action.
 
 Current copy:
-- Take your brand / to the front row.
-- Your website, turned into visual posts worth sharing.
+- Your website in. Editable carousels and posts out.
+- Take your brand to the front row. On-brand posts you can change in a click.
 - Input placeholder: Add your website here, faded until entered.
 - Action: Create my posts.
-- Footer: Carousels + statics. Made for your brand.
+- Small link below the input: See examples, opening the existing Sample preview.
 
 Keep the initial field empty. No Founder's Find example prefill, platform picker, long explanation or Instagram/LinkedIn badges on the landing. Founder's Find can appear as one properly labelled gallery example.
 
@@ -58,3 +58,15 @@ Open design issue: exact Relay-style FirstChair lettering remains unresolved. Re
 
 ## Latest landing update — 2026-10-07
 Remove the sample static beside the website field and its label. Use a pink globe website icon instead of the diagonal arrow in the field. Remove both “A carousel and a static post for Instagram” and “Carousels + statics. Made for your brand.” Keep the headline, sky, colours and empty website placeholder. The website form is centred at up to 820px wide with 28px space above it. The Sample preview collection remains available in the header. This update was checked in the local browser and passed npm run check; it has not been deployed.
+
+## Type
+
+Landing interface only: Plus Jakarta Sans, a free Google Font, self-hosted with its SIL Open Font License in public/fonts. Later screens keep their existing typography. Script lettering stays in the supplied logo image.
+
+- Headline: bold 700, fluid 36–64px (64px at 1440px desktop; 36px at 390px phone), line height 1.08.
+- Subline: semi-bold 600, 24px desktop and 18px phone, line height 1.45.
+- Button: existing 15px desktop and 12px phone, bold 700; existing pink and input treatment retained.
+- Small link: semi-bold 600, 13px desktop and 12px phone. STUDIO: light 300, 10px desktop and 9px phone, letter spacing .28em.
+- Short screens under 740px high: headline 28–44px and subline 18px. Under 580px high: headline 26px and subline 15px.
+
+The input/button row itself is centred at 50% of viewport width and height; headline and subline sit above, examples below. A soft dark indigo gradient supports centre text contrast without modifying sky photos or motion. One viewport without scrolling.
