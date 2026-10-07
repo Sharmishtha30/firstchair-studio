@@ -1,0 +1,16 @@
+{
+  "url": "https://www.apple.com/in/",
+  "stage": "Ready",
+  "error": null,
+  "writerRun": {
+    "durationMs": 62437,
+    "model": "gpt-6-astra",
+    "provider": "Connected ChatGPT",
+    "requests": 3,
+    "review": "category-evidence-v10: All four posts now assign the relevant supplied Mac mini asset, image-3, to every frame and retain the required product layout and compact copy budgets. The fingertip-scale idea is grounded in the supplied image evidence, and \u201cNow with M6 and M5 Pro\u201d matches the website excerpt without adding performance claims. Both three-slide carousels progress from physical-scale discovery to chip choice and a relevant desk-purchase invitation. The statics provide a complementary practical buying idea through front-facing ports, without inventing port specifications or compatibility. Reusing the relevant product scene is appropriate here. The Apple homepage is honestly presented as an exploration entry point, and Instagram\u2019s profile-link setup is explicitly required before posting. The revised static also avoids the brief\u2019s unresolved question about Personal Setup eligibility for Mac mini. This assessment covers the structured copy and asset selection, not rendered visual quality.",
+    "usageNote": "This version records requests and time, not token totals. Writing uses your connected account allowance."
+  },
+  "frameAssetKeys": [
+    "image-3"
+  ]
+}

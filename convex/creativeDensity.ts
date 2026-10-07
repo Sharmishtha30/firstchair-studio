@@ -22,7 +22,12 @@ export function checkDesignDensity(posts:Post[]){
  }
 }
 
+// Ingestion roles are filename/DOM hints, not a semantic verdict.
+// The evidence reviewer still decides whether a candidate shows the named product.
+export function productImageKeys(assets:Pick<CreativeAsset,'key'|'role'>[]){return assets.filter(a=>a.role==='product'||a.role==='editorial').map(a=>a.key);}
+
 export function checkProductPriority(posts:Post[],priority:string|undefined,assets:Pick<CreativeAsset,'key'|'role'>[]){
- if(priority!=='product'||!assets.some(a=>a.role==='product'))return;
- for(const post of posts)for(const [index,frame] of post.frames.entries()){if(frame.design?.layout!=='product'||!assets.some(a=>a.key===frame.assetKey&&a.role==='product'))throw Error(`${post.platform} ${post.format} slide ${index+1}: tangible product must lead every slide using product layout and a supplied product asset. Show a different relevant product detail or source scene; keep explanation in captions.`);}
+ const allowed=productImageKeys(assets);
+ if(priority!=='product'||!allowed.length)return;
+ for(const post of posts)for(const [index,frame] of post.frames.entries()){if(frame.design?.layout!=='product'||!allowed.includes(frame.assetKey??''))throw Error(`${post.platform} ${post.format} slide ${index+1}: tangible product must lead every slide using product layout and a supplied product asset. Show a different relevant product detail or source scene; keep explanation in captions.`);}
 }

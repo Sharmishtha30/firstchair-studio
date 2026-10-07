@@ -18,3 +18,13 @@ test('tangible product covers require a genuine product image and product layout
 
 test('product priority applies to the second and third carousel slides too',()=>{const p=structuredClone(post);p.format='carousel';p.frames=[{heading:'Actual bottle',body:'Daily refill',assetKey:'bottle',design:{layout:'product',surface:'paper',align:'center',imagePosition:'top',emphasis:'',takeaway:''}},structuredClone(post.frames[0]),structuredClone(post.frames[0])];assert.throws(()=>checkProductPriority([p],'product',[{key:'bottle',role:'product'}]),/slide 2/);});
 test('total carousel words include lists and takeaways but exclude captions',()=>{const p=structuredClone(post);p.format='carousel';p.caption='Extra context '.repeat(200);p.frames[0].items=[];p.frames[0].body='Useful word '.repeat(18);assert.throws(()=>checkDesignDensity([p]),/32 visible words/);p.frames[0].body='One useful detail';checkDesignDensity([p]);});
+
+test('product review can select a real source photograph even when ingestion labelled it editorial',()=>{
+ const p=structuredClone(post);
+ p.frames=[{heading:'A desktop at fingertip scale.',body:'Mac mini.',assetKey:'mac-photo',design:{layout:'product',surface:'paper',align:'center',imagePosition:'bottom',emphasis:'',takeaway:''}}];
+ const assets=[{key:'mac-photo',role:'editorial'},{key:'setup-illustration',role:'product'},{key:'brand-mark',role:'brand icon'}];
+ checkProductPriority([p],'product',assets);
+ p.frames[0].assetKey='brand-mark';assert.throws(()=>checkProductPriority([p],'product',assets),/product must lead/);
+ p.frames[0].assetKey='not-imported';assert.throws(()=>checkProductPriority([p],'product',assets),/product must lead/);
+ p.frames[0].assetKey='mac-photo';p.frames[0].design!.layout='essay';assert.throws(()=>checkProductPriority([p],'product',assets),/product must lead/);
+});
