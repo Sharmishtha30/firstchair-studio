@@ -1,0 +1,17 @@
+.logo-options-page{min-height:100svh;background:#fff;color:#201047;padding:32px clamp(20px,4vw,64px);font-family:Arial,sans-serif}
+.logo-options-heading{max-width:1100px;margin:0 auto 32px}
+.logo-options-heading a{color:#201047;font-size:14px;text-decoration:underline}
+.logo-options-heading h1{font-size:32px;line-height:1.15;margin:24px 0 12px;letter-spacing:-1px}
+.logo-options-heading p{font-size:15px;line-height:1.5;margin:0}
+.logo-options-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.logo-option h2{font-size:16px;margin:0 0 12px;font-weight:600}
+.logo-option-sky,.logo-option-white{position:relative;isolation:isolate;min-height:130px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 32px;gap:18px}
+.logo-option-sky{color:#fff;background:#352452;overflow:hidden}
+.logo-option-white{color:#201047;background:#fff;border:1px solid #20104725}
+.logo-option img{display:block;max-width:none;flex:none}
+.logo-option-sky p,.logo-option-white p{margin:0;font-size:13px;line-height:1.4}
+.logo-option-downloads{display:flex;flex-wrap:wrap;gap:8px 24px;padding-top:12px}
+.logo-option-downloads p{font-size:13px;margin:0;line-height:1.5}
+.logo-option-downloads a{color:#201047;text-decoration:underline}
+.logo-options-page a:focus-visible{outline:2px solid #5424ff;outline-offset:4px}
+@media(max-width:600px){.logo-options-grid{grid-template-columns:1fr}.logo-options-heading h1{font-size:28px}}

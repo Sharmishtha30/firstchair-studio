@@ -12,6 +12,7 @@ import {drawFrame,exportImages} from './render';
 import {checkArtwork} from './artwork';
 import './style.css';
 import {SampleGallery} from './SampleGallery';
+import {LogoOptions} from './LogoOptions';
 const convexUrl=import.meta.env.VITE_CONVEX_URL;
 function Preview({post,brand,index,small=false}:{post:Post;brand:Brand;index:number;small?:boolean}){
  const [src,setSrc]=useState(''),[failure,setFailure]=useState('');
@@ -89,4 +90,4 @@ function App(){
  </main>
  </div>;
 }
-createRoot(document.getElementById('root')!).render(convexUrl?<ConvexAuthProvider client={new ConvexReactClient(convexUrl)}><App/></ConvexAuthProvider>:<main>Run npm run dev to open the studio.</main>);
+createRoot(document.getElementById('root')!).render(/^\/logo-options\/?$/.test(location.pathname)?<LogoOptions/>:convexUrl?<ConvexAuthProvider client={new ConvexReactClient(convexUrl)}><App/></ConvexAuthProvider>:<main>Run npm run dev to open the studio.</main>);

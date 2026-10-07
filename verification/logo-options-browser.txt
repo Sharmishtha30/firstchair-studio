@@ -1,0 +1,3 @@
+PASS live 1440: four numbered options, eight loaded logos, no horizontal overflow.
+PASS live 390: four numbered options, eight loaded logos, no horizontal overflow.
+PASS all 16 downloads; original live header text/font unchanged; no browser errors.

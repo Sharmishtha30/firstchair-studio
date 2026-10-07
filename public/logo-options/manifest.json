@@ -1,0 +1,38 @@
+[
+  {
+    "number": 1,
+    "name": "Pacifico",
+    "weight": 400,
+    "prefix": "01-pacifico",
+    "width": 89.832,
+    "height": 19.703,
+    "source": "fonts/pacifico-Pacifico-Regular.ttf"
+  },
+  {
+    "number": 2,
+    "name": "Dancing Script",
+    "weight": 600,
+    "prefix": "02-dancing-script",
+    "width": 72.05178979492187,
+    "height": 16.644,
+    "source": "fonts/dancingscript-DancingScript[wght].ttf"
+  },
+  {
+    "number": 3,
+    "name": "Caveat",
+    "weight": 600,
+    "prefix": "03-caveat",
+    "width": 70.11441954454546,
+    "height": 15.131367837353606,
+    "source": "fonts/caveat-Caveat[wght].ttf"
+  },
+  {
+    "number": 4,
+    "name": "Satisfy",
+    "weight": 400,
+    "prefix": "04-satisfy",
+    "width": 78.98534319196429,
+    "height": 18.808515625000002,
+    "source": "fonts/satisfy-Satisfy-Regular.ttf"
+  }
+]
