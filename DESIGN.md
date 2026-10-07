@@ -14,7 +14,7 @@ One viewport, no page scroll at the previously checked desktop/mobile sizes. Sma
 
 Current copy:
 - Take your brand / to the front row.
-- Your website, turned into posts worth sharing.
+- Your website, turned into visual posts worth sharing.
 - Input placeholder: Add your website here, faded until entered.
 - Action: Create my posts.
 - Footer: Carousels + statics. Made for your brand.
@@ -54,3 +54,7 @@ Current renderer floors include readable headings/body text, supported declarati
 Keyboard-accessible controls, visible focus, descriptive image labels, disabled carousel bounds, readable contrast and reduced-motion support are required. Check narrow screens and desktop in the browser. Do not claim the entire journey was tested after checking only a landing or a sample.
 
 Open design issue: exact Relay-style FirstChair lettering remains unresolved. Recommendation work must preserve the current interface unless explicitly requested otherwise.
+
+
+## Latest landing update — 2026-10-07
+Remove the sample static beside the website field and its label. Use a pink globe website icon instead of the diagonal arrow in the field. Remove both “A carousel and a static post for Instagram” and “Carousels + statics. Made for your brand.” Keep the headline, sky, colours and empty website placeholder. The website form is centred at up to 820px wide with 28px space above it. The Sample preview collection remains available in the header. This update was checked in the local browser and passed npm run check; it has not been deployed.

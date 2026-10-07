@@ -623,3 +623,7 @@ Published successfully to rightful-wombat-262.convex.site. Verified live at 390x
 
 ## 2026-10-07: Britannia timing and invalid draft recovery
 Measured two failed local Britannia attempts: 2m19.424s and latest retry 58.797s. Latest pack creation-to-update was 6m4.319s, including pre-retry time; not a successful generation duration. Detailed evidence: verification/britannia-timing-2026-10-07.txt. Invalid cached drafts now fail validation and are regenerated; blank headings rejected by writing schema; per-platform output restricted to that platform and two posts. Incomplete blank drafts no longer render as completed creative previews. Tabs and notices sit above both equal-width columns; phone layout stacks. Check passed, 102 tests passed, deployed successfully. Live sample layout checked at 390px and 1440px. Fresh Britannia retry remains unverified because browser requires ChatGPT sign-in.
+
+
+## 2026-10-07: Landing simplification saved
+Removed adjacent sample static and its label, removed Instagram output line and carousel/static footer, replaced field arrow with globe icon, updated subtitle to “Your website, turned into visual posts worth sharing.” Centred form; sky, headline, colours and website placeholder retained. npm run check passed and local browser visually checked. PRODUCT.md and DESIGN.md updated. Not deployed or pushed.

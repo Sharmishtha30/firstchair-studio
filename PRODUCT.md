@@ -101,3 +101,7 @@ Next product milestone: a fresh connected local run through onboarding, reviewed
 ## 6 October result simplification
 
 The Cosmix writer took 330,982 ms across eight requests. Its review demanded text-only product slides and longer copy that conflicted with enforced product-image and text-length rules. Review instructions now respect those constraints and permit relevant product-image reuse when the ideas differ. This removes a known source of futile revisions; a faster end-to-end generation time has not yet been measured.
+
+
+## Latest landing presentation — 2026-10-07
+The landing shows the headline, “Your website, turned into visual posts worth sharing.”, and a centred website field with a globe icon and Create my posts button. No sample creative sits beside the field; no Instagram output line or carousel/static footer appears. Saved examples remain accessible from Sample preview. Output remains an editable carousel and static post; this change only simplifies the landing. Checked locally; publication of this landing update is pending.
