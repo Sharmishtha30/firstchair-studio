@@ -1,0 +1,7 @@
+Britannia saved local records (failed attempts, not successful generation times)
+Older attempt: created/operationStartedAt=1791289757817 updatedAt=1791289897241; 139424ms (2m19.424s). Error: Finish the carousel and static for each selected platform. No posts.
+Latest pack: createdAt=1791292409780 operationStartedAt=1791292715302 updatedAt=1791292774099; latest retry=58797ms (58.797s); creation-to-last-update=364319ms (6m4.319s), including time before retry. Error: This visual needs useful items that fit the space. All three carousel headings and bodies empty.
+Earlier retry durations are not retained; successful generation average cannot be calculated from these two records. No matching production Britannia records.
+Validation: npm run check exit 0; npm test 102 pass, 0 fail; npm run deploy exit 0, 101.7s.
+Browser: live sample at 1440px: artwork and editor top=233px, width=476px each. At 390px: page width=390px, scroll width=390px, preview and editor stack. Local sample carousel next and Statics tab checked.
+Fresh Britannia retry not verified: local browser requires ChatGPT sign-in. Public anonymous fresh generation remains unavailable.
