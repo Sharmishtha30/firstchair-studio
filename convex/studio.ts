@@ -1,3 +1,4 @@
+import {textStylesV,updateTextStyle} from './textStyles';
 import {needsDirection,completeDirection,validDirectionAnswer,appendStage,recordCompletion} from './onboarding';
 import { mutation, query, internalMutation, internalQuery } from './_generated/server';
 import { internal, components } from './_generated/api';
@@ -148,4 +149,12 @@ export const saveDirectionAnswer=mutation({args:{token:v.string(),key:v.union(v.
 export const generationDiagnostics=internalQuery({args:{url:v.string()},handler:async(ctx,{url})=>{
  const host=new URL(url).hostname.replace(/^www\./,'');const rows=await ctx.db.query('packs').filter(q=>q.or(q.eq(q.field('url'),'https://'+host),q.eq(q.field('url'),'https://'+host+'/'),q.eq(q.field('url'),'https://www.'+host),q.eq(q.field('url'),'https://www.'+host+'/'))).collect();
  return rows.sort((a,b)=>b.createdAt-a.createdAt).slice(0,10).map(p=>({website:host,createdAt:p.createdAt,operationStartedAt:p.operationStartedAt,updatedAt:p.updatedAt,stage:p.stage,error:p.error,writerRun:p.writerRun,posts:(p.posts??p.draftPosts)?.map(post=>({format:post.format,frames:post.frames.map(f=>({heading:f.heading,body:f.body,assetKey:f.assetKey}))}))}));
+}});
+
+export const styleText=mutation({args:{token:v.string(),platform:platformV,format:v.union(v.literal('carousel'),v.literal('static')),slide:v.number(),styles:textStylesV},returns:v.null(),handler:async(ctx,args)=>{
+ const userId=await getAuthUserId(ctx),pack=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',args.token)).unique();
+ if(!userId||!pack?.posts||pack.userId!==userId)throw new ConvexError('Connect to the account that created this pack to style it.');
+ if(pack.stage!=='Ready')throw new ConvexError('Wait for writing to finish.');
+ try{let posts=pack.posts;if(!args.styles.heading&&!args.styles.body)throw new Error('Choose a text style.');for(const field of ['heading','body'] as const){const style=args.styles[field];if(style)posts=updateTextStyle(posts,{...args,field,style});}await ctx.db.patch(pack._id,{posts,updatedAt:Date.now()});}catch(e){throw new ConvexError(e instanceof Error?e.message:'Could not save text style.');}
+ return null;
 }});

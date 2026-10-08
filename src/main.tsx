@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react';
+import {ReelApp} from './reel/ReelApp';
 import {ConvexError} from 'convex/values';
 function readableError(error:unknown,fallback='Please try again.'){return error instanceof ConvexError&&typeof error.data==='string'?error.data:error instanceof Error?error.message:fallback;}
 import {createRoot} from 'react-dom/client';
@@ -8,7 +9,10 @@ import {api} from '../convex/_generated/api';
 import type {Brand,Post} from '../convex/studioTypes';
 import type {Platform} from '../convex/creativeTypes';
 import {copyLenses,type CopyLens} from '../convex/copyLenses';
-import {drawFrame,exportImages} from './render';
+import {TextStyleControl} from './TextStyleControl';
+import {fittedStyles} from './textStyleLayout';
+import type {TextStyle,TextField} from '../convex/textStyles';
+import {frameBlob,download as downloadBlob,drawFrame,exportImages} from './render';
 import {checkArtwork} from './artwork';
 import './style.css';
 import {SampleGallery} from './SampleGallery';
@@ -22,10 +26,10 @@ function Preview({post,brand,index,small=false}:{post:Post;brand:Brand;index:num
  useEffect(()=>{let active=true;setSrc('');setFailure('');void drawFrame(post,brand,index).then(c=>{if(active)setSrc(c.toDataURL('image/png'));}).catch(e=>{if(active)setFailure(e.message);});return()=>{active=false;};},[post,brand,index]);
  return failure?<div className="error" role="alert">{failure}</div>:src?<img className={small?'creative-thumbnail':'artwork '+post.format} src={src} alt={post.frames[index].heading+' — '+post.frames[index].body}/>:<div className={small?'creative-thumbnail loading':'artwork loading'}>Designing…</div>;
 }
-function ImageTextEditor({post,slide,onPreview,onSave,canSave,busy}:{post:Post;slide:number;onPreview:(post:Post)=>void;onSave:(post:Post)=>void;canSave:boolean;busy:boolean}){
+function ImageTextEditor({post,slide,onPreview,onSave,canSave,busy,brand,onStyle,styleBusy,canStyle,styleNote,onDownload}:{post:Post;brand:Brand;onStyle:(field:TextField,style:TextStyle)=>void;styleBusy:boolean;canStyle:boolean;styleNote:string;onDownload:(kind:'png'|'zip')=>void;slide:number;onPreview:(post:Post)=>void;onSave:(post:Post)=>void;canSave:boolean;busy:boolean}){
  const frame=post.frames[slide];
  function change(key:'heading'|'body'|'takeaway',value:string){onPreview({...post,hook:key==='heading'&&slide===0?value:post.hook,frames:post.frames.map((f,i)=>i===slide?key==='takeaway'?{...f,design:f.design?{...f.design,takeaway:value}:undefined}:{...f,[key]:value}:f)});}
- return <aside className="image-text-editor"><h2>Edit your creative</h2><p>{post.format==='carousel'?'Slide '+(slide+1):'Static post'}</p><label>Headline<input value={frame.heading} maxLength={160} onChange={e=>change('heading',e.target.value)}/></label><label>Supporting text<textarea value={frame.body} maxLength={600} onChange={e=>change('body',e.target.value)}/></label>{frame.design&&<label>Closing line<input value={frame.design.takeaway} maxLength={200} onChange={e=>change('takeaway',e.target.value)}/></label>}{frame.items?.map((item,i)=><label key={i}>{item.label}<textarea value={item.detail} maxLength={240} onChange={e=>onPreview({...post,frames:post.frames.map((f,n)=>n===slide?{...f,items:f.items?.map((x,k)=>k===i?{...x,detail:e.target.value}:x)}:f)})}/></label>)}<button disabled={!canSave||busy} onClick={()=>onSave(post)}>{busy?'Saving…':'Save changes'}</button>{!canSave&&<p className="editor-note">You can preview text changes here. Saving is currently unavailable for this draft.</p>}</aside>;
+ return <aside className="image-text-editor"><h2>Edit your creative</h2><p>{post.format==='carousel'?'Slide '+(slide+1):'Static post'}</p><div className="styled-field"><div className="styled-field-heading"><label htmlFor="creative-heading">Headline</label><TextStyleControl field="heading" brand={brand} value={frame.textStyles?.heading} disabled={!canStyle||styleBusy||busy} onChange={style=>onStyle('heading',style)}/></div><input id="creative-heading" value={frame.heading} maxLength={160} onChange={e=>change('heading',e.target.value)}/></div><div className="styled-field"><div className="styled-field-heading"><label htmlFor="creative-body">Supporting text</label><TextStyleControl field="body" brand={brand} value={frame.textStyles?.body} disabled={!canStyle||styleBusy||busy} onChange={style=>onStyle('body',style)}/></div><textarea id="creative-body" value={frame.body} maxLength={600} onChange={e=>change('body',e.target.value)}/></div>{frame.design&&<label>Closing line<input value={frame.design.takeaway} maxLength={200} onChange={e=>change('takeaway',e.target.value)}/></label>}{frame.items?.map((item,i)=><label key={i}>{item.label}<textarea value={item.detail} maxLength={240} onChange={e=>onPreview({...post,frames:post.frames.map((f,n)=>n===slide?{...f,items:f.items?.map((x,k)=>k===i?{...x,detail:e.target.value}:x)}:f)})}/></label>)}<button disabled={!canSave||busy} onClick={()=>onSave(post)}>{busy?'Saving…':'Save changes'}</button>{!canSave&&<p className="editor-note">You can preview text changes here. Saving is currently unavailable for this draft.</p>}<p className="style-save-note" role="status">{styleNote||'Font and size save automatically. No rewrite used.'}</p><div className="creative-downloads"><button disabled={styleBusy||busy} onClick={()=>onDownload('png')}>Download PNG</button><button disabled={styleBusy||busy} onClick={()=>onDownload('zip')}>Download ZIP</button></div></aside>;
 }
 function BrandEditor({token,brand,onError}:{token:string;brand:Brand;onError:(s:string)=>void}){
  const save=useMutation(api.studio.adjustBrand),uploadUrl=useMutation(api.studio.uploadUrl),finishUpload=useAction(api.brandUpload.finish),[draft,setDraft]=useState({name:brand.name,audience:brand.audience,offer:brand.offer,voice:brand.voice,primary:brand.palette?.primary??'#253e62',paper:brand.palette?.paper??'#ffffff',headline:brand.style?.headline??'sans'}),[busy,setBusy]=useState(false);
@@ -35,7 +39,8 @@ function BrandEditor({token,brand,onError}:{token:string;brand:Brand;onError:(s:
 }
 function App(){
  const {isAuthenticated,isLoading}=useConvexAuth(),{signIn,signOut}=useAuthActions();
- const saveImageText=useMutation(api.studio.editPost);
+ const saveImageText=useMutation(api.studio.editPost),saveStyle=useMutation(api.studio.styleText);
+ const [stylePreview,setStylePreview]=useState<Post|null>(null),[styleBusy,setStyleBusy]=useState(false),[styleNote,setStyleNote]=useState('');
  const [editingPost,setEditingPost]=useState<Post|null>(null),[savingText,setSavingText]=useState(false);
  const start=useMutation(api.studio.start),revise=useMutation(api.studio.revise),retry=useMutation(api.studio.retry),provided=useMutation(api.studio.useProvidedText),restore=useMutation(api.studio.restore),recordDownload=useMutation(api.studio.recordDownload),createPerspective=useMutation(api.studio.createPerspective),connection=useAction(api.chatgpt.connection),disconnect=useAction(api.chatgpt.disconnect);
  const [showSamples,setShowSamples]=useState(location.hash==='#samples');
@@ -56,9 +61,28 @@ function App(){
  async function anotherPerspective(){setPerspectiveBusy(true);setError('');try{const key=Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,'0')).join('');await createPerspective({token,newToken:key,lens});setToken(key);history.replaceState(null,'','/#pack='+key);setSlide(0);setFeedback('');}catch(e){setError(readableError(e,'Could not create this perspective.'));}finally{setPerspectiveBusy(false);}}
  const publicPreview=!/^http:\/\/(localhost|127\.0\.0\.1):/.test(convexUrl);
  const storedPost=pack?.posts?.find(p=>p.format===active&&(p.platform??'instagram')===platform),busy=starting||!!pack&&pack.stage!=='Ready'&&!pack.error;
- const post=editingPost??storedPost;
- useEffect(()=>{setEditingPost(null);},[token,active,platform,pack?.updatedAt]);
+ const post=stylePreview??editingPost??storedPost;
+ useEffect(()=>{setEditingPost(null);setStylePreview(null);setStyleNote('');},[token,active,platform]);
  async function saveText(draft:Post){const f=draft.frames[slide];setSavingText(true);setError('');try{await saveImageText({token,platform:draft.platform??'instagram',format:draft.format as 'carousel'|'static',slide,heading:f.heading,body:f.body,takeaway:f.design?.takeaway,caption:draft.caption,items:f.items??[]});setEditingPost(null);}catch(e){setError(readableError(e));}finally{setSavingText(false);}}
+ async function changeStyle(field:TextField,style:TextStyle){
+  if(!post||!pack?.brand||styleBusy)return;
+  const draft={...post,frames:post.frames.map((f,i)=>i===slide?{...f,textStyles:{...f.textStyles,[field]:style}}:f)};
+  setStyleBusy(true);setStyleNote('Saving style…');setStylePreview(draft);setError('');
+  try{
+   const canvas=await drawFrame(draft,pack.brand,slide),effective=fittedStyles.get(canvas)??draft.frames[slide].textStyles!;
+   const adjusted={...draft,frames:draft.frames.map((f,i)=>i===slide?{...f,textStyles:effective}:f)};setStylePreview(adjusted);
+   // Save only style fields; unsaved text never enters the style mutation.
+   await saveStyle({token,platform:post.platform??'instagram',format:post.format as 'carousel'|'static',slide,styles:effective});
+   if(editingPost)setEditingPost(adjusted);
+   const reductions=(['heading','body'] as const).filter(key=>effective[key]&&effective[key]!.size!==draft.frames[slide].textStyles?.[key]?.size);
+   setStyleNote(reductions.length?reductions.map(key=>`${key==='heading'?'Headline':'Supporting text'} adjusted to ${effective[key]!.size} so it fits.`).join(' ')+' Style saved.':'Style saved. No rewrite used.');
+  }catch(e){setError(readableError(e));setStyleNote('Style not saved. Your previous style is unchanged.');}
+  finally{setStylePreview(null);setStyleBusy(false);}
+ }
+ async function downloadCreative(kind:'png'|'zip'){
+  if(!storedPost||!pack?.brand)return;setExporting('Preparing files…');setError('');
+  try{if(kind==='png')downloadBlob(await frameBlob(storedPost,pack.brand,slide),`firstchair-${active}-${slide+1}.png`);else await exportImages(pack.posts!,pack.brand,setExporting);}catch(e){setError(readableError(e));}finally{setExporting('');}
+ }
  function openSamples(){location.hash='samples';setShowSamples(true);}
  function createFromSamples(){setToken('');setShowSamples(false);history.replaceState(null,'','/');requestAnimationFrame(()=>document.getElementById('website')?.focus());}
  function closeSamples(){history.replaceState(null,'',token?'/#pack='+token:'/');setShowSamples(false);}
@@ -78,14 +102,14 @@ function App(){
 
  {pack?.error&&!pack.posts&&<section className="error" role="alert"><strong>{publicPreview&&!connected?'Fresh posts aren’t connected yet.':'This pack needs attention.'}</strong><p>{pack.error}</p>{publicPreview&&!connected?<button disabled={starting} onClick={openSamples}>View sample posts</button>:<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry failed step</button>}{connected&&<details className="provided-recovery"><summary>Website blocked? Use your business text</summary><label>Business, customer, offer and next action<textarea value={providedText} maxLength={24000} onChange={e=>setProvidedText(e.target.value)}/></label><button type="button" onClick={()=>void provided({token,text:providedText}).catch(e=>setError(readableError(e)))}>Create from provided text</button><p>The pack will clearly say it uses your input, rather than claiming the website was analysed.</p></details>}</section>}
  {pack?.posts&&pack.brand&&(pack.stage==='Ready'||!!pack.error)&&post&&<section className="result-studio">
- <div className="result-tabs" role="tablist" aria-label="Creative format">{(['carousel','static'] as const).map(f=><button key={f} role="tab" aria-selected={active===f} onClick={()=>{setActive(f);setSlide(0);setEditingPost(null);}}>{f==='carousel'?'Carousel':'Statics'}</button>)}</div>
+ <div className="result-tabs" role="tablist" aria-label="Creative format">{(['carousel','static'] as const).map(f=><button key={f} role="tab" disabled={styleBusy} aria-selected={active===f} onClick={()=>{setActive(f);setSlide(0);setEditingPost(null);}}>{f==='carousel'?'Carousel':'Statics'}</button>)}</div>
  {pack.error&&<div className="result-review-notice" role="status">This is a saved draft. Its final review needs another pass.<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry review</button></div>}
  {pack.mode?.startsWith('Curated')&&<p className="result-sample-label">Saved sample preview</p>}<div className="result-preview">
- <Preview post={post} brand={pack.brand} index={slide}/>{post.frames.length>1&&<div className="slide-nav"><button aria-label="Previous slide" disabled={slide===0} onClick={()=>setSlide(s=>s-1)}>←</button><span>{slide+1} / {post.frames.length}</span><button aria-label="Next slide" disabled={slide===post.frames.length-1} onClick={()=>setSlide(s=>s+1)}>→</button></div>}
- </div><ImageTextEditor post={post} slide={slide} onPreview={setEditingPost} onSave={draft=>void saveText(draft)} canSave={connected&&pack.stage==='Ready'&&pack.editsRemaining>0} busy={savingText}/>
+ <Preview post={post} brand={pack.brand} index={slide}/>{post.frames.length>1&&<div className="slide-nav"><button aria-label="Previous slide" disabled={styleBusy||slide===0} onClick={()=>setSlide(s=>s-1)}>←</button><span>{slide+1} / {post.frames.length}</span><button aria-label="Next slide" disabled={styleBusy||slide===post.frames.length-1} onClick={()=>setSlide(s=>s+1)}>→</button></div>}
+ </div><ImageTextEditor key={`${token}-${active}-${platform}-${slide}`} brand={pack.brand} onStyle={(field,style)=>void changeStyle(field,style)} styleBusy={styleBusy||!!exporting} canStyle={connected&&pack.stage==='Ready'} styleNote={exporting||styleNote} onDownload={kind=>void downloadCreative(kind)} post={post} slide={slide} onPreview={setEditingPost} onSave={draft=>void saveText(draft)} canSave={connected&&pack.stage==='Ready'&&pack.editsRemaining>0} busy={savingText||styleBusy}/>
  </section>}
 
  </main>
  </div>;
 }
-createRoot(document.getElementById('root')!).render(/^\/logo-options\/?$/.test(location.pathname)?<LogoOptions/>:convexUrl?<ConvexAuthProvider client={new ConvexReactClient(convexUrl)}><App/></ConvexAuthProvider>:<main>Run npm run dev to open the studio.</main>);
+createRoot(document.getElementById('root')!).render(/^\/reels\/?$/.test(location.pathname)?<ReelApp/>:/^\/logo-options\/?$/.test(location.pathname)?<LogoOptions/>:convexUrl?<ConvexAuthProvider client={new ConvexReactClient(convexUrl)}><App/></ConvexAuthProvider>:<main>Run npm run dev to open the studio.</main>);
