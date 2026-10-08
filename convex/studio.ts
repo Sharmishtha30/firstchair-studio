@@ -1,3 +1,4 @@
+import {imageStyleV,validColour} from './appearance';
 import {textStylesV,updateTextStyle} from './textStyles';
 import {needsDirection,completeDirection,validDirectionAnswer,appendStage,recordCompletion} from './onboarding';
 import { mutation, query, internalMutation, internalQuery } from './_generated/server';
@@ -157,4 +158,18 @@ export const styleText=mutation({args:{token:v.string(),platform:platformV,forma
  if(pack.stage!=='Ready')throw new ConvexError('Wait for writing to finish.');
  try{let posts=pack.posts;if(!args.styles.heading&&!args.styles.body)throw new Error('Choose a text style.');for(const field of ['heading','body'] as const){const style=args.styles[field];if(style)posts=updateTextStyle(posts,{...args,field,style});}await ctx.db.patch(pack._id,{posts,updatedAt:Date.now()});}catch(e){throw new ConvexError(e instanceof Error?e.message:'Could not save text style.');}
  return null;
+}});
+
+export const styleAppearance=mutation({args:{token:v.string(),platform:platformV,format:v.union(v.literal('carousel'),v.literal('static')),slide:v.number(),colour:v.optional(v.object({field:v.union(v.literal('heading'),v.literal('body')),value:v.string()})),image:v.optional(imageStyleV)},returns:v.null(),handler:async(ctx,args)=>{
+ const userId=await getAuthUserId(ctx),pack=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',args.token)).unique();
+ if(!userId||!pack?.posts||pack.userId!==userId)throw new ConvexError('Connect to the account that created this pack to style it.');
+ if(pack.stage!=='Ready')throw new ConvexError('Wait for writing to finish.');
+ if(!Number.isInteger(args.slide)||args.slide<0)throw new ConvexError('Slide not found.');
+ if(!args.colour&&!args.image||args.colour&&!validColour(args.colour.value))throw new ConvexError('Choose a valid colour or image size.');
+ let found=false;
+ const posts=pack.posts.map(post=>{if(post.format!==args.format||(post.platform??'instagram')!==args.platform)return post;
+ const frame=post.frames[args.slide];if(!frame)throw new ConvexError('Slide not found.');if(args.image&&!frame.assetKey)throw new ConvexError('This slide has no image to resize.');found=true;
+ return {...post,frames:post.frames.map((f,i)=>i===args.slide?{...f,...(args.colour?{textColours:{...f.textColours,[args.colour.field]:args.colour.value.toLowerCase()}}:{}),...(args.image?{imageStyle:args.image}:{})}:f)};});
+ if(!found)throw new ConvexError('Creative not found.');
+ await ctx.db.patch(pack._id,{posts,updatedAt:Date.now()});return null;
 }});

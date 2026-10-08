@@ -1,3 +1,4 @@
+import {appearanceContexts,recordTextAppearance,paintSlideImage} from './appearanceLayout';
 import {textOverride} from './textStyleLayout';
 import type {TextField} from '../convex/textStyles';
 import {styledRows,paintStyledRows} from './styledText';
@@ -29,13 +30,14 @@ export async function paintDesigned(ctx:CanvasRenderingContext2D,post:Post,brand
  const metric=(value:string,w:number,size:number,min:number,max:number,family=bodyFont,bold=400,emphasis='',field?:TextField)=>{const override=textOverride(ctx,field);if(override){size=override.size;min=size;family=override.font??family;if(override.font)bold=override.weight;}let rows:string[]=[],used=size;for(let s=size;s>=min;s-=2){used=s;ctx.font=`${bold} ${s}px ${family}`;rows=styledRows(value,emphasis,w,(text,styled)=>{ctx.font=`${styled?'italic ':''}${bold} ${s}px ${family}`;const m=ctx.measureText(text);return {width:m.width,right:m.actualBoundingBoxRight};}).map(row=>row.runs.map(run=>run.text).join(''));ctx.font=`${bold} ${s}px ${family}`;if(rows.length*s*1.14<=max&&rows.every(r=>ctx.measureText(r).width<=w))break;}const h=rows.length*used*1.14;if(h>max||rows.some(r=>ctx.measureText(r).width>w))throw Error('Shorten this '+d.layout+' slide for readable type: “'+value.slice(0,85)+'”.');return {h,size:used};};
  const draw=(value:string,x:number,y:number,w:number,size:number,min:number,max:number,family=bodyFont,colour=ink,bold=400,center=false,emphasis='',backing=background,field?:TextField)=>{
   const override=textOverride(ctx,field);if(override){size=override.size;min=size;family=override.font??family;if(override.font)bold=override.weight;}
+  const custom=field?appearanceContexts.get(ctx)?.colours[field]:undefined;colour=recordTextAppearance(ctx,field,colour,d.layout==='note'?p.paper:backing);
   if(!value.trim())return y;const m=metric(value,w,size,min,max,family,bold,emphasis);
   // Record the exact same safe bounds used by downloads.
   text(ctx,value,x,y,w,m.size,m.h+1,family,colour,bold,m.size,!(center||emphasis&&value.includes(emphasis)));
   if(center||emphasis&&value.includes(emphasis)){
    ctx.font=`${bold} ${m.size}px ${family}`;ctx.textBaseline='top';
    const rows=styledRows(value,emphasis,w,(value,styled)=>{ctx.font=`${styled?'italic ':''}${bold} ${m.size}px ${family}`;const metric=ctx.measureText(value);return {width:metric.width,right:metric.actualBoundingBoxRight};});
-   paintStyledRows(ctx,rows,x,y,w,m.size*1.14,`${bold} ${m.size}px ${family}`,`italic ${bold} ${m.size}px ${family}`,colour,accent,center);
+   paintStyledRows(ctx,rows,x,y,w,m.size*1.14,`${bold} ${m.size}px ${family}`,`italic ${bold} ${m.size}px ${family}`,colour,custom??accent,center);
 
   }return y+m.h;
  };
@@ -43,7 +45,7 @@ export async function paintDesigned(ctx:CanvasRenderingContext2D,post:Post,brand
  const drawField=(field:TextField)=>(...a:Parameters<typeof draw>)=>draw(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],field);
  const headingMetric=measureField('heading'),bodyMetric=measureField('body'),headingDraw=drawField('heading'),bodyDraw=drawField('body');
  const asset=f.assetKey?brand.assets?.find(a=>a.key===f.assetKey):undefined;
- const photo=async(x:number,y:number,w:number,h:number)=>{if(!asset)throw Error('Choose a verified website image for this composition.');if(h<150)throw Error('This photo needs more space. Shorten the text.');const img=await loadImage(asset.url),focus=imageFocus(img,asset.role==='product'),scale=Math.min(w/focus.width,h/focus.height);const xx=x+(w-focus.width*scale)/2,yy=y+(h-focus.height*scale)/2,ww=focus.width*scale,hh=focus.height*scale;const shape=asset.role==='product'?'square':brand.style?.imageShape;if(shape&&shape!=='square'){ctx.save();ctx.beginPath();if(shape==='circle'){const size=Math.min(ww,hh);ctx.arc(x+w/2,y+h/2,size/2,0,Math.PI*2);}else ctx.roundRect(xx,yy,ww,hh,Math.min(ww,hh)*.06);ctx.clip();}ctx.drawImage(img,focus.x,focus.y,focus.width,focus.height,xx,yy,ww,hh);if(shape&&shape!=='square')ctx.restore();};
+ const photo=async(x:number,y:number,w:number,h:number)=>{if(!asset)throw Error('Choose a verified website image for this composition.');if(h<150)throw Error('This photo needs more space. Shorten the text.');const img=await loadImage(asset.url);paintSlideImage(ctx,img,{x,y,width:w,height:h},()=>{const focus=imageFocus(img,asset.role==='product'),scale=Math.min(w/focus.width,h/focus.height);const xx=x+(w-focus.width*scale)/2,yy=y+(h-focus.height*scale)/2,ww=focus.width*scale,hh=focus.height*scale;const shape=asset.role==='product'?'square':brand.style?.imageShape;if(shape&&shape!=='square'){ctx.save();ctx.beginPath();if(shape==='circle'){const size=Math.min(ww,hh);ctx.arc(x+w/2,y+h/2,size/2,0,Math.PI*2);}else ctx.roundRect(xx,yy,ww,hh,Math.min(ww,hh)*.06);ctx.clip();}ctx.drawImage(img,focus.x,focus.y,focus.width,focus.height,xx,yy,ww,hh);if(shape&&shape!=='square')ctx.restore();return {x:xx,y:yy,width:ww,height:hh};},asset.role==='product'?'square':brand.style?.imageShape);};
  const eyebrow=f.eyebrow?.trim()===brand.name.trim()?'':f.eyebrow;
  const imageHero=!!asset&&(d.layout==='photo'||d.layout==='poster'||d.layout==='split'&&!(f.items?.length));
  const centered=d.align==='center',top=eyebrow?260:imageHero?175:215,takeawayHeight=d.takeaway?metric(d.takeaway,920,54,44,220,font,weight).h+28:0;
