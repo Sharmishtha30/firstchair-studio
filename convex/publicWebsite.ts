@@ -5,6 +5,12 @@ import {request as httpRequest} from 'node:http';
 import {publicAddress,websiteUrl} from './websiteSafety';
 import {beforeDeadline} from './requestDeadline';
 import {websiteReadLimit} from './websiteReadLimit';
+export function validateWebsiteResponse(status:number,contentType:string,mime:string):void{
+ if(status===401||status===403)throw new Error('This website blocks automated reading. Open “Website blocked? Use your business text” below to continue.');
+ if(status<200||status>=300)throw new Error(`Website could not be read (HTTP ${status}).`);
+ const supportedType=mime==='font/'?/^(?:font\/|application\/(?:x-font|font|vnd\.ms-fontobject|octet-stream))/i.test(contentType):contentType.includes(mime);
+ if(!supportedType)throw new Error('Enter a webpage, rather than a file.');
+}
 export async function publicWebsite(input:string,mime='text/html'):Promise<{url:string;html:string;bytes?:Uint8Array}>{
  let url=websiteUrl(input);const deadline=Date.now()+20000;
  for(let hop=0;hop<5;hop++){
@@ -18,8 +24,7 @@ export async function publicWebsite(input:string,mime='text/html'):Promise<{url:
     const status=response.statusCode??0;
     if(status>=300&&status<400){response.resume();succeed({status,location:response.headers.location,html:''});return;}
     const contentType=response.headers['content-type']??'';
-    const supportedType=mime==='font/'?/^(?:font\/|application\/(?:x-font|font|vnd\.ms-fontobject|octet-stream))/i.test(contentType):contentType.includes(mime);
-    if(!supportedType){response.resume();fail(new Error('Enter a webpage, rather than a file.'));return;}
+    try{validateWebsiteResponse(status,contentType,mime);}catch(error){response.resume();fail(error as Error);return;}
     let size=0;const chunks:Buffer[]=[];
     response.on('data',(chunk:Buffer)=>{size+=chunk.length;if(size>websiteReadLimit(mime)){req.destroy(new Error('Website is too large to read safely.'));return;}chunks.push(chunk);});
     response.on('error',fail);response.on('aborted',()=>fail(new Error('Website response was interrupted.')));response.on('close',()=>{if(!response.complete)fail(new Error('Website response was interrupted.'));});response.on('end',()=>succeed({status,html:Buffer.concat(chunks).toString('utf8'),bytes:new Uint8Array(Buffer.concat(chunks))}));
