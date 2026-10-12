@@ -67,27 +67,28 @@ const story=()=>[
  slide('Then one message got buried.','I found it the next day. Two cakes I never baked.',lines[1]),
  slide('All I wanted was one list.','Something that told me what to bake tomorrow morning.',lines[2]),
  slide('Now I start with that list.','Nothing important hides in a chat.',lines[2]),
+ slide('I needed a way to keep the orders together.','',lines[2]),
  slide('Plan tomorrow’s bakes in one place','Try it free'),
 ];
-test('a call carousel is one first-person story with a short hook and a closing action',()=>{
+test('a call carousel is one first-person story with an admission hook and a closing action',()=>{
  assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:story()}],lines,'Ovenly'));
- assert.throws(()=>checkCallStory([{format:'carousel',frames:story().slice(0,4)}],lines,'Ovenly'),/5 to 7 slides/);
+ assert.throws(()=>checkCallStory([{format:'carousel',frames:story().slice(0,4)}],lines,'Ovenly'),/7 to 8 slides/);
  const longHook=story();longHook[0]=slide('I missed two birthday cakes in one single week of December orders.','',lines[1]);
- assert.throws(()=>checkCallStory([{format:'carousel',frames:longHook}],lines,'Ovenly'),/under 12 words/);
+ assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:longHook}],lines,'Ovenly'));
  const brandHook=story();brandHook[0]=slide('I wish I had found Ovenly sooner.','',lines[2]);
  assert.throws(()=>checkCallStory([{format:'carousel',frames:brandHook}],lines,'Ovenly'),/names the brand/);
  const generic=story();generic[0]=slide('Struggling with bakery orders?','',lines[1]);
  assert.throws(()=>checkCallStory([{format:'carousel',frames:generic}],lines,'Ovenly'),/generic question|first-person/);
- const long=story();long[2]=slide('Then one message got buried under forty other chats.','I only found it the next afternoon, long after the party, and I had to call the family and apologise for two cakes.',lines[1]);
- assert.throws(()=>checkCallStory([{format:'carousel',frames:long}],lines,'Ovenly'),/25 words or fewer/);
+ const long=story();long[2]=slide('Then one message got buried under forty other chats.','I only found it the next afternoon, long after the party, and I had to call the family and apologise for two cakes. I kept searching and searching through the messages until I found what I had missed.',lines[1]);
+ assert.throws(()=>checkCallStory([{format:'carousel',frames:long}],lines,'Ovenly'),/40 words or fewer/);
 });
 test('rewritten lines are never presented as direct quotes and stay in the customer’s voice',()=>{
- const quoted=story();quoted[1]=slide('“Every order lived in my WhatsApp.”','I copied them nightly.',lines[0]);
+ const quoted=story();quoted[1]=slide('“Every order lived in my WhatsApp.”','',lines[0]);
  assert.throws(()=>checkCallStory([{format:'carousel',frames:quoted}],lines,'Ovenly'),/quotation marks/);
  const labelled=story();labelled[1]=slide('A customer said orders lived in WhatsApp','I copied them nightly.',lines[0]);
  assert.throws(()=>checkCallStory([{format:'carousel',frames:labelled}],lines,'Ovenly'),/labels its line/);
  const third=story();third[2]=slide('Then a message got buried.','Two cakes were never baked.',lines[1]);
- assert.throws(()=>checkCallStory([{format:'carousel',frames:third}],lines,'Ovenly'),/first-person voice/);
+ assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:third}],lines,'Ovenly'));
  const unlinked=story();unlinked[3]=slide('All I wanted was one list.','Something simple.');
  assert.throws(()=>checkCallStory([{format:'carousel',frames:unlinked}],lines,'Ovenly'),/not linked to the transcript line/);
  const forged=story();forged[3]=slide('All I wanted was one list.','Something simple.',{...lines[2],text:'Invented words.'});

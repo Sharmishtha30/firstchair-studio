@@ -29,7 +29,7 @@ export function checkPosts(posts:Post[], facts:string[],count=3) {
     if(p.hook.length>120) throw new Error("The opening is too long for a social creative. Shorten it without losing the idea.");
     if(!p.sourceFacts.length || p.sourceFacts.some(f=>!facts.includes(f))) throw new Error("The writer used an unsupported source fact.");
     const expected=p.format==='carousel'?5:p.format==='static'?1:5;
-    if(p.format==='carousel'?(p.frames.length<3||p.frames.length>7):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
+    if(p.format==='carousel'?(p.frames.length<3||p.frames.length>(p.frames.some(f=>f.quote)?8:7)):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
     if(p.frames.some(f=>/\b(?:visual|voiceover|camera|scene)\s*:|\d+\s*[–-]\s*\d+\s*s\s*\|/i.test(f.heading+' '+f.body)))throw new Error('The writer returned production directions instead of finished on-screen copy.');
     if(p.frames[0].heading.replace(/\s+/g,' ').trim()!==p.hook.replace(/\s+/g,' ').trim())throw new Error('The first frame does not match the short hook.');
     if(p.format==='reel'&&p.frames.map(f=>f.heading+' '+f.body).join(' ').split(/\s+/).length>100)throw new Error('The reel has too much text for 25 seconds.');

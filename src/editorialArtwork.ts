@@ -1,3 +1,4 @@
+import {hiddenBrandHeaders} from './artwork';
 import {appearanceContexts,recordTextAppearance,paintSlideImage} from './appearanceLayout';
 import {textOverride} from './textStyleLayout';
 import type {TextField} from '../convex/textStyles';
@@ -22,7 +23,7 @@ export async function paintDesigned(ctx:CanvasRenderingContext2D,post:Post,brand
  ctx.fillStyle=background;ctx.fillRect(0,0,1080,1350);
  await header(ctx,{...brand,palette:{...p,paper:background}},ink,font);
  const decoration=brand.assets?.find(a=>a.role==='brand decoration'&&(/\.svg(?:[?#]|$)/i.test(a.originalUrl)||a.key.startsWith('diagram-')));
- if(decoration&&d.layout!=='note'){const markImage=await loadImage(decoration.url);const scale=Math.min(55/markImage.width,55/markImage.height);ctx.drawImage(markImage,935,1180,markImage.width*scale,markImage.height*scale);}
+ if(decoration&&!hiddenBrandHeaders.has(ctx)&&d.layout!=='note'){const markImage=await loadImage(decoration.url);const scale=Math.min(55/markImage.width,55/markImage.height);ctx.drawImage(markImage,935,1180,markImage.width*scale,markImage.height*scale);}
  const mark=(y:number)=>{ctx.globalAlpha=.24;ctx.strokeStyle=ink;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;};
  if(post.format==='carousel')text(ctx,`${String(index+1).padStart(2,'0')} / ${post.frames.length}`,850,84,150,28,40,bodyFont,ink,600,28);
  const editorialChrome=d.layout==='essay'||d.layout==='list'||d.layout==='split';
@@ -137,6 +138,6 @@ export async function paintDesigned(ctx:CanvasRenderingContext2D,post:Post,brand
   const b=bodyDraw(f.body,80,bodyTop,920,poster?48:46,40,bodyMax,bodyFont,ink,400,centered);
   if(asset&&d.imagePosition==='right'&&!f.body){await photo(80,b+40,920,1140-b-40);}else if(d.takeaway)takeaway(Math.max(b+55,1175-takeawayHeight));
  }
- if(editorialChrome)mark(1210);draw(new URL(post.destination??brand.sourceUrl).hostname.replace(/^www\./,''),80,1250,700,26,26,38,bodyFont,ink);
+ if(editorialChrome)mark(1210);if(!hiddenBrandHeaders.has(ctx))draw(new URL(post.destination??brand.sourceUrl).hostname.replace(/^www\./,''),80,1250,700,26,26,38,bodyFont,ink);
  if(post.format==='carousel'&&index<post.frames.length-1)draw('Swipe →',850,1250,150,26,26,38,bodyFont,ink,600);
 }

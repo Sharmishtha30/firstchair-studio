@@ -1,3 +1,5 @@
+import {anonymizePosts} from '../convex/callPrivacy';
+import {installRedactionInk} from './redactionInk';
 import {appearanceContexts,appearanceReports,recordTextAppearance,paintSlideImage,finishSlideImages} from './appearanceLayout';
 import {fittingCandidates,type TextStyles,type TextField} from '../convex/textStyles';
 import {editorFont} from './textStyleFonts';
@@ -24,7 +26,9 @@ export function loadImage(url:string){let request=images.get(url);if(!request){r
 function rect(ctx:CanvasRenderingContext2D,x:number,y:number,w:number,h:number,fill:string,radius=0){ctx.fillStyle=fill;ctx.beginPath();ctx.roundRect(x,y,w,h,radius);ctx.fill();}
 function outline(ctx:CanvasRenderingContext2D,x:number,y:number,w:number,h:number,colour:string){ctx.strokeStyle=colour;ctx.lineWidth=2;ctx.strokeRect(x,y,w,h);}
 function contain(ctx:CanvasRenderingContext2D,img:HTMLImageElement,x:number,y:number,w:number,h:number){paintSlideImage(ctx,img,{x,y,width:w,height:h},()=>{const s=Math.min(w/img.width,h/img.height),box={x:x+(w-img.width*s)/2,y:y+(h-img.height*s)/2,width:img.width*s,height:img.height*s};ctx.drawImage(img,box.x,box.y,box.width,box.height);return box;});}
+export const hiddenBrandHeaders=new WeakSet<CanvasRenderingContext2D>();
 export async function header(ctx:CanvasRenderingContext2D,brand:Brand,ink:string,font?:string){
+ if(hiddenBrandHeaders.has(ctx))return;
  if(brand.style?.logoUrl){try{const img=await loadImage(brand.style.logoUrl);const s=Math.min(340/img.width,64/img.height);const p=colours(brand);if(foreground(p.paper)==='#ffffff')rect(ctx,80,60,img.width*s+24,88,'#ffffff',4);ctx.drawImage(img,foreground(p.paper)==='#ffffff'?92:80,72,img.width*s,img.height*s);if(img.width/img.height<1.6)text(ctx,brand.name,80+img.width*s+30,84,600,36,60,font??(brand.style?.headline==='serif'?'Georgia':'\"Brand Inter\"'),ink,600,28);return;}catch{/* Text wordmark is the honest fallback. */}}
  text(ctx,brand.name,80,80,680,32,74,brand.style?.headline==='serif'?'Georgia':'"Brand Inter"',ink,600,28);
 }
@@ -32,6 +36,7 @@ const fontCache=new Map<string,Promise<string>>();
 export async function brandFont(brand:Brand,body=false){const original=brand.style;const style=body?{regularUrl:original?.bodyRegularUrl,semiboldUrl:original?.bodySemiboldUrl}:original;if(!style?.regularUrl||!style.semiboldUrl)return '\"Brand Inter\"';const key=style.regularUrl+'|'+style.semiboldUrl;let p=fontCache.get(key);if(!p){p=(async()=>{const name='WebsiteFont'+fontCache.size;for(const [url,weight]of [[style.regularUrl,'400'],[style.semiboldUrl,'600']] as const){const face=new FontFace(name,`url(${url})`,{weight});await face.load();document.fonts.add(face);}return name;})();fontCache.set(key,p);}return p;}
 const renderCache=new Map<string,Promise<HTMLCanvasElement>>();
 export function renderArtwork(post:Post,brand:Brand,index=0,_layout=post.layout??'headline'){
+ const privacyQuotes=post.frames.flatMap(f=>f.quote?[f.quote]:[]);if(privacyQuotes.some(q=>q.privateSpans))post=anonymizePosts([post],privacyQuotes)[0];
  const key=JSON.stringify([post,brand,index]);let result=renderCache.get(key);if(!result){result=paintFitted(post,brand,index);renderCache.set(key,result);if(renderCache.size>80)renderCache.delete(renderCache.keys().next().value!);}return result;
 }
 async function paintFitted(post:Post,brand:Brand,index:number){
@@ -48,6 +53,8 @@ async function paint(post:Post,brand:Brand,index:number,styles:TextStyles){
  const bodyFont=separateBody?await brandFont(brand,true):headingFont;
  const c=document.createElement('canvas');c.width=1080;c.height=1350;bounds.set(c,[]);const ctx=c.getContext('2d')!,p=colours(brand),ink=foreground(p.paper),font=brand.style?.headline==='serif'?(brand.style.fontName&&brand.style.sourceFont.toLowerCase().includes(brand.style.fontName.toLowerCase())?headingFont:'Georgia'):headingFont,weight=brand.style?.weight??(brand.style?.headline==='serif'?400:600),f=post.frames[index];
  if(!f)throw new Error('Slide not found.');
+ if(post.frames.some(frame=>frame.quote))installRedactionInk(ctx,f.quote);
+ if(post.format==='carousel'&&post.frames.some(frame=>frame.quote)&&!post.frames.slice(0,index+1).some(frame=>[frame.heading,frame.body,frame.design?.takeaway].join(' ').toLowerCase().includes(brand.name.toLowerCase())))hiddenBrandHeaders.add(ctx);
  const fonts:Partial<Record<TextField,string>>={};
  for(const field of ['heading','body'] as const){const choice=styles[field]?.font;if(choice&&choice!=='brand')fonts[field]=await editorFont(choice);}
  styledContexts.set(ctx,{styles,fonts});fittedStyles.set(c,styles);appearanceContexts.set(ctx,{colours:f.textColours??{},imageStyle:f.imageStyle,pending:[],textBounds:[]});appearanceReports.set(c,{text:{heading:{background:p.paper,colour:ink},body:{background:!f.design&&f.composition==='spotlight'?p.primary:p.paper,colour:ink}}});
@@ -86,7 +93,7 @@ async function paint(post:Post,brand:Brand,index:number,styles:TextStyles){
    else{rect(ctx,80,1050,920,80,p.primary,0);tx(post.format==='carousel'?'A practical guide':brand.name,110,1069,860,32,46,bodyFont,foreground(p.primary),600,28);}}
 
  }
- rule(1210);tx(new URL(post.destination??brand.sourceUrl).hostname.replace(/^www\./,''),80,1250,700,26,38,bodyFont,ink,400,26);
+ rule(1210);if(!hiddenBrandHeaders.has(ctx))tx(new URL(post.destination??brand.sourceUrl).hostname.replace(/^www\./,''),80,1250,700,26,38,bodyFont,ink,400,26);
  if(post.format==='carousel'&&index<post.frames.length-1)tx('Swipe →',850,1250,150,26,38,bodyFont,ink,600,26);
  finishSlideImages(ctx);return c;
 }

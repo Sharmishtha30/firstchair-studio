@@ -1,3 +1,4 @@
+import {anonymizePosts,publicRedactions} from '../convex/callPrivacy';
 import {zipSync,strToU8} from 'fflate';
 import {PDFDocument} from 'pdf-lib';
 import type {Brand,Post} from '../convex/studioTypes';
@@ -6,6 +7,7 @@ export async function drawFrame(post:Post,brand:Brand,index:number,_progress=0,_
 export async function frameBlob(post:Post,brand:Brand,index:number){const c=await drawFrame(post,brand,index);return new Promise<Blob>((resolve,reject)=>c.toBlob(b=>b?resolve(b):reject(new Error('Artwork export failed.')),'image/png'));}
 export function download(blob:Blob,name:string){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);}
 export async function packFiles(posts:Post[],brand:Brand,onProgress:(s:string)=>void){
+ const quotes=posts.flatMap(p=>p.frames.flatMap(f=>f.quote?[f.quote]:[]));if(quotes.some(q=>q.privateSpans))posts=anonymizePosts(posts,quotes);
  const files:Record<string,Uint8Array>={},captions:string[]=[];
  for(const p of posts.filter(p=>p.format!=='reel')){
   const platform=p.platform??'instagram',folder=platform+'/'+p.format,pngs:Uint8Array[]=[];
@@ -18,6 +20,7 @@ export async function packFiles(posts:Post[],brand:Brand,onProgress:(s:string)=>
  }
  files['captions.txt']=strToU8(captions.join('\n\n----------\n\n'));
  files['sources.txt']=strToU8(`${brand.sourceUrl}\n\n${brand.facts.join('\n')}\n\n${brand.style?.note??'Bundled Inter font fallback.'}\nSource images:\n${(brand.assets??[]).filter(a=>posts.some(p=>p.frames.some(f=>f.assetKey===a.key))).map(a=>a.originalUrl+' — '+a.pageUrl).join('\n')}\n\nVoice and emotional hypotheses are inferred, not customer testimony. No generated photography or invented proof. Layout inspiration: supplied static-ad overview; small copy and ad performance unverified. PDF pages preserve artwork pixels; text is not selectable.`);
+ if(quotes.some(q=>q.privateSpans))for(const name of Object.keys(files))if(name.endsWith('.txt'))files[name]=strToU8(publicRedactions(new TextDecoder().decode(files[name])));
  return files;
 }
 export async function exportImages(posts:Post[],brand:Brand,onProgress:(s:string)=>void,_ads:unknown[]=[]){const files=await packFiles(posts,brand,onProgress);onProgress('Checking ZIP');download(new Blob([zipSync(files) as BlobPart],{type:'application/zip'}),`${brand.name.toLowerCase().replace(/\W+/g,'-')}-social-creatives.zip`);}

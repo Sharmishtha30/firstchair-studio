@@ -18,6 +18,8 @@ import type * as brandPresentation from "../brandPresentation.js";
 import type * as brandStyle from "../brandStyle.js";
 import type * as brandUpload from "../brandUpload.js";
 import type * as businessRecommendations from "../businessRecommendations.js";
+import type * as callPrivacy from "../callPrivacy.js";
+import type * as carouselExamples from "../carouselExamples.js";
 import type * as chatgpt from "../chatgpt.js";
 import type * as chatgptModel from "../chatgptModel.js";
 import type * as chatgptSecurity from "../chatgptSecurity.js";
@@ -85,6 +87,8 @@ declare const fullApi: ApiFromModules<{
   brandStyle: typeof brandStyle;
   brandUpload: typeof brandUpload;
   businessRecommendations: typeof businessRecommendations;
+  callPrivacy: typeof callPrivacy;
+  carouselExamples: typeof carouselExamples;
   chatgpt: typeof chatgpt;
   chatgptModel: typeof chatgptModel;
   chatgptSecurity: typeof chatgptSecurity;

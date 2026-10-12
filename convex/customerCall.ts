@@ -1,8 +1,9 @@
+import type {PrivateSpan} from './callPrivacy';
 import {v} from 'convex/values';
 import {needsCustomerSpeaker,transcriptSpeakers} from './content';
 // A customer call is founder-supplied text. Source lines are verbatim customer sentences chosen by ID, never model-written.
-export type CallQuote={id:string;text:string;group?:'pain'|'today'|'easier'};
-export const callQuoteV=v.object({id:v.string(),text:v.string(),group:v.optional(v.union(v.literal('pain'),v.literal('today'),v.literal('easier')))});
+export type CallQuote={id:string;text:string;privateSpans?:PrivateSpan[];group?:'pain'|'today'|'easier'};
+export const callQuoteV=v.object({id:v.string(),text:v.string(),privateSpans:v.optional(v.array(v.object({start:v.number(),length:v.number(),company:v.boolean()}))),group:v.optional(v.union(v.literal('pain'),v.literal('today'),v.literal('easier')))});
 export const callInputV=v.object({name:v.string(),text:v.string(),customerSpeaker:v.optional(v.string())});
 // No truncation anywhere: longer input is refused with a message, and every accepted sentence is read in chunks.
 export const callLimits={minChars:200,maxChars:150_000,maxName:120,maxSentences:4000,chunkChars:12_000,maxFileBytes:5*1024*1024};
@@ -79,21 +80,21 @@ export function checkCallStory(posts:{format:string;platform?:string;frames:Stor
  const brand=brandName.trim().toLowerCase();
  for(const post of posts){
   const n=post.frames.length,label=`${post.platform??'instagram'} ${post.format}`;
-  if(post.format==='carousel'&&(n<5||n>7))throw new Error(`The ${label} must tell the story in 5 to 7 slides.`);
+  if(post.format==='carousel'&&(n<7||n>8))throw new Error(`The ${label} must tell the story in 7 to 8 slides.`);
   post.frames.forEach((frame,i)=>{
    const where=`${label} slide ${i+1}`,text=slideText(frame),count=words(text).length,cta=post.format==='carousel'&&i===n-1;
-   if(/[“”"«»]/.test(text))throw new Error(`The ${where} uses quotation marks. Rewrite the customer’s story in your own first-person words, without presenting it as a direct quote.`);
+   if(/^[“”"«»].*[“”"«»]$/.test(text.trim()))throw new Error(`The ${where} uses quotation marks. Rewrite the customer’s story in your own first-person words, without presenting it as a direct quote.`);
    if(/\b(a|the|one|our)\s+customer\s+(said|says|told|request|wish|quote)|\bcustomer:\s/i.test(text))throw new Error(`The ${where} labels its line as a customer quote. Tell the story in first person instead.`);
    if(!cta){
     const quote=frame.quote&&quotes.find(q=>q.id===frame.quote!.id&&q.text===frame.quote!.text);
     if(!quote)throw new Error(`The ${where} is not linked to the transcript line it comes from. Set its quoteId.`);
-    if(!firstPerson.test(words(text).join(' ')))throw new Error(`The ${where} is not in the customer’s first-person voice ("I…").`);
+    if(i===0&&!firstPerson.test(words(text).join(' ')))throw new Error(`The ${where} is not in the customer’s first-person voice ("I…").`);
    }
    if(post.format==='carousel'&&i===0){
-    if(count>=12)throw new Error(`The ${label} hook has ${count} words. Keep slide 1 under 12 words.`);
+    if(count>40)throw new Error(`The ${label} hook has ${count} words. Keep slide 1 to 40 words or fewer.`);
     if(brand&&text.toLowerCase().includes(brand))throw new Error(`The ${label} hook names the brand. Open with the customer’s tension instead.`);
     if(genericHook.test(frame.heading.trim()))throw new Error(`The ${label} hook is a generic question. Open with a specific tension, number or admission from the story.`);
-   }else if(count>25)throw new Error(`The ${where} has ${count} words. Keep each slide to 25 words or fewer.`);
+   }else if(count>(post.format==='carousel'?40:25))throw new Error(`The ${where} has ${count} words. Keep each slide to ${post.format==='carousel'?40:25} words or fewer.`);
   });
  }
  return posts;

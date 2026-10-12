@@ -11,3 +11,8 @@ verification/founders-assets/
 verification/*-assets/
 
 verification/quality/**/*.zip
+
+.reel-data/
+
+abhisht-sample/
+abhisht-sample-v2/
