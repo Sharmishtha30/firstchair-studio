@@ -53,7 +53,7 @@ export function progressMessage(stage:string){
  'Inspecting website imagery and choosing useful angles':'Choosing your story and images','Writing posts':'Preparing to write your posts','Writing platform drafts':'Writing your slides and static posts',
  'Checking draft structure':'Checking the post structure','Refining the creative':'Refining your posts','Checking content and design structure':'Checking claims against your site',
  'Improving the idea and its payoff':'Improving your posts from the review','Checking improved drafts':'Checking the revised post structure',
- 'Loading saved sample':'Loading the saved sample','Ready':'Your posts are ready'
+ 'Loading saved sample':'Loading the saved sample','Reading your customer call':'Pulling quotes from your customer call','Reading your whole call':'Reading your whole customer call','Choose your story':'Pick the stories to write','Ready':'Your posts are ready'
  };
  return messages[stage]??stage;
 }
@@ -61,8 +61,10 @@ export function appendStage(history:{stage:string;startedAt:number}[]|undefined,
 
 // Only explicit successful completion events count. No clock or stage-start inference.
 export const generationSteps=['website','colours','assets','plan','drafts','review'] as const;
-export type GenerationStep=typeof generationSteps[number];
-export function completedProgress(completed?:string[]){return Math.round(generationSteps.filter(step=>completed?.includes(step)).length/generationSteps.length*100);}
+// Packs with a customer call add one step; website-only packs keep the six above.
+export const callGenerationSteps=['website','colours','assets','call','plan','drafts','review'] as const;
+export type GenerationStep=typeof callGenerationSteps[number];
+export function completedProgress(completed?:string[],steps:readonly GenerationStep[]=generationSteps){return Math.round(steps.filter(step=>completed?.includes(step)).length/steps.length*100);}
 export function recordCompletion(completed:string[]|undefined,step?:string){return step?[...new Set([...(completed??[]),step])]:completed;}
 
-export const generationStepLabels:Record<GenerationStep,string>={website:'Website read',colours:'Colours picked',assets:'Images and fonts collected',plan:'Story and images chosen',drafts:'Slides and statics written',review:'Claims and direction checked'};
+export const generationStepLabels:Record<GenerationStep,string>={website:'Website read',colours:'Colours picked',assets:'Images and fonts collected',call:'Whole call read',plan:'Story and images chosen',drafts:'Slides and statics written',review:'Claims and direction checked'};

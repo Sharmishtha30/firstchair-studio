@@ -2,10 +2,11 @@ import type {Post} from './studioTypes';
 import type {CreativeAsset} from './creativeTypes';
 // Conservative copy budgets catch crowded drafts before they reach the renderer.
 // Pixel checks remain authoritative: font metrics vary by brand.
-export function checkDesignDensity(posts:Post[]){
+// story: call-pack carousels may use type-led slides; character limits still apply.
+export function checkDesignDensity(posts:Post[],{story=false}:{story?:boolean}={}){
  for(const post of posts)for(const [i,f] of post.frames.entries()){
   const d=f.design;if(!d)continue;
-  if(post.format==='carousel'&&i>0&&!f.assetKey&&(f.items?.length??0)<2)throw Error(`${post.platform} carousel slide ${i+1}: needs a relevant source image or a compact visual comparison/process, not another text-only page.`);
+  if(!story&&post.format==='carousel'&&i>0&&!f.assetKey&&(f.items?.length??0)<2)throw Error(`${post.platform} carousel slide ${i+1}: needs a relevant source image or a compact visual comparison/process, not another text-only page.`);
   const visible=[f.heading,f.body,f.eyebrow??'',d.takeaway,...(f.items??[]).flatMap(item=>[item.label,item.detail])].join(' ').trim().split(/\s+/).filter(Boolean);
   if(post.format==='carousel'&&visible.length>32)throw Error(`${post.platform} carousel slide ${i+1}: exceeds 32 visible words. Keep one idea, show it visually and move explanation into the caption.`);
   const limit=(value:string,max:number,label:string)=>{if(value.trim().length>max)throw Error(`${post.platform} ${post.format} slide ${i+1}: ${d.layout} ${label} exceeds ${max} characters. Rewrite concisely; move context to the caption.`);};
@@ -26,8 +27,9 @@ export function checkDesignDensity(posts:Post[]){
 // The evidence reviewer still decides whether a candidate shows the named product.
 export function productImageKeys(assets:Pick<CreativeAsset,'key'|'role'>[]){return assets.filter(a=>a.role==='product'||a.role==='editorial').map(a=>a.key);}
 
-export function checkProductPriority(posts:Post[],priority:string|undefined,assets:Pick<CreativeAsset,'key'|'role'>[]){
+// story: in call packs only the static and the carousel's closing action slide must lead with the product.
+export function checkProductPriority(posts:Post[],priority:string|undefined,assets:Pick<CreativeAsset,'key'|'role'>[],{story=false}:{story?:boolean}={}){
  const allowed=productImageKeys(assets);
  if(priority!=='product'||!allowed.length)return;
- for(const post of posts)for(const [index,frame] of post.frames.entries()){if(frame.design?.layout!=='product'||!allowed.includes(frame.assetKey??''))throw Error(`${post.platform} ${post.format} slide ${index+1}: tangible product must lead every slide using product layout and a supplied product asset. Show a different relevant product detail or source scene; keep explanation in captions.`);}
+ for(const post of posts)for(const [index,frame] of post.frames.entries()){if(story&&post.format==='carousel'&&index<post.frames.length-1)continue;if(frame.design?.layout!=='product'||!allowed.includes(frame.assetKey??''))throw Error(`${post.platform} ${post.format} slide ${index+1}: tangible product must lead every slide using product layout and a supplied product asset. Show a different relevant product detail or source scene; keep explanation in captions.`);}
 }

@@ -33,7 +33,9 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_identity", ["clientId", "subject"]),
-  packs: defineTable(packFields).index("by_token", ["token"]),
+  packs: defineTable(packFields).index("by_token", ["token"]).index("by_call", ["callTranscriptId"]),
+  // Founder-supplied call transcripts, readable only through the owning account's packs.
+  callTranscripts: defineTable({userId: v.id("users"), name: v.string(), text: v.string(), customerSpeaker: v.optional(v.string()), createdAt: v.number()}).index("by_user", ["userId"]),
   runs: defineTable({
     token: v.string(),
     userId: v.optional(v.id("users")),

@@ -2,6 +2,8 @@ import {imageStyleV,validColour} from './appearance';
 import {textStylesV,updateTextStyle} from './textStyles';
 import {needsDirection,completeDirection,validDirectionAnswer,appendStage,recordCompletion} from './onboarding';
 import { mutation, query, internalMutation, internalQuery } from './_generated/server';
+import type { Doc, Id } from './_generated/dataModel';
+import type { MutationCtx } from './_generated/server';
 import { internal, components } from './_generated/api';
 import { v, ConvexError } from 'convex/values';
 import { getAuthUserId } from '@convex-dev/auth/server';
@@ -13,6 +15,7 @@ import { websiteUrl } from './websiteSafety';
 import {copyLensV} from './copyLenses';
 import {claimEdit,remainingEdits} from './editAllowance';
 import {checkDesignDensity} from './creativeDensity';
+import {callInputV,callQuoteV,storylineV,checkCallInput,stripQuotes} from './customerCall';
 const workflow=new WorkflowManager(components.workflow);
 export const makePack=workflow.define({args:{packId:v.id('packs'),revision:v.optional(v.boolean()),startedAt:v.optional(v.number())},returns:v.null()}).handler(async(step,{packId,revision,startedAt}):Promise<null>=>{
   try {
@@ -29,7 +32,7 @@ export const makePack=workflow.define({args:{packId:v.id('packs'),revision:v.opt
   }
   return null;
 });
-export const start=mutation({args:{url:v.string(),token:v.string(),platforms:v.optional(v.array(platformV)),onboardingRequested:v.optional(v.boolean())},returns:v.string(),handler:async(ctx,args):Promise<string>=>{
+export const start=mutation({args:{url:v.string(),token:v.string(),platforms:v.optional(v.array(platformV)),onboardingRequested:v.optional(v.boolean()),call:v.optional(callInputV)},returns:v.string(),handler:async(ctx,args):Promise<string>=>{
   if(!/^[a-f0-9]{64}$/.test(args.token))throw new ConvexError('Invalid pack link.');
   const url=websiteUrl(args.url).href;const platforms=args.platforms??['instagram','linkedin'];if(!platforms.length||new Set(platforms).size!==platforms.length)throw new ConvexError('Choose Instagram, LinkedIn or both.');
   const userId=await getAuthUserId(ctx);
@@ -37,16 +40,22 @@ export const start=mutation({args:{url:v.string(),token:v.string(),platforms:v.o
   if(existing){if(existing.url===url&&existing.userId===(userId??undefined))return existing.token;throw new ConvexError('That pack link is already in use. Create a fresh pack.');}
   const unavailable=generationUnavailable(url,userId);if(unavailable)throw new ConvexError(unavailable);
   const startedAt=Date.now();
-  const packId=await ctx.db.insert('packs',{token:args.token,url,platforms,onboardingRequested:args.onboardingRequested,onboardingVersion:args.onboardingRequested?2:undefined,stageHistory:[{stage:'Reading the website',startedAt}],userId:userId??undefined,stage:'Reading the website',operationStartedAt:startedAt,createdAt:Date.now(),updatedAt:Date.now()});
+  let call:{callRequested:true;callTranscriptId:Id<'callTranscripts'>;callName:string}|undefined;
+  if(args.call){
+   if(!userId)throw new ConvexError('Connect ChatGPT before adding a customer call. Calls are saved only to your account.');
+   let checked;try{checked=checkCallInput(args.call);}catch(e){throw new ConvexError(e instanceof Error?e.message:'This call transcript could not be read.');}
+   call={callRequested:true,callName:checked.name,callTranscriptId:await ctx.db.insert('callTranscripts',{userId,name:checked.name,text:checked.text,customerSpeaker:checked.customerSpeaker,createdAt:startedAt})};
+  }
+  const packId=await ctx.db.insert('packs',{token:args.token,url,platforms,onboardingRequested:args.onboardingRequested,onboardingVersion:args.onboardingRequested?2:undefined,stageHistory:[{stage:'Reading the website',startedAt}],userId:userId??undefined,...call,stage:'Reading the website',operationStartedAt:startedAt,createdAt:Date.now(),updatedAt:Date.now()});
   await workflow.start(ctx,internal.studio.makePack,{packId,startedAt});
   await ctx.scheduler.runAfter(720000,internal.studio.expire,{packId,startedAt});return args.token;
 }});
-export const get=query({args:{token:v.string()},returns:v.union(v.null(),v.object({url:v.string(),onboardingComplete:v.boolean(),completedSteps:v.optional(v.array(v.string())),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),inspectionComplete:v.boolean(),onboardingAssets:v.optional(v.array(v.object({key:v.string(),url:v.string(),alt:v.string(),role:v.string()}))),onboardingPalette:v.optional(paletteV),onboardingTitle:v.optional(v.string()),stage:v.string(),updatedAt:v.number(),editsRemaining:v.number(),downloadedAt:v.optional(v.number()),copyLens:v.optional(copyLensV),sourcePages:v.optional(v.array(sourcePageV)),sourceWarnings:v.optional(v.array(v.string())),platforms:v.optional(v.array(platformV)),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),imageStatus:v.optional(v.string()),imageError:v.optional(v.string()),videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoUrl:v.optional(v.string()),hasVideoTask:v.boolean(),ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string())})),handler:async(ctx,{token})=>{
+export const get=query({args:{token:v.string()},returns:v.union(v.null(),v.object({url:v.string(),onboardingComplete:v.boolean(),completedSteps:v.optional(v.array(v.string())),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),inspectionComplete:v.boolean(),onboardingAssets:v.optional(v.array(v.object({key:v.string(),url:v.string(),alt:v.string(),role:v.string()}))),onboardingPalette:v.optional(paletteV),onboardingTitle:v.optional(v.string()),stage:v.string(),updatedAt:v.number(),editsRemaining:v.number(),downloadedAt:v.optional(v.number()),copyLens:v.optional(copyLensV),sourcePages:v.optional(v.array(sourcePageV)),sourceWarnings:v.optional(v.array(v.string())),platforms:v.optional(v.array(platformV)),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),imageStatus:v.optional(v.string()),imageError:v.optional(v.string()),videoStatus:v.optional(v.string()),videoError:v.optional(v.string()),videoUrl:v.optional(v.string()),hasVideoTask:v.boolean(),ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string()),call:v.optional(v.object({name:v.string(),saved:v.boolean(),deletedAt:v.optional(v.number()),read:v.optional(v.object({sentences:v.number(),chunks:v.number(),moments:v.number()})),storylines:v.optional(v.array(storylineV)),chosenId:v.optional(v.string()),siblings:v.array(v.object({token:v.string(),title:v.string()}))}))})),handler:async(ctx,{token})=>{
  const p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
- if(!p)return null;const reader=await getAuthUserId(ctx);if(p.userId&&reader!==p.userId)return null;const baseBrand=p.brand??p.draftBrand;const unavailable=generationUnavailable(p.url,p.userId);return {url:p.url,onboardingComplete:!needsDirection(p),completedSteps:p.completedSteps,directionAnswers:p.directionAnswers,detectedCategory:p.detectedCategory,inspectionComplete:!!p.inspectionCompleteAt,onboardingTitle:p.sourcePages?.[0]?.title,onboardingPalette:p.sitePalette,onboardingAssets:p.stage==='Confirm your direction'?await Promise.all((p.sourceAssets??[]).map(async a=>({key:a.key,url:(await ctx.storage.getUrl(a.file))??'',alt:a.alt,role:a.role}))):undefined,editsRemaining:remainingEdits(p.editCount),downloadedAt:p.downloadedAt,copyLens:p.copyLens,sourcePages:p.sourcePages,sourceWarnings:p.sourceWarnings,platforms:p.platforms,stage:unavailable?'Needs attention':p.stage,updatedAt:p.updatedAt,brand:baseBrand?{...baseBrand,strategy:p.strategy??baseBrand.strategy,assets:await Promise.all((p.sourceAssets??[]).map(async({file,...asset})=>({...asset,url:(await ctx.storage.getUrl(file))??''}))),style:{...(p.siteStyle??baseBrand.style??{headline:"sans" as const,weight:600,sourceFont:"Not found",note:"Font information is missing; bundled Inter fallback."}),fontName:p.fontName,regularUrl:p.fontRegular?(await ctx.storage.getUrl(p.fontRegular))??undefined:undefined,semiboldUrl:p.fontSemibold?(await ctx.storage.getUrl(p.fontSemibold))??undefined:undefined,bodyRegularUrl:p.bodyFontRegular?(await ctx.storage.getUrl(p.bodyFontRegular))??undefined:undefined,bodySemiboldUrl:p.bodyFontSemibold?(await ctx.storage.getUrl(p.bodyFontSemibold))??undefined:undefined,logoUrl:p.logoFile?(await ctx.storage.getUrl(p.logoFile))??undefined:undefined},artwork:{sceneUrl:p.sceneFile?(await ctx.storage.getUrl(p.sceneFile))??undefined:undefined,presenterUrl:p.presenterFile?(await ctx.storage.getUrl(p.presenterFile))??undefined:undefined,note:p.sceneFile&&p.presenterFile?'Original fictional images generated for this pack with Seedream.':'This creative flow uses website images and original diagrams; no generated photos.'}}:undefined,posts:(p.posts??p.draftPosts)?.length&&(p.posts??p.draftPosts)!.every(x=>x.frames.length>0&&x.frames.every(f=>f.heading.trim()))?(p.posts??p.draftPosts)?.filter(x=>x.format!=='reel'):undefined,mode:p.mode,error:unavailable??p.error,imageStatus:p.imageStatus,imageError:p.imageError,videoStatus:p.videoStatus,videoError:p.videoError,videoUrl:p.videoFile?(await ctx.storage.getUrl(p.videoFile))??undefined:undefined,hasVideoTask:!!p.videoTask,ads:p.ads,adStatus:p.adStatus,adError:p.adError};
+ if(!p)return null;const reader=await getAuthUserId(ctx);if(p.userId&&reader!==p.userId)return null;const baseBrand=p.brand??p.draftBrand;const unavailable=generationUnavailable(p.url,p.userId);return {url:p.url,onboardingComplete:!needsDirection(p),completedSteps:p.completedSteps,directionAnswers:p.directionAnswers,detectedCategory:p.detectedCategory,inspectionComplete:!!p.inspectionCompleteAt,onboardingTitle:p.sourcePages?.[0]?.title,onboardingPalette:p.sitePalette,onboardingAssets:p.stage==='Confirm your direction'?await Promise.all((p.sourceAssets??[]).map(async a=>({key:a.key,url:(await ctx.storage.getUrl(a.file))??'',alt:a.alt,role:a.role}))):undefined,editsRemaining:remainingEdits(p.editCount),downloadedAt:p.downloadedAt,copyLens:p.copyLens,sourcePages:p.sourcePages,sourceWarnings:p.sourceWarnings,platforms:p.platforms,stage:unavailable?'Needs attention':p.stage,updatedAt:p.updatedAt,brand:baseBrand?{...baseBrand,strategy:p.strategy??baseBrand.strategy,assets:await Promise.all((p.sourceAssets??[]).map(async({file,...asset})=>({...asset,url:(await ctx.storage.getUrl(file))??''}))),style:{...(p.siteStyle??baseBrand.style??{headline:"sans" as const,weight:600,sourceFont:"Not found",note:"Font information is missing; bundled Inter fallback."}),fontName:p.fontName,regularUrl:p.fontRegular?(await ctx.storage.getUrl(p.fontRegular))??undefined:undefined,semiboldUrl:p.fontSemibold?(await ctx.storage.getUrl(p.fontSemibold))??undefined:undefined,bodyRegularUrl:p.bodyFontRegular?(await ctx.storage.getUrl(p.bodyFontRegular))??undefined:undefined,bodySemiboldUrl:p.bodyFontSemibold?(await ctx.storage.getUrl(p.bodyFontSemibold))??undefined:undefined,logoUrl:p.logoFile?(await ctx.storage.getUrl(p.logoFile))??undefined:undefined},artwork:{sceneUrl:p.sceneFile?(await ctx.storage.getUrl(p.sceneFile))??undefined:undefined,presenterUrl:p.presenterFile?(await ctx.storage.getUrl(p.presenterFile))??undefined:undefined,note:p.sceneFile&&p.presenterFile?'Original fictional images generated for this pack with Seedream.':'This creative flow uses website images and original diagrams; no generated photos.'}}:undefined,posts:(p.posts??p.draftPosts)?.length&&(p.posts??p.draftPosts)!.every(x=>x.frames.length>0&&x.frames.every(f=>f.heading.trim()))?(p.posts??p.draftPosts)?.filter(x=>x.format!=='reel'):undefined,mode:p.mode,error:unavailable??p.error,imageStatus:p.imageStatus,imageError:p.imageError,videoStatus:p.videoStatus,videoError:p.videoError,videoUrl:p.videoFile?(await ctx.storage.getUrl(p.videoFile))??undefined:undefined,hasVideoTask:!!p.videoTask,ads:p.ads,adStatus:p.adStatus,adError:p.adError,call:p.callRequested?{name:p.callName??'Customer call',saved:!!p.callTranscriptId,deletedAt:p.callDeletedAt,read:p.callRead,storylines:p.callStorylines,chosenId:p.callStorylineId,siblings:p.callTranscriptId&&p.userId?(await ctx.db.query('packs').withIndex('by_call',q=>q.eq('callTranscriptId',p.callTranscriptId)).collect()).filter(x=>x.userId===p.userId&&x.callStorylineId).map(x=>({token:x.token,title:x.callStorylines?.find(st=>st.id===x.callStorylineId)?.title??'Story'})):[]}:undefined};
 }});
 export const getInternal=internalQuery({args:{packId:v.id('packs')},returns:v.union(v.null(),v.object({_id:v.id('packs'),_creationTime:v.number(),...packFields})),handler:async(ctx,{packId})=>ctx.db.get(packId)});
-export const update=internalMutation({args:{packId:v.id('packs'),startedAt:v.optional(v.number()),resetFonts:v.optional(v.boolean()),resetLogo:v.optional(v.boolean()),stage:v.string(),completedStep:v.optional(v.union(v.literal('website'),v.literal('colours'),v.literal('assets'),v.literal('plan'),v.literal('drafts'),v.literal('review'))),detectedCategory:v.optional(categoryV),draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),fontName:v.optional(v.string()),fontRegular:v.optional(v.id('_storage')),fontSemibold:v.optional(v.id('_storage')),bodyFontRegular:v.optional(v.id('_storage')),bodyFontSemibold:v.optional(v.id('_storage')),writerRun:v.optional(writerRunV),strategy:v.optional(strategyV),sourcePages:v.optional(v.array(sourcePageV)),sourceAssets:v.optional(v.array(sourceAssetV)),sourceWarnings:v.optional(v.array(v.string())),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),siteStyle:v.optional(styleV),logoFile:v.optional(v.id('_storage')),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string())},returns:v.null(),handler:async(ctx,{packId,startedAt,resetFonts,resetLogo,completedStep,...patch})=>{
+export const update=internalMutation({args:{packId:v.id('packs'),startedAt:v.optional(v.number()),resetFonts:v.optional(v.boolean()),resetLogo:v.optional(v.boolean()),stage:v.string(),completedStep:v.optional(v.union(v.literal('call'),v.literal('website'),v.literal('colours'),v.literal('assets'),v.literal('plan'),v.literal('drafts'),v.literal('review'))),detectedCategory:v.optional(categoryV),draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),fontName:v.optional(v.string()),fontRegular:v.optional(v.id('_storage')),fontSemibold:v.optional(v.id('_storage')),bodyFontRegular:v.optional(v.id('_storage')),bodyFontSemibold:v.optional(v.id('_storage')),writerRun:v.optional(writerRunV),strategy:v.optional(strategyV),sourcePages:v.optional(v.array(sourcePageV)),sourceAssets:v.optional(v.array(sourceAssetV)),sourceWarnings:v.optional(v.array(v.string())),sourceText:v.optional(v.string()),sitePalette:v.optional(paletteV),siteStyle:v.optional(styleV),logoFile:v.optional(v.id('_storage')),brand:v.optional(brandV),posts:v.optional(v.array(postV)),mode:v.optional(v.string()),error:v.optional(v.string()),callQuotes:v.optional(v.array(callQuoteV)),callStorylines:v.optional(v.array(storylineV)),callRead:v.optional(v.object({sentences:v.number(),chunks:v.number(),moments:v.number()}))},returns:v.null(),handler:async(ctx,{packId,startedAt,resetFonts,resetLogo,completedStep,...patch})=>{
  const current=await ctx.db.get(packId);if(!current||current.error||startedAt!==undefined&&current.operationStartedAt!==startedAt)return null;
  const now=Date.now();
  await ctx.db.patch(packId,{completedSteps:recordCompletion(current.completedSteps,completedStep),stageHistory:appendStage(current.stageHistory,patch.stage,now),...(patch.stage==='Ready'&&!current.firstReadyAt?{firstReadyAt:now}:{}),...Object.fromEntries(Object.entries(patch).filter(([,x])=>x!==undefined)),updatedAt:Date.now(),...(resetLogo?{logoFile:undefined}:{}),...(resetFonts?{fontName:undefined,fontRegular:undefined,fontSemibold:undefined,bodyFontRegular:undefined,bodyFontSemibold:undefined}:{}),...(patch.stage==='Ready'?{error:undefined,feedback:undefined,revisionFormat:undefined,revisionPlatform:undefined}: {})});return null;
@@ -54,7 +63,7 @@ export const update=internalMutation({args:{packId:v.id('packs'),startedAt:v.opt
 
 export const expire=internalMutation({args:{packId:v.id('packs'),startedAt:v.optional(v.number())},returns:v.null(),handler:async(ctx,{packId,startedAt})=>{
  const pack=await ctx.db.get(packId);if(startedAt!==undefined&&pack?.operationStartedAt!==startedAt)return null;
- if(pack&&pack.stage!=='Ready'&&pack.stage!=='Confirm your direction'&&!pack.error)await ctx.db.patch(packId,{stage:'Needs attention',error:'The writer did not finish within twelve minutes. Try again; your saved website is still here.',updatedAt:Date.now()});return null;
+ if(pack&&pack.stage!=='Ready'&&pack.stage!=='Confirm your direction'&&pack.stage!=='Choose your story'&&!pack.error)await ctx.db.patch(packId,{stage:'Needs attention',error:'The writer did not finish within twelve minutes. Try again; your saved website is still here.',updatedAt:Date.now()});return null;
 }});
 
 export const revise=mutation({args:{token:v.string(),format:v.union(v.literal('carousel'),v.literal('static')),platform:v.optional(platformV),feedback:v.string()},returns:v.null(),handler:async(ctx,{token,format,platform,feedback})=>{
@@ -173,3 +182,57 @@ export const styleAppearance=mutation({args:{token:v.string(),platform:platformV
  if(!found)throw new ConvexError('Creative not found.');
  await ctx.db.patch(pack._id,{posts,updatedAt:Date.now()});return null;
 }});
+
+// Writer-only read: the transcript text never leaves the backend through a public query.
+export const callTranscript=internalQuery({args:{packId:v.id('packs')},returns:v.union(v.null(),v.object({text:v.string(),customerSpeaker:v.optional(v.string())})),handler:async(ctx,{packId})=>{
+ const p=await ctx.db.get(packId);if(!p?.callTranscriptId||!p.userId)return null;
+ const t=await ctx.db.get(p.callTranscriptId);if(!t||t.userId!==p.userId)return null;
+ return {text:t.text,customerSpeaker:t.customerSpeaker};
+}});
+
+export const deleteCall=mutation({args:{token:v.string()},returns:v.null(),handler:async(ctx,{token})=>{
+ const userId=await getAuthUserId(ctx),p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
+ if(!userId||!p||p.userId!==userId)throw new ConvexError('Connect to the account that added this call to delete it.');
+ await removeCall(ctx,p,userId);return null;
+}});
+export async function removeCall(ctx:MutationCtx,p:Doc<'packs'>,userId:Id<'users'>){
+ if(!p.callRequested||p.callDeletedAt)throw new ConvexError('No customer call is saved for this pack.');
+ // Every storyline pack from this call shares the transcript, so all of them lose it together.
+ const siblings=p.callTranscriptId?(await ctx.db.query('packs').withIndex('by_call',q=>q.eq('callTranscriptId',p.callTranscriptId)).collect()).filter(x=>x.userId===userId):[p];
+ if(p.callTranscriptId){const t=await ctx.db.get(p.callTranscriptId);if(t&&t.userId===userId)await ctx.db.delete(t._id);}
+ const now=Date.now();
+ for(const x of siblings.some(x=>x._id===p._id)?siblings:[...siblings,p]){
+  const running=x.stage!=='Ready'&&!x.error&&x.stage!=='Choose your story';
+  // A changed operation and an error stop any writer still holding call lines in memory.
+  await ctx.db.patch(x._id,{callTranscriptId:undefined,callQuotes:undefined,callStory:undefined,callStorylines:undefined,callDeletedAt:now,posts:stripQuotes(x.posts),draftPosts:stripQuotes(x.draftPosts),previousPosts:stripQuotes(x.previousPosts),updatedAt:now,
+   ...(running||x.stage==='Choose your story'?{stage:'Needs attention',operationStartedAt:now,error:running?'You deleted the customer call while posts were being written, so writing stopped. No posts were made from your website alone.':'You deleted the customer call before choosing a story, so no posts were made.'}:{})});
+ }
+}
+
+// The founder picks one or more storylines. The first is written in this pack; each extra one gets its own pack with the same website evidence.
+export const chooseStorylines=mutation({args:{token:v.string(),ids:v.array(v.string()),newTokens:v.array(v.string())},returns:v.array(v.string()),handler:async(ctx,{token,ids,newTokens})=>{
+ const userId=await getAuthUserId(ctx),p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',token)).unique();
+ if(!userId||!p||p.userId!==userId)throw new ConvexError('Connect to the account that added this call to choose its stories.');
+ return startStorylines(ctx,p,ids,newTokens);
+}});
+export async function startStorylines(ctx:MutationCtx,p:Doc<'packs'>,ids:string[],newTokens:string[]){
+ const token=p.token;
+ if(p.stage!=='Choose your story'||p.error||!p.callStorylines?.length||!p.callTranscriptId)throw new ConvexError('These stories cannot be chosen now.');
+ const picked=[...new Set(ids)];
+ if(!picked.length||picked.some(id=>!p.callStorylines!.some(s=>s.id===id)))throw new ConvexError('Choose at least one story from the list.');
+ if(newTokens.length!==picked.length-1||newTokens.some(t=>!/^[a-f0-9]{64}$/.test(t)))throw new ConvexError('Invalid pack link.');
+ const now=Date.now(),tokens=[token];
+ const {_id,_creationTime,token:_t,posts,draftPosts,previousPosts,previousBrand,brand,strategy,writerRun,mode,error,editCount,downloadedAt,parentToken,...shared}=p;
+ for(const [i,id] of picked.entries()){
+  let packId=p._id;
+  if(i===0)await ctx.db.patch(p._id,{callStorylineId:id,stage:'Preparing writer',stageHistory:appendStage(p.stageHistory,'Preparing writer',now),operationStartedAt:now,updatedAt:now});
+  else{
+   if(await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',newTokens[i-1])).unique())throw new ConvexError('That pack link is already in use.');
+   packId=await ctx.db.insert('packs',{...shared,token:newTokens[i-1],parentToken:token,callStorylineId:id,stage:'Preparing writer',stageHistory:[{stage:'Preparing writer',startedAt:now}],operationStartedAt:now,createdAt:now,updatedAt:now});
+   tokens.push(newTokens[i-1]);
+  }
+  await workflow.start(ctx,internal.studio.makePack,{packId,revision:true,startedAt:now});
+  await ctx.scheduler.runAfter(720000,internal.studio.expire,{packId,startedAt:now});
+ }
+ return tokens;
+}

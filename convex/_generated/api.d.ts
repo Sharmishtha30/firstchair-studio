@@ -10,6 +10,7 @@
 
 import type * as adInspiration from "../adInspiration.js";
 import type * as adStore from "../adStore.js";
+import type * as appearance from "../appearance.js";
 import type * as auth from "../auth.js";
 import type * as brandContext from "../brandContext.js";
 import type * as brandPalette from "../brandPalette.js";
@@ -27,6 +28,7 @@ import type * as copyPolicy from "../copyPolicy.js";
 import type * as creativeDensity from "../creativeDensity.js";
 import type * as creativeImages from "../creativeImages.js";
 import type * as creativeTypes from "../creativeTypes.js";
+import type * as customerCall from "../customerCall.js";
 import type * as demoStories from "../demoStories.js";
 import type * as editAllowance from "../editAllowance.js";
 import type * as foundersPack from "../foundersPack.js";
@@ -51,6 +53,7 @@ import type * as studio from "../studio.js";
 import type * as studioTypes from "../studioTypes.js";
 import type * as studioVerification from "../studioVerification.js";
 import type * as studioWriter from "../studioWriter.js";
+import type * as textStyles from "../textStyles.js";
 import type * as validators from "../validators.js";
 import type * as website from "../website.js";
 import type * as websiteAssets from "../websiteAssets.js";
@@ -74,6 +77,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   adInspiration: typeof adInspiration;
   adStore: typeof adStore;
+  appearance: typeof appearance;
   auth: typeof auth;
   brandContext: typeof brandContext;
   brandPalette: typeof brandPalette;
@@ -91,6 +95,7 @@ declare const fullApi: ApiFromModules<{
   creativeDensity: typeof creativeDensity;
   creativeImages: typeof creativeImages;
   creativeTypes: typeof creativeTypes;
+  customerCall: typeof customerCall;
   demoStories: typeof demoStories;
   editAllowance: typeof editAllowance;
   foundersPack: typeof foundersPack;
@@ -115,6 +120,7 @@ declare const fullApi: ApiFromModules<{
   studioTypes: typeof studioTypes;
   studioVerification: typeof studioVerification;
   studioWriter: typeof studioWriter;
+  textStyles: typeof textStyles;
   validators: typeof validators;
   website: typeof website;
   websiteAssets: typeof websiteAssets;
