@@ -26,7 +26,14 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   const stream=await agent.streamObject(ctx,{threadId},{schema:schema as z.ZodObject,prompt:JSON.stringify(prompt),maxRetries:0,abortSignal:AbortSignal.timeout(150000),providerOptions:{openai:{store:false,systemMessageMode:'developer',reasoningEffort:'low'}}});
   try{return schema.parse(await finishedObject(stream));}catch(error){throw new Error(sourceWriterFailure(error));}
  }
- const plan=await generate('Understanding your content and writing the story',planInstructions,planSchema,{source:input});checkPlan(plan,source);
+ let plan=await generate('Understanding your content and writing the story',planInstructions,planSchema,{source:input});
+ // Keep exact-source verification strict; give an otherwise usable plan one repair.
+ if(plan.usable){
+  try{checkPlan(plan,source);}catch(error){
+   plan=await generate('Correcting source quotations',planInstructions,planSchema,{source:input,plan,issue:(error as Error).message,instruction:'Every evidence string must be an exact contiguous substring copied from the source, including punctuation and apostrophes. Replace paraphrased evidence with verbatim source text. Keep the script grounded in those excerpts.'});
+  }
+ }
+ checkPlan(plan,source);
  await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Story written',completedStep:'plan'});
  if(source.kind==='call')await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Call understood',completedStep:'call'});
  const evidence=[...new Set(plan.script.flatMap(p=>p.evidence))];

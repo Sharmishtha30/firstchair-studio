@@ -12,3 +12,11 @@
 - No Git push or deployment. User trial and remaining release checks precede publication.
 
 No pack tokens, credentials or private transcript text are included in this report.
+
+## Production OpenAI test — 2026-10-13
+- Production visitor sessions create successfully and persist on refresh.
+- OpenAI API credentials are accepted; no credentials are recorded here.
+- Two real-browser article submissions failed exact source-evidence validation at approximately 105 and 130 seconds.
+- Added one bounded quotation-repair attempt, preserving strict validation. The second run still failed, so this is not a verified generation fix.
+- Type checks and all 179 tests pass; they do not establish production generation success.
+- Production is not yet ready for external generation testers. Next: replace model-copied quotation strings with source-indexed evidence references and verify article and transcript output end to end.
