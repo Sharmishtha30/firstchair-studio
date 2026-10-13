@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 # Brand-specific creative direction
 
 This replaces the earlier Founder’s Find-only art direction. The studio interface is separate from every customer's exported content.

@@ -4,8 +4,10 @@ import {internalAction} from './_generated/server';
 import {internal} from './_generated/api';
 import {v} from 'convex/values';
 import {load} from 'cheerio';
+import {requireBrandEvidence} from './brandAcceptance';
 import {extractPalette} from './brandPalette';
 import {matchedWebsiteColours,matchedWebsiteColourRoles} from './websiteColours';
+import {websiteTypography} from './websiteTypography';
 import {extractStyle} from './brandStyle';
 import {websiteGeometry} from './websiteGeometry';
 import {websiteImageSource} from './websiteImageSource';
@@ -35,11 +37,12 @@ function inspectHtml(url:string,html:string){
 }
 export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(),handler:async(ctx,{packId})=>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(!pack)throw new Error('Pack no longer exists.');
+ const stylingOnly=!!pack.callRequested||!!pack.article;
  const main=await publicWebsite(pack.url),home=inspectHtml(main.url,main.html),warnings:string[]=[];
- if(home.language&&!/^en(?:-|$)/i.test(home.language))throw new Error('Only English output is tested in this version. Paste English business text to continue.');
- if(home.page.blocks.map(b=>b.text).join('').length<100)throw new Error('This website has too little readable text. Try a public product or service page.');
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Reading related pages',sourcePages:[home.page],detectedCategory:detectCategory(home.page.title+' '+home.page.blocks.slice(0,35).map(b=>b.text).join(' '))});
- const urls=[...new Set(home.links.map(l=>l.url))].slice(0,4);
+ if(!stylingOnly&&home.language&&!/^en(?:-|$)/i.test(home.language))throw new Error('Only English output is tested in this version. Paste English business text to continue.');
+ if(!stylingOnly&&home.page.blocks.map(b=>b.text).join('').length<100)throw new Error('This website has too little readable text. Try a public product or service page.');
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:stylingOnly?'Reading website fonts and colours':'Reading related pages',...(stylingOnly?{}:{sourcePages:[home.page],detectedCategory:detectCategory(home.page.title+' '+home.page.blocks.slice(0,35).map(b=>b.text).join(' '))})});
+ const urls=stylingOnly?[]:[...new Set(home.links.map(l=>l.url))].slice(0,4);
  const pagesPromise=Promise.allSettled(urls.map(async u=>{const r=await publicWebsite(u);if(new URL(r.url).origin!==new URL(main.url).origin)throw new Error('Related page redirected outside this website.');return inspectHtml(r.url,r.html);}));
  const sheetsPromise=Promise.allSettled(home.styles.map(u=>publicWebsite(u,'text/css')));
  const [pages,sheets]=await Promise.all([pagesPromise,sheetsPromise]);
@@ -48,7 +51,8 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  const scoped=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>home.bodyClasses.some(c=>m[1].split(',').some(selector=>selector.trim()==='.'+c||selector.trim()==='body.'+c))).map(m=>m[2]).join(';');if(scoped)css=':root{'+scoped+'}\n'+css;
  for(const [i,sheet]of sheets.entries()){if(sheet.status!=='fulfilled')continue;for(const match of sheet.value.html.matchAll(/url\([\"']?([^\"')]+\.(?:jpg|jpeg|png|webp)(?:\?[^\"')]*)?)[\"']?\)/gi)){try{home.images.push({url:new URL(match[1],home.styles[i]).href,alt:'Source background image for '+home.page.title,pageUrl:home.page.url,score:1,role:'website background'});}catch{}}}
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Picking brand colours',completedStep:'website'});
- const palette=extractPalette(css,home.usedClasses,matchedWebsiteColours(load(main.html),css),matchedWebsiteColourRoles(load(main.html),css)),style={...extractStyle(css,home.primaryHeadingClasses),...websiteGeometry(load(main.html),css)};
+ const palette=extractPalette(css,home.usedClasses,matchedWebsiteColours(load(main.html),css),matchedWebsiteColourRoles(load(main.html),css)),style={...extractStyle(css,home.primaryHeadingClasses),...websiteTypography(load(main.html),css),...websiteGeometry(load(main.html),css)};
+ if(pack.article||pack.callRequested)requireBrandEvidence(palette);
  home.page.blocks.push(...websiteBrandEvidence(load(main.html),css));
  warnings.push('Asset collection covers the homepage and up to four linked offer, about or review pages, with up to 24 imported images and illustrations. Dynamic or protected content may be missing; CSS declarations are not computed browser styles.');
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Loading website fonts',completedStep:'colours',sitePalette:palette});
@@ -81,6 +85,10 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
    if(faces.length){const targets=[400,600].map(w=>[...faces].sort((a,b)=>Math.abs(a.weight-w)-Math.abs(b.weight-w))[0]);const files=await Promise.all(targets.map(async face=>{const r=await publicWebsite(face.url,'font/');if(!r.bytes||r.bytes.length>2000000)throw Error('Unsupported body font');return ctx.storage.store(new Blob([r.bytes as BlobPart],{type:/\.otf(?:\?|$)/i.test(face.url)?'font/otf':/\.ttf(?:\?|$)/i.test(face.url)?'font/ttf':'font/woff2'}));}));[bodyFontRegular,bodyFontSemibold]=files;style.note+=' Separate declared body font '+bodyFamily+' loaded for supporting text.';}
    else style.note+=' Separate body font unavailable; supporting text uses bundled Inter.';
   }catch{warnings.push('Declared body font could not be loaded; supporting text uses bundled Inter.');}
+ }
+ if(stylingOnly){
+  const {wordmarkText,wordmarkAccent,...fontStyle}=style;
+  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website styling ready',completedStep:'assets',sourceText:'Styles only; no website content.',sourcePages:[],sourceAssets:[],fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:['Website colours and fonts only. CSS declarations may differ from rendered styles.',...warnings.filter(w=>/font/i.test(w))],sitePalette:palette,siteStyle:fontStyle,resetLogo:true});return null;
  }
  const sourcePages=sources.map(s=>s.page),sourceText=sourcePages.map(p=>'PAGE '+p.url+'\n'+p.title+'\n'+p.blocks.map(b=>b.kind+': '+b.text).join('\n')).join('\n\n').slice(0,52000);
  let logoFile;

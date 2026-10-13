@@ -126,7 +126,7 @@ test("the writer's SDK sends supported streaming plan requests with no API key",
       subject: "test",
       email: "test",
       model: "gpt-6.1-sol",
-    });
+    }, { runMutation: async () => null } as any);
     const stream = streamObject({
       model,
       schema: z.object({ story: z.string() }),
@@ -141,11 +141,11 @@ test("the writer's SDK sends supported streaming plan requests with no API key",
     assert.ok(captured);
     assert.equal(captured.store, false);
     assert.equal(captured.stream, true);
+    assert.ok(captured.max_output_tokens <= 1500);
     assert.ok(captured.input.every((i: any) => i.role !== "system"));
     for (const key of [
       "background",
       "conversation",
-      "max_output_tokens",
       "max_tool_calls",
       "metadata",
       "moderation",

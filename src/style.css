@@ -569,7 +569,7 @@ a{
 /* FirstChair: electric violet, solar yellow, deep indigo, cloud white. */
 .brand-studio{font-weight:400;font-size:.8em;margin-left:-6px}
 .firstchair-landing{--forest:#5424ff;--ink:#201047;--desk:#fff;position:relative;isolation:isolate;height:100svh;min-height:600px;display:flex;flex-direction:column;overflow:hidden}
-.sky-background{position:absolute;inset:0;z-index:-2;background:#352452;overflow:hidden}
+.sky-background{position:absolute;inset:0;z-index:-2;background:#c58b71 var(--initial-sky) center 52%/cover;overflow:hidden}
 .sky-background span{position:absolute;inset:0;background-size:cover;background-position:center 52%;animation:firstchair-sky 48s linear infinite,firstchair-sky-drift 36s ease-in-out infinite;opacity:0}
 .sky-background span:nth-child(1){background-image:url('/images/firstchair-sky-1.jpg');opacity:1}
 .sky-background span:nth-child(2){background-image:url('/images/firstchair-sky-2.jpg');animation-delay:-32s,0s}
@@ -711,6 +711,9 @@ a{
 .firstchair-landing .landing-examples{position:static;transform:none;display:block}
 @media(max-width:600px){.firstchair-landing .landing-group{gap:24px}}
 
+/* The initial photo is embedded in HTML, before scripts or image requests. */
+body:has(.firstchair-landing),body:has(.firstchair-workspace){background:transparent}
+
 /* Customer call: screen 2 after Create my posts. The landing itself is unchanged. */
 .call-input button:focus-visible,.call-input textarea:focus-visible,.call-input select:focus-visible,.call-file:focus-within{outline:3px solid #ffe34d;outline-offset:2px}
 .firstchair-landing.call-open{height:auto;min-height:100svh;overflow:visible}
@@ -765,3 +768,5 @@ a{
 .story-card dd{margin:0}
 .call-siblings a{color:#201047;font-weight:600}
 @media(max-width:600px){.story-card{padding:16px 16px 16px 46px}.story-card input{left:16px}.story-card dl{grid-template-columns:1fr}}
+
+.source-choice{display:flex;gap:12px;margin:24px 0}.source-choice button{min-height:44px;padding:12px 24px;border:1px solid #ffffff80;background:#ffffffdf;color:#201047;border-radius:24px}.source-choice button[aria-pressed="true"]{background:#ff307e;color:#201047;border-color:#ff307e}

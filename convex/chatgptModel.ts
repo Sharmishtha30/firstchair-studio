@@ -1,4 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
+import type { ActionCtx } from "./_generated/server";
+import { internal } from "./_generated/api";
 import { resource, type Credentials } from "./chatgptSecurity";
 
 // A plan response must reach response.completed, even if partial JSON looks valid.
@@ -29,7 +31,9 @@ export function completedStream(body: ReadableStream<Uint8Array>) {
                 )
               )
                 throw new Error(
-                  "ChatGPT did not finish the response. Try again.",
+                  event.type === "response.incomplete" && event.response?.incomplete_details?.reason === "max_output_tokens"
+                    ? "The AI reply reached its size limit. Your input is saved."
+                    : "ChatGPT did not finish the response. Try again.",
                 );
             }
           }
@@ -43,14 +47,60 @@ export function completedStream(body: ReadableStream<Uint8Array>) {
     }),
   );
 }
-export function planModel(credentials: Credentials) {
+
+function streamFailureCategory(error: unknown) {
+  if (error instanceof SyntaxError) return "invalid_event_json";
+  if (!(error instanceof Error)) return "stream_read_failed";
+  if (/size limit/i.test(error.message)) return "output_limit";
+  if (/did not finish/i.test(error.message)) return "provider_incomplete";
+  if (/interrupted/i.test(error.message)) return "completion_event_missing";
+  return "stream_read_failed";
+}
+
+function reportStreamFailure(body: ReadableStream<Uint8Array>) {
+  const reader = body.getReader();
+  return new ReadableStream<Uint8Array>({
+    async pull(controller) {
+      try {
+        const result = await reader.read();
+        if (result.done) controller.close();
+        else controller.enqueue(result.value);
+      } catch (error) {
+        // Log only a fixed category; never include model output, headers or credentials.
+        console.warn("ChatGPT response stream failed", {
+          category: streamFailureCategory(error),
+        });
+        controller.error(error);
+      }
+    },
+    async cancel(reason) {
+      await reader.cancel(reason);
+    },
+  });
+}
+
+export function planModel(credentials: Credentials, ctx: ActionCtx) {
   return createOpenAI({
     apiKey: credentials.access_token,
     fetch: async (url, options) => {
       if (String(url) !== resource + "/responses")
         throw new Error("Unsupported ChatGPT plan endpoint.");
+      const rawBody = options?.body;
+      if (typeof rawBody !== "string")
+        throw new Error("ChatGPT request could not be prepared.");
+      let body: Record<string, unknown>;
+      try {
+        body = JSON.parse(rawBody);
+      } catch {
+        throw new Error("ChatGPT request could not be prepared.");
+      }
+      const requested = body.max_output_tokens;
+      body.max_output_tokens =
+        typeof requested === "number" ? Math.min(requested, 1500) : 1500;
+      await ctx.runMutation(internal.openaiLimits.reserveCall, {});
       const response = await fetch(url, {
         ...options,
+        body: JSON.stringify(body),
         signal: options?.signal ?? AbortSignal.timeout(120000),
       });
       if (!response.ok) {
@@ -66,7 +116,7 @@ export function planModel(credentials: Credentials) {
         );
       }
       if (!response.body) throw new Error("ChatGPT returned no response.");
-      return new Response(completedStream(response.body), {
+      return new Response(reportStreamFailure(completedStream(response.body)), {
         status: response.status,
         headers: response.headers,
       });

@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 # Source-to-creative review, 4 October 2026
 
 The primary benchmark is the actual source site, not the studio's green interface. Screenshots and browser-computed type readings are in `verification/source-{founders,coffee,maid}.{png,json}`. Each 1440 × 1000 screenshot was inspected as five rows of 200px, five columns of 288px. This is a review of visible brand character, not a formal brand guide or conversion score.

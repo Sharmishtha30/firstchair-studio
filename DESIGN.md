@@ -29,7 +29,7 @@ User interaction drives short question transitions. Preserve focus, readable con
 
 ## Onboarding and waiting
 
-Two questions only: goal then optional offer focus. Goal choices advance directly; focus can be left blank for Choose for me. Use generous choice targets, brief transitions and minimal text. Reading happens in parallel; show actual progress after questions. Do not obscure failure behind a permanent spinner. Availability messages stay in the same visual world and offer a usable next action.
+After the website field, require Article or Call transcript. The website supplies only colours and fonts. The selected content supplies the script. No skip, goal or offer-focus questionnaire. Preserve typed content when switching tabs. Show actual progress and useful errors; never hide failure behind a spinner.
 
 ## Sample collection
 
@@ -43,11 +43,7 @@ Keep FirstChair identity and sky continuity. Use two columns: Carousel / Statics
 
 ## Customer creative principles
 
-Each website supplies its own palette, heading/body character, logos and product/editorial imagery. Preserve semantic colour roles, image proportions, available fonts and actual product identity. Label fallback typography and missing evidence. Never apply FirstChair pink or its sky to all customer exports.
-
-One carousel communicates a coherent opening, explanation and payoff with varied visual pace. The static delivers a different complete idea. Use authentic source photography, typography and useful original diagrams. Reject generic slogans, invented testimonials or data, AI faces, fake product screenshots and paragraph-heavy cards. Match copy and image to the named offer.
-
-Current renderer floors include readable headings/body text, supported declarative layouts and copy-density checks. These checks do not guarantee quality. Inspect every exported image for clipping, distortion, brand accuracy and supported claims; inspect actual PDF pages when claiming PDF visual verification.
+Website supplies colours and heading/body fonts only. Do not import website claims, audience, logos or imagery into new creatives. Source-only content follows `CONTENT_PROCESS.md`. Apply the fixed format below; the static shares the carousel's central message. Record font fallbacks honestly. Check actual previews and exports for readable type, spacing, contrast and overflow.
 
 ## Accessibility and acceptance
 
@@ -70,3 +66,12 @@ Landing interface only: Plus Jakarta Sans, a free Google Font, self-hosted with 
 - Short screens under 740px high: headline 28–44px and subline 18px. Under 580px high: headline 26px and subline 15px.
 
 The input/button row itself is centred at 50% of viewport width and height; headline and subline sit above, examples below. A soft dark indigo gradient supports centre text contrast without modifying sky photos or motion. One viewport without scrolling.
+
+
+## Frozen final creative format — 13 October 2026
+
+User-approved reference: `reference/frozen-output-format.png`. This supersedes earlier variable-layout instructions for newly rendered final carousel and static output. Fixed 1080 × 1350 portrait canvas, small uppercase topic label at top left, accent-colour opening quote mark, generous space, large left-aligned copy in the middle, and a bottom row containing the website hostname and carousel slide count. No top logo, ruled notebook lines, photos, diagrams or automatic alternate compositions. Content and observed website branding (fonts and paper/ink/accent colours) vary; the composition stays fixed. Do not add source-origin captions such as “From an article”. Use a short brand-colour rule on every slide and brand-colour headings when contrast permits; retain readable ink for light brand colours. Keep the former brand-footer space empty in new source-only packs; do not invent a publisher identity. Decorative quotation marks do not turn rewritten content into a verbatim testimonial. Preview and downloads share this renderer. Existing gallery image files are historical saved examples. Do not change this format without the user's explicit request.
+
+
+## Source choice — 13 October 2026
+After entering the brand website, choose Call transcript or Article. Paste text or upload a supported text/document file. Articles are separate content evidence, never customer transcripts or replacement brand identity. The website supplies only colours and fonts. Both use the frozen final format; neither output adds an automatic source-origin caption. Blocked website styling preserves the content and offers retry. Do not substitute business text or claim styling was extracted when blocked.

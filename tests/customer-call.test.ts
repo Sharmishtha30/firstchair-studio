@@ -72,7 +72,8 @@ const story=()=>[
 ];
 test('a call carousel is one first-person story with an admission hook and a closing action',()=>{
  assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:story()}],lines,'Ovenly'));
- assert.throws(()=>checkCallStory([{format:'carousel',frames:story().slice(0,4)}],lines,'Ovenly'),/7 to 8 slides/);
+ assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:[...story().slice(0,3),story()[6]]}],lines,'Ovenly'));
+ assert.throws(()=>checkCallStory([{format:'carousel',frames:story().slice(0,2)}],lines,'Ovenly'),/3 to 8 slides/);
  const longHook=story();longHook[0]=slide('I missed two birthday cakes in one single week of December orders.','',lines[1]);
  assert.doesNotThrow(()=>checkCallStory([{format:'carousel',frames:longHook}],lines,'Ovenly'));
  const brandHook=story();brandHook[0]=slide('I wish I had found Ovenly sooner.','',lines[2]);

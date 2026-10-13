@@ -1,3 +1,4 @@
+import {checkSourceWordBudget} from './contentFormatting';
 import type {Post} from './studioTypes';
 import type {CreativeAsset} from './creativeTypes';
 // Conservative copy budgets catch crowded drafts before they reach the renderer.
@@ -5,6 +6,7 @@ import type {CreativeAsset} from './creativeTypes';
 // story: call-pack carousels may use type-led slides; character limits still apply.
 export function checkDesignDensity(posts:Post[],{story=false}:{story?:boolean}={}){
  for(const post of posts)for(const [i,f] of post.frames.entries()){
+  if(post.sourceKind==='article'||post.sourceKind==='call'){checkSourceWordBudget([f.heading,f.body,f.eyebrow??'',f.design?.takeaway??'',...(f.items??[]).flatMap(item=>[item.label,item.detail])],post.format==='static'?'static':'carousel',i+1);continue;}
   const d=f.design;if(!d)continue;
   if(!story&&post.format==='carousel'&&i>0&&!f.assetKey&&(f.items?.length??0)<2)throw Error(`${post.platform} carousel slide ${i+1}: needs a relevant source image or a compact visual comparison/process, not another text-only page.`);
   const visible=[f.heading,f.body,f.eyebrow??'',d.takeaway,...(f.items??[]).flatMap(item=>[item.label,item.detail])].join(' ').trim().split(/\s+/).filter(Boolean);

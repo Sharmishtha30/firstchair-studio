@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 # Layout families and selection guide
 
 This guide organises all 98 static placements in GOLDEN_SET.md into 13 primary layout families. A reference has one primary family for retrieval; its headline style, visual treatment and writing approach can be reused across families. There are two identified apparent duplicate placements and one explicitly linked layout variant. Other overlaps are possible; 96 remaining placements are not a claim of 96 unique designs.

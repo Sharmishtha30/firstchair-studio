@@ -6,6 +6,7 @@ import {publicAddress,websiteUrl} from './websiteSafety';
 import {beforeDeadline} from './requestDeadline';
 import {websiteReadLimit} from './websiteReadLimit';
 export function validateWebsiteResponse(status:number,contentType:string,mime:string):void{
+ if(status===429)throw new Error('This website is limiting automated reading (HTTP 429). Wait before retrying, or open “Website blocked? Use your business text” below. Your content is saved.');
  if(status===401||status===403)throw new Error('This website blocks automated reading. Open “Website blocked? Use your business text” below to continue.');
  if(status<200||status>=300)throw new Error(`Website could not be read (HTTP ${status}).`);
  const supportedType=mime==='font/'?/^(?:font\/|application\/(?:x-font|font|vnd\.ms-fontobject|octet-stream))/i.test(contentType):contentType.includes(mime);
@@ -24,6 +25,7 @@ export async function publicWebsite(input:string,mime='text/html'):Promise<{url:
     const status=response.statusCode??0;
     if(status>=300&&status<400){response.resume();succeed({status,location:response.headers.location,html:''});return;}
     const contentType=response.headers['content-type']??'';
+    if(status===429&&response.headers['x-vercel-mitigated']==='challenge'){response.resume();fail(new Error('This website’s security check blocked automated reading (HTTP 429). Repeated retries may not help. Use “Website blocked? Use your business text” below. Your content is saved.'));return;}
     try{validateWebsiteResponse(status,contentType,mime);}catch(error){response.resume();fail(error as Error);return;}
     let size=0;const chunks:Buffer[]=[];
     response.on('data',(chunk:Buffer)=>{size+=chunk.length;if(size>websiteReadLimit(mime)){req.destroy(new Error('Website is too large to read safely.'));return;}chunks.push(chunk);});

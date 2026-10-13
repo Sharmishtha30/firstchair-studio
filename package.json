@@ -7,11 +7,14 @@
     "dev": "convex dev --start vite",
     "build": "tsc --noEmit && vite build",
     "test": "tsx --test tests/*.test.ts",
-    "check": "tsc --noEmit && tsc --noEmit -p convex",
+    "check": "tsc --noEmit && tsc --noEmit -p convex && tsc --noEmit -p tsconfig.reel-worker.json",
     "deploy": "npx @convex-dev/static-hosting deploy",
     "test:flow": "tsx tests/sample-flow.ts",
     "test:ai": "tsx tests/ai-flow.ts",
-    "test:chatgpt": "tsx tests/chatgpt-flow.ts"
+    "test:chatgpt": "tsx tests/chatgpt-flow.ts",
+    "dev:reels": "tsx scripts/reel/worker.ts",
+    "setup:reels": "tsx scripts/reel/setup.ts",
+    "test:quality": "npm run check && npm test && node tests/quality-browser.mjs"
   },
   "keywords": [],
   "author": "",

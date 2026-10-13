@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 > Historical document. Current decisions are in [PRODUCT.md](PRODUCT.md). Older directions below are not the current specification.
 
 # Website to Instagram and LinkedIn Creative Studio

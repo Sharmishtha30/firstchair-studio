@@ -15,13 +15,15 @@ function imageFocus(img:HTMLImageElement,product:boolean):ImageFocus{
 }
 // Only bounded declarative layouts are accepted. Model output never executes code.
 export async function paintDesigned(ctx:CanvasRenderingContext2D,post:Post,brand:Brand,index:number,font:string,bodyFont:string,weight:number){
- const f=post.frames[index],d=f.design!,p=colours(brand),background=post.format==='carousel'||brand.strategy?.visualPriority==='product'?p.paper:d.surface==='primary'?p.primary:d.surface==='ink'?p.ink:d.surface==='accent'?p.accent:p.paper;let ink=foreground(background);
+ const f=post.frames[index],originalDesign=f.design!,d=brand.style?.headingEmphasis?{...originalDesign,layout:originalDesign.layout==='note'?'essay' as const:originalDesign.layout,emphasis:originalDesign.emphasis||f.heading.split(/\s+/).slice(-Math.min(4,Math.ceil(f.heading.split(/\s+/).length/2))).join(' ')}:originalDesign,p=colours(brand),background=post.format==='carousel'||brand.strategy?.visualPriority==='product'?p.paper:d.surface==='primary'?p.primary:d.surface==='ink'?p.ink:d.surface==='accent'?p.accent:p.paper;let ink=foreground(background);
  const lum=(hex:string)=>hex.slice(1).match(/../g)!.map(x=>parseInt(x,16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0);
  const contrast=(a:string,b:string)=>(Math.max(lum(a),lum(b))+.05)/(Math.min(lum(a),lum(b))+.05);
  if((d.surface==='paper'||post.format==='carousel'||brand.strategy?.visualPriority==='product')&&contrast(p.ink,background)>=4.5)ink=p.ink;
  const accent=(d.surface==='paper'||post.format==='carousel'||brand.strategy?.visualPriority==='product')&&contrast(p.primary,background)>=3?p.primary:ink;
  ctx.fillStyle=background;ctx.fillRect(0,0,1080,1350);
- await header(ctx,{...brand,palette:{...p,paper:background}},ink,font);
+ // Publisher colour is visual identity, independent of optional copy emphasis or logo colour.
+
+ await header(ctx,{...brand,palette:{...p,paper:background}},post.frames.some(frame=>frame.quote)?accent:ink,font);
  const decoration=brand.assets?.find(a=>a.role==='brand decoration'&&(/\.svg(?:[?#]|$)/i.test(a.originalUrl)||a.key.startsWith('diagram-')));
  if(decoration&&!hiddenBrandHeaders.has(ctx)&&d.layout!=='note'){const markImage=await loadImage(decoration.url);const scale=Math.min(55/markImage.width,55/markImage.height);ctx.drawImage(markImage,935,1180,markImage.width*scale,markImage.height*scale);}
  const mark=(y:number)=>{ctx.globalAlpha=.24;ctx.strokeStyle=ink;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,y);ctx.lineTo(1000,y);ctx.stroke();ctx.globalAlpha=1;};

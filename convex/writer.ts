@@ -4,9 +4,8 @@ import { internal, components } from "./_generated/api";
 import { v, ConvexError } from "convex/values";
 import { Agent } from "@convex-dev/agent";
 import { finishedObject } from "./streamResult";
-import { planModel } from "./chatgptModel";
+import { textModel } from "./textModel";
 import { z } from "zod";
-import { credentialsFor } from "./chatgpt";
 import { getAuthUserId } from "@convex-dev/auth/server";
 import {
   customerQuotes,
@@ -56,8 +55,9 @@ async function write(
   previous?: Reel,
 ): Promise<Reel[]> {
   const abortSignal = AbortSignal.timeout(120000);
-  const credentials = await credentialsFor(ctx);
-  const model = planModel(credentials);
+  if (!(await getAuthUserId(ctx)))
+    throw new ConvexError("Continue with ChatGPT for local sign-in.");
+  const { model } = await textModel(ctx);
   const analyst = new Agent(components.agent, {
     name: "Customer insight analyst",
     languageModel: model,

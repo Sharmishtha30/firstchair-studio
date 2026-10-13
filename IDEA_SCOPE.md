@@ -1,9 +1,10 @@
-# Approved scope — brand-specific social creative studio
+# FirstChair scope
 
-The current source of product scope is PRODUCT_V1.md (4 October 2026), copied into this repository for review. Enter a readable public English business website; analyse its customer, offer, pain and supported action; produce two distinct ideas, a five-slide carousel and a static, adapted for Instagram and LinkedIn. Choose either platform or both, default both.
+Current: 13 October 2026. Follow `PRODUCT.md`, `CONTENT_PROCESS.md` and `DESIGN.md`.
 
-Use the submitted site's observed colours, heading/body font character, primary logo and relevant real source imagery, plus original useful diagrams. No universal Founder’s Find branding, generated photographs, avatars or reels. Name font and asset fallbacks honestly. Short hooks, practical value and one source-backed action are required; exact evidence and creative hypotheses remain available outside public copy.
+Website input is for colours and fonts only. Require one article or transcript for all written content. Create one coherent script, split it into 2–8 slides, derive a related standalone static, and apply the frozen layout. Do not source audience, offers, stories, images or CTAs from the website. Keep privacy, editing, saved samples and exports working. Existing reel work is separate.
 
-Show actual previews; support selected-post feedback, text/image edits, brand corrections, prior-version restore and saved reload. Export up to twelve 1080 × 1350 PNGs, a five-page LinkedIn PDF, captions, alt text and posting instructions in a ZIP. Users publish manually. Preserve completed evidence/drafts on failure and offer labelled pasted-input recovery.
+Use React, GitHub and Convex. No deployment or paid providers are implied by local implementation work. Verify code and rendered output, and report actual limitations.
 
-Keep GitHub and Convex, the existing connected ChatGPT writer, small local commits, and no deployment or push. Writing uses the connected allowance; no image/video-generation charges. Browser/export checks and human creative review are separate evidence; do not claim perfect matching or tested marketing performance.
+## Latest learning: preserve intent before choosing structure
+Condense the article or transcript faithfully. Select steps for guides, explanation for explainers, differences for comparisons, reasons for opinions, and a story only for a genuine experience sequence. Otherwise group transcript insights by topic. Preserve caveats, remove repetition, split at natural breaks, and never invent drama or force a sales ending. Follow the examples and acceptance rules in `CONTENT_PROCESS.md`.

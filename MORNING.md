@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 ## Current entry point — 6 October 2026
 Read PRODUCT.md and DESIGN.md for current decisions. Entries below are chronological evidence, not all current requirements. Current live gallery: https://rightful-wombat-262.convex.site/#samples. Fresh generation is local-only and requires the user's ChatGPT connection; no API billing configured. Other-account recommendation improvements are not integrated yet.
 
@@ -666,3 +668,15 @@ Removed adjacent sample static and its label, removed Instagram output line and 
 - Only after those passed, npm run deploy completed (84.8s). Full raw check/test/deploy logs in verification/five-question-*-raw.txt. Readable deploy log only strips terminal colours.
 - Opened production and submitted https://praan.health/: live app rejected fresh generation with the explicit public-preview message. Verified deployed sample onboarding says Question 1 of 5. Production chatgptConnections has zero records; no CHATGPT_HOST_ID, CHATGPT_TOKEN_KEY or SITE_URL configured. Code in chatgptSecurity.localConfig rejects non-localhost app/backend URLs; credentialsForUser calls that gate, and the live frontend hides Connect ChatGPT. Missing piece is a production-capable ChatGPT authorization/credential path and its hosting configuration, not a key pasted by the user. No credentials added or requested.
 - Sky, supplied logo, landing copy, sample gallery and edit allowance were not changed.
+
+## 8 Oct — local reel editor first slice
+- New separate `/reels` page: upload 30–90s video, local Whisper.cpp small transcription, edit word text/timing, font upload/colours, optional hook, boundary trim and 1080x1920 burned-caption MP4 export. Existing website journey remains separate.
+- React UI + local Convex metadata; `.reel-data/` media/model/key ignored by Git. FFmpeg-full worker at loopback 5176 behind Vite proxy. Start `npm run dev:reels` alongside existing `npm run dev`; initial `npm run setup:reels` configures the private local worker key. No paid API enabled.
+- 32.6s synthetic English fixture: 26.8s first preparation / 15.2s first export; repeat 19.2s preparation / 46.6s Hindi-font export. Corrected dropped zero-duration words. Saved edits/reload, custom font, Hindi glyph render, downloaded H264/AAC size/duration, 390px/1440px browser checked. Stale save returns409. 128 tests, check and build passed; existing large-bundle warning remains.
+- Live draft font layout can differ from final renderer; after export the preview plays the exact output. Real phone Hindi/Hinglish transcription accuracy remains unverified. Automatic zoom, music and internal silence/filler removal are not built. No public deploy or billing. Full handoff in REEL_EDITOR.md.
+
+## 8 Oct — reel backgrounds and covers
+- `/reels` now offers Original, Warm studio, Rose, Sage, Lavender and Midnight. Original assets live in public/reel-backgrounds; Pinterest was inspiration only, not a licensed asset source.
+- Apple Vision locally separates the person using scripts/reel/person-mask.swift; an FFV1 mask is cached per recording and FFmpeg composites it with the selected background. The room replacement appears in the rendered export, not the unrendered draft. Run npm run setup:reels on a new Mac to compile the helper. Requires Apple developer command-line tools.
+- Cover controls suggest a short exact transcript excerpt (not an AI-written claim), allow frame/headline/colour edits, inherit caption font/background and produce a separate 1080x1920 PNG. Frame choice is manual, not automatic best-face detection. Original video remains unchanged.
+- Verified actual room replacement and cover PNG on the saved 32.8s phone recording. Type checks and 130 tests passed. Hair/edge quality still needs review on varied recordings. No paid APIs, public deployment or billing added.

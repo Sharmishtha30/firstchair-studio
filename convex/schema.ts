@@ -5,6 +5,7 @@ import { packFields } from "./studioTypes";
 import { authTables } from "@convex-dev/auth/server";
 export default defineSchema({
   ...authTables,
+  reelProjects: defineTable({localId: v.string(), project: v.any()}).index("by_local_id", ["localId"]),
   chatgptFlows: defineTable({
     stateHash: v.string(),
     bindingHash: v.string(),
@@ -33,6 +34,10 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_identity", ["clientId", "subject"]),
+  openaiCallWindows: defineTable({
+    scope: v.literal("app"),
+    timestamps: v.array(v.number()),
+  }).index("by_scope", ["scope"]),
   packs: defineTable(packFields).index("by_token", ["token"]).index("by_call", ["callTranscriptId"]),
   // Founder-supplied call transcripts, readable only through the owning account's packs.
   callTranscripts: defineTable({userId: v.id("users"), name: v.string(), text: v.string(), customerSpeaker: v.optional(v.string()), createdAt: v.number()}).index("by_user", ["userId"]),

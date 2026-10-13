@@ -132,3 +132,15 @@ test('a secondary serif token does not override an unstyled hero that inherits t
  const css=":root{--bg:#FCF9F3;--primary:#0F3D3E;--secondary:#F3943B;--hl:'Libre Caslon Text',serif;--bd:'Plus Jakarta Sans',sans-serif}body{background:var(--bg);color:var(--primary);font-family:var(--bd)}h1,h2,h3{font-family:var(--hl);font-weight:700}.cta{background:var(--secondary)}";
  const p=extractPalette(css,[],['#f3943b','#f3943b','#0f3d3e','#fcf9f3'],{paper:'#fcf9f3',ink:'#0f3d3e'});assert.equal(p?.primary,'#0f3d3e');assert.equal(p?.accent,'#f3943b');assert.equal(p?.paper,'#fcf9f3');assert.equal(p?.ink,'#0f3d3e');assert.equal(extractStyle(css).weight,700);
  });
+
+test('call-only posts require exact verified quotes when website facts are empty',()=>{
+ const posts=structuredClone(foundersPosts);
+ const evidence=[{id:'C1',text:'I expected more than I currently earn.'}];
+ for(const post of posts){post.sourceFacts=[];for(const frame of post.frames)frame.quote={...evidence[0]};}
+ assert.doesNotThrow(()=>checkPosts(posts,foundersBrand.facts,3,evidence));
+ assert.throws(()=>checkPosts(posts,foundersBrand.facts),/unsupported source fact/);
+ posts[0].frames[0].quote!.text='Invented outcome';
+ assert.throws(()=>checkPosts(posts,foundersBrand.facts,3,evidence),/unsupported source fact/);
+ posts[0].frames[0].quote={...evidence[0]};posts[0].sourceFacts=['Invented website claim'];
+ assert.throws(()=>checkPosts(posts,foundersBrand.facts,3,evidence),/unsupported source fact/);
+});

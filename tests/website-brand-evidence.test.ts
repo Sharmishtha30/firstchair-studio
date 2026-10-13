@@ -37,3 +37,15 @@ test('observed neutral action colours override unrelated vivid CSS colours',asyn
   assert.equal(p.primary,button);assert.equal(p.paper,'#ece9e2');assert.equal(p.ink,'#000000');
  }
 });
+
+import {requireBrandEvidence,readableBrandInk,contrast} from '../convex/brandAcceptance';
+test('matched muted brand colours never fall back to unused vivid rules',()=>{
+ const p=extractPalette('.unused{color:#ff307e}.actual{color:#0a192f}',[],['#64748b','#ffffff','#000000','#0a192f'])!;
+ assert.equal(p.primary,'#0a192f');requireBrandEvidence(p);
+ assert.equal(extractPalette('.unused{color:#ff307e}',[],[]),undefined);
+ assert.throws(()=>requireBrandEvidence({...p,primary:'#ff307e'}),/evidence/);
+});
+test('matched role colours retain evidence and light brand headings stay readable',()=>{
+ const p=extractPalette('',[],['#ffffff'],{primary:'#ffdd00',paper:'#ffffff',ink:'#101010'})!;
+ requireBrandEvidence(p);assert.ok(p.observed?.includes('#ffdd00'));assert.ok(contrast(readableBrandInk(p),p.paper)>=4.5);
+});

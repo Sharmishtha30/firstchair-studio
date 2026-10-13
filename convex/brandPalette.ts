@@ -19,9 +19,20 @@ export function extractPalette(css:string,usedClasses:string[]=[],matchedColours
  for(const colour of matchedColours??[])used.set(colour,(used.get(colour)??0)+1);
  const ranked=[...used].sort((a,b)=>b[1]-a[1]).map(([c])=>c);
  const vivid=(c:string)=>{const n=c.slice(1).match(/../g)!.map(x=>parseInt(x,16));return Math.max(...n)-Math.min(...n)>40;};
- const declaredPrimary=roles.primary??resolve('--primary')??resolve('--color-primary')??resolve('--brand-color')??resolve('--accent')??resolve('--color-accent')??resolve('--color-button')??resolve('--color-link');const primary=roles.primary??(declaredPrimary&&vivid(declaredPrimary)&&(!ranked.length||ranked.includes(declaredPrimary))?declaredPrimary:ranked.find(vivid)??[...frequency].sort((a,b)=>b[1]-a[1])[0]?.[0]);if(!primary)return undefined;
- const observed=[...new Set((ranked.length?ranked:[...vars.keys()].map(k=>resolve(k)).filter((c):c is string=>!!c).concat([...frequency.keys()])) )].slice(0,24);
- const paper=roles.paper??resolve('--paper')??resolve('--bg')??resolve('--background')??resolve('--color-background')??resolve('--color-canvas')??'#ffffff',ink=roles.ink??resolve('--ink')??resolve('--foreground')??resolve('--color-foreground')??resolve('--color-ink')??(observed.includes('#000000')?'#000000':undefined)??'#101010',accent=resolve('--secondary')??resolve('--color-secondary')??resolve('--c-yellow')??observed.find(c=>c!==primary&&vivid(c))??primary;
+ const declaredPrimary=roles.primary??resolve('--primary')??resolve('--color-primary')??resolve('--brand-color')??resolve('--accent')??resolve('--color-accent')??resolve('--color-button')??resolve('--color-link');
+ // A matched scan is authoritative, including an empty scan. Never use unrelated CSS.
+ const matched=matchedColours!==undefined||ranked.length>0;
+ const candidates=matched?[...new Set([...Object.values(roles),...ranked].filter((c):c is string=>!!c))]:[...new Set([...ranked,...vars.keys()].map(c=>c.startsWith('#')?c:resolve(c)).filter((c):c is string=>!!c).concat([...frequency.keys()]))];
+ const chroma=(c:string)=>{const rgb=c.slice(1).match(/../g)!.map(x=>parseInt(x,16));return Math.max(...rgb)-Math.min(...rgb);};
+ const saturation=(c:string)=>chroma(c)/Math.max(1,...c.slice(1).match(/../g)!.map(x=>parseInt(x,16)));
+ const primary=roles.primary??(declaredPrimary&&candidates.includes(declaredPrimary)?declaredPrimary:candidates.find(vivid)??candidates.filter(c=>chroma(c)>8).sort((a,b)=>saturation(b)-saturation(a))[0]??candidates[0]);
+ if(!primary)return undefined;
+ const observed=[...new Set([...candidates,primary])];
+ const choose=(value:string|undefined,fallback:string)=>value&&(!matched||observed.includes(value))?value:fallback;
+ const paper=roles.paper??choose(resolve('--paper')??resolve('--bg')??resolve('--background')??resolve('--color-background')??resolve('--color-canvas'),'#ffffff');
+ const ink=roles.ink??choose(resolve('--ink')??resolve('--foreground')??resolve('--color-foreground')??resolve('--color-ink'),observed.includes('#000000')?'#000000':'#101010');
+ const secondary=resolve('--secondary')??resolve('--color-secondary')??resolve('--c-yellow');
+ const accent=secondary&&observed.includes(secondary)?secondary:observed.find(c=>c!==primary&&vivid(c))??primary;
  return {observed,primary,paper,ink,accent,note:matchedColours?.length?'Colours from declarations matching visible website elements; inactive framework rules excluded. Public CSS evidence, not computed browser styles or a formal brand guide.':'Colours observed in public CSS; when semantic tokens are absent, the most frequent non-neutral colour is inferred. Not a formal brand guide.'};
 }
 

@@ -1,0 +1,10 @@
+.how-made{width:100%;max-width:620px;margin:20px auto;padding:16px 20px;border:1px solid #d8d8df;border-radius:12px;background:#fff;color:#201047;text-align:left;font-size:14px;line-height:1.6;box-sizing:border-box;overflow-wrap:anywhere}
+.how-made summary{cursor:pointer;font-weight:600}
+.how-made section{margin-top:24px}
+.how-made h3{font-size:16px;margin:0 0 12px}
+.how-made h4{text-transform:capitalize;margin-bottom:8px}
+.how-made ol{padding-left:24px}
+.how-made li{margin-bottom:12px}
+.how-made small{display:block;color:#62626c}
+.how-made dt{font-weight:600}
+.how-made dd{margin:0 0 14px}

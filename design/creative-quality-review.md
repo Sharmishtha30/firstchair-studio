@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 # Creative quality pass — 5 October 2026
 
 This is a review of actual exported files, not a quality score inferred from passing tests. The final packs use the existing connected ChatGPT writer and local Convex backend. Nothing was deployed or pushed, and no image or video generation provider was added.

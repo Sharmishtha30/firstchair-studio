@@ -59,6 +59,6 @@ for (let i = 0; i < 3; i++)
   if (i !== index) assert.deepEqual(stored.reels[i], result.reels[i]);
 console.log("\nRevised pain script:\n" + JSON.stringify(revised, null, 2));
 console.log(
-  "\nPASS: The signed-in ChatGPT plan generated three substantive story angles, excluding greetings.",
+  "\nPASS: The shared OpenAI API key generated three substantive story angles, excluding greetings.",
 );
 console.log("PASS: AI feedback revised and saved only the selected script.");

@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","include":["scripts/reel","src/reel/model.ts"]}

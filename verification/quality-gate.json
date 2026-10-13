@@ -1,0 +1,176 @@
+{
+  "rendererCases": 24,
+  "results": [
+    {
+      "kind": "guide",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "explanation",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "comparison",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "argument",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "experience",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "insights",
+      "primary": "#ff307e",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "guide",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "explanation",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "comparison",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "argument",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "experience",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "insights",
+      "primary": "#0a192f",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "guide",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "explanation",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "comparison",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "argument",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "experience",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "insights",
+      "primary": "#007766",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "guide",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "explanation",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "comparison",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "argument",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "experience",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    },
+    {
+      "kind": "insights",
+      "primary": "#ffdd00",
+      "width": 1080,
+      "height": 1350,
+      "passed": true
+    }
+  ],
+  "savedGalleries": 10,
+  "savedImagesDecoded": 47,
+  "limitations": "Historical image samples checked for decoding only; no claim of source accuracy or new-pipeline provenance. Matrix uses synthetic fixtures, not new model generations."
+}

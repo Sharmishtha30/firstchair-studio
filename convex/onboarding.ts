@@ -67,4 +67,4 @@ export type GenerationStep=typeof callGenerationSteps[number];
 export function completedProgress(completed?:string[],steps:readonly GenerationStep[]=generationSteps){return Math.round(steps.filter(step=>completed?.includes(step)).length/steps.length*100);}
 export function recordCompletion(completed:string[]|undefined,step?:string){return step?[...new Set([...(completed??[]),step])]:completed;}
 
-export const generationStepLabels:Record<GenerationStep,string>={website:'Website read',colours:'Colours picked',assets:'Images and fonts collected',call:'Whole call read',plan:'Story and images chosen',drafts:'Slides and statics written',review:'Claims and direction checked'};
+export const generationStepLabels:Record<GenerationStep,string>={website:'Website read',colours:'Colours picked',assets:'Fonts collected',call:'Whole call read',plan:'Source story written',drafts:'Slides and statics written',review:'Claims and direction checked'};

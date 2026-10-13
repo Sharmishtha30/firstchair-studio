@@ -1,3 +1,5 @@
+> Historical reference — not current implementation instructions. As of 13 October 2026, `CONTENT_PROCESS.md` governs generation: website colours/fonts only; article or transcript supplies all content; frozen layout. Older website-content, sales-angle, logo/image and variable-layout directions below are superseded. Historical results are not new verification.
+
 # Three-business copy workshop — 5 October 2026
 
 Editorial proposals based on saved website excerpts, not fresh model outputs or performance winners. Existing brands are regression examples, not proof of our early-stage customer's demand. No sample text below is hard-coded into the generator. Source claims must be rechecked before publication.

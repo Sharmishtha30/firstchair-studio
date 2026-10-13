@@ -80,7 +80,7 @@ export function checkCallStory(posts:{format:string;platform?:string;frames:Stor
  const brand=brandName.trim().toLowerCase();
  for(const post of posts){
   const n=post.frames.length,label=`${post.platform??'instagram'} ${post.format}`;
-  if(post.format==='carousel'&&(n<7||n>8))throw new Error(`The ${label} must tell the story in 7 to 8 slides.`);
+  if(post.format==='carousel'&&(n<3||n>8))throw new Error(`The ${label} must tell the story in 3 to 8 slides.`);
   post.frames.forEach((frame,i)=>{
    const where=`${label} slide ${i+1}`,text=slideText(frame),count=words(text).length,cta=post.format==='carousel'&&i===n-1;
    if(/^[“”"«»].*[“”"«»]$/.test(text.trim()))throw new Error(`The ${where} uses quotation marks. Rewrite the customer’s story in your own first-person words, without presenting it as a direct quote.`);

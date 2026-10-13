@@ -217,10 +217,10 @@ function TranscriptEditor() {
         onCancel={dismissWelcome}
         aria-labelledby="welcome-title"
       >
-        <h2 id="welcome-title">You’re using your ChatGPT plan</h2>
+        <h2 id="welcome-title">Writing uses FirstChair’s OpenAI key</h2>
         <p>
-          Script writing and revisions use your plan’s allowance. You can manage
-          usage in ChatGPT settings.
+          Script writing and revisions use the shared OpenAI API key. ChatGPT
+          sign-in is used only for local account access.
         </p>
         <button onClick={dismissWelcome}>Got it</button>
       </dialog>
@@ -230,10 +230,10 @@ function TranscriptEditor() {
         </a>
         <span className="header-note">
           {mode === "ai"
-            ? "ChatGPT plan connected"
+            ? "Local account connected"
             : mode === "sample"
-              ? "Sample mode · ChatGPT not connected"
-              : "Checking AI connection…"}
+              ? "Sample mode · local sign-in not connected"
+              : "Checking local sign-in…"}
         </span>
         {account ? (
           <button
@@ -252,8 +252,8 @@ function TranscriptEditor() {
       {mode === "sample" && (
         <div className="banner" role="status">
           <strong>Sample mode — demo stories only.</strong> Continue with
-          ChatGPT to analyze your own call using your plan’s allowance. No API
-          credits needed. “Use sample transcript” shows hand-written examples.
+          ChatGPT sign-in is only for local account access. Writing uses the
+          shared OpenAI API key. “Use sample transcript” shows hand-written examples.
         </div>
       )}
       {error && (
@@ -320,16 +320,7 @@ function TranscriptEditor() {
             <form onSubmit={submit}>
               <h2>Start with the conversation</h2>
               {mode === "ai" && (
-                <p className="hint">
-                  Using ChatGPT plan ·{" "}
-                  <a
-                    href="https://chatgpt.com/settings/usage"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Manage usage
-                  </a>
-                </p>
+                <p className="hint">Using FirstChair’s OpenAI API key.</p>
               )}
               <label htmlFor="transcript">Customer call transcript</label>
               <p className="hint">
