@@ -20,3 +20,11 @@ No pack tokens, credentials or private transcript text are included in this repo
 - Added one bounded quotation-repair attempt, preserving strict validation. The second run still failed, so this is not a verified generation fix.
 - Type checks and all 179 tests pass; they do not establish production generation success.
 - Production is not yet ready for external generation testers. Next: replace model-copied quotation strings with source-indexed evidence references and verify article and transcript output end to end.
+
+## Indexed source evidence — 2026-10-13
+- Implemented source-only-v2: stable numbered exact source slices; planning and formatting select integer IDs bounded to the available passages.
+- Semantic review receives publishable copy once per format, excluding private evidence snippets and duplicate platform copies. It still checks against the full source.
+- Type checks and 182 tests pass; deployment completed.
+- Live article and transcript retries progressed beyond the quotation-reference failure. Neither final generation passed: article review returned a failed quality flag without actionable issues; transcript correction again exceeded the 25-word static limit.
+- Stopped repeated API retries. Do not treat a rendered draft or downloadable ZIP as successful final generation.
+- Release remains unsuitable for external generation testing. Next work: require actionable reviewer reasons and constrain static composition before the full draft, with bounded targeted correction and fresh acceptance tests.

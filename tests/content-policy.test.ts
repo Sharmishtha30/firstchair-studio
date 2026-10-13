@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {contentInput,requireContent,checkPlan,checkDraft,makePosts,type ContentDraft} from '../convex/contentPolicy';
+import {contentInput,sourcePassages,requireContent,checkPlan,checkDraft,makePosts,type ContentDraft} from '../convex/contentPolicy';
 import {checkCreativePosts} from '../convex/studioTypes';
 import {markPrivateQuotes,anonymizePosts} from '../convex/callPrivacy';
 const evidence=['Start with a decision.','Explain the alternative.','Do not claim unmeasured results.'];
@@ -14,8 +14,8 @@ test('website poisoning cannot enter the content request',()=>{
 test('a website alone and mixed sources are rejected',()=>{assert.throws(()=>requireContent(undefined,undefined),/transcript or an article/);assert.throws(()=>requireContent({},{}),/not both/);requireContent({},undefined);requireContent(undefined,{});});
 test('source plan rejects invented evidence and insufficient source',()=>{
  const source={kind:'article' as const,text:evidence.join(' ')};
- const plan={usable:true,reason:'',reader:'portfolio author',centralMessage:'Explain decisions',structure:'guide' as const,script:[{text:'Explain your reasoning.',evidence:[evidence[0]]}]};
- checkPlan(plan,source);assert.throws(()=>checkPlan({...plan,script:[{text:'Buy now',evidence:['A website offer']} ]},source),/absent/);assert.throws(()=>checkPlan({...plan,usable:false,reason:'Missing context'},source),/More source/);
+ const plan={usable:true,reason:'',reader:'portfolio author',centralMessage:'Explain decisions',structure:'guide' as const,script:[{text:'Explain your reasoning.',evidenceIds:[0]}]};
+ checkPlan(plan,sourcePassages(source.text));assert.throws(()=>checkPlan({...plan,script:[{text:'Buy now',evidenceIds:[99]} ]},sourcePassages(source.text)),/missing/);assert.throws(()=>checkPlan({...plan,usable:false,reason:'Missing context'},sourcePassages(source.text)),/More source/);
 });
 test('shared content renders both formats and platforms without a website CTA',()=>{
  checkDraft(draft,evidence);const posts=makePosts(draft,evidence,'article',['instagram','linkedin']);checkCreativePosts(posts,evidence,['instagram','linkedin']);
@@ -56,4 +56,30 @@ test('generated source slides and manual edits share the same text-only word lim
  assert.doesNotThrow(()=>checkDesignDensity(posts));
  posts[0].frames[0].body='word '.repeat(40);assert.throws(()=>checkDesignDensity(posts),/40 visible words/);
  posts[0].frames[0].body='';posts[1].frames[0].body='word '.repeat(25);assert.throws(()=>checkDesignDensity(posts),/25 visible words/);
+});
+
+
+test('numbered evidence preserves exact source characters and all words across long inputs',()=>{
+ const text='Customer: I didn’t say “always”.\nFounder: Why?\nCustomer: '+('Long example with details. '.repeat(90));
+ const passages=sourcePassages(text);
+ assert.ok(passages.length>3);
+ for(const [id,p] of passages.entries()){assert.equal(p.id,id);assert.equal(p.text,text.slice(p.start,p.end));assert.ok(p.text.length<=600);}
+ assert.equal(passages.map(p=>p.text).join(' ').replace(/\s+/g,' '),text.trim().replace(/\s+/g,' '));
+ assert.equal(passages.at(-1)?.speaker,'Customer');
+});
+test('plan cannot cite negative, fractional, or absent passage IDs',()=>{
+ const passages=sourcePassages('An exact source passage.');
+ const base={usable:true,reason:'',reader:'reader',centralMessage:'message',structure:'guide' as const};
+ for(const id of [-1,0.5,1,NaN])assert.throws(()=>checkPlan({...base,script:[{text:'message',evidenceIds:[id]}]},passages),/missing/);
+ checkPlan({...base,script:[{text:'message',evidenceIds:[0]}]},passages);
+});
+
+test('semantic review sees all public copy but no private evidence or duplicate platform copies',async()=>{
+ const {contentForReview}=await import('../convex/contentPolicy');
+ const posts=makePosts(draft,evidence,'article',['instagram','linkedin']);
+ posts[0].frames[0].quote={id:'C0',text:'Private reference'};
+ const result=contentForReview(posts);assert.equal(result.length,2);
+ assert.equal(result[0].frames[0].heading,posts[0].frames[0].heading);
+ assert.equal(result[0].caption,posts[0].caption);
+ assert.ok(!JSON.stringify(result).includes('Private reference'));assert.ok(!('sourceFacts' in result[0]));
 });
