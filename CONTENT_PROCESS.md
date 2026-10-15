@@ -55,3 +55,27 @@ Run `npm run test:quality` with the local app running before asking for another 
 - No production claim from an isolated good example. Record failed cases and unresolved checks. User trial precedes Git/production publication.
 
 Generation and manual edits use `contentFormatting.ts` for the same 40-word carousel / 25-word static budgets. Source-only manual edits must never enter legacy product-image requirements. Test save → reload → PNG and ZIP buttons on an isolated copy before release.
+
+
+## Local writing and mobile checks — 13 October 2026
+- Generated static copy is one complete takeaway in ordinary text, with a combined 25-word heading/body budget. Generation and manual edits use the shared validator. Never truncate sentences or remove qualifications to fit.
+- Review returns actionable issues (category, location, problem, correction). No separate boolean may fail a draft with no reason. The semantic review receives the full source, chosen structure, central message and public copy only; planning IDs are validated by code and are not sent to this reviewer. Empty interior headings and short closing summaries are intentional format choices, not automatic failures.
+- On phones the website entry and primary action occupy separate rows; visitor status wraps below the logo. Keep the full placeholder visible, the examples target at least 44px high, and desktop geometry intact.
+- Verify at 390px and 1440px, including focus, next-step navigation, examples, and before/after screenshots. These local changes are not deployed.
+
+Carousel writing uses one explicitly numbered slide per request, with at most two requests running concurrently. Each request receives its assigned paragraph and source evidence, not directions to rewrite the whole carousel. Write ordinary text strings; do not split the response into word arrays or join words with punctuation to bypass limits. Validate the combined 40-word carousel / 25-word static budgets. Reject repeated slide bodies, artificial punctuation joining, and dangling static endings before acceptance. Corrections name the affected slide numbers and preserve unaffected slides. Derive captions and text descriptions from the resulting public copy, without another model request.
+
+Review the complete carousel together. The standalone static may share its central takeaway without repeating every detail. Reviews return up to three specific issues with affected slide numbers (0 = static). The writer still fails closed when checks do not pass.
+
+The 1,500-token response cap includes model reasoning. For the supported OpenAI GPT-5 mini model, use low reasoning for planning and the documented minimal setting for focused writing and classification. Other models and ChatGPT keep their prior setting. The response and hourly limits remain unchanged.
+
+Latest live verification: the user authorised a temporary local allowance of 75 calls. Both fresh runs first failed on oversized text (about 35 seconds each). The formatting repair now collects every oversized frame in one pass, preserving qualifications and targeting shorter complete thoughts. Subsequent fresh runs reached the 75-call allowance before completion. The normal 50-call limit and local ChatGPT provider were restored. This latest repair has NOT passed fresh article and transcript generation; no deployment or Git push. See verification/source-rerun/RESULTS.md. Intermediate successes are not release approval.
+
+## Readable structure (source-only-v3) — 14 October 2026
+- Website input has two modes, chosen by the user: website-only uses the website as the content source; with an article or call, the website supplies styling only.
+- The outline gives every slide a role (cover, point, steps, example, takeaway) and a key point of at most 12 words, one idea per slide. Each slide writer receives its role's word budget (`roleShapes` in `contentFormatting.ts`): at most 32 visible words per slide and 20 for the static. Steps are numbered lists, and examples are "Label: value" rows.
+- Density budgets get one targeted repair and are advisory after that. The 40/25 hard ceilings still block.
+- Deterministic checks reject copy that describes the slide instead of saying it ("one sentence showing…") and headings or bodies that start mid-sentence.
+- Review: accuracy and privacy issues always block. Clarity and flow notes are repaired once, and anything left after that is recorded in `writerRun.review` without failing the pack.
+- Rendering: labels, step numbers and accent wordmarks use a readable brand ink, so a white primary colour on a white page cannot hide them. Fonts are loaded and checked before painting.
+- ChatGPT overload (`server_is_overloaded`, 5xx, 429) gets two bounded retries, then shows a "temporarily busy" message.

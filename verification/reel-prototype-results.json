@@ -1,0 +1,12 @@
+{
+  "phase": "Export ready",
+  "timings": {
+    "export": 46583,
+    "prepare": 8129,
+    "toPreview": 19159,
+    "transcribe": 10808
+  },
+  "staleSaveStatus": 409,
+  "mobileOverflow": false,
+  "wordCount": 90
+}

@@ -28,6 +28,7 @@ import type * as chatgptModel from "../chatgptModel.js";
 import type * as chatgptSecurity from "../chatgptSecurity.js";
 import type * as chatgptStore from "../chatgptStore.js";
 import type * as content from "../content.js";
+import type * as contentBatches from "../contentBatches.js";
 import type * as contentFormatting from "../contentFormatting.js";
 import type * as contentPolicy from "../contentPolicy.js";
 import type * as contentWriter from "../contentWriter.js";
@@ -110,6 +111,7 @@ declare const fullApi: ApiFromModules<{
   chatgptSecurity: typeof chatgptSecurity;
   chatgptStore: typeof chatgptStore;
   content: typeof content;
+  contentBatches: typeof contentBatches;
   contentFormatting: typeof contentFormatting;
   contentPolicy: typeof contentPolicy;
   contentWriter: typeof contentWriter;

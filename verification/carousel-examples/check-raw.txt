@@ -1,0 +1,4 @@
+
+> build-sprint-app@1.0.0 check
+> tsc --noEmit && tsc --noEmit -p convex && tsc --noEmit -p tsconfig.reel-worker.json
+

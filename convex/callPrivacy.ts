@@ -2,7 +2,11 @@ import type {CallQuote} from './customerCall';
 export type PrivateSpan={start:number;length:number;company:boolean};
 export const redactionPattern=/\[R:(\d+):(\d+)\]/g;
 export function publicRedactions(text:string){return text.replace(redactionPattern,'[REDACTED]');}
-export function markPrivateQuotes(quotes:CallQuote[],entities:{text:string;company:boolean}[]):CallQuote[]{
+// Weekdays, months, time words and speaker roles cannot identify anyone; redacting them only breaks the copy.
+const notIdentifying=/^(?:(?:mon|tues|wednes|thurs|fri|satur|sun)days?|january|february|march|april|may|june|july|august|september|october|november|december|today|yesterday|tomorrow|(?:morning|afternoon|evening|night|weekend|week|month|year|founder|customer|day)s?|interviewer|host|guest|speaker\s*\d*|ceo|manager|team|[\d\s.,%]+)$/i;
+export function identifyingEntities<T extends {text:string}>(entities:T[]){return entities.filter(e=>e.text.trim()&&!e.text.trim().split(/\s+/).every(w=>notIdentifying.test(w.replace(/[^\p{L}\p{N}%.,]/gu,''))));}
+export function markPrivateQuotes(quotes:CallQuote[],found:{text:string;company:boolean}[]):CallQuote[]{
+ const entities=identifyingEntities(found);
  return quotes.map(q=>({...q,privateSpans:entities.flatMap(entity=>{const spans:PrivateSpan[]=[];let from=0;while(entity.text&&from<q.text.length){const start=q.text.toLowerCase().indexOf(entity.text.toLowerCase(),from);if(start<0)break;spans.push({start,length:entity.text.length,company:entity.company});from=start+entity.text.length;}return spans;})}));
 }
 // Only offsets are added to quotes. No parallel list of real names is persisted in creative fields.

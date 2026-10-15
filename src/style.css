@@ -728,6 +728,10 @@ body:has(.firstchair-landing),body:has(.firstchair-workspace){background:transpa
 .call-step-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:18px}
 .call-continue{background:#ff307e;color:#201047;border:0;border-radius:32px;padding:15px 26px;font-size:15px;font-weight:700}
 .call-continue:disabled{opacity:.55}
+.call-skip{min-height:48px;padding:12px 18px;border:1px solid #20104780;background:transparent;color:#201047;border-radius:32px;font-size:15px;font-weight:650}
+.call-skip:disabled{opacity:.55}
+.call-step-recommendation{margin:12px 0;color:#42365b}
+.result-source-label{margin:0 0 10px;color:#42365b;font-size:14px;font-weight:650}
 .call-signin{color:#201047;font-weight:600;background:#fff3c4;border-radius:10px;padding:8px 12px}
 .call-step-back:focus-visible,.call-skip:focus-visible,.call-continue:focus-visible{outline:3px solid #ffe34d;outline-offset:2px}
 .call-input{width:100%;box-sizing:border-box;background:#ffffffef;color:#201047;border-radius:20px;padding:20px 22px;text-align:left;box-shadow:0 8px 32px #20104730}
@@ -770,3 +774,16 @@ body:has(.firstchair-landing),body:has(.firstchair-workspace){background:transpa
 @media(max-width:600px){.story-card{padding:16px 16px 16px 46px}.story-card input{left:16px}.story-card dl{grid-template-columns:1fr}}
 
 .source-choice{display:flex;gap:12px;margin:24px 0}.source-choice button{min-height:44px;padding:12px 24px;border:1px solid #ffffff80;background:#ffffffdf;color:#201047;border-radius:24px}.source-choice button[aria-pressed="true"]{background:#ff307e;color:#201047;border-color:#ff307e}
+
+/* Landing touch targets and full-width phone entry; desktop layout is retained. */
+@media(max-width:600px){
+ .firstchair-landing .landing-examples{min-height:44px;display:flex;align-items:center;justify-content:center;padding:12px 14px;box-sizing:border-box}
+ .firstchair-landing .studio-header{height:auto;min-height:100px;flex-wrap:wrap;align-content:flex-start;gap:8px;padding:16px 20px}
+ .firstchair-landing .connection{flex-basis:100%;min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;white-space:normal;overflow-wrap:anywhere}
+ .firstchair-landing .url-row{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0;background:transparent;border-radius:0;padding:0;box-shadow:none}
+ .firstchair-landing .url-row>.website-icon{margin:0;justify-content:center;background:white;border-radius:30px 0 0 30px;min-height:56px}
+ .firstchair-landing .url-row input{width:100%;min-width:0;box-sizing:border-box;background:white;border-radius:0 30px 30px 0;font-size:16px;min-height:56px;padding:14px 18px 14px 0}
+ .firstchair-landing .url-row button{grid-column:1/-1;width:100%;min-height:52px;margin-top:12px}
+}
+
+.visitor-session{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;max-width:100%}.visitor-session .connected-dot{flex:0 0 7px}

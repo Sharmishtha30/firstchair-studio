@@ -27,13 +27,13 @@ export function checkPosts(posts:Post[], facts:string[],count=3,callEvidence:rea
   for(const p of posts) {
     if(/^(hi|hello|welcome|hey)\b/i.test(p.hook.trim()))throw new Error('The hook is a greeting, not an audience insight.');
     if(p.frames.some(f=>/\b(puts|provides|offers|gives)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
-    if(p.frames.some((f,i)=>!f.heading.trim()&&(!(p.sourceKind==='article'||p.sourceKind==='call')||i===0||!f.body.trim()&&!f.items?.some(item=>item.detail.trim()))))throw new Error('Every slide needs a meaningful headline.');
+  if(p.frames.some((f,i)=>!f.heading.trim()&&(!(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website')||i===0||!f.body.trim()&&!f.items?.some(item=>item.detail.trim()))))throw new Error('Every slide needs a meaningful headline.');
     if(p.caption.length>2200)throw new Error('The caption exceeds Instagram’s character limit.');
     if(p.hook.length>120) throw new Error("The opening is too long for a social creative. Shorten it without losing the idea.");
     const groundedCall=p.frames.length>0&&p.frames.every(frame=>frame.quote&&callEvidence.some(q=>q.id===frame.quote!.id&&q.text===frame.quote!.text));
     if((!p.sourceFacts.length&&!groundedCall) || p.sourceFacts.some(f=>!facts.includes(f))) throw new Error("The writer used an unsupported source fact.");
     const expected=p.format==='carousel'?5:p.format==='static'?1:5;
-    if(p.format==='carousel'?(p.frames.length<(p.sourceKind==='article'||p.sourceKind==='call'?2:3)||p.frames.length>(p.sourceKind==='article'||p.sourceKind==='call'||p.frames.some(f=>f.quote)?8:7)):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
+    if(p.format==='carousel'?(p.frames.length<(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'?2:3)||p.frames.length>(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'||p.frames.some(f=>f.quote)?8:7)):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
     if(p.frames.some(f=>/\b(?:visual|voiceover|camera|scene)\s*:|\d+\s*[–-]\s*\d+\s*s\s*\|/i.test(f.heading+' '+f.body)))throw new Error('The writer returned production directions instead of finished on-screen copy.');
     if(p.frames[0].heading.replace(/\s+/g,' ').trim()!==p.hook.replace(/\s+/g,' ').trim())throw new Error('The first frame does not match the short hook.');
     if(p.format==='reel'&&p.frames.map(f=>f.heading+' '+f.body).join(' ').split(/\s+/).length>100)throw new Error('The reel has too much text for 25 seconds.');
@@ -51,7 +51,7 @@ export const stageHistoryV=v.array(v.object({stage:v.string(),startedAt:v.number
 export const packFields={
  article:v.optional(articleInputV),
  completedSteps:v.optional(v.array(v.string())),onboardingVersion:v.optional(v.number()),directionAnswers:v.optional(directionAnswersV),detectedCategory:v.optional(categoryV),answersSavedAt:v.optional(v.number()),inspectionCompleteAt:v.optional(v.number()),firstReadyAt:v.optional(v.number()),stageHistory:v.optional(stageHistoryV),
- onboardingRequested:v.optional(v.boolean()),onboarding:v.optional(v.object({primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),category:v.optional(categoryV),topic:v.optional(v.string()),promotion:v.optional(v.string()),goal:v.union(v.literal("understand"),v.literal("enquire"),v.literal("buy"))})),
+ onboardingRequested:v.optional(v.boolean()),websiteOnlyRequested:v.optional(v.boolean()),onboarding:v.optional(v.object({primary:v.optional(v.string()),paper:v.optional(v.string()),focus:v.string(),audience:v.string(),tone:v.string(),category:v.optional(categoryV),topic:v.optional(v.string()),promotion:v.optional(v.string()),goal:v.union(v.literal("understand"),v.literal("enquire"),v.literal("buy"))})),
  editCount:v.optional(v.number()),downloadedAt:v.optional(v.number()),copyLens:v.optional(copyLensV),parentToken:v.optional(v.string()),
  draftPosts:v.optional(v.array(postV)),draftBrand:v.optional(brandV),
  writerRun:v.optional(writerRunV),fontName:v.optional(v.string()),fontRegular:v.optional(v.id('_storage')),fontSemibold:v.optional(v.id('_storage')),bodyFontRegular:v.optional(v.id('_storage')),bodyFontSemibold:v.optional(v.id('_storage')),
@@ -70,7 +70,7 @@ export function checkCreativePosts(posts:Post[],facts:string[],platforms:import(
  if(posts.length!==platforms.length*2)throw new Error('Finish the carousel and static for each selected platform.');
  for(const platform of platforms)checkPosts(posts.filter(p=>(p.platform??'instagram')===platform),facts,2,callEvidence);
  for(const p of posts){
-  if(p.sourceKind!=='article'&&p.sourceKind!=='call'&&(!p.destination||!/^https?:\/\//.test(p.destination)))throw new Error('Every post needs a real destination.');
+  if(p.sourceKind!=='article'&&p.sourceKind!=='call'&&p.sourceKind!=='website'&&(!p.destination||!/^https?:\/\//.test(p.destination)))throw new Error('Every post needs a real destination.');
   if(/unlock your potential|elevate your|game.changer|take .+ to the next level/i.test(p.hook))throw new Error('Replace the generic promise with a specific customer situation.');
   for(const f of p.frames){
    if(!f.composition)throw new Error('Each slide needs a designed composition.');

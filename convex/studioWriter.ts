@@ -61,7 +61,7 @@ Use one relevant next action per post, in the artwork or caption. No invented DM
 
 async function build(ctx:ActionCtx,{packId,startedAt:operation}:{packId:Id<'packs'>;startedAt?:number}):Promise<null>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(operation!==undefined&&pack?.operationStartedAt!==operation)return null;if(!pack)throw new Error('This pack is no longer available.');
- const sourceOnly=Boolean(pack.callRequested||pack.article);
+ const sourceOnly=Boolean(pack.callRequested||pack.article||pack.websiteOnlyRequested);
  if(sourceOnly)return writeFromContent(ctx,{packId,startedAt:operation});
  if(selectedAIProvider()!=='chatgpt')requireOpenAIKey();
  if(!pack.callRequested&&needsDirection(pack))return null;

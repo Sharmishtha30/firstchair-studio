@@ -5,8 +5,8 @@ import {internal} from './_generated/api';
 import {v} from 'convex/values';
 import {load} from 'cheerio';
 import {requireBrandEvidence} from './brandAcceptance';
-import {extractPalette} from './brandPalette';
-import {matchedWebsiteColours,matchedWebsiteColourRoles} from './websiteColours';
+import {defaultWebsitePalette,extractPalette} from './brandPalette';
+import {matchedWebsiteColourEvidence} from './websiteColours';
 import {websiteTypography} from './websiteTypography';
 import {extractStyle} from './brandStyle';
 import {websiteGeometry} from './websiteGeometry';
@@ -51,11 +51,18 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  const scoped=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>home.bodyClasses.some(c=>m[1].split(',').some(selector=>selector.trim()==='.'+c||selector.trim()==='body.'+c))).map(m=>m[2]).join(';');if(scoped)css=':root{'+scoped+'}\n'+css;
  for(const [i,sheet]of sheets.entries()){if(sheet.status!=='fulfilled')continue;for(const match of sheet.value.html.matchAll(/url\([\"']?([^\"')]+\.(?:jpg|jpeg|png|webp)(?:\?[^\"')]*)?)[\"']?\)/gi)){try{home.images.push({url:new URL(match[1],home.styles[i]).href,alt:'Source background image for '+home.page.title,pageUrl:home.page.url,score:1,role:'website background'});}catch{}}}
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Picking brand colours',completedStep:'website'});
- const palette=extractPalette(css,home.usedClasses,matchedWebsiteColours(load(main.html),css),matchedWebsiteColourRoles(load(main.html),css)),style={...extractStyle(css,home.primaryHeadingClasses),...websiteTypography(load(main.html),css),...websiteGeometry(load(main.html),css)};
- if(pack.article||pack.callRequested)requireBrandEvidence(palette);
+ let palette=defaultWebsitePalette,paletteFailed=false;
+ try{
+  const paletteCss=css.slice(0,300_000),evidence=matchedWebsiteColourEvidence(load(main.html),paletteCss);
+  palette=extractPalette(paletteCss,home.usedClasses,evidence.found,evidence.roles)??defaultWebsitePalette;
+  paletteFailed=palette===defaultWebsitePalette;
+ }catch(error){paletteFailed=true;warnings.push('Website colour extraction failed; default colours were used. '+(error instanceof Error?error.message.slice(0,160):''));}
+ if(paletteFailed&&!warnings.some(w=>w.startsWith('Website colour extraction failed')))warnings.push('Website colour extraction did not find usable colours; default colours were used.');
+ const style={...extractStyle(css,home.primaryHeadingClasses),...websiteTypography(load(main.html),css),...websiteGeometry(load(main.html),css)};
+ if((pack.article||pack.callRequested)&&!paletteFailed)requireBrandEvidence(palette);
  home.page.blocks.push(...websiteBrandEvidence(load(main.html),css));
  warnings.push('Asset collection covers the homepage and up to four linked offer, about or review pages, with up to 24 imported images and illustrations. Dynamic or protected content may be missing; CSS declarations are not computed browser styles.');
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Loading website fonts',completedStep:'colours',sitePalette:palette});
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Loading website fonts',completedStep:'colours',sitePalette:palette,sourceWarnings:[...new Set([...(pack.sourceWarnings??[]),...warnings])]});
  let fontName:string|undefined,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold;
  const openFonts=['Inter','DM Sans','Roboto','Montserrat','Poppins','Manrope','Lato','Open Sans','Work Sans','Nunito','Oswald','Bebas Neue','Space Grotesk','Playfair Display','Libre Baskerville'];
  fontName=openFonts.find(name=>style.sourceFont.split(',')[0].toLowerCase()===name.toLowerCase())??openFonts.find(name=>(style.bodyFont??'').split(',')[0].toLowerCase()===name.toLowerCase());

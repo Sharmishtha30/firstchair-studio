@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {contentInput,sourcePassages,requireContent,checkPlan,checkDraft,makePosts,type ContentDraft} from '../convex/contentPolicy';
+import {contentInput,sourcePassages,requireContent,checkPlan,checkDraft,makePosts,instructionsForSource,planInstructions,type ContentDraft} from '../convex/contentPolicy';
 import {checkCreativePosts} from '../convex/studioTypes';
 import {markPrivateQuotes,anonymizePosts} from '../convex/callPrivacy';
 const evidence=['Start with a decision.','Explain the alternative.','Do not claim unmeasured results.'];
@@ -11,7 +11,13 @@ test('website poisoning cannot enter the content request',()=>{
  assert.deepEqual(contentInput(source),{kind:'article',text:source.text});
  assert.deepEqual(contentInput({...source,websiteText:'A totally different brand'}),contentInput(source));
 });
-test('a website alone and mixed sources are rejected',()=>{assert.throws(()=>requireContent(undefined,undefined),/transcript or an article/);assert.throws(()=>requireContent({},{}),/not both/);requireContent({},undefined);requireContent(undefined,{});});
+test('website-only source is explicit while existing article and call source checks remain intact',()=>{assert.throws(()=>requireContent(undefined,undefined),/transcript or an article/);assert.throws(()=>requireContent({},{}),/not both/);assert.throws(()=>requireContent({},undefined,true),/one content source/);requireContent(undefined,undefined,true);requireContent({},undefined);requireContent(undefined,{});});
+test('website-only posts cite the inspected site and receive website-specific story guidance',()=>{
+ const website=makePosts(draft,evidence,'website',['instagram'],'https://bluetokaicoffee.com');
+ checkCreativePosts(website,evidence,['instagram']);assert.ok(website.every(post=>post.sourceKind==='website'&&post.destination==='https://bluetokaicoffee.com'));
+ assert.match(instructionsForSource('website',planInstructions),/supplied website text is the ONLY content source/i);
+ assert.match(instructionsForSource('article',planInstructions),/supplied article or transcript is the ONLY content source/i);
+});
 test('source plan rejects invented evidence and insufficient source',()=>{
  const source={kind:'article' as const,text:evidence.join(' ')};
  const plan={usable:true,reason:'',reader:'portfolio author',centralMessage:'Explain decisions',structure:'guide' as const,script:[{text:'Explain your reasoning.',evidenceIds:[0]}]};
@@ -82,4 +88,59 @@ test('semantic review sees all public copy but no private evidence or duplicate 
  assert.equal(result[0].frames[0].heading,posts[0].frames[0].heading);
  assert.equal(result[0].caption,posts[0].caption);
  assert.ok(!JSON.stringify(result).includes('Private reference'));assert.ok(!('sourceFacts' in result[0]));
+});
+
+
+test('review failures require location, reason and correction; empty issues means pass',async()=>{
+ const {reviewSchema,reviewReasons}=await import('../convex/contentPolicy');
+ assert.deepEqual(reviewReasons(reviewSchema.parse({issues:[]})),[]);
+ assert.throws(()=>reviewSchema.parse({supported:false,coherent:true,private:true}));
+ assert.throws(()=>reviewSchema.parse({issues:[{category:'accuracy',location:'slide 1',problem:' ',fix:''}]}));
+ const review=reviewSchema.parse({issues:[{category:'accuracy',slideNumbers:[2],location:'slide 2',problem:'One week is presented as a permanent result.',fix:'Restore the one-week caveat.'}]});
+ assert.match(reviewReasons(review)[0],/slide 2.*Restore the one-week caveat/);
+});
+
+test('review input excludes all planning IDs and retains the full source and public copy',async()=>{
+ const {contentReviewInput}=await import('../convex/contentPolicy');
+ const source={kind:'article' as const,text:'Full source with caveats.'};
+ const plan={structure:'guide' as const,centralMessage:'Keep caveats',script:[{text:'Internal',evidenceIds:[42]}]};
+ const input=contentReviewInput(source,plan,makePosts(draft,evidence,'article',['instagram']));
+ assert.deepEqual(input.source,source);assert.equal(input.structure,'guide');
+ assert.ok(!JSON.stringify(input).includes('evidenceIds'));assert.ok(!('plan' in input));
+});
+
+test('a stale optional highlight is dropped without altering any content',async()=>{
+ const {validHighlights}=await import('../convex/contentPolicy');
+ const input={...draft,static:{...draft.static,emphasis:'not in the text'},carousel:[{...slide(0),emphasis:'decision'},slide(1)]};
+ const result=validHighlights(input);assert.equal(result.static.emphasis,'');assert.equal(result.static.heading,input.static.heading);assert.equal(result.static.body,input.static.body);assert.deepEqual(result.static.evidenceIds,input.static.evidenceIds);assert.equal(result.carousel[0].emphasis,'decision');checkDraft(result,evidence);
+});
+
+
+
+
+test('repeated slide bodies and incomplete static endings are rejected before review',async()=>{
+ const {duplicateSlideIssue,danglingCopy,publicMetadata}=await import('../convex/contentPolicy');
+ const a={...slide(0),body:'Ask about one recent experience.'};
+ const b={...slide(1),body:'Ask about one recent experience'};
+ assert.equal(duplicateSlideIssue([a,b])?.slideNumber,2);
+ assert.equal(duplicateSlideIssue([a,slide(2)]),null);
+ assert.equal(danglingCopy({...a,body:'Learn whether they,'}),true);
+ assert.equal(danglingCopy({...a,body:'One interview offers clues, not proof.'}),false);
+ assert.equal(publicMetadata([a],a).staticCaption,a.heading+' '+a.body);
+});
+
+
+test('artificial word joining cannot masquerade as short copy',async()=>{
+ const {malformedSpacing}=await import('../convex/contentPolicy');
+ assert.equal(malformedSpacing({...slide(0),body:'Switching.from.three.separate.spreadsheets'}),true);
+ assert.equal(malformedSpacing({...slide(0),heading:'One-shared-order-tracker'}),true);
+ assert.equal(malformedSpacing({...slide(0),body:'A shared order tracker reduced the weekly check.'}),false);
+ assert.equal(malformedSpacing({...slide(0),body:'A one-week result is not proof of long-term success.'}),false);
+});
+test('only transcripts get speaker labels; article and website prefixes are not people',()=>{
+ const article=sourcePassages('Note: forwards need genuine exposure.\nStep 2: match dollars first.',false);
+ assert.ok(article.every(p=>p.speaker===undefined));
+ const website=sourcePassages('PAGE https://example.com/\nh1: Coffee roasted weekly\np: Ships across India.',false);
+ assert.ok(website.every(p=>p.speaker===undefined));assert.equal(website[1].text,'h1: Coffee roasted weekly');
+ assert.equal(sourcePassages('Customer: It took a week.')[0].speaker,'Customer');
 });

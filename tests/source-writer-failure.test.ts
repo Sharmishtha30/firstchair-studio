@@ -18,3 +18,25 @@ test('an interrupted response remains a failure and does not expose private requ
  assert.match(sourceWriterFailure(wrapped),/stopped before it finished/);
  assert.ok(!sourceWriterFailure(wrapped).includes('do not expose'));
 });
+
+test('OpenAI SDK length finish is diagnosed without exposing the partial response',()=>{
+ const partial=Object.assign(new Error('No object generated: could not parse the response.'),{finishReason:'length',text:'private source',usage:{outputTokens:1500}});
+ const message=sourceWriterFailure(new Error('Wrapper',{cause:partial}));
+ assert.match(message,/size limit/);assert.ok(!message.includes('private source'));
+});
+
+test('a ChatGPT overload event is reported as temporary capacity, not a cut-off reply',async()=>{
+ const event='data: '+JSON.stringify({type:'error',code:'server_is_overloaded',message:'Our servers are currently overloaded.'})+'\n\n';
+ const input=new ReadableStream<Uint8Array>({start(c){c.enqueue(new TextEncoder().encode(event));c.close();}});
+ try{await new Response(completedStream(input)).text();assert.fail('An overloaded stream must fail');}catch(error){
+  const message=sourceWriterFailure(new Error('Failed to process successful response',{cause:error}));
+  assert.match(message,/temporarily busy/);assert.match(message,/input is saved/);
+ }
+});
+test('a non-capacity provider error still reads as an unfinished response',async()=>{
+ const event='data: '+JSON.stringify({type:'response.failed',response:{error:{code:'invalid_prompt'}}})+'\n\n';
+ const input=new ReadableStream<Uint8Array>({start(c){c.enqueue(new TextEncoder().encode(event));c.close();}});
+ try{await new Response(completedStream(input)).text();assert.fail('A failed stream must fail');}catch(error){
+  assert.match(sourceWriterFailure(new Error('Wrapper',{cause:error})),/stopped before it finished/);
+ }
+});

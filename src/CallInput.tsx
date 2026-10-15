@@ -15,7 +15,7 @@ export function callProblem(call:CallDraft){
  return '';
 }
 // Screen 2 of the landing flow. Sign-in stays with the header's Connect ChatGPT button.
-export function CallStep({website,call,onChange,connected,busy,onContinue,onBack}:{website:string;call:CallDraft;onChange:(call:CallDraft)=>void;connected:boolean;busy:boolean;onContinue:()=>void;onBack:()=>void}){
+export function CallStep({website,call,onChange,connected,busy,onContinue,onSkip,onBack}:{website:string;call:CallDraft;onChange:(call:CallDraft)=>void;connected:boolean;busy:boolean;onContinue:()=>void;onSkip:()=>void;onBack:()=>void}){
  const [fileError,setFileError]=useState(''),[reading,setReading]=useState(false),[drafts,setDrafts]=useState<Partial<Record<'call'|'article',CallDraft>>>({});
  function selectKind(kind:'call'|'article'){setDrafts(prev=>({...prev,[call.kind??'call']:call}));setFileError('');onChange(drafts[kind]??{...emptyCall,kind});}
  const article=call.kind==='article';
@@ -24,6 +24,7 @@ export function CallStep({website,call,onChange,connected,busy,onContinue,onBack
  return <section className="call-step" aria-labelledby="call-step-title">
   <p className="call-step-site"><span>{website}</span><button type="button" className="call-step-back" disabled={busy} onClick={onBack}>Change website</button></p>
   <h1 id="call-step-title">What should your posts come from?</h1>
+  <p className="call-step-recommendation"><strong>Best results: add a customer call.</strong> You can also add an article, or continue with your website only.</p>
   <div className="source-choice" role="group" aria-label="Content source"><button type="button" aria-pressed={!article} disabled={busy} onClick={()=>selectKind('call')}>Call transcript</button><button type="button" aria-pressed={article} disabled={busy} onClick={()=>selectKind('article')}>Article</button></div>
   <p className="call-step-intro">{article?'Paste your article or upload a .txt or .docx file. Your website supplies only colours and fonts; the article supplies the content.':'Paste a sales or feedback call, or upload a .txt, .docx or .vtt transcript. Your website supplies only colours and fonts; the call supplies the story.'}</p>
   <div className="call-input">
@@ -37,7 +38,7 @@ export function CallStep({website,call,onChange,connected,busy,onContinue,onBack
    {!connected&&<p className="call-signin" role="status">Starting your private browser session. What you typed stays here.</p>}
    <p className="call-privacy">{article?"Saved only to this browser’s private session.":"Saved only to this browser’s private session. Delete it any time from your results."}</p>
   </div>
-  <div className="call-step-actions"><button type="button" className="call-continue" disabled={busy||reading||!connected||!call.text.trim()||!!problem} onClick={onContinue}>{busy?'Starting…':article?'Continue with this article':'Continue with this call'}</button></div>
+  <div className="call-step-actions"><button type="button" className="call-continue" disabled={busy||reading||!connected||!call.text.trim()||!!problem} onClick={onContinue}>{busy?'Starting…':article?'Continue with this article':'Continue with this call'}</button><button type="button" className="call-skip" disabled={busy||reading||!connected} onClick={onSkip}>Skip, use my website only</button></div>
  </section>;
 }
 // The original transcript line, so the founder can check the rewritten story is true.

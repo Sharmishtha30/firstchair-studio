@@ -1,4 +1,5 @@
 export type Palette={paper:string;ink:string;primary:string;accent:string;note:string;observed?:string[]};
+export const defaultWebsitePalette:Palette={paper:'#ffffff',ink:'#101010',primary:'#253e62',accent:'#253e62',note:'Default colours used because website colour extraction did not finish.'};
 export const foundersPalette:Palette={paper:'#ffffff',ink:'#0f0f12',primary:'#ff307e',accent:'#f5c518',note:'Default colors read from Founders Find’s public website CSS. No formal brand guide was supplied.'};
 export function extractPalette(css:string,usedClasses:string[]=[],matchedColours?:string[],roles:{paper?:string;ink?:string;primary?:string}={}):Palette|undefined{
  const vars=new Map<string,string>();

@@ -3,6 +3,10 @@ import type { ActionCtx } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { resource, type Credentials } from "./chatgptSecurity";
 
+// Provider-side capacity errors; the writer may retry these a bounded number of times.
+const transientCodes = new Set(["server_is_overloaded", "rate_limit_exceeded", "server_error"]);
+export const chatgptBusy = "ChatGPT is temporarily busy. Try again.";
+
 // A plan response must reach response.completed, even if partial JSON looks valid.
 export function completedStream(body: ReadableStream<Uint8Array>) {
   const decoder = new TextDecoder();
@@ -29,12 +33,22 @@ export function completedStream(body: ReadableStream<Uint8Array>) {
                 ["response.failed", "response.incomplete", "error"].includes(
                   event.type,
                 )
-              )
+              ) {
+                // Provider reason only, never request or response content.
+                console.warn("ChatGPT stream ended early", {
+                  type: event.type,
+                  reason: event.response?.incomplete_details?.reason,
+                  code: event.response?.error?.code ?? event.error?.code ?? event.code,
+                  message: String(event.response?.error?.message ?? event.error?.message ?? event.message ?? "").slice(0, 200),
+                });
                 throw new Error(
                   event.type === "response.incomplete" && event.response?.incomplete_details?.reason === "max_output_tokens"
                     ? "The AI reply reached its size limit. Your input is saved."
-                    : "ChatGPT did not finish the response. Try again.",
+                    : transientCodes.has(event.response?.error?.code ?? event.error?.code ?? event.code)
+                      ? chatgptBusy
+                      : "ChatGPT did not finish the response. Try again.",
                 );
+              }
             }
           }
         }
@@ -52,6 +66,7 @@ function streamFailureCategory(error: unknown) {
   if (error instanceof SyntaxError) return "invalid_event_json";
   if (!(error instanceof Error)) return "stream_read_failed";
   if (/size limit/i.test(error.message)) return "output_limit";
+  if (error.message === chatgptBusy) return "provider_busy";
   if (/did not finish/i.test(error.message)) return "provider_incomplete";
   if (/interrupted/i.test(error.message)) return "completion_event_missing";
   return "stream_read_failed";
@@ -112,7 +127,9 @@ export function planModel(credentials: Credentials, ctx: ActionCtx) {
             ? "Your ChatGPT connection needs renewing. Continue with ChatGPT again."
             : response.status === 429
               ? "Your ChatGPT plan allowance is temporarily unavailable. Try again later."
-              : "ChatGPT could not complete this request. Try again.",
+              : response.status >= 500
+                ? chatgptBusy
+                : "ChatGPT could not complete this request. Try again.",
         );
       }
       if (!response.body) throw new Error("ChatGPT returned no response.");

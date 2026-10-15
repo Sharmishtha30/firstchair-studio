@@ -63,6 +63,10 @@ async function paint(post:Post,brand:Brand,index:number,styles:TextStyles){
  const bodyFont=separateBody?await brandFont(brand,true):headingFont;
  const c=document.createElement('canvas');c.width=1080;c.height=1350;bounds.set(c,[]);const ctx=c.getContext('2d')!,p=colours(brand),ink=foreground(p.paper),font=brand.style?.headline==='serif'?(brand.style.fontName&&brand.style.sourceFont.toLowerCase().includes(brand.style.fontName.toLowerCase())?headingFont:'Georgia'):headingFont,weight=brand.style?.weight??(brand.style?.headline==='serif'?400:600),f=post.frames[index];
  if(!f)throw new Error('Slide not found.');
+ // Load the exact faces this slide paints before measuring; a fallback face would mis-measure and get cached into exports.
+ const faces=[`${weight} 60px ${font}`,`400 46px ${bodyFont}`,`600 36px ${bodyFont}`];
+ await Promise.all(faces.map(face=>document.fonts.load(face)));
+ if(faces.some(face=>!document.fonts.check(face)))throw new Error('A brand font did not finish loading. Retry the preview.');
  if(post.frames.some(frame=>frame.quote))installRedactionInk(ctx,f.quote);
  // The publisher identity remains visible even before the story mentions the offer.
  const fonts:Partial<Record<TextField,string>>={};

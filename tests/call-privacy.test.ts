@@ -25,3 +25,12 @@ test('editing a known employer back into slide copy still redacts it; missing ev
  assert.throws(()=>anonymizePosts([{frames:[{heading:'Acme',quote:{id:'C1',text:'No company here.'}}]}],[q]),/source quote/);
  assert.throws(()=>anonymizePosts([{frames:[{heading:'[R:12:4]'}]}],[q]),/source quote/);
 });
+
+test('weekdays, months, time words and speaker roles are never redacted',async()=>{
+ const {identifyingEntities,markPrivateQuotes}=await import('../convex/callPrivacy');
+ const found=[{text:'Friday',company:false},{text:'Friday afternoons',company:false},{text:'Founder',company:false},{text:'March 2026',company:false},{text:'Priya Shah',company:false},{text:'Acme Logistics',company:true}];
+ assert.deepEqual(identifyingEntities(found).map(e=>e.text),['Priya Shah','Acme Logistics']);
+ // The quote from the 14 October live call run.
+ const [q]=markPrivateQuotes([{id:'C0',text:'I used to spend every Friday chasing updates.'}],[{text:'Friday',company:false}]);
+ assert.deepEqual(q.privateSpans,[]);
+});

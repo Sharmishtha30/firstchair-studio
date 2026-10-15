@@ -42,7 +42,7 @@ test('exports load distinct website headline and body faces instead of rendering
  const originals={document:globalThis.document,FontFace:globalThis.FontFace};const loaded:{name:string;source:string}[]=[];
  const {ctx,draws}=context();const canvas={width:0,height:0,getContext:()=>ctx};
  class TestFontFace {constructor(public family:string,public source:string,_options:unknown){}async load(){loaded.push({name:this.family,source:this.source});return this;}}
- Object.defineProperty(globalThis,'document',{configurable:true,value:{fonts:{load:async()=>[],ready:Promise.resolve(),add:()=>{}},createElement:()=>canvas}});
+ Object.defineProperty(globalThis,'document',{configurable:true,value:{fonts:{load:async()=>[],check:()=>true,ready:Promise.resolve(),add:()=>{}},createElement:()=>canvas}});
  Object.defineProperty(globalThis,'FontFace',{configurable:true,value:TestFontFace});
  try{
   const {renderArtwork}=await import('../src/artwork');

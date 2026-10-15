@@ -10,15 +10,20 @@ export async function paintFrozen(ctx:CanvasRenderingContext2D,post:Post,brand:B
  ctx.fillStyle=p.primary;ctx.fillRect(120,305,144,10);
  const headingInk=readableBrandInk(p);
  const label=(f.eyebrow?.trim()||'').toUpperCase();
- if(label)text(ctx,label,120,55,840,24,64,bodyFont,p.primary,600,22);
+ if(label)text(ctx,label,120,55,840,24,64,bodyFont,headingInk,600,22);
  const highlight=f.design?.emphasis?{phrase:f.design.emphasis,background:p.primary}:undefined;
  let y=360;
  if(call){ctx.font='600 132px Georgia';ctx.fillStyle=p.primary;ctx.textBaseline='top';ctx.fillText('“',114,235);}
- if(f.heading.trim())y=text(ctx,f.heading,120,y,840,60,360,font,headingInk,weight,48,true,'heading',highlight)+28;
- if(f.body.trim())y=text(ctx,f.body,120,y,840,50,1100-y,bodyFont,p.ink,400,40,true,'body',highlight)+24;
- for(const item of f.items??[]){const content=[item.label,item.detail].filter(Boolean).join(': ');if(!content.trim())continue;
+ // Clear hierarchy: a large hook on the cover/static, a smaller heading inside, body never below 40px.
+ const lead=index===0;
+ if(f.heading.trim())y=text(ctx,f.heading,120,y,840,lead?84:64,lead?420:300,font,headingInk,weight,48,true,'heading',highlight)+(lead?36:30);
+ if(f.body.trim())y=text(ctx,f.body,120,y,840,lead?44:46,1100-y,bodyFont,p.ink,400,40,true,'body',highlight)+28;
+ for(const item of f.items??[]){
+ // Example rows: the label sits above its value in the brand colour, so figures read as a table.
+ if(item.label.trim()&&item.detail.trim()){y=text(ctx,item.label,120,y,840,36,1100-y,bodyFont,headingInk,600,32,true,'body')+6;y=text(ctx,item.detail,120,y,840,46,1100-y,bodyFont,p.ink,400,40,true,'body',highlight)+22;continue;}
+ const content=[item.label,item.detail].filter(Boolean).join(': ');if(!content.trim())continue;
  const numbered=content.match(/^(\d+[.)])\s+(.*)$/s);
- ctx.font=`400 46px ${bodyFont}`;ctx.fillStyle=p.primary;ctx.fillText(numbered?.[1]||'•',120,y);
+ ctx.font=`400 46px ${bodyFont}`;ctx.fillStyle=headingInk;ctx.fillText(numbered?.[1]||'•',120,y);
  y=text(ctx,numbered?.[2]||content,178,y,782,46,1100-y,bodyFont,p.ink,400,40,true,'body',highlight)+20;}
  if(f.design?.takeaway)y=text(ctx,f.design.takeaway,120,y,840,44,1100-y,bodyFont,p.ink,400,40,true,'body',highlight);
  // Stable footer: website address and optional brand identity, count at right.
@@ -28,7 +33,7 @@ export async function paintFrozen(ctx:CanvasRenderingContext2D,post:Post,brand:B
   const label=brand.style?.wordmarkText||brand.name,accent=brand.style?.wordmarkAccent,at=accent?label.indexOf(accent):-1;
   let size=30;ctx.font=`400 ${size}px ${font}`;while(size>18&&ctx.measureText(label).width>215){size--;ctx.font=`400 ${size}px ${font}`;}
   ctx.textBaseline='top';ctx.fillStyle=p.ink;
-  if(at>=0&&accent){const before=label.slice(0,at);ctx.fillText(before,120,1215);let x=120+ctx.measureText(before).width;ctx.font=`italic 400 ${size}px ${font}`;ctx.fillStyle=p.primary;ctx.fillText(accent,x,1215);x+=ctx.measureText(accent).width;ctx.font=`400 ${size}px ${font}`;ctx.fillStyle=p.ink;ctx.fillText(label.slice(at+accent.length),x,1215);}
+  if(at>=0&&accent){const before=label.slice(0,at);ctx.fillText(before,120,1215);let x=120+ctx.measureText(before).width;ctx.font=`italic 400 ${size}px ${font}`;ctx.fillStyle=readableBrandInk(p);ctx.fillText(accent,x,1215);x+=ctx.measureText(accent).width;ctx.font=`400 ${size}px ${font}`;ctx.fillStyle=p.ink;ctx.fillText(label.slice(at+accent.length),x,1215);}
   else text(ctx,label,120,1215,215,size,60,font,p.ink,400,18);
  }
  let website='';try{website=new URL(brand.sourceUrl).hostname.replace(/^www\./,'');}catch{/* No invented address. */}

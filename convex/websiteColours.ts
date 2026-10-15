@@ -6,8 +6,12 @@ function inspectColours($:CheerioAPI,css:string){
  for(const m of css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+)/g))if(!vars.has(m[1]))vars.set(m[1],m[2].trim());
  const expand=(s:string,depth=0):string=>depth>8?'':s.replace(/var\((--[\w-]+)(?:,\s*([^)]*))?\)/g,(_,key,fallback)=>expand(vars.get(key)??fallback??'',depth+1));
  const colour=(s:string)=>{s=expand(s).trim();if(/^transparent$/i.test(s)||/^rgba\([^)]*[, /]\s*0(?:\.0+)?\s*\)$/i.test(s))return undefined;const h=s.match(/^#([a-f\d]{3}|[a-f\d]{6})(?:\b|$)/i);if(h)return '#'+(h[1].length===3?h[1].split('').map(c=>c+c).join(''):h[1]).toLowerCase();return cssColour(s);};
- const nodes=$('body,h1,h2,h3,p,a,button,main,section,article,[class]').toArray().filter(el=>!$(el).closest('[hidden],[aria-hidden="true"],script,style,nav,footer,[class*=cookie],[id*=cookie],[role=dialog],[class*=cart-drawer]').length).slice(0,700);
- const rules=[...css.matchAll(/([^{}]+)\{([^{}]+)\}/g)].filter(m=>!m[1].includes('@')&&!/:hover|:focus|:active|:visited|::/.test(m[1]));
+ const nodes=$('body,h1,h2,h3,p,a,button,main,section,article,[class]').toArray().filter(el=>!$(el).closest('[hidden],[aria-hidden="true"],script,style,nav,footer,[class*=cookie],[id*=cookie],[role=dialog],[class*=cart-drawer]').length).slice(0,200);
+ const rules:RegExpMatchArray[]=[];
+ for(const rule of css.matchAll(/([^{}]+)\{([^{}]+)\}/g)){
+  if(!rule[1].includes('@')&&!/:hover|:focus|:active|:visited|::/.test(rule[1]))rules.push(rule);
+  if(rules.length>=800)break;
+ }
  const found:string[]=[],roles:{paper?:string;ink?:string;primary?:string}={};
  for(const el of nodes){const node=$(el),declarations=new Map<string,string>();
   for(const m of rules){if(!m[1].split(',').some(selector=>{try{return node.is(selector.trim());}catch{return false;}}))continue;
@@ -25,3 +29,4 @@ function inspectColours($:CheerioAPI,css:string){
 
 export function matchedWebsiteColours($:CheerioAPI,css:string):string[]{return inspectColours($,css).found;}
 export function matchedWebsiteColourRoles($:CheerioAPI,css:string){return inspectColours($,css).roles;}
+export function matchedWebsiteColourEvidence($:CheerioAPI,css:string){return inspectColours($,css);}
