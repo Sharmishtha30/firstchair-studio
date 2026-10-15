@@ -78,7 +78,7 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
  }
  let draft=await writeDraft();
  let accepted=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='';
- for(let attempt=0;attempt<5;attempt++){
+ for(let attempt=0;attempt<7;attempt++){
   let issue='',corrections:Correction[]=[];
   try{checkDraft(draft,evidence);}catch(e){issue=(e as Error).message;const number=issue.match(/carousel slide (\d+)/)?.[1];corrections=[{slideNumbers:number?[Number(number)]:/static/i.test(issue)?[0]:[0,...draft.carousel.map((_,i)=>i+1)],fix:issue}];}
   if(issue.startsWith('Shorten '))corrections=oversizedSourceCorrections(draft);
@@ -108,15 +108,16 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
    await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Checking the story',completedStep:'drafts',draftPosts:posts,draftBrand:brand});
    const review=await generate('Checking accuracy and story flow',instructionsForSource(source.kind,reviewInstructions),reviewSchema,contentReviewInput(source,plan,posts,roles));
    if(review.issues.some(i=>i.slideNumbers.some(n=>n>draft.carousel.length)))throw Error('The review referenced a missing slide. Your draft is saved.');
-   corrections=review.issues.map(i=>({slideNumbers:i.slideNumbers,fix:i.problem+' '+i.fix}));
-   // After the last review repair, clarity and flow notes are recorded but do not block; accuracy and privacy always block.
+   // After the first review repair, clarity and flow notes are recorded but do not block, and only accuracy and
+   // privacy problems are sent back for a second repair; they always block if still present.
    const blocking=reviewRepairs>=1?review.issues.filter(i=>i.category==='accuracy'||i.category==='privacy'):review.issues;
+   corrections=blocking.map(i=>({slideNumbers:i.slideNumbers,fix:i.problem+' '+i.fix}));
    accepted=blocking.length===0;
    reason=accepted&&review.issues.length?'Source accuracy and privacy checked. Advisory: '+reviewReasons(review).join(' '):reviewReasons(review).join(' ')||'Source accuracy, story flow and privacy checked.';
   }else reason=issue;
   if(accepted)break;
-  if(shapeOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=1)break;
-  if(attempt<4)draft=await writeDraft(draft,corrections);
+  if(shapeOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=2)break;
+  if(attempt<6)draft=await writeDraft(draft,corrections);
  }
  const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:''),usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
  if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Review needs attention',writerRun});throw Error('The source-based story needs attention: '+reason.slice(0,280));}
