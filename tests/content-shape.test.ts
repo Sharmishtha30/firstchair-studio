@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {shapeProblems,shapeCorrections,trimExampleRows} from '../convex/contentFormatting';
-import {planSchema,publicMetadata,slideItems,makePosts,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,contentReviewInput,type ContentDraft} from '../convex/contentPolicy';
+import {planSchema,publicMetadata,slideItems,makePosts,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,addedRuleIssue,stripAddedRules,contentReviewInput,type ContentDraft} from '../convex/contentPolicy';
 import {checkCreativePosts} from '../convex/studioTypes';
 
 const frame=(heading:string,body='',bullets:string[]=[])=>({label:'',heading,body,bullets,emphasis:'',evidenceIds:[0]});
@@ -105,6 +105,32 @@ test('a body that repeats its heading is flagged',()=>{
  const draft=(f:ReturnType<typeof frame>):ContentDraft=>({carousel:[f],static:frame('Guided by in-house Q Graders'),caption:'',staticCaption:'',altText:'',staticAltText:''});
  assert.equal(echoIssue(draft(frame('FROM THE SUBCONTINENT, FOR ALL.','From the Subcontinent, For All.')))?.slideNumber,1);
  assert.equal(echoIssue(draft(frame('Hedge only the residual','After matching, hedge the net residual.'))),undefined);
+ // Both from the 15 October 19:45 trad.co.in run.
+ assert.equal(echoIssue(draft(frame('Dollars in, rupees out','Dollars in, rupees out, and the two never arrive in the same week.')))?.slideNumber,1);
+ assert.equal(echoIssue(draft(frame('Convert by policy, not mood','Diary EEFC deadlines; avoid forced conversions',['Set an annual budget rate in pricing','Diary EEFC retention windows to avoid forced conversions'])))?.slideNumber,1);
+ assert.equal(echoIssue(draft(frame('Illustrative three-month map','Figures are an example; hedge the residual, not gross flows.',['Month 1: matched 80, residual +40','Month 2: matched 60, residual −30']))),undefined);
+ assert.equal(echoIssue(draft(frame('“I used to spend every Friday chasing updates”','— a customer'))),undefined);
+});
+
+test('a rule or advice line the speaker never gave is flagged in call and website posts',()=>{
+ const draft=(body:string):ContentDraft=>({carousel:[frame('“I wish we had made the switch sooner.”',body)],static:frame('“I got my Friday afternoons back.”'),caption:'',staticCaption:'',altText:'',staticAltText:''});
+ const call={kind:'call' as const,text:'I wish we had made the switch sooner. I got my Friday afternoons back.'};
+ // From the 15 October 19:42 foundersfind.club run.
+ assert.equal(addedRuleIssue(draft('A simple rule: avoid delaying obvious improvements that save time.'),call)?.slideNumber,1);
+ assert.equal(addedRuleIssue(draft('— a customer'),call),undefined);
+ assert.equal(addedRuleIssue(draft('A simple rule: avoid delaying obvious improvements.'),{kind:'article',text:'Hedge the residual.'}),undefined);
+ assert.match(addedRuleIssue(draft('A simple rule: avoid delaying obvious improvements.'),call)?.message??'',/^slide 1 \(body\) adds "a simple rule"/i);
+});
+
+test('a leftover unsourced rule sentence is removed, keeping the rest of the slide',()=>{
+ const call={kind:'call' as const,text:'I wish we had made the switch sooner.'};
+ const draft:ContentDraft={carousel:[frame('“I wish we had made the switch sooner.”','Said a customer. A simple rule: avoid delaying obvious improvements.')],static:{...frame('Fridays back'),bullets:['Act earlier next time']},caption:'',staticCaption:'',altText:'',staticAltText:''};
+ const {draft:out,removed}=stripAddedRules(draft,call);
+ assert.equal(out.carousel[0].body,'Said a customer.');
+ assert.deepEqual(out.static.bullets,[]);
+ assert.equal(removed.length,2);
+ assert.match(removed[0],/^slide 1: "A simple rule/);
+ assert.equal(addedRuleIssue(out,call),undefined);
 });
 
 test('the reviewer sees each slide role so list slides are not flagged for missing a body',()=>{

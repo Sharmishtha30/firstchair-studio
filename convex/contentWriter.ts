@@ -11,7 +11,7 @@ import {mapInPairs,sourceReasoningEffort,withTransientRetry} from './contentBatc
 import {sourceWriterFailure} from './sourceWriterFailure';
 import {anonymizePosts,markPrivateQuotes} from './callPrivacy';
 import {checkCreativePosts,type Brand} from './studioTypes';
-import {CONTENT_VERSION,requireContent,contentInput,planInstructions,planSchema,checkPlan,sourcePassages,contentReviewInput,checkDraft,makePosts,reviewInstructions,reviewSchema,reviewReasons,validHighlights,slideSchema,malformedSpacing,singleSlideInstructions,singleStaticInstructions,publicMetadata,duplicateSlideIssue,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,danglingCopy,instructionsForSource,type ContentDraft,type ContentSource} from './contentPolicy';
+import {CONTENT_VERSION,requireContent,contentInput,planInstructions,planSchema,checkPlan,sourcePassages,contentReviewInput,checkDraft,makePosts,reviewInstructions,reviewSchema,reviewReasons,validHighlights,slideSchema,malformedSpacing,singleSlideInstructions,singleStaticInstructions,publicMetadata,duplicateSlideIssue,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,addedRuleIssue,stripAddedRules,danglingCopy,instructionsForSource,type ContentDraft,type ContentSource} from './contentPolicy';
 export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:Id<'packs'>;startedAt?:number}):Promise<null>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(!pack||startedAt!==undefined&&pack.operationStartedAt!==startedAt)return null;
  requireContent(pack.callRequested,pack.article,pack.websiteOnlyRequested);
@@ -77,7 +77,7 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   return validHighlights({carousel:trimmed,static:stat,...publicMetadata(trimmed,stat)});
  }
  let draft=await writeDraft();
- let accepted=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='';
+ let accepted=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='',ruleRepairs=0,ruleNote='';
  for(let attempt=0;attempt<7;attempt++){
   let issue='',corrections:Correction[]=[];
   try{checkDraft(draft,evidence);}catch(e){issue=(e as Error).message;const number=issue.match(/carousel slide (\d+)/)?.[1];corrections=[{slideNumbers:number?[Number(number)]:/static/i.test(issue)?[0]:[0,...draft.carousel.map((_,i)=>i+1)],fix:issue}];}
@@ -92,6 +92,13 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   if(!issue&&overclaim){issue=overclaim.message;corrections=[{slideNumbers:[overclaim.slideNumber],fix:issue}];}
   const fillerRow=fillerRowIssue(draft);
   if(!issue&&fillerRow){issue=fillerRow.message;corrections=[{slideNumbers:[fillerRow.slideNumber],fix:issue}];}
+  // An unsourced rule gets one targeted repair; if one is still there, that sentence or row is removed.
+  if(!issue&&addedRuleIssue(draft,source)&&ruleRepairs>=1){const stripped=stripAddedRules(draft,source);draft=stripped.draft;if(stripped.removed.length)ruleNote+=` Removed unsourced advice: ${stripped.removed.join('; ')}.`;
+   const empty=[...draft.carousel,draft.static].findIndex(f=>!f.heading.trim()&&!f.body.trim()&&!f.bullets.some(b=>b.trim()));
+   if(empty>=0){issue='This slide was only an unsourced rule. Write one supported point from the source instead.';corrections=[{slideNumbers:[empty===draft.carousel.length?0:empty+1],fix:issue}];}}
+  const addedRule=addedRuleIssue(draft,source);
+  let ruleOnly=false;
+  if(!issue&&addedRule){issue=addedRule.message;corrections=[{slideNumbers:[addedRule.slideNumber],fix:issue}];ruleOnly=ruleRepairs++<1;}
   const echo=echoIssue(draft);
   if(!issue&&echo){issue=echo.message;corrections=[{slideNumbers:[echo.slideNumber],fix:issue}];}
   const fragment=fragmentIssue(draft);
@@ -116,10 +123,10 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
    reason=accepted&&review.issues.length?'Source accuracy and privacy checked. Advisory: '+reviewReasons(review).join(' '):reviewReasons(review).join(' ')||'Source accuracy, story flow and privacy checked.';
   }else reason=issue;
   if(accepted)break;
-  if(shapeOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=2)break;
+  if(shapeOnly||ruleOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=2)break;
   if(attempt<6)draft=await writeDraft(draft,corrections);
  }
- const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:''),usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
+ const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:'')+ruleNote,usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
  if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Review needs attention',writerRun});throw Error('The source-based story needs attention: '+reason.slice(0,280));}
  if(pack.revisionFormat&&pack.posts)posts=pack.posts.map(p=>p.format===pack.revisionFormat&&(p.platform??'instagram')===(pack.revisionPlatform??'instagram')?posts.find(n=>n.format===p.format&&n.platform===(p.platform??'instagram'))!:p);
  await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Ready',completedStep:'review',brand,posts,mode:CONTENT_VERSION+' — '+source.kind,writerRun});return null;

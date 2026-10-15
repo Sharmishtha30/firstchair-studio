@@ -53,7 +53,7 @@ export const slideSchema=z.object({heading:z.string().trim().max(120),body:z.str
 export const draftSchema=z.object({carousel:z.array(slideSchema).min(2).max(8),static:slideSchema,caption:z.string().max(2000),staticCaption:z.string().max(2000),altText:z.string(),staticAltText:z.string()});
 export type ContentDraft=z.infer<typeof draftSchema>;
 export const reviewInstructions=sourceRules+`
-The carousel and static are independent alternative posts, not consecutive parts of one sequence. The static should express the same central message; overlap between the static and any carousel slide is expected and must never be flagged as repetition. Evaluate progression and repetition only within the carousel. Interior headings are deliberately optional. A clear body or bullet list needs no heading; never flag an empty heading alone. A cover may introduce the central message and a closing slide may briefly summarize it; flag repetition only when consecutive slides add no distinct information. Treat stylistic preferences as non-blocking. slideRoles gives each carousel slide's intended role: a steps or example slide is a heading plus a list and needs no body or lead sentence, so never flag that format. Any claim stronger, broader or more certain than the source, and any advice or instruction the source does not give, is an accuracy issue, never clarity. Flag clarity only when a slide carries more than one idea or uses jargon a stranger cannot follow without explanation. Generic attributions such as "a customer", "one founder", "they" or "—a customer" are the intended anonymisation and are never a privacy issue; flag privacy only for a name, employer, company, city, contact detail or a combination of details that would identify a specific person. Flag a concrete factual, attribution, privacy or comprehension problem, not a different preferred writing style. Review text for accuracy, speaker attribution, anonymity for calls, clarity for a stranger, coherent progression, preserved caveats, no repetition and a supported ending. Static must stand alone and express one supported takeaway from the central message. It need not repeat every instruction or detail of the full carousel. Preserve qualifications for the particular claim it makes. Do not require the entire article to fit the static. Do not demand a buying idea, brand mention, product image or dramatic turn. Return issues only: an empty array means all checks pass. Report at most three material issues, concisely. Each issue must include slideNumbers identifying only the slides needing edits (1-based carousel numbers; 0 means the standalone static), its category, the affected slide or field in location, the concrete problem and a source-grounded fix. Do not fail without a specific issue. The quote.text and quote.privateSpans fields are private source references, not published text; evaluate anonymity in headings, bodies, labels, captions, alt text, titles and sourceFacts. This checks text, not rendered pixels.`;
+The carousel and static are independent alternative posts, not consecutive parts of one sequence. The static should express the same central message; overlap between the static and any carousel slide is expected and must never be flagged as repetition. Evaluate progression and repetition only within the carousel. Interior headings are deliberately optional. A clear body or bullet list needs no heading; never flag an empty heading alone. A cover may introduce the central message and a closing slide may briefly summarize it; flag repetition only when consecutive slides add no distinct information. Treat stylistic preferences as non-blocking. slideRoles gives each carousel slide's intended role: a steps or example slide is a heading plus a list and needs no body or lead sentence, so never flag that format. Any claim stronger, broader or more certain than the source, and any advice or instruction the source does not give, is an accuracy issue, never clarity. A missing explanation, definition, method or context is a clarity issue, never accuracy: accuracy means a claim, number, attribution, rule or advice the source does not support, or a dropped caveat that changes the meaning. Flag clarity only when a slide carries more than one idea or uses jargon a stranger cannot follow without explanation. Generic attributions such as "a customer", "one founder", "they" or "—a customer" are the intended anonymisation and are never a privacy issue; flag privacy only for a name, employer, company, city, contact detail or a combination of details that would identify a specific person. Flag a concrete factual, attribution, privacy or comprehension problem, not a different preferred writing style. Review text for accuracy, speaker attribution, anonymity for calls, clarity for a stranger, coherent progression, preserved caveats, no repetition and a supported ending. Static must stand alone and express one supported takeaway from the central message. It need not repeat every instruction or detail of the full carousel. Preserve qualifications for the particular claim it makes. Do not require the entire article to fit the static. Do not demand a buying idea, brand mention, product image or dramatic turn. Return issues only: an empty array means all checks pass. Report at most three material issues, concisely. Each issue must include slideNumbers identifying only the slides needing edits (1-based carousel numbers; 0 means the standalone static), its category, the affected slide or field in location, the concrete problem and a source-grounded fix. Do not fail without a specific issue. The quote.text and quote.privateSpans fields are private source references, not published text; evaluate anonymity in headings, bodies, labels, captions, alt text, titles and sourceFacts. This checks text, not rendered pixels.`;
 // One decision source: no contradictory failed flags with an empty explanation.
 export const reviewSchema=z.object({issues:z.array(z.object({category:z.enum(['accuracy','coherence','privacy','clarity']),slideNumbers:z.array(z.number().int().min(0).max(8)).min(1).max(9),location:z.string().trim().min(1).max(100),problem:z.string().trim().min(1).max(300),fix:z.string().trim().min(1).max(300)})).max(3)});
 export function reviewReasons(review:z.infer<typeof reviewSchema>){return review.issues.map(i=>`${i.category} at ${i.location}: ${i.problem} Fix: ${i.fix}`);}
@@ -123,10 +123,42 @@ export function fillerRowIssue(draft:ContentDraft){
  return index<0?undefined:{slideNumber:index===draft.carousel.length?0:index+1,message:'A list row uses a placeholder such as "List:", repeats its name as its value, or uses a filler value such as "offered". Write each row as the real name and a concrete detail from the source, or drop rows the source gives no detail for.'};
 }
 // A body that repeats its own heading word for word wastes the slide.
+// Also a body that opens with its heading, or restates one of its own list rows.
 export function echoIssue(draft:ContentDraft){
- const norm=(t:string)=>t.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
- const frames=[...draft.carousel,draft.static],index=frames.findIndex(f=>norm(f.body)!==''&&norm(f.body)===norm(f.heading));
- return index<0?undefined:{slideNumber:index===draft.carousel.length?0:index+1,message:'The body repeats the heading word for word. Keep the heading and either leave the body empty or add one new supported detail.'};
+ const norm=(t:string)=>t.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(),words=(t:string)=>norm(t).split(' ').filter(w=>w.length>2);
+ const restates=(body:string,row:string)=>{const b=words(body),r=new Set(words(row));return b.length>=3&&b.filter(w=>r.has(w)).length/b.length>=0.8;};
+ const echoes=(f:ContentDraft['static'])=>{const body=norm(f.body),heading=norm(f.heading);
+  return body!==''&&(body===heading||(words(f.heading).length>=3&&body.startsWith(heading))||f.bullets.some(b=>restates(f.body,b)));};
+ const frames=[...draft.carousel,draft.static],index=frames.findIndex(echoes);
+ return index<0?undefined:{slideNumber:index===draft.carousel.length?0:index+1,message:'The body repeats the heading or one of the list rows. Leave the body empty or replace it with one new supported detail.'};
+}
+// A rule or advice line the speaker never gave, added to a customer story or a business description.
+const addedRule=/\b(a simple rule|(make|take) (that|this|it) your rule|rule of thumb|the lesson( here)? is|lesson:|don'?t wait|avoid delaying|you should|remember to|act earlier)\b/i;
+// Finds the first unsourced rule phrase, naming the slide (0 = static), the field and the exact phrase.
+function findAddedRule(draft:ContentDraft,source:ContentSource){
+ if(source.kind==='article')return;
+ const text=source.text.toLowerCase(),frames=[...draft.carousel,draft.static];
+ for(const [index,f] of frames.entries())for(const [field,value] of [['heading',f.heading],['body',f.body],...f.bullets.map((b,i)=>[`bullet ${i+1}`,b])]){
+  const m=value.match(addedRule);
+  if(m&&!text.includes(m[0].toLowerCase()))return {slideNumber:index===draft.carousel.length?0:index+1,field,phrase:m[0]};
+ }
+}
+const slideName=(n:number)=>n===0?'the static post':`slide ${n}`;
+export function addedRuleIssue(draft:ContentDraft,source:ContentSource){
+ const found=findAddedRule(draft,source);
+ return found&&{...found,message:`${slideName(found.slideNumber)} (${found.field}) adds "${found.phrase}", a rule or advice the source never gives. Remove that line and keep only what the source says, in its own words.`};
+}
+// Last resort after a repair: drop the body sentence or list row carrying an unsourced rule, instead of failing the pack.
+// Headings are left alone, so a rule in a heading still fails visibly.
+export function stripAddedRules(draft:ContentDraft,source:ContentSource){
+ const removed:string[]=[],text=source.text.toLowerCase();
+ const unsourced=(t:string)=>{const m=t.match(addedRule);return !!m&&!text.includes(m[0].toLowerCase());};
+ const clean=(f:ContentDraft['static'],n:number)=>{
+  const keep=f.body.split(/(?<=[.!?])\s+/).filter(sentence=>{if(!unsourced(sentence))return true;removed.push(`${slideName(n)}: "${sentence.trim()}"`);return false;});
+  const bullets=f.bullets.filter(b=>{if(!unsourced(b))return true;removed.push(`${slideName(n)}: "${b.trim()}"`);return false;});
+  return {...f,body:keep.join(' ').trim(),bullets};
+ };
+ return {draft:{...draft,carousel:draft.carousel.map((f,i)=>clean(f,i+1)),static:clean(draft.static,0)},removed};
 }
 // A heading or body that starts lowercase continues another field instead of standing alone.
 export function fragmentIssue(draft:ContentDraft){
