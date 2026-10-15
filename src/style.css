@@ -787,3 +787,5 @@ body:has(.firstchair-landing),body:has(.firstchair-workspace){background:transpa
 }
 
 .visitor-session{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;max-width:100%}.visitor-session .connected-dot{flex:0 0 7px}
+/* Pack page: labels span both columns so the preview and editor share one row, centred under the tabs. */
+.result-studio>.result-source-label,.result-studio>.result-sample-label{grid-column:1/-1;margin:0;text-align:center}.result-studio>.result-tabs{justify-self:center}
