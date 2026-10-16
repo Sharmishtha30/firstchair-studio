@@ -1,7 +1,11 @@
+export const firstChairBusy="FirstChair is busy right now. Your pack is saved, try again in a few minutes.";
+export function aiCallLimitMessage(message:string):string|undefined{
+  return /AI call limit reached/i.test(message)||message.includes(firstChairBusy)?firstChairBusy:undefined;
+}
+
 export function writerErrorMessage(message: string): string {
   if (/AI key not set/i.test(message)) return "AI key not set";
-  if (/AI call limit reached/i.test(message))
-    return "AI call limit reached. Try again later.";
+  const limitMessage=aiCallLimitMessage(message);if(limitMessage)return limitMessage;
   if (/insufficient_quota|quota|billing|credits/i.test(message))
     return "OpenAI rejected the request because API credit or quota is unavailable. Check your OpenAI API billing. Your existing scripts are unchanged.";
   if (/incorrect api key|invalid api key|authentication|401/i.test(message))
