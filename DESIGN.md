@@ -43,7 +43,7 @@ Keep FirstChair identity and sky continuity. Use two columns: Carousel / Statics
 
 ## Customer creative principles
 
-Website supplies colours and heading/body fonts only. Do not import website claims, audience, logos or imagery into new creatives. Source-only content follows `CONTENT_PROCESS.md`. Apply the fixed format below; the static shares the carousel's central message. Record font fallbacks honestly. Check actual previews and exports for readable type, spacing, contrast and overflow.
+With an article or call, the website supplies colours and heading/body fonts only; do not import website claims, audience, logos or imagery into those creatives. Website-only packs from D2C brands use the brand look below. Source-only content follows `CONTENT_PROCESS.md`. Apply the fixed format below; the static shares the carousel's central message. Record font fallbacks honestly. Check actual previews and exports for readable type, spacing, contrast and overflow.
 
 ## Accessibility and acceptance
 
@@ -71,6 +71,18 @@ The input/button row itself is centred at 50% of viewport width and height; head
 ## Frozen final creative format — 13 October 2026
 
 User-approved reference: `reference/frozen-output-format.png`. This supersedes earlier variable-layout instructions for newly rendered final carousel and static output. Fixed 1080 × 1350 portrait canvas, small uppercase topic label at top left, accent-colour opening quote mark, generous space, large left-aligned copy in the middle, and a bottom row containing the website hostname and carousel slide count. No top logo, ruled notebook lines, photos, diagrams or automatic alternate compositions. Content and observed website branding (fonts and paper/ink/accent colours) vary; the composition stays fixed. Do not add source-origin captions such as “From an article”. Use a short brand-colour rule on every slide and brand-colour headings when contrast permits; retain readable ink for light brand colours. Keep the former brand-footer space empty in new source-only packs; do not invent a publisher identity. Decorative quotation marks do not turn rewritten content into a verbatim testimonial. Preview and downloads share this renderer. Existing gallery image files are historical saved examples. Do not change this format without the user's explicit request.
+
+
+## Brand look for D2C website packs — 16 October 2026
+
+Requested by the user: for D2C brands, images sell more than words, so website-only packs from a brand that sells its own physical products directly to consumers use the brand's own look instead of the frozen white card. Decided in code, never by a model (`convex/brandLook.ts`):
+
+- D2C test: a consumer-goods category (D2C brand, Food and beverage, Fashion and beauty, Consumer tech and wearables) with product photos or product pages, or strong product evidence alone. The one-line decision and reason are recorded in the run's review notes.
+- Colours: saturated colours from the website CSS; if the CSS is only black, white and grey, the colours in the site's logo; failing that, a deliberately tinted page colour (e.g. cream, never pure white). Covers use the primary colour; carousel slides alternate primary and secondary.
+- Images: 3–6 distinct real photos from the site (products first, one per product). The cover and static show the best photo above the copy; inside the carousel, short single-idea slides take the next photos below the copy. Lists and long slides stay text-only, and a slide drops its photo rather than shrink its words. On the cover the photo first shortens (520, 380, then 260 px) before it is dropped.
+- Readability: text never sits on a photo. Every text colour is chosen for at least 4.5:1 contrast on its card colour.
+- Editor: the brand colours in use are shown, and each slide's photo can be swapped for another website photo or removed, without using a text edit.
+- Fallback: not D2C, an article or call pack, fewer than 3 usable photos, or no brand colour keeps the frozen format above unchanged. The result page says which path ran ("Brand look applied" or "Standard look: …").
 
 
 ## Source choice — 13 October 2026

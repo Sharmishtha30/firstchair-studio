@@ -789,3 +789,8 @@ body:has(.firstchair-landing),body:has(.firstchair-workspace){background:transpa
 .visitor-session{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;max-width:100%}.visitor-session .connected-dot{flex:0 0 7px}
 /* Pack page: labels span both columns so the preview and editor share one row, centred under the tabs. */
 .result-studio>.result-source-label,.result-studio>.result-sample-label{grid-column:1/-1;margin:0;text-align:center}.result-studio>.result-tabs{justify-self:center}
+/* Which look ran (brand look or standard), shown under the source label. */
+.result-studio>.result-look-label{grid-column:1/-1;margin:-12px 0 0;text-align:center;color:white;font-size:13px;font-weight:600}
+.brand-look-controls{margin:4px 0 24px}.brand-look-controls .style-label{display:block;font-size:13px;font-weight:600;margin:0 0 10px}
+.brand-look-swatches{list-style:none;display:flex;flex-wrap:wrap;gap:8px 16px;padding:0;margin:0 0 20px;font-size:12px;color:#5b5266}.brand-look-swatches li{display:flex;align-items:center;gap:6px}.brand-look-swatches span{width:20px;height:20px;border-radius:50%;border:1px solid #20104730}.brand-look-swatches code{font-size:11px;color:#776e82}
+.brand-look-images{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.brand-look-images button{aspect-ratio:1;padding:0;border:2px solid #ded8e3;border-radius:10px;background:white;overflow:hidden;box-shadow:none;color:#201047;font-size:12px}.brand-look-images button[aria-pressed=true]{border-color:#ff307e;box-shadow:0 0 0 2px #ff307e40}.brand-look-images img{width:100%;height:100%;object-fit:cover;display:block}.brand-look-images button:disabled{opacity:.5}

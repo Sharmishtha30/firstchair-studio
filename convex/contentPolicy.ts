@@ -182,3 +182,44 @@ export function danglingCopy(f:ContentDraft['static']){
 export function malformedSpacing(f:ContentDraft['static']){
  return [f.heading,f.body,f.label,...f.bullets].some(text=>/(?:[A-Za-z]{2,}\.){2,}[A-Za-z]{2,}|(?:[A-Za-z]+_){2,}[A-Za-z]+|(?:[A-Za-z]+-){3,}[A-Za-z]+/.test(text));
 }
+
+// Internal evidence references ("(evidence: 3)", "Source: product page (evidence 161)") are bookkeeping, never reader copy.
+// They are removed before checks and review; a list row or sentence that only cites a source goes with them.
+const evidenceRef=/\s*[([]\s*(?:evidence|passage|source)(?:\s+ids?)?\s*:?\s*#?\d+(?:\s*[,&]\s*#?\d+)*\s*[)\]]|\s*\b(?:evidence|passage)\s+ids?\s*:?\s*#?\d+(?:\s*[,&]\s*#?\d+)*/gi;
+const citationOnly=/^\s*(?:\d+[.)]\s*)?sources?\s*:/i;
+export function stripEvidenceRefs(draft:ContentDraft):{draft:ContentDraft;removed:number}{
+ let removed=0;
+ const strip=(t:string)=>t.replace(evidenceRef,()=>{removed++;return '';}).replace(/\s+([.,;:!?])/g,'$1').replace(/\s{2,}/g,' ').trim();
+ const clean=(f:ContentDraft['static'])=>{
+  const body=f.body.split(/(?<=[.!?])\s+/).filter(s=>{if(!citationOnly.test(s))return true;removed++;return false;}).map(strip).join(' ').trim();
+  const kept=f.bullets.filter(b=>{if(!citationOnly.test(b))return true;removed++;return false;}).map(strip);
+  // Keep a numbered list numbered 1, 2, 3 after a row is dropped.
+  const numbered=kept.length>0&&kept.every(b=>/^\d+[.)]\s/.test(b));
+  const bullets=numbered?kept.map((b,i)=>b.replace(/^\d+([.)])/,`${i+1}$1`)):kept;
+  return {...f,heading:strip(f.heading),body,label:strip(f.label),bullets,emphasis:f.emphasis?strip(f.emphasis):f.emphasis};
+ };
+ return {draft:{...draft,carousel:draft.carousel.map(clean),static:clean(draft.static)},removed};
+}
+// Call packs: a body ending "…, a customer" or "— a customer" leaves the speaker hanging. It becomes a quote that says who said it.
+const danglingSpeaker=/^(.*\S)\s*(?:,|[—–-])\s*(a|the|one|our)\s+(customer|client|user|founder|buyer)\s*\.?$/is;
+export function attributeDanglingQuotes(draft:ContentDraft):ContentDraft{
+ const fix=(t:string)=>{if(/^[\s,;:—–-]*(a|the|one|our)\s+(customer|client|user|founder|buyer)\s*\.?$/i.test(t))return t.trim().replace(/^[\s,;:—–-]*/,'— ').replace(/\.?$/,' said.');const m=t.trim().match(danglingSpeaker);if(!m||!m[1].trim()||/\bsaid\b|\bsays\b/i.test(m[1]))return t;
+  const words=m[1].trim().replace(/^[“"']+|[”"']+$/g,'').replace(/[\s,;:—–-]+$/,'');const end=/[!?]$/.test(words)?'':',';
+  return `“${words.replace(/\.$/,'')}${end}” ${m[2].toLowerCase()} ${m[3].toLowerCase()} said.`;};
+ const clean=(f:ContentDraft['static'])=>({...f,body:fix(f.body)});
+ return {...draft,carousel:draft.carousel.map(clean),static:clean(draft.static)};
+}
+// Call packs: the static stands alone, so it must not be a quote the carousel already uses, and a lone quote needs context.
+// Quotes count with or without quotation marks when they carry an attribution such as "— a customer said" or "A customer said:".
+const attribution=/[\s,;:—–-]*\b(a|the|one|our)\s+(customer|client|user|founder|buyer)\s+(said|says)\b\s*[:,]?/gi;
+const quoted=(t:string)=>[...t.matchAll(/[“"]([^”"]{8,})[”"]/g)].map(m=>m[1]);
+const plain=(t:string)=>t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const spoken=(t:string)=>[...quoted(t),...(t.match(attribution)?[t.replace(attribution,' ').replace(/[“”"]/g,'')]:[])].map(plain).filter(q=>q.split(' ').length>=3);
+export function staticQuoteIssue(draft:ContentDraft){
+ const s=draft.static,own=[...spoken(s.heading),...spoken(s.body)];
+ const at=draft.carousel.findIndex(f=>{const text=plain([f.heading,f.body,...f.bullets].join(' '));return own.some(q=>text.includes(q));});
+ if(at>=0)return {slideNumber:0,message:`The static repeats the quote already used on slide ${at+1}. Give the static its own line: a different supported point from the call, with the context a stranger needs to understand it.`};
+ // Context is any wording of its own beyond the quote and its attribution; an unquoted attributed line is all quote.
+ const context=plain([s.heading,s.body].map(t=>t.match(attribution)&&!quoted(t).length?'':t.replace(/[“"][^”"]*[”"]/g,' ').replace(attribution,' ')).join(' '));
+ if(own.length&&context.split(' ').filter(Boolean).length<3)return {slideNumber:0,message:'The static is only a quote. State plainly what changed for the customer, using the call\'s facts and no quotation marks; a short quote may follow only if it adds something.'};
+}

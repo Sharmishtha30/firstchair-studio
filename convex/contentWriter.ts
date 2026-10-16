@@ -5,13 +5,14 @@ import {Agent} from '@convex-dev/agent';
 import {z} from 'zod';
 import {requireBrandEvidence} from './brandAcceptance';
 import {textModel} from './textModel';
+import {decideBrandLook,applyBrandLook} from './brandLook';
 import {oversizedSourceCorrections,shapeCorrections,roleShapes,trimExampleRows} from './contentFormatting';
 import {finishedObject} from './streamResult';
 import {mapInPairs,sourceReasoningEffort,withTransientRetry} from './contentBatches';
 import {sourceWriterFailure} from './sourceWriterFailure';
 import {anonymizePosts,markPrivateQuotes} from './callPrivacy';
 import {checkCreativePosts,type Brand} from './studioTypes';
-import {CONTENT_VERSION,requireContent,contentInput,planInstructions,planSchema,checkPlan,sourcePassages,contentReviewInput,checkDraft,makePosts,reviewInstructions,reviewSchema,reviewReasons,validHighlights,slideSchema,malformedSpacing,singleSlideInstructions,singleStaticInstructions,publicMetadata,duplicateSlideIssue,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,addedRuleIssue,stripAddedRules,danglingCopy,instructionsForSource,type ContentDraft,type ContentSource} from './contentPolicy';
+import {CONTENT_VERSION,requireContent,contentInput,planInstructions,planSchema,checkPlan,sourcePassages,contentReviewInput,checkDraft,makePosts,reviewInstructions,reviewSchema,reviewReasons,validHighlights,slideSchema,malformedSpacing,singleSlideInstructions,singleStaticInstructions,publicMetadata,duplicateSlideIssue,metaCopyIssue,fragmentIssue,overclaimIssue,fillerRowIssue,echoIssue,addedRuleIssue,stripAddedRules,danglingCopy,stripEvidenceRefs,attributeDanglingQuotes,staticQuoteIssue,instructionsForSource,type ContentDraft,type ContentSource} from './contentPolicy';
 export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:Id<'packs'>;startedAt?:number}):Promise<null>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(!pack||startedAt!==undefined&&pack.operationStartedAt!==startedAt)return null;
  requireContent(pack.callRequested,pack.article,pack.websiteOnlyRequested);
@@ -74,13 +75,19 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
    ...revisionFeedback,
   });
   const trimmed=trimExampleRows({carousel:frames},roles).carousel;
-  return validHighlights({carousel:trimmed,static:stat,...publicMetadata(trimmed,stat)});
+  // Fixed clean-up before any check or review: no evidence references in visible text, and call quotes always name their speaker.
+  let clean=stripEvidenceRefs({carousel:trimmed,static:stat} as ContentDraft).draft;
+  if(source.kind==='call')clean=attributeDanglingQuotes(clean);
+  return validHighlights({carousel:clean.carousel,static:clean.static,...publicMetadata(clean.carousel,clean.static)});
  }
  let draft=await writeDraft();
  let accepted=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='',ruleRepairs=0,ruleNote='';
  for(let attempt=0;attempt<7;attempt++){
   let issue='',corrections:Correction[]=[];
-  try{checkDraft(draft,evidence);}catch(e){issue=(e as Error).message;const number=issue.match(/carousel slide (\d+)/)?.[1];corrections=[{slideNumbers:number?[Number(number)]:/static/i.test(issue)?[0]:[0,...draft.carousel.map((_,i)=>i+1)],fix:issue}];}
+  // A slide emptied by the evidence clean-up is rewritten on its own, not the whole pack.
+  const emptied=[...draft.carousel,draft.static].findIndex(f=>!f.heading.trim()&&!f.body.trim()&&!f.bullets.some(b=>b.trim()));
+  if(emptied>=0){issue='This slide only cited a source. Write one supported point from the source instead.';corrections=[{slideNumbers:[emptied===draft.carousel.length?0:emptied+1],fix:issue}];}
+  else try{checkDraft(draft,evidence);}catch(e){issue=(e as Error).message;const number=issue.match(/carousel slide (\d+)/)?.[1];corrections=[{slideNumbers:number?[Number(number)]:/static/i.test(issue)?[0]:[0,...draft.carousel.map((_,i)=>i+1)],fix:issue}];}
   if(issue.startsWith('Shorten '))corrections=oversizedSourceCorrections(draft);
   const meta=metaCopyIssue(draft);
   if(!issue&&meta){issue=meta.message;corrections=[{slideNumbers:[meta.slideNumber],fix:issue}];}
@@ -107,6 +114,8 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   if(!issue&&malformed>=0){issue='Use normal spaces between words, not dots or invented hyphens. Rewrite as a shorter complete thought within the word limit.';corrections=[{slideNumbers:[malformed===draft.carousel.length?0:malformed+1],fix:issue}];}
   const duplicate=duplicateSlideIssue(draft.carousel);
   if(!issue&&duplicate){issue=duplicate.message;corrections=[{slideNumbers:[duplicate.slideNumber],fix:issue}];}
+  const staticQuote=source.kind==='call'?staticQuoteIssue(draft):undefined;
+  if(!issue&&staticQuote){issue=staticQuote.message;corrections=[{slideNumbers:[0],fix:issue}];}
   if(!issue&&danglingCopy(draft.static)){issue='The static body ends mid-sentence. Write one shorter complete takeaway; do not truncate.';corrections=[{slideNumbers:[0],fix:issue}];}
   if(!issue){
    posts=makePosts(draft,evidence,source.kind,platforms,source.sourceUrl,roles);
@@ -126,8 +135,11 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   if(shapeOnly||ruleOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=2)break;
   if(attempt<6)draft=await writeDraft(draft,corrections);
  }
- const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:'')+ruleNote,usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
+ // Styling is decided after the copy passed review: a D2C website gets its own colours and photos; everything else keeps the standard look.
+ const brandLook=decideBrandLook({kind:source.kind,category:pack.detectedCategory,assets:pack.sourceAssets??[],pageUrls:(pack.sourcePages??[]).map(page=>page.url),palette:pack.sitePalette,logoColours:pack.logoColours});
+ if(accepted&&brandLook.applied&&brandLook.colours&&brandLook.images){posts=applyBrandLook(posts,brandLook.colours,brandLook.images);checkCreativePosts(posts,brand.facts,platforms,brandLook.images,quotes);}
+ const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:'')+ruleNote+' Look: '+brandLook.label+' — '+brandLook.reason,usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
  if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Review needs attention',writerRun});throw Error('The source-based story needs attention: '+reason.slice(0,280));}
  if(pack.revisionFormat&&pack.posts)posts=pack.posts.map(p=>p.format===pack.revisionFormat&&(p.platform??'instagram')===(pack.revisionPlatform??'instagram')?posts.find(n=>n.format===p.format&&n.platform===(p.platform??'instagram'))!:p);
- await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Ready',completedStep:'review',brand,posts,mode:CONTENT_VERSION+' — '+source.kind,writerRun});return null;
+ await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Ready',completedStep:'review',brand,posts,brandLook,mode:CONTENT_VERSION+' — '+source.kind,writerRun});return null;
 }

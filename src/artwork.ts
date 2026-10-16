@@ -5,6 +5,7 @@ import {fittingCandidates,type TextStyles,type TextField} from '../convex/textSt
 import {editorFont} from './textStyleFonts';
 import {styledContexts,fittedStyles,textOverride} from './textStyleLayout';
 import {paintFrozen} from './frozenArtwork';
+import {paintBrand} from './brandArtwork';
 import type {Brand,Post,Frame} from '../convex/studioTypes';
 export function colours(brand:Brand){return brand.palette??{paper:'#ffffff',ink:'#101010',primary:'#253e62',accent:'#253e62',note:'Neutral fallback'};}
 function luminance(hex:string){return hex.slice(1).match(/../g)!.map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((a,x,i)=>a+x*[.2126,.7152,.0722][i],0);}
@@ -72,7 +73,8 @@ async function paint(post:Post,brand:Brand,index:number,styles:TextStyles){
  const fonts:Partial<Record<TextField,string>>={};
  for(const field of ['heading','body'] as const){const choice=styles[field]?.font;if(choice&&choice!=='brand')fonts[field]=await editorFont(choice);}
  styledContexts.set(ctx,{styles,fonts});fittedStyles.set(c,styles);appearanceContexts.set(ctx,{colours:f.textColours??{},imageStyle:f.imageStyle,pending:[],textBounds:[]});appearanceReports.set(c,{text:{heading:{background:p.paper,colour:ink},body:{background:!f.design&&f.composition==='spotlight'?p.primary:p.paper,colour:ink}}});
- await paintFrozen(ctx,post,brand,index,font,bodyFont,weight);finishSlideImages(ctx);return c;
+ // Brand-look slides (D2C website packs) use brand colours and website photos; all others keep the frozen design.
+ await (f.look?paintBrand:paintFrozen)(ctx,post,brand,index,font,bodyFont,weight);finishSlideImages(ctx);return c;
 }
 
 export async function checkArtwork(posts:Post[],brand:Brand){const report=[];for(const post of posts)for(let i=0;i<post.frames.length;i++){const c=await renderArtwork(post,brand,i);report.push({platform:post.platform??'instagram',format:post.format,slide:i+1,width:c.width,height:c.height,text:bounds.get(c)});}return report;}

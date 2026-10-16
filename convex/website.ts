@@ -10,6 +10,7 @@ import {matchedWebsiteColourEvidence} from './websiteColours';
 import {websiteTypography} from './websiteTypography';
 import {extractStyle} from './brandStyle';
 import {websiteGeometry} from './websiteGeometry';
+import {logoColours} from './logoColours';
 import {websiteImageSource} from './websiteImageSource';
 import {publicWebsite} from './publicWebsite';
 import {primaryLogo,primaryInlineLogo} from './websiteIdentity';
@@ -98,13 +99,14 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
   await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website styling ready',completedStep:'assets',sourceText:'Styles only; no website content.',sourcePages:[],sourceAssets:[],fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:['Website colours and fonts only. CSS declarations may differ from rendered styles.',...warnings.filter(w=>/font/i.test(w))],sitePalette:palette,siteStyle:fontStyle,resetLogo:true});return null;
  }
  const sourcePages=sources.map(s=>s.page),sourceText=sourcePages.map(p=>'PAGE '+p.url+'\n'+p.title+'\n'+p.blocks.map(b=>b.kind+': '+b.text).join('\n')).join('\n\n').slice(0,52000);
- let logoFile;
+ let logoFile,logoColourList:string[]=[];
  if(home.logo)try{
   const asset=await publicWebsite(home.logo,'image/'),bytes=asset.bytes!,info=imageInfo(bytes);
+  logoColourList=logoColours(bytes,asset.html);
   if(info)logoFile=await ctx.storage.store(new Blob([bytes as BlobPart],{type:info.mime}));
   else if(/<svg[\s>]/i.test(asset.html.slice(0,1000))){const svg=load(asset.html,{xmlMode:true});svg('script,foreignObject,iframe,image,style').remove();svg('*').each((_,el)=>{const attributes=(el as unknown as {attribs?:Record<string,string>}).attribs??{};for(const [key,value]of Object.entries(attributes))if(/^on/i.test(key)||/href$/i.test(key)&&!value.startsWith('#')||/url\(/i.test(value)&&[...value.matchAll(/url\(([^)]+)\)/g)].some(m=>!/^#[\w-]+$/.test(m[1])))svg(el).removeAttr(key);});const clean=svg('svg').first().toString();if(clean)logoFile=await ctx.storage.store(new Blob([clean],{type:'image/svg+xml'}));}
  }catch{warnings.push('Logo could not be imported; a text wordmark is used.');}
- if(!logoFile&&home.inlineLogo)logoFile=await ctx.storage.store(new Blob([home.inlineLogo],{type:'image/svg+xml'}));
+ if(!logoFile&&home.inlineLogo){logoFile=await ctx.storage.store(new Blob([home.inlineLogo],{type:'image/svg+xml'}));logoColourList=logoColours(new TextEncoder().encode(home.inlineLogo),home.inlineLogo);}
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Collecting brand imagery'});
  const candidates=sources.flatMap((s,index)=>s.images.map(image=>({...image,score:image.score+(index===0?8:0)+(image.role==='product'?5:0)-(/notice|update on|debunk|reddit|reel/i.test(image.alt)?8:0)}))).filter((i,n,a)=>a.findIndex(x=>x.url===i.url)===n).sort((a,b)=>b.score-a.score).slice(0,36);
  const fetched=await Promise.allSettled(candidates.map(async(c,i)=>{const r=await publicWebsite(c.url,'image/');let info=imageInfo(r.bytes!),bytes=r.bytes!;if(!info&&/<svg[\s>]/i.test(r.html.slice(0,1000))){const svg=inlineIllustrations(load('<main>'+r.html+'</main>'),c.pageUrl)[0];if(svg){info={width:svg.width,height:svg.height,mime:'image/svg+xml'};bytes=new TextEncoder().encode(svg.svg);}}if(!info||info.width>6000||info.height>6000||(/brand decoration|brand icon/.test(c.role)?info.width<16||info.height<16:info.width<240||info.height<180)||info.width/info.height>4)throw new Error('Image is too small or unsuitable.');return {...c,...info,key:(info.mime==='image/svg+xml'?'diagram-external-':'image-')+i,bytes};}));
@@ -118,5 +120,5 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  const usable=fetched.flatMap(r=>r.status==='fulfilled'?[r.value]:[]).slice(0,24-sourceAssets.length);
  sourceAssets.push(...await Promise.all(usable.map(async a=>({key:a.key,file:await ctx.storage.store(new Blob([a.bytes as BlobPart],{type:a.mime})),originalUrl:a.url,width:a.width,height:a.height,alt:a.alt,role:a.role,pageUrl:a.pageUrl}))));
  if(!sourceAssets.length)warnings.push('No suitable website imagery loaded. Original typographic diagrams will be used.');
- await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website reading complete',completedStep:'assets',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile});return null;
+ await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website reading complete',completedStep:'assets',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile,logoColours:logoColourList});return null;
 }});
