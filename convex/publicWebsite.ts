@@ -5,6 +5,7 @@ import {request as httpRequest} from 'node:http';
 import {publicAddress,websiteUrl} from './websiteSafety';
 import {beforeDeadline} from './requestDeadline';
 import {websiteReadLimit} from './websiteReadLimit';
+import {withWebsiteNetworkRetry} from './websiteNetworkRetry';
 export function validateWebsiteResponse(status:number,contentType:string,mime:string):void{
  if(status===429)throw new Error('This website is limiting automated reading (HTTP 429). Wait before retrying, or open “Website blocked? Use your business text” below. Your content is saved.');
  if(status===401||status===403)throw new Error('This website blocks automated reading. Open “Website blocked? Use your business text” below to continue.');
@@ -13,6 +14,9 @@ export function validateWebsiteResponse(status:number,contentType:string,mime:st
  if(!supportedType)throw new Error('Enter a webpage, rather than a file.');
 }
 export async function publicWebsite(input:string,mime='text/html'):Promise<{url:string;html:string;bytes?:Uint8Array}>{
+ return withWebsiteNetworkRetry(()=>readPublicWebsite(input,mime));
+}
+async function readPublicWebsite(input:string,mime:string):Promise<{url:string;html:string;bytes?:Uint8Array}>{
  let url=websiteUrl(input);const deadline=Date.now()+20000;
  for(let hop=0;hop<5;hop++){
   const addresses=await beforeDeadline(lookup(url.hostname.replace(/^\[|\]$/g,''),{all:true}),deadline);

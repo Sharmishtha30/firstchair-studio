@@ -117,9 +117,12 @@ export function overclaimIssue(draft:ContentDraft,sourceText:string){
 }
 // A list row whose value is a single filler word ("Bars: offered") adds nothing for the reader.
 const filler=/:\s*(offered|available|included|yes|provided|sold|present)\.?\s*$|^\s*(\d+[.)]\s*)?(list|item|point|row|entry)\s*\d*\s*:/i;
-export function fillerRowIssue(draft:ContentDraft){
+export function isFillerRow(row:string){
  const same=(b:string)=>{const at=b.indexOf(':'),n=(t:string)=>t.replace(/^\s*\d+[.)]\s*/,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();return at>0&&n(b.slice(0,at))===n(b.slice(at+1));};
- const frames=[...draft.carousel,draft.static],index=frames.findIndex(f=>f.bullets.some(b=>filler.test(b)||same(b)));
+ return filler.test(row)||same(row);
+}
+export function fillerRowIssue(draft:ContentDraft){
+ const frames=[...draft.carousel,draft.static],index=frames.findIndex(f=>f.bullets.some(isFillerRow));
  return index<0?undefined:{slideNumber:index===draft.carousel.length?0:index+1,message:'A list row uses a placeholder such as "List:", repeats its name as its value, or uses a filler value such as "offered". Write each row as the real name and a concrete detail from the source, or drop rows the source gives no detail for.'};
 }
 // A body that repeats its own heading word for word wastes the slide.
