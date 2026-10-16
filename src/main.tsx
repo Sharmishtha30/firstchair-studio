@@ -1,3 +1,4 @@
+import {isAccuracyPrivacyFailure} from '../convex/sourceWriterFailure';
 import {HowMade} from './HowMade';
 import {appearanceReports,type AppearanceReport} from './appearanceLayout';
 import {ImageStyleControl} from './ImageStyleControl';
@@ -132,7 +133,7 @@ function App(){
  {pack&&pack.stage!=='Ready'&&!pack.onboardingComplete&&!packError&&<Direction key={token} token={token} pack={pack}/>}
  {pack&&pack.onboardingComplete&&pack.stage!=='Ready'&&!packError&&<section className="journey-loading"><span className="spinner"/><h2 role="status" aria-live="polite">{progressMessage(pack.stage)}</h2><GenerationProgress completed={pack.completedSteps} withCall={!!pack.call}/><p>Usually about {onboardingEstimateMinutes} minutes from website entry.</p><p className="waiting-estimate-note">Progress advances when a step finishes.</p>{callStatus}</section>}
 
- {packError&&!pack?.posts&&<section className="error" role="alert"><strong>{publicPreview&&!isAuthenticated?'Fresh posts aren’t connected yet.':'This pack needs attention.'}</strong><p>{packError}</p>{callStatus}{publicPreview&&!isAuthenticated?<button disabled={starting} onClick={openSamples}>View sample posts</button>:<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry failed step</button>}</section>}
+ {packError&&!pack?.posts&&<section className="error" role="alert"><strong>{publicPreview&&!isAuthenticated?'Fresh posts aren’t connected yet.':isAccuracyPrivacyFailure(packError)?'This pack needs attention.':'Writing was interrupted.'}</strong><p>{packError}</p>{callStatus}{publicPreview&&!isAuthenticated?<button disabled={starting} onClick={openSamples}>View sample posts</button>:<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry failed step</button>}</section>}
  {pack?.posts&&pack.brand&&(pack.stage==='Ready'||!!packError)&&post&&<section className="result-studio">
  <div className="result-tabs" role="tablist" aria-label="Creative format">{(['carousel','static'] as const).map(f=><button key={f} role="tab" disabled={styleBusy} aria-selected={active===f} onClick={()=>{setActive(f);setSlide(0);setEditingPost(null);}}>{f==='carousel'?'Carousel':'Statics'}</button>)}</div>
  {packError&&<div className="result-review-notice" role="status">{packTimedOut?packError:'This is a saved draft. Its final review needs another pass.'}<button onClick={()=>void retry({token}).catch(e=>setError(readableError(e)))}>Retry review</button></div>}

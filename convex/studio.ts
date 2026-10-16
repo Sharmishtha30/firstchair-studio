@@ -1,4 +1,5 @@
 import {requireContent} from './contentPolicy';
+import {isAccuracyPrivacyFailure} from './sourceWriterFailure';
 import {articleInputV,checkArticleInput} from './articleInput';
 import {presentBrand} from './brandPresentation';
 import {callMakingV} from './callMaking';
@@ -35,7 +36,7 @@ export const makePack=workflow.define({args:{packId:v.id('packs'),revision:v.opt
     await step.runAction(internal.studioWriter.write,{packId,startedAt},{retry:false});
 
   } catch(e) {
-    await step.runMutation(internal.studio.update,{packId,startedAt,stage:'Needs attention',error:e instanceof Error?/abort|timed? ?out/i.test(e.message)?'The connected writer took too long. Your source evidence and any completed draft are saved; retry the failed step.':e.message.replace(/^Uncaught (?:\w+Error|Error):\s*/, '').split(/\n\s+at /)[0].slice(0,400):'Could not finish this pack.'});
+    await step.runMutation(internal.studio.update,{packId,startedAt,stage:e instanceof Error&&isAccuracyPrivacyFailure(e.message)?'Needs attention':'Writing interrupted',error:e instanceof Error?/abort|timed? ?out/i.test(e.message)?'The connected writer took too long. Your source evidence and any completed draft are saved; retry the failed step.':e.message.replace(/^Uncaught (?:\w+Error|Error):\s*/, '').split(/\n\s+at /)[0].slice(0,400):'Could not finish this pack.'});
   }
   return null;
 });

@@ -6,7 +6,7 @@ import {z} from 'zod';
 import {requireBrandEvidence} from './brandAcceptance';
 import {textModel} from './textModel';
 import {decideBrandLook,applyBrandLook} from './brandLook';
-import {oversizedSourceCorrections,shapeCorrections,roleShapes,trimExampleRows} from './contentFormatting';
+import {repairSourceWordBudgets,shapeCorrections,roleShapes,trimExampleRows} from './contentFormatting';
 import {finishedObject} from './streamResult';
 import {mapInPairs,sourceReasoningEffort,withTransientRetry} from './contentBatches';
 import {sourceWriterFailure} from './sourceWriterFailure';
@@ -80,15 +80,25 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   if(source.kind==='call')clean=attributeDanglingQuotes(clean);
   return validHighlights({carousel:clean.carousel,static:clean.static,...publicMetadata(clean.carousel,clean.static)});
  }
- let draft=await writeDraft();
- let accepted=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='',ruleRepairs=0,ruleNote='';
+ async function writeFittingDraft(previous?:ContentDraft,corrections:Correction[]=[]):Promise<ContentDraft>{
+  const written=await writeDraft(previous,corrections);
+  const fitted=await repairSourceWordBudgets<ContentDraft['static'],ContentDraft>(written,async(frame,correction)=>{
+   const number=correction.slideNumbers[0];
+   const current={...written,carousel:[...written.carousel]};
+   if(number===0)current.static=frame;else current.carousel[number-1]=frame;
+   const revised=await writeDraft(current,[correction]);
+   return number===0?revised.static:revised.carousel[number-1];
+  });
+  return {...fitted,...publicMetadata(fitted.carousel,fitted.static)};
+ }
+ let draft=await writeFittingDraft();
+ let accepted=false,safetyFailure=false,reason='',posts:ReturnType<typeof makePosts>=[],formatRepairs=0,reviewRepairs=0,shapeRepairs=0,shapeNote='',ruleRepairs=0,ruleNote='';
  for(let attempt=0;attempt<7;attempt++){
-  let issue='',corrections:Correction[]=[];
+  let issue='',corrections:Correction[]=[];safetyFailure=false;
   // A slide emptied by the evidence clean-up is rewritten on its own, not the whole pack.
   const emptied=[...draft.carousel,draft.static].findIndex(f=>!f.heading.trim()&&!f.body.trim()&&!f.bullets.some(b=>b.trim()));
   if(emptied>=0){issue='This slide only cited a source. Write one supported point from the source instead.';corrections=[{slideNumbers:[emptied===draft.carousel.length?0:emptied+1],fix:issue}];}
   else try{checkDraft(draft,evidence);}catch(e){issue=(e as Error).message;const number=issue.match(/carousel slide (\d+)/)?.[1];corrections=[{slideNumbers:number?[Number(number)]:/static/i.test(issue)?[0]:[0,...draft.carousel.map((_,i)=>i+1)],fix:issue}];}
-  if(issue.startsWith('Shorten '))corrections=oversizedSourceCorrections(draft);
   const meta=metaCopyIssue(draft);
   if(!issue&&meta){issue=meta.message;corrections=[{slideNumbers:[meta.slideNumber],fix:issue}];}
   // Density budgets get one targeted repair; afterwards they are advisory, since the hard word ceilings in checkDraft still apply.
@@ -96,7 +106,7 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   let shapeOnly=false;
   if(dense.length&&shapeRepairs++<1){issue=`Slides too dense: ${dense.map(c=>c.slideNumbers[0]).join(', ')}.`;corrections=dense;shapeOnly=true;}
   const overclaim=overclaimIssue(draft,source.text);
-  if(!issue&&overclaim){issue=overclaim.message;corrections=[{slideNumbers:[overclaim.slideNumber],fix:issue}];}
+  if(!issue&&overclaim){safetyFailure=true;issue=overclaim.message;corrections=[{slideNumbers:[overclaim.slideNumber],fix:issue}];}
   const fillerRow=fillerRowIssue(draft);
   if(!issue&&fillerRow){issue=fillerRow.message;corrections=[{slideNumbers:[fillerRow.slideNumber],fix:issue}];}
   // An unsourced rule gets one targeted repair; if one is still there, that sentence or row is removed.
@@ -105,7 +115,7 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
    if(empty>=0){issue='This slide was only an unsourced rule. Write one supported point from the source instead.';corrections=[{slideNumbers:[empty===draft.carousel.length?0:empty+1],fix:issue}];}}
   const addedRule=addedRuleIssue(draft,source);
   let ruleOnly=false;
-  if(!issue&&addedRule){issue=addedRule.message;corrections=[{slideNumbers:[addedRule.slideNumber],fix:issue}];ruleOnly=ruleRepairs++<1;}
+  if(!issue&&addedRule){safetyFailure=true;issue=addedRule.message;corrections=[{slideNumbers:[addedRule.slideNumber],fix:issue}];ruleOnly=ruleRepairs++<1;}
   const echo=echoIssue(draft);
   if(!issue&&echo){issue=echo.message;corrections=[{slideNumbers:[echo.slideNumber],fix:issue}];}
   const fragment=fragmentIssue(draft);
@@ -127,19 +137,20 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
    // After the first review repair, clarity and flow notes are recorded but do not block, and only accuracy and
    // privacy problems are sent back for a second repair; they always block if still present.
    const blocking=reviewRepairs>=1?review.issues.filter(i=>i.category==='accuracy'||i.category==='privacy'):review.issues;
+   safetyFailure=blocking.some(i=>i.category==='accuracy'||i.category==='privacy');
    corrections=blocking.map(i=>({slideNumbers:i.slideNumbers,fix:i.problem+' '+i.fix}));
    accepted=blocking.length===0;
    reason=accepted&&review.issues.length?'Source accuracy and privacy checked. Advisory: '+reviewReasons(review).join(' '):reviewReasons(review).join(' ')||'Source accuracy, story flow and privacy checked.';
   }else reason=issue;
   if(accepted)break;
   if(shapeOnly||ruleOnly?false:issue?formatRepairs++>=2:reviewRepairs++>=2)break;
-  if(attempt<6)draft=await writeDraft(draft,corrections);
+  if(attempt<6)draft=await writeFittingDraft(draft,corrections);
  }
  // Styling is decided after the copy passed review: a D2C website gets its own colours and photos; everything else keeps the standard look.
  const brandLook=decideBrandLook({kind:source.kind,category:pack.detectedCategory,assets:pack.sourceAssets??[],pageUrls:(pack.sourcePages??[]).map(page=>page.url),palette:pack.sitePalette,logoColours:pack.logoColours});
  if(accepted&&brandLook.applied&&brandLook.colours&&brandLook.images){posts=applyBrandLook(posts,brandLook.colours,brandLook.images);checkCreativePosts(posts,brand.facts,platforms,brandLook.images,quotes);}
  const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:'')+ruleNote+' Look: '+brandLook.label+' — '+brandLook.reason,usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
- if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Review needs attention',writerRun});throw Error('The source-based story needs attention: '+reason.slice(0,280));}
+ if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:safetyFailure?'Review needs attention':'Writing interrupted',writerRun});throw Error(safetyFailure?'The source-based story needs attention: '+reason.slice(0,280):'The writer could not finish this draft. Your input is saved; retry the writing step.');}
  if(pack.revisionFormat&&pack.posts)posts=pack.posts.map(p=>p.format===pack.revisionFormat&&(p.platform??'instagram')===(pack.revisionPlatform??'instagram')?posts.find(n=>n.format===p.format&&n.platform===(p.platform??'instagram'))!:p);
  await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:'Ready',completedStep:'review',brand,posts,brandLook,mode:CONTENT_VERSION+' — '+source.kind,writerRun});return null;
 }

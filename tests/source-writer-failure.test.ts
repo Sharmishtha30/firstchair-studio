@@ -1,7 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {completedStream} from '../convex/chatgptModel';
-import {sourceWriterFailure} from '../convex/sourceWriterFailure';
+import {sourceWriterFailure,isAccuracyPrivacyFailure} from '../convex/sourceWriterFailure';
+
+test('only real source accuracy or privacy rejections need attention',()=>{
+ assert.equal(isAccuracyPrivacyFailure('The source-based story needs attention: accuracy at slide 5: unsupported claim.'),true);
+ assert.equal(isAccuracyPrivacyFailure('The source-based story needs attention: privacy at slide 2: identifying name.'),true);
+ for(const message of ['Shorten carousel slide 5 to 40 visible words.','The writer could not finish this draft. Your input is saved; retry the writing step.','ChatGPT is temporarily busy.'])assert.equal(isAccuracyPrivacyFailure(message),false);
+});
 
 test('a capped response is rejected with a useful error, even through SDK wrappers',async()=>{
  const event='data: '+JSON.stringify({type:'response.incomplete',response:{incomplete_details:{reason:'max_output_tokens'}}})+'\n\n';

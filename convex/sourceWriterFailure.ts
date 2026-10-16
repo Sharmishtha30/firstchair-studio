@@ -1,3 +1,6 @@
+// Only the source writer's accuracy/privacy rejection uses this prefix.
+export function isAccuracyPrivacyFailure(message:string){return message.includes('The source-based story needs attention:');}
+
 // Extract only known safe messages; SDK errors can contain private request bodies.
 export function sourceWriterFailure(error:unknown):string {
  let current=error;

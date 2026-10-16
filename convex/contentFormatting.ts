@@ -4,17 +4,41 @@ export function checkSourceWordBudget(parts:string[],format:'carousel'|'static',
  if(count>limit)throw Error(`Shorten ${format} slide ${slide} to ${limit} visible words without dropping meaning or caveats.`);
 }
 
-// Collect every oversized frame before spending the single formatting repair.
+// Collect oversized frames for targeted shortening, separate from formatting repairs.
 // Returning only failing frame numbers keeps valid copy out of the rewrite.
 export function oversizedSourceCorrections(draft:{carousel:Array<{label:string;heading:string;body:string;bullets:string[]}>;static:{label:string;heading:string;body:string;bullets:string[]}}){
  const corrections:Array<{slideNumbers:number[];fix:string}>=[];
  for(const [index,frame] of [...draft.carousel,draft.static].entries()){
   const isStatic=index===draft.carousel.length;
   try{checkSourceWordBudget([frame.label,frame.heading,frame.body,...frame.bullets],isStatic?'static':'carousel',index+1);}catch{
-   corrections.push({slideNumbers:[isStatic?0:index+1],fix:`Rewrite this as a shorter complete thought, targeting ${isStatic?15:25} words TOTAL across heading, body, label and bullets. Preserve its qualifications; remove redundant heading text. Do not join words or cut a sentence off.`});
+   corrections.push({slideNumbers:[isStatic?0:index+1],fix:`Rewrite only this slide as a shorter complete thought, targeting ${isStatic?15:25} words TOTAL across heading, body, label and bullets. Preserve its meaning, qualifications, attribution and any customer quote verbatim; shorten the surrounding explanation, not the quote. Remove redundant heading text. Do not join words or cut a sentence off.`});
   }
  }
  return corrections;
+}
+
+// Every new draft (including review corrections) must fit before it enters validation.
+// Keep shortening independent of other repair budgets; never truncate source meaning.
+export async function repairSourceWordBudgets<F extends ShapedFrame,T extends {carousel:F[];static:F}>(draft:T,rewrite:(frame:F,correction:{slideNumbers:number[];fix:string})=>Promise<F>):Promise<T>{
+ const result={...draft,carousel:[...draft.carousel]};
+ for(const correction of oversizedSourceCorrections(draft)){
+  const number=correction.slideNumbers[0],original=number===0?draft.static:draft.carousel[number-1];
+  const text=(frame:F)=>[frame.label,frame.heading,frame.body,...frame.bullets].join(' ');
+  const quotes=Array.from(text(original).matchAll(/“([^”]+)”|"([^"\n]+)"|‘([^’]+)’/g),match=>match[1]??match[2]??match[3]);
+  let current=original,finished=false;
+  for(let attempt=0;attempt<4;attempt++){
+   const candidate=await rewrite(current,correction);
+   // A shorter invented or dropped quote is not a successful length repair.
+   if(!quotes.every(quote=>text(candidate).includes(quote)))continue;
+   current=candidate;
+   try{checkSourceWordBudget([current.label,current.heading,current.body,...current.bullets],number===0?'static':'carousel',number);}catch{continue;}
+   if(number===0)result.static=current;else result.carousel[number-1]=current;
+   finished=true;break;
+  }
+  // Bound provider work without presenting a word-count task or approving an invalid draft.
+  if(!finished)throw Error('The writer could not finish this draft. Your input is saved; retry the writing step.');
+ }
+ return result;
 }
 
 // Generation budgets per outline role. Stricter than the manual-edit ceilings above:
