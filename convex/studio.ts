@@ -19,7 +19,7 @@ import {platformV,sourcePageV,sourceAssetV,strategyV} from './creativeTypes';
 import {generationUnavailable} from './generationAvailability';
 import { websiteUrl } from './websiteSafety';
 import {copyLensV} from './copyLenses';
-import {brandLookV,isPhoto} from './brandLook';
+import {brandLookV,isPhoto,allowsBrandPhotos} from './brandLook';
 import {claimEdit,remainingEdits} from './editAllowance';
 import {checkDesignDensity} from './creativeDensity';
 import {canReadOwnedPack} from './sessionOwnership';
@@ -95,6 +95,7 @@ export const revise=mutation({args:{token:v.string(),format:v.union(v.literal('c
 export const editPost=mutation({args:{token:v.string(),platform:platformV,format:v.union(v.literal('carousel'),v.literal('static')),slide:v.number(),takeaway:v.optional(v.string()),heading:v.string(),body:v.string(),caption:v.string(),items:v.array(v.object({label:v.string(),detail:v.string()})),assetKey:v.optional(v.string()),composition:v.optional(v.union(v.literal('editorial'),v.literal('checklist'),v.literal('comparison'),v.literal('process'),v.literal('spotlight'),v.literal('image'),v.literal('closing')))},returns:v.null(),handler:async(ctx,args)=>{
  const userId=await getAuthUserId(ctx),p=await ctx.db.query('packs').withIndex('by_token',q=>q.eq('token',args.token)).unique();if(!userId||!p?.posts||p.userId!==userId)throw new ConvexError('Connect to the account that created this pack to edit it.');
  if(p.stage!=='Ready')throw new ConvexError('Wait for writing to finish.');if(!args.heading.trim()&&(args.slide===0||!args.body.trim()&&!args.items.some(item=>item.detail.trim())))throw new ConvexError('Add a headline before saving. Your edit is still available.');if(args.heading.length>160||args.body.length>600||args.caption.length>2200||args.items.length>5||args.items.some(i=>i.label.length>100||i.detail.length>240)||args.takeaway&&args.takeaway.length>200)throw new ConvexError('Shorten the text to keep it readable.');
+ if(args.assetKey&&p.brandLook&&!allowsBrandPhotos(p.brandLook))throw new ConvexError('Website photos are available for D2C packs only.');
  if(args.assetKey&&!p.sourceAssets?.some(a=>a.key===args.assetKey))throw new ConvexError('Choose an image from this website.');
  let posts=p.posts.map(post=>{if(post.format!==args.format||(post.platform??'instagram')!==args.platform)return post;if(!post.frames[args.slide])throw new ConvexError('Slide not found.');return {...post,hook:args.slide===0?args.heading:post.hook,caption:args.caption,frames:post.frames.map((frame,i)=>i===args.slide?{...frame,heading:args.heading,body:args.body,items:args.items,...(frame.design?{design:{...frame.design,takeaway:args.takeaway??frame.design.takeaway,...(args.assetKey&&args.assetKey!==frame.assetKey?{layout:frame.design.layout==='product'?'product' as const:'photo' as const,imagePosition:'bottom' as const}:args.assetKey===''&&(frame.design.layout==='photo'||frame.design.layout==='product')?{layout:'essay' as const}:{})}}:{}),...(args.assetKey!==undefined?{assetKey:args.assetKey}:{}),...(args.composition?{composition:args.composition}:{})}:frame)};});
  if(p.callRequested)posts=anonymizePosts(posts,p.posts.flatMap(post=>post.frames.flatMap(f=>f.quote?[f.quote]:[])));
@@ -189,6 +190,7 @@ export const styleAppearance=mutation({args:{token:v.string(),platform:platformV
  if(!Number.isInteger(args.slide)||args.slide<0)throw new ConvexError('Slide not found.');
  if(!args.colour&&!args.image&&args.assetKey===undefined||args.colour&&!validColour(args.colour.value))throw new ConvexError('Choose a valid colour or image size.');
  // Brand-look slides can swap in another photo from this website, or drop the image ('').
+ if(args.assetKey&&pack.brandLook&&!allowsBrandPhotos(pack.brandLook))throw new ConvexError('Website photos are available for D2C packs only.');
  if(args.assetKey){const asset=pack.sourceAssets?.find(a=>a.key===args.assetKey);if(!asset||!isPhoto(asset))throw new ConvexError('Choose a photo from this website.');}
  let found=false;
  const posts=pack.posts.map(post=>{if(post.format!==args.format||(post.platform??'instagram')!==args.platform)return post;

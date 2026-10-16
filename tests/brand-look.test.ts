@@ -37,12 +37,12 @@ test('brand images are real photos, one per product, products with names first',
  assert.equal(isPhoto(farmley[0]),false);
 });
 
-test('colours come from the logo when the website CSS is only black, white and grey',()=>{
- assert.equal(brandColours(neutral,[]),undefined);
- const c=brandColours(neutral,['#172c4b','#ffcf45'])!;
+test('neutral CSS remains valid brand styling and the logo supplies colours when CSS is absent',()=>{
+ assert.deepEqual(brandColours(neutral,[]),{primary:'#121212',secondary:'#ffffff',background:'#ffffff',source:'website CSS'});
+ const c=brandColours(undefined,['#172c4b','#ffcf45'])!;
  assert.deepEqual([c.primary,c.secondary,c.source],['#172c4b','#ffcf45','logo']);
  assert.equal(brandColours({...neutral,primary:'#ff307e'},['#172c4b'])!.source,'website CSS');
- // subko.coffee: cream page and black type, no saturated colour; pure white never counts.
+ // subko.coffee: cream page and black type, no saturated colour.
  assert.deepEqual(brandColours({...neutral,paper:'#fff8f2',primary:'#fff8f2',accent:'#fff8f2',observed:['#ffffff','#000000','#fff8f2']},[]),{primary:'#fff8f2',secondary:'#000000',background:'#fff8f2',source:'website CSS'});
 });
 
@@ -64,10 +64,10 @@ test('cover and static carry the first photo; short slides take the next ones; l
 
 test('each path names itself on screen and gives its reason',()=>{
  const base={category:'D2C brand',assets:farmley,pageUrls:farmleyPages,palette:neutral};
- assert.equal(decideBrandLook({kind:'website',...base,logoColours:['#172c4b','#ffcf45']}).label,'Brand look applied');
- assert.equal(decideBrandLook({kind:'website',...base,assets:farmley.slice(0,2)}).label,'Standard look: no brand images found');
- assert.equal(decideBrandLook({kind:'website',...base,logoColours:[]}).label,'Standard look: no brand colours found');
- assert.equal(decideBrandLook({kind:'website',...base,category:'SaaS',assets:[],pageUrls:[]}).label,'Standard look: not a D2C brand');
+ assert.equal(decideBrandLook({kind:'website',...base,logoColours:['#172c4b','#ffcf45']}).label,'Brand colours and photos applied');
+ assert.equal(decideBrandLook({kind:'website',...base,assets:farmley.slice(0,2)}).label,'Brand colours applied');
+ assert.equal(decideBrandLook({kind:'website',...base,palette:undefined,logoColours:[]}).label,'Standard white look: no brand colours found');
+ assert.equal(decideBrandLook({kind:'website',...base,category:'SaaS',assets:[],pageUrls:[]}).label,'Brand colours applied');
  assert.equal(decideBrandLook({kind:'call',...base}).applied,false);
 });
 

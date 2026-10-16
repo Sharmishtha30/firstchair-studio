@@ -1,14 +1,15 @@
 import {v} from 'convex/values';
 import {contrastRatio} from './appearance';
 import type {Post} from './studioTypes';
-import type {Palette} from './brandPalette';
+import {defaultWebsitePalette,type Palette} from './brandPalette';
 
-// Brand look for D2C website packs: deterministic choices only. No website object reaches a model;
+// Colours for all website packs, photos for D2C only. No website object reaches a model;
 // colours and images are attached after the copy has been written and reviewed.
 export const lookV=v.object({background:v.string(),secondary:v.string(),text:v.string(),heading:v.string(),accent:v.string()});
 export type Look={background:string;secondary:string;text:string;heading:string;accent:string};
-export const brandLookV=v.object({applied:v.boolean(),label:v.string(),reason:v.string(),colours:v.optional(v.object({primary:v.string(),secondary:v.string(),background:v.string()})),images:v.optional(v.array(v.string()))});
-export type BrandLook={applied:boolean;label:string;reason:string;colours?:{primary:string;secondary:string;background:string};images?:string[]};
+export const brandLookV=v.object({applied:v.boolean(),d2c:v.optional(v.boolean()),label:v.string(),reason:v.string(),colours:v.optional(v.object({primary:v.string(),secondary:v.string(),background:v.string()})),images:v.optional(v.array(v.string()))});
+export type BrandLook={applied:boolean;d2c?:boolean;label:string;reason:string;colours?:{primary:string;secondary:string;background:string};images?:string[]};
+export const allowsBrandPhotos=(look:BrandLook)=>look.d2c??!!look.images?.length;
 type Asset={key:string;role:string;width:number;height:number;alt:string;originalUrl?:string};
 
 const consumerCategories=['D2C brand','Food and beverage','Fashion and beauty','Consumer tech and wearables'];
@@ -42,21 +43,21 @@ function hsl(hex:string){const [r,g,b]=rgb(hex),max=Math.max(r,g,b),min=Math.min
 /** A colour that reads as a brand colour rather than white, black or a grey. */
 export const isBrandColour=(hex:string)=>{if(!/^#[0-9a-f]{6}$/i.test(hex))return false;const {s,l}=hsl(hex);return s>=.25&&l>=.12&&l<=.9;};
 const distinct=(a:string,b:string)=>{const x=hsl(a),y=hsl(b),dh=Math.min(Math.abs(x.h-y.h),360-Math.abs(x.h-y.h));return dh>=40||Math.abs(x.l-y.l)>=.3;};
-/** Brand colours: the site's CSS when it has real colour, otherwise its logo. Undefined when only neutrals exist. */
+/** Honour the site's selected CSS roles, including neutral brands; only then fall back to the logo. */
 export function brandColours(palette:Palette|undefined,logoColours:string[]=[]){
- const css=palette?[palette.primary,palette.accent,...(palette.observed??[])]:[];
- const candidates=[...new Set([...css,...logoColours].map(c=>c.toLowerCase()))].filter(isBrandColour);
- // A deliberately tinted page colour (e.g. cream, not white) is the brand's colour when nothing stronger exists.
- const tint=css.map(c=>c.toLowerCase()).find(c=>/^#[0-9a-f]{6}$/.test(c)&&hsl(c).l>.9&&hsl(c).l<=.985&&hsl(c).s>=.3);
- if(!candidates.length&&tint)return {primary:tint,secondary:palette&&contrastRatio(palette.ink,tint)>=4.5?palette.ink.toLowerCase():'#101010',background:tint,source:'website CSS'};
- const primary=candidates[0];if(!primary)return undefined;
- const secondary=candidates.find(c=>c!==primary&&distinct(c,primary))??(hsl(primary).l>.5?'#101010':'#ffffff');
- return {primary,secondary,background:palette?.paper??'#ffffff',source:css.some(isBrandColour)?'website CSS':'logo'};
+ const css=palette&&palette.note!==defaultWebsitePalette.note?[palette.primary,palette.paper,palette.ink,palette.accent,...(palette.observed??[])].filter(c=>palette.observed===undefined||palette.observed.some(observed=>observed.toLowerCase()===c.toLowerCase())).map(c=>c.toLowerCase()).filter(isHex):[];
+ for(const [source,colours] of [['website CSS',css],['logo',logoColours.map(c=>c.toLowerCase()).filter(isHex)]] as const){
+  const primary=colours.find(c=>c!=='#ffffff');if(!primary)continue;
+  const secondary=colours.find(c=>c!==primary&&distinct(c,primary))??(hsl(primary).l>.5?'#101010':'#ffffff');
+  return {primary,secondary,background:palette&&css.includes(palette.paper.toLowerCase())?palette.paper.toLowerCase():'#ffffff',source};
+ }
+ return undefined;
 }
 /** Text that stays readable (4.5:1) on a card colour, preferring the brand's other colour. */
 export function readableOn(background:string,preferred:string[]){
- return [...preferred,'#101010','#ffffff'].find(c=>isHex(c)&&contrastRatio(c,background)>=4.5)??(contrastRatio('#101010',background)>=contrastRatio('#ffffff',background)?'#101010':'#ffffff');
+ return [...preferred,'#101010','#ffffff','#000000'].find(c=>isHex(c)&&contrastRatio(c,background)>=4.5)??'#000000';
 }
+export const brandHighlight=(phrase:string,background:string)=>({phrase,background,colour:readableOn(background,[])});
 const isHex=(c:string)=>/^#[0-9a-f]{6}$/i.test(c);
 /** Card colours for one slide: primary on covers, alternating with secondary inside the carousel. */
 export function slideLook(colours:{primary:string;secondary:string},alternate:boolean):Look{
@@ -73,7 +74,7 @@ export function applyBrandLook(posts:Post[],colours:{primary:string;secondary:st
   let next=1;
   return {...post,frames:post.frames.map((f,i)=>{
    const roomy=!f.items?.length&&words([f.heading,f.body].join(' '))<=22;
-   const assetKey=i===0?images[0]:roomy&&next<images.length?images[next++]:'';
+   const assetKey=i===0?images[0]??'':roomy&&next<images.length?images[next++]:'';
    return {...f,assetKey,look:slideLook(colours,post.format==='carousel'&&i%2===1)};
   })};
  });
@@ -82,10 +83,9 @@ export function applyBrandLook(posts:Post[],colours:{primary:string;secondary:st
 export function decideBrandLook(i:{kind:'website'|'article'|'call';category?:string;assets:Asset[];pageUrls:string[];productPageUrls?:string[];palette?:Palette;logoColours?:string[]}):BrandLook{
  if(i.kind!=='website')return {applied:false,label:'Standard look: website used for colours and fonts only',reason:'Not classified: in article and call packs the website supplies colours and fonts only, so no website images are used.'};
  const kind=classifyD2C(i);
- if(!kind.d2c)return {applied:false,label:'Standard look: not a D2C brand',reason:kind.reason};
- const images=pickBrandImages(i.assets);
- if(images.length<3)return {applied:false,label:'Standard look: no brand images found',reason:`${kind.reason} Only ${images.length} usable product or lifestyle photo${images.length===1?'':'s'} found; 3 are needed.`};
+ const candidates=kind.d2c?pickBrandImages(i.assets):[],images=candidates.length>=3?candidates:[];
+ const photoReason=!kind.d2c?'Photos are used only for D2C websites.':images.length?`${images.length} website photos.`:`Only ${candidates.length} usable product or lifestyle photos found; 3 are needed.`;
  const found=brandColours(i.palette,i.logoColours);
- if(!found)return {applied:false,label:'Standard look: no brand colours found',reason:`${kind.reason} The website CSS and logo only use white, black or grey.`};
- return {applied:true,label:'Brand look applied',reason:`${kind.reason} ${images.length} website photos; colours ${found.primary} and ${found.secondary} from the ${found.source}.`,colours:{primary:found.primary,secondary:found.secondary,background:found.background},images};
+ if(!found)return {applied:images.length>0,d2c:kind.d2c,label:'Standard white look: no brand colours found',reason:`${kind.reason} No usable website CSS or logo colour found. ${photoReason}`,colours:{primary:'#ffffff',secondary:'#ffffff',background:'#ffffff'},images};
+ return {applied:true,d2c:kind.d2c,label:images.length?'Brand colours and photos applied':'Brand colours applied',reason:`${kind.reason} Colours ${found.primary} and ${found.secondary} from the ${found.source}. ${photoReason}`,colours:{primary:found.primary,secondary:found.secondary,background:found.background},images};
 }

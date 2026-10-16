@@ -2,8 +2,9 @@ import type {Brand,Post} from '../convex/studioTypes';
 import type {Box} from '../convex/appearance';
 import {bounds,loadImage,text} from './artwork';
 import {appearanceContexts,appearanceReports,paintSlideImage} from './appearanceLayout';
+import {brandHighlight} from '../convex/brandLook';
 
-/** Brand look for D2C website packs: brand-colour cards with real website photos. Text never sits on a photo;
+/** Website brand-colour cards, with photos only for D2C packs. Text never sits on a photo;
  * every text colour is chosen for 4.5:1 contrast on its card colour (see convex/brandLook.ts). */
 export async function paintBrand(ctx:CanvasRenderingContext2D,post:Post,brand:Brand,index:number,font:string,bodyFont:string,weight:number){
  const f=post.frames[index],url=f.assetKey?brand.assets?.find(a=>a.key===f.assetKey)?.url:undefined;
@@ -31,7 +32,7 @@ async function layout(ctx:CanvasRenderingContext2D,post:Post,brand:Brand,index:n
  const f=post.frames[index],look=f.look!,lead=index===0,report=appearanceReports.get(ctx.canvas);
  if(report)report.text={heading:{background:look.background,colour:look.heading},body:{background:look.background,colour:look.text}};
  ctx.fillStyle=look.background;ctx.fillRect(0,0,1080,1350);
- const highlight=f.design?.emphasis?{phrase:f.design.emphasis,background:look.accent}:undefined;
+ const highlight=f.design?.emphasis?brandHighlight(f.design.emphasis,look.accent):undefined;
  // Cover and static: the photo leads and the words sit on the brand colour below it.
  const photoFirst=!!image&&lead;
  if(photoFirst)photo(ctx,image!,{x:80,y:165,width:920,height:photoHeight});

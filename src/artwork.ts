@@ -13,7 +13,7 @@ export function foreground(background:string){return luminance(background)>.19?'
 export function lines(ctx:CanvasRenderingContext2D,value:string,width:number){const result:string[]=[];for(const para of value.split('\n')){let row='';for(const word of para.split(/\s+/)){const next=row?row+' '+word:word;if(row&&ctx.measureText(next).width>width){result.push(row);row=word;}else row=next;}if(row)result.push(row);}return result;}
 export type TextBound={value:string;x:number;y:number;width:number;height:number;size:number};
 export const bounds=new WeakMap<HTMLCanvasElement,TextBound[]>();
-export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number,width:number,size:number,maxHeight:number,font:string,colour:string,weight=400,min=40,paint=true,field?:TextField,highlight?:{phrase:string;background:string}){
+export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number,width:number,size:number,maxHeight:number,font:string,colour:string,weight=400,min=40,paint=true,field?:TextField,highlight?:{phrase:string;background:string;colour?:string}){
  if(field){const a=appearanceReports.get(ctx.canvas);colour=recordTextAppearance(ctx,field,colour,a?.text[field]?.background??'#ffffff');}
  const override=textOverride(ctx,field);if(override){size=override.size;min=size;font=override.font??font;if(override.font)weight=override.weight;}
  if(!value.trim())return y;let rows:string[]=[],line=0,used=size;
@@ -25,7 +25,7 @@ export function text(ctx:CanvasRenderingContext2D,value:string,x:number,y:number
  for(const row of rows){if(paint){const a=Math.max(0,start-offset),b=Math.min(row.length,start+phrase.length-offset);const marked=start>=0&&b>a&&highlight;
  if(marked){ctx.fillStyle=highlight.background;ctx.fillRect(x+ctx.measureText(row.slice(0,a)).width-3,y-2,ctx.measureText(row.slice(a,b)).width+6,line);}
  ctx.fillStyle=colour;ctx.fillText(row,x,y);
- if(marked){ctx.fillStyle=foreground(highlight.background);ctx.fillText(row.slice(a,b),x+ctx.measureText(row.slice(0,a)).width,y);}
+ if(marked){ctx.fillStyle=highlight.colour??foreground(highlight.background);ctx.fillText(row.slice(a,b),x+ctx.measureText(row.slice(0,a)).width,y);}
  }offset+=row.length+1;y+=line;}return y;
 }
 const images=new Map<string,Promise<HTMLImageElement>>();
