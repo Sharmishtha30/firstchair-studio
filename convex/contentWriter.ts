@@ -147,7 +147,7 @@ export async function writeFromContent(ctx:ActionCtx,{packId,startedAt}:{packId:
   if(attempt<6)draft=await writeFittingDraft(draft,corrections);
  }
  // Styling is decided after the copy passed review: a D2C website gets its own colours and photos; everything else keeps the standard look.
- const brandLook=decideBrandLook({kind:source.kind,category:pack.detectedCategory,assets:pack.sourceAssets??[],pageUrls:(pack.sourcePages??[]).map(page=>page.url),palette:pack.sitePalette,logoColours:pack.logoColours});
+ const brandLook=decideBrandLook({kind:source.kind,category:pack.detectedCategory,assets:pack.sourceAssets??[],pageUrls:(pack.sourcePages??[]).map(page=>page.url),productPageUrls:(pack.sourcePages??[]).filter(page=>page.isProduct).map(page=>page.url),palette:pack.sitePalette,logoColours:pack.logoColours});
  if(accepted&&brandLook.applied&&brandLook.colours&&brandLook.images){posts=applyBrandLook(posts,brandLook.colours,brandLook.images);checkCreativePosts(posts,brand.facts,platforms,brandLook.images,quotes);}
  const writerRun={provider:selected.provider,model:modelName,requests,durationMs:Date.now()-started,review:CONTENT_VERSION+': '+reason+(accepted?shapeNote:'')+ruleNote+' Look: '+brandLook.label+' — '+brandLook.reason,usageNote:'One shared script for both platforms. Website styling is separate. Token totals are not measured. '+selected.usageNote};
  if(!accepted){await ctx.runMutation(internal.studio.update,{packId,startedAt,stage:safetyFailure?'Review needs attention':'Writing interrupted',writerRun});throw Error(safetyFailure?'The source-based story needs attention: '+reason.slice(0,280):'The writer could not finish this draft. Your input is saved; retry the writing step.');}

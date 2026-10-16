@@ -12,6 +12,7 @@ import {extractStyle} from './brandStyle';
 import {websiteGeometry} from './websiteGeometry';
 import {logoColours} from './logoColours';
 import {websiteImageSource} from './websiteImageSource';
+import {hasProductOffer,selectWebsiteImages} from './websiteProducts';
 import {publicWebsite} from './publicWebsite';
 import {primaryLogo,primaryInlineLogo} from './websiteIdentity';
 import {imageInfo} from './websiteAssets';
@@ -19,7 +20,7 @@ import {inlineIllustrations} from './websiteDiagrams';
 import {websiteBrandEvidence} from './websiteBrandEvidence';
 import type {SourcePage} from './creativeTypes';
 function inspectHtml(url:string,html:string){
- const $=load(html),title=$('title').text().trim(),language=$('html').attr('lang')??'';
+ const $=load(html),title=$('title').text().trim(),language=$('html').attr('lang')??'',isProduct=hasProductOffer($);
  const styles=$('link[rel="stylesheet"]').toArray().map(el=>$(el).attr('href')).filter((s):s is string=>!!s).map(s=>new URL(s,url).href).slice(0,8);
  const usedClasses=$('[class]').toArray().flatMap(el=>($(el).attr('class')??'').split(/\s+/));
  const inline=$('style').text(),bodyClasses=($('body').attr('class')??'').split(/\s+/).filter(Boolean);
@@ -34,7 +35,7 @@ function inspectHtml(url:string,html:string){
  blocks.push(...brandEvidence);
  const description=$('meta[name="description"]').attr('content');if(description)blocks.unshift({kind:'description',text:description});
  if(blocks.map(b=>b.text).join(' ').length<100)blocks.push({kind:'body',text:$('body').text().replace(/\s+/g,' ').trim().slice(0,16000)});
- return {usedClasses,language,bodyClasses,primaryHeadingClasses,inlineLogo,page:{url,title,retrievedAt:Date.now(),blocks} satisfies SourcePage,styles,inline,logo,links,images,diagrams};
+ return {usedClasses,language,bodyClasses,primaryHeadingClasses,inlineLogo,page:{url,title,retrievedAt:Date.now(),isProduct,blocks} satisfies SourcePage,styles,inline,logo,links,images,diagrams};
 }
 export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(),handler:async(ctx,{packId})=>{
  const pack=await ctx.runQuery(internal.studio.getInternal,{packId});if(!pack)throw new Error('Pack no longer exists.');
@@ -108,7 +109,7 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
  }catch{warnings.push('Logo could not be imported; a text wordmark is used.');}
  if(!logoFile&&home.inlineLogo){logoFile=await ctx.storage.store(new Blob([home.inlineLogo],{type:'image/svg+xml'}));logoColourList=logoColours(new TextEncoder().encode(home.inlineLogo),home.inlineLogo);}
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Collecting brand imagery'});
- const candidates=sources.flatMap((s,index)=>s.images.map(image=>({...image,score:image.score+(index===0?8:0)+(image.role==='product'?5:0)-(/notice|update on|debunk|reddit|reel/i.test(image.alt)?8:0)}))).filter((i,n,a)=>a.findIndex(x=>x.url===i.url)===n).sort((a,b)=>b.score-a.score).slice(0,36);
+ const candidates=selectWebsiteImages(sources.flatMap((s,index)=>s.images.map(image=>({...image,score:image.score+(index===0?8:0)+(image.role==='product'?5:0)-(/notice|update on|debunk|reddit|reel/i.test(image.alt)?8:0)}))),36);
  const fetched=await Promise.allSettled(candidates.map(async(c,i)=>{const r=await publicWebsite(c.url,'image/');let info=imageInfo(r.bytes!),bytes=r.bytes!;if(!info&&/<svg[\s>]/i.test(r.html.slice(0,1000))){const svg=inlineIllustrations(load('<main>'+r.html+'</main>'),c.pageUrl)[0];if(svg){info={width:svg.width,height:svg.height,mime:'image/svg+xml'};bytes=new TextEncoder().encode(svg.svg);}}if(!info||info.width>6000||info.height>6000||(/brand decoration|brand icon/.test(c.role)?info.width<16||info.height<16:info.width<240||info.height<180)||info.width/info.height>4)throw new Error('Image is too small or unsuitable.');return {...c,...info,key:(info.mime==='image/svg+xml'?'diagram-external-':'image-')+i,bytes};}));
  const sourceAssets=[];
  // Reserve up to two places for the site's own explanatory artwork.
@@ -117,7 +118,7 @@ export const inspect=internalAction({args:{packId:v.id('packs')},returns:v.null(
   sourceAssets.push({key:'diagram-'+sourceAssets.length,file,originalUrl:d.url,width:d.width,height:d.height,alt:d.alt,role:d.role,pageUrl:d.pageUrl});
  }
  if(sourceAssets.length)warnings.push('Inline website diagrams imported with safe presentation attributes; external CSS and animation are omitted. Compare their preview before publishing.');
- const usable=fetched.flatMap(r=>r.status==='fulfilled'?[r.value]:[]).slice(0,24-sourceAssets.length);
+ const usable=selectWebsiteImages(fetched.flatMap(r=>r.status==='fulfilled'?[r.value]:[]),24-sourceAssets.length);
  sourceAssets.push(...await Promise.all(usable.map(async a=>({key:a.key,file:await ctx.storage.store(new Blob([a.bytes as BlobPart],{type:a.mime})),originalUrl:a.url,width:a.width,height:a.height,alt:a.alt,role:a.role,pageUrl:a.pageUrl}))));
  if(!sourceAssets.length)warnings.push('No suitable website imagery loaded. Original typographic diagrams will be used.');
  await ctx.runMutation(internal.studio.update,{packId,startedAt:pack.operationStartedAt,stage:'Website reading complete',completedStep:'assets',sourceText,sourcePages,sourceAssets,fontName,fontRegular,fontSemibold,bodyFontRegular,bodyFontSemibold,resetFonts:!fontName||!fontRegular||!fontSemibold,sourceWarnings:warnings,sitePalette:palette,siteStyle:style,logoFile,resetLogo:!logoFile,logoColours:logoColourList});return null;

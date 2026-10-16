@@ -16,8 +16,8 @@ export const isPhoto=(a:Asset)=>a.key.startsWith('image-')&&!/decoration|icon/i.
 const productPath=(url:string)=>{try{return /\/(products?|collections?|shop)\//i.test(new URL(url).pathname);}catch{return false;}};
 
 /** Sells its own physical products direct to consumers: a consumer-goods category with product evidence, or strong product evidence alone. */
-export function classifyD2C(i:{category?:string;assets:Asset[];pageUrls:string[]}){
- const productImages=i.assets.filter(a=>isPhoto(a)&&a.role==='product').length,productPages=i.pageUrls.filter(productPath).length;
+export function classifyD2C(i:{category?:string;assets:Asset[];pageUrls:string[];productPageUrls?:string[]}){
+ const productImages=i.assets.filter(a=>isPhoto(a)&&a.role==='product').length,productPages=new Set(i.pageUrls.filter(url=>productPath(url)||i.productPageUrls?.includes(url))).size;
  const consumer=!!i.category&&consumerCategories.includes(i.category);
  const d2c=consumer&&(productImages>=2||productPages>=1)||productPages>=2&&productImages>=3;
  const evidence=`category "${i.category??'unknown'}", ${productImages} product image${productImages===1?'':'s'}, ${productPages} product page${productPages===1?'':'s'}`;
@@ -79,7 +79,7 @@ export function applyBrandLook(posts:Post[],colours:{primary:string;secondary:st
  });
 }
 
-export function decideBrandLook(i:{kind:'website'|'article'|'call';category?:string;assets:Asset[];pageUrls:string[];palette?:Palette;logoColours?:string[]}):BrandLook{
+export function decideBrandLook(i:{kind:'website'|'article'|'call';category?:string;assets:Asset[];pageUrls:string[];productPageUrls?:string[];palette?:Palette;logoColours?:string[]}):BrandLook{
  if(i.kind!=='website')return {applied:false,label:'Standard look: website used for colours and fonts only',reason:'Not classified: in article and call packs the website supplies colours and fonts only, so no website images are used.'};
  const kind=classifyD2C(i);
  if(!kind.d2c)return {applied:false,label:'Standard look: not a D2C brand',reason:kind.reason};

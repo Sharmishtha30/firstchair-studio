@@ -82,6 +82,7 @@ import type * as websiteGeometry from "../websiteGeometry.js";
 import type * as websiteIdentity from "../websiteIdentity.js";
 import type * as websiteImageSource from "../websiteImageSource.js";
 import type * as websiteNetworkRetry from "../websiteNetworkRetry.js";
+import type * as websiteProducts from "../websiteProducts.js";
 import type * as websiteReadLimit from "../websiteReadLimit.js";
 import type * as websiteSafety from "../websiteSafety.js";
 import type * as websiteTypography from "../websiteTypography.js";
@@ -169,6 +170,7 @@ declare const fullApi: ApiFromModules<{
   websiteIdentity: typeof websiteIdentity;
   websiteImageSource: typeof websiteImageSource;
   websiteNetworkRetry: typeof websiteNetworkRetry;
+  websiteProducts: typeof websiteProducts;
   websiteReadLimit: typeof websiteReadLimit;
   websiteSafety: typeof websiteSafety;
   websiteTypography: typeof websiteTypography;
