@@ -100,7 +100,7 @@ export const editPost=mutation({args:{token:v.string(),platform:platformV,format
  if(args.assetKey&&!p.sourceAssets?.some(a=>a.key===args.assetKey))throw new ConvexError('Choose an image from this website.');
  let posts=p.posts.map(post=>{if(post.format!==args.format||(post.platform??'instagram')!==args.platform)return post;if(!post.frames[args.slide])throw new ConvexError('Slide not found.');return {...post,hook:args.slide===0?args.heading:post.hook,caption:args.caption,frames:post.frames.map((frame,i)=>i===args.slide?{...frame,heading:args.heading,body:args.body,items:args.items,...(frame.design?{design:{...frame.design,takeaway:args.takeaway??frame.design.takeaway,...(args.assetKey&&args.assetKey!==frame.assetKey?{layout:frame.design.layout==='product'?'product' as const:'photo' as const,imagePosition:'bottom' as const}:args.assetKey===''&&(frame.design.layout==='photo'||frame.design.layout==='product')?{layout:'essay' as const}:{})}}:{}),...(args.assetKey!==undefined?{assetKey:args.assetKey}:{}),...(args.composition?{composition:args.composition}:{})}:frame)};});
  if(p.callRequested)posts=anonymizePosts(posts,p.posts.flatMap(post=>post.frames.flatMap(f=>f.quote?[f.quote]:[])));
- try{checkCreativePosts(posts,p.brand?.facts??p.posts.flatMap(post=>post.sourceFacts),[...new Set(posts.map(post=>post.platform??'instagram'))],(p.sourceAssets??[]).map(a=>a.key));
+ try{checkCreativePosts(posts,p.brand?.facts??p.posts.flatMap(post=>post.sourceFacts),[...new Set(posts.map(post=>post.platform??'instagram'))],(p.sourceAssets??[]).map(a=>a.key),[],true);
  checkDesignDensity(posts,{story:!!p.callRequested});}catch(e){throw new ConvexError(e instanceof Error?e.message:'This edit does not fit the creative. Shorten it and try again.');}
  await ctx.db.patch(p._id,{editCount:claimEdit(p.editCount),previousPosts:p.posts,previousBrand:undefined,posts,updatedAt:Date.now(),mode:'Edited by you — new claims have not been rechecked'});return null;
 }});
@@ -196,7 +196,7 @@ export const styleAppearance=mutation({args:{token:v.string(),platform:platformV
  let found=false;
  const posts=pack.posts.map(post=>{if(post.format!==args.format||(post.platform??'instagram')!==args.platform)return post;
  const frame=post.frames[args.slide];if(!frame)throw new ConvexError('Slide not found.');if(args.image&&!frame.assetKey)throw new ConvexError('This slide has no image to resize.');if(args.assetKey!==undefined&&!frame.look)throw new ConvexError('Images can be changed on brand-look slides only.');found=true;
- return {...post,frames:post.frames.map((f,i)=>{if(i!==args.slide)return f;const {imageStyle,...rest}=f;const kept=args.assetKey!==undefined?{...rest,assetKey:args.assetKey}:{...rest,...(imageStyle?{imageStyle}:{})};return {...kept,...(args.colour?{textColours:{...f.textColours,[args.colour.field]:args.colour.value.toLowerCase()}}:{}),...(args.image?{imageStyle:args.image}:{})};})};});
+ return {...post,frames:post.frames.map((f,i)=>{if(i!==args.slide)return f;const {imageStyle,...rest}=f;const kept=args.assetKey!==undefined?{...rest,assetKey:args.assetKey,uploadedPhoto:undefined}:{...rest,...(imageStyle?{imageStyle}:{})};return {...kept,...(args.colour?{textColours:{...f.textColours,[args.colour.field]:args.colour.value.toLowerCase()}}:{}),...(args.image?{imageStyle:args.image}:{})};})};});
  if(!found)throw new ConvexError('Creative not found.');
  await ctx.db.patch(pack._id,{posts,updatedAt:Date.now()});return null;
 }});

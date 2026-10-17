@@ -1,3 +1,4 @@
+import {paintUploadedPhoto} from './uploadedArtwork';
 import {anonymizePosts} from '../convex/callPrivacy';
 import {installRedactionInk} from './redactionInk';
 import {appearanceContexts,appearanceReports,recordTextAppearance,paintSlideImage,finishSlideImages} from './appearanceLayout';
@@ -74,7 +75,7 @@ async function paint(post:Post,brand:Brand,index:number,styles:TextStyles){
  for(const field of ['heading','body'] as const){const choice=styles[field]?.font;if(choice&&choice!=='brand')fonts[field]=await editorFont(choice);}
  styledContexts.set(ctx,{styles,fonts});fittedStyles.set(c,styles);appearanceContexts.set(ctx,{colours:f.textColours??{},imageStyle:f.imageStyle,pending:[],textBounds:[]});appearanceReports.set(c,{text:{heading:{background:p.paper,colour:ink},body:{background:!f.design&&f.composition==='spotlight'?p.primary:p.paper,colour:ink}}});
  // Brand-look slides (D2C website packs) use brand colours and website photos; all others keep the frozen design.
- await (f.look?paintBrand:paintFrozen)(ctx,post,brand,index,font,bodyFont,weight);finishSlideImages(ctx);return c;
+ await (f.uploadedPhoto?paintUploadedPhoto:f.look?paintBrand:paintFrozen)(ctx,post,brand,index,font,bodyFont,weight);finishSlideImages(ctx);return c;
 }
 
 export async function checkArtwork(posts:Post[],brand:Brand){const report=[];for(const post of posts)for(let i=0;i<post.frames.length;i++){const c=await renderArtwork(post,brand,i);report.push({platform:post.platform??'instagram',format:post.format,slide:i+1,width:c.width,height:c.height,text:bounds.get(c)});}return report;}

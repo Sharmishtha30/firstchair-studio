@@ -8,7 +8,7 @@ import {textStylesV,type TextStyles} from "./textStyles";
 import {callQuoteV,callStoryV,storylineV,type CallQuote} from "./customerCall";
 import {imageStyleV,textColoursV,type ImageStyle,type TextColours} from "./appearance";
 import {lookV,brandLookV,type Look} from "./brandLook";
-export const frameV = v.object({imageStyle:v.optional(imageStyleV),textColours:v.optional(textColoursV), textStyles:v.optional(textStylesV), heading: v.string(), body: v.string(),design:v.optional(designV),composition:v.optional(compositionV),items:v.optional(v.array(itemV)),assetKey:v.optional(v.string()),look:v.optional(lookV),eyebrow:v.optional(v.string()),quote:v.optional(callQuoteV),unclear:v.optional(v.boolean()),weakHandoff:v.optional(v.boolean()) });
+export const frameV = v.object({slideNumber:v.optional(v.number()),uploadedPhoto:v.optional(v.boolean()),imageStyle:v.optional(imageStyleV),textColours:v.optional(textColoursV), textStyles:v.optional(textStylesV), heading: v.string(), body: v.string(),design:v.optional(designV),composition:v.optional(compositionV),items:v.optional(v.array(itemV)),assetKey:v.optional(v.string()),look:v.optional(lookV),eyebrow:v.optional(v.string()),quote:v.optional(callQuoteV),unclear:v.optional(v.boolean()),weakHandoff:v.optional(v.boolean()) });
 export const postV = v.object({
  sourceKind:v.optional(v.union(v.literal("article"),v.literal("website"),v.literal("call"))),
   format: v.union(v.literal("carousel"), v.literal("static"), v.literal("reel")),
@@ -20,21 +20,21 @@ export const postV = v.object({
 export const paletteV=v.object({paper:v.string(),ink:v.string(),primary:v.string(),accent:v.string(),note:v.string(),observed:v.optional(v.array(v.string()))});
 export const artworkV=v.object({sceneUrl:v.optional(v.string()),presenterUrl:v.optional(v.string()),note:v.string()});
 export const brandV = v.object({ name: v.string(), audience: v.string(), offer: v.string(), voice: v.string(), facts: v.array(v.string()), sourceUrl: v.string(), palette:v.optional(paletteV),artwork:v.optional(artworkV),style:v.optional(styleV),assets:v.optional(v.array(clientAssetV)),strategy:v.optional(strategyV) });
-export type Frame = {imageStyle?:ImageStyle;textColours?:TextColours;textStyles?:TextStyles;heading:string; body:string;design?:import("./creativeTypes").CreativeDesign;composition?:import("./creativeTypes").Composition;items?:{label:string;detail:string}[];assetKey?:string;look?:Look;eyebrow?:string;quote?:CallQuote;unclear?:boolean;weakHandoff?:boolean};
+export type Frame = {slideNumber?:number;uploadedPhoto?:boolean;imageStyle?:ImageStyle;textColours?:TextColours;textStyles?:TextStyles;heading:string; body:string;design?:import("./creativeTypes").CreativeDesign;composition?:import("./creativeTypes").Composition;items?:{label:string;detail:string}[];assetKey?:string;look?:Look;eyebrow?:string;quote?:CallQuote;unclear?:boolean;weakHandoff?:boolean};
 export type Post = {sourceKind?:"article"|"website"|"call";format:"carousel"|"static"|"reel"; platform?:import("./creativeTypes").Platform;destination?:string;documentTitle?:string;hook:string; pain:string; emotion:string; frames:Frame[]; caption:string; altText:string; sourceFacts:string[];layout?:"headline"|"comparison"|"note"};
 export type Brand = {assets?:import("./creativeTypes").CreativeAsset[];strategy?:{category?:string;visualPriority?:'product'|'service'|'editorial';customer:string;situation:string;market:string;mechanism:string;action:string;destination:string;imageStyle:string;angles:{idea:string;usefulInsight:string;hooks:string[];evidence:string[]}[];chosenAngles:string[];note:string};name:string; audience:string; offer:string; voice:string; facts:string[]; sourceUrl:string;style?:import('./brandStyle').BrandStyle & {logoUrl?:string};artwork?:{sceneUrl?:string;presenterUrl?:string;note:string};palette?:import('./brandPalette').Palette};
-export function checkPosts(posts:Post[], facts:string[],count=3,callEvidence:readonly {id:string;text:string}[]=[]) {
+export function checkPosts(posts:Post[], facts:string[],count=3,callEvidence:readonly {id:string;text:string}[]=[],edited=false) {
   if(posts.length!==count || new Set(posts.map(p=>p.format)).size!==count || count===2&&posts.some(p=>p.format==='reel')) throw new Error("The writer must finish each requested format exactly once.");
   for(const p of posts) {
     if(/^(hi|hello|welcome|hey)\b/i.test(p.hook.trim()))throw new Error('The hook is a greeting, not an audience insight.');
     if(p.frames.some(f=>/\b(puts|provides|offers|gives)\s*[.!?]?$/i.test(f.body.trim())))throw new Error('The writer left an unfinished line. Finish every on-screen sentence.');
-  if(p.frames.some((f,i)=>!f.heading.trim()&&(!(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website')||i===0||!f.body.trim()&&!f.items?.some(item=>item.detail.trim()))))throw new Error('Every slide needs a meaningful headline.');
+  if(p.frames.some((f,i)=>!f.heading.trim()&&(!(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website')||!edited&&i===0||!f.body.trim()&&!f.items?.some(item=>item.detail.trim()))))throw new Error('Every slide needs a meaningful headline.');
     if(p.caption.length>2200)throw new Error('The caption exceeds Instagram’s character limit.');
     if(p.hook.length>120) throw new Error("The opening is too long for a social creative. Shorten it without losing the idea.");
     const groundedCall=p.frames.length>0&&p.frames.every(frame=>frame.quote&&callEvidence.some(q=>q.id===frame.quote!.id&&q.text===frame.quote!.text));
     if((!p.sourceFacts.length&&!groundedCall) || p.sourceFacts.some(f=>!facts.includes(f))) throw new Error("The writer used an unsupported source fact.");
     const expected=p.format==='carousel'?5:p.format==='static'?1:5;
-    if(p.format==='carousel'?(p.frames.length<(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'?2:3)||p.frames.length>(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'||p.frames.some(f=>f.quote)?8:7)):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
+    if(p.format==='carousel'?(p.frames.length<(edited?1:p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'?2:3)||p.frames.length>(p.sourceKind==='article'||p.sourceKind==='call'||p.sourceKind==='website'||p.frames.some(f=>f.quote)?8:7)):p.frames.length!==expected) throw new Error("The writer returned the wrong number of frames.");
     if(p.frames.some(f=>/\b(?:visual|voiceover|camera|scene)\s*:|\d+\s*[–-]\s*\d+\s*s\s*\|/i.test(f.heading+' '+f.body)))throw new Error('The writer returned production directions instead of finished on-screen copy.');
     if(p.frames[0].heading.replace(/\s+/g,' ').trim()!==p.hook.replace(/\s+/g,' ').trim())throw new Error('The first frame does not match the short hook.');
     if(p.format==='reel'&&p.frames.map(f=>f.heading+' '+f.body).join(' ').split(/\s+/).length>100)throw new Error('The reel has too much text for 25 seconds.');
@@ -67,9 +67,9 @@ export const packFields={
  ads:v.optional(v.array(adV)),adStatus:v.optional(v.string()),adError:v.optional(v.string()),
 };
 
-export function checkCreativePosts(posts:Post[],facts:string[],platforms:import('./creativeTypes').Platform[],assetKeys:string[]=[],callEvidence:readonly {id:string;text:string}[]=[]){
+export function checkCreativePosts(posts:Post[],facts:string[],platforms:import('./creativeTypes').Platform[],assetKeys:string[]=[],callEvidence:readonly {id:string;text:string}[]=[],edited=false){
  if(posts.length!==platforms.length*2)throw new Error('Finish the carousel and static for each selected platform.');
- for(const platform of platforms)checkPosts(posts.filter(p=>(p.platform??'instagram')===platform),facts,2,callEvidence);
+ for(const platform of platforms)checkPosts(posts.filter(p=>(p.platform??'instagram')===platform),facts,2,callEvidence,edited);
  for(const p of posts){
   if(p.sourceKind!=='article'&&p.sourceKind!=='call'&&p.sourceKind!=='website'&&(!p.destination||!/^https?:\/\//.test(p.destination)))throw new Error('Every post needs a real destination.');
   if(/unlock your potential|elevate your|game.changer|take .+ to the next level/i.test(p.hook))throw new Error('Replace the generic promise with a specific customer situation.');

@@ -1,3 +1,4 @@
+import {slideNumberLabel} from '../convex/carouselEdits';
 import {readableBrandInk} from '../convex/brandAcceptance';
 import type {Brand,Post} from '../convex/studioTypes';
 import {colours,loadImage,text} from './artwork';
@@ -39,5 +40,5 @@ export async function paintFrozen(ctx:CanvasRenderingContext2D,post:Post,brand:B
  let website='';try{website=new URL(brand.sourceUrl).hostname.replace(/^www\./,'');}catch{/* No invented address. */}
  const hasIdentity=logo||!!(brand.style?.wordmarkText||brand.name);
  text(ctx,website,hasIdentity?350:120,1218,hasIdentity?475:760,24,40,bodyFont,p.ink,400,20);
- if(post.format==='carousel')text(ctx,`${index+1}/${post.frames.length}`,920,1218,80,24,40,bodyFont,p.ink,400,22);
+ if(post.format==='carousel')text(ctx,slideNumberLabel(post,index),920,1218,80,24,40,bodyFont,p.ink,400,22);
 }

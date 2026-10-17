@@ -1,3 +1,4 @@
+import {slideNumberLabel} from '../convex/carouselEdits';
 import type {Brand,Post} from '../convex/studioTypes';
 import type {Box} from '../convex/appearance';
 import {bounds,loadImage,text} from './artwork';
@@ -56,5 +57,5 @@ async function layout(ctx:CanvasRenderingContext2D,post:Post,brand:Brand,index:n
  if(image&&!photoFirst){const top=y+20,height=limit-top;if(height>=320)photo(ctx,image,{x:80,y:top,width:920,height});}
  let website='';try{website=new URL(brand.sourceUrl).hostname.replace(/^www\./,'');}catch{/* No invented address. */}
  text(ctx,website,120,1218,760,24,40,bodyFont,look.text,400,20);
- if(post.format==='carousel')text(ctx,`${index+1}/${post.frames.length}`,920,1218,80,24,40,bodyFont,look.text,400,22);
+ if(post.format==='carousel')text(ctx,slideNumberLabel(post,index),920,1218,80,24,40,bodyFont,look.text,400,22);
 }
